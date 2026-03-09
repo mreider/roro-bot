@@ -31,12 +31,16 @@
     "born": "1829",
     "died": "1900",
     "relation": "RoRo's maternal grandfather",
-    "spouse": "Caroline Lavenson (née Weinman)"
+    "spouse": "Caroline Lavenson (née Heiman)"
   },
   {
-    "name": "Caroline Lavenson (née Weinman)",
+    "name": "Caroline Lavenson (née Heiman)",
+    "born": "1842",
+    "died": "1872-06-24",
+    "deathplace": "Sacramento, CA",
     "relation": "RoRo's maternal grandmother",
-    "spouse": "Samuel Lavenson"
+    "spouse": "Samuel Lavenson",
+    "notes": "Died at age 29-30, the same year her daughter Helen was born. Buried at Home of Peace Cemetery, Sacramento. Three children: Clara (1870), Sara (1871), Helen (1872)."
   },
   {
     "name": "Albert S. Lavenson",
@@ -44,8 +48,42 @@
     "birthplace": "Sacramento, CA",
     "died": "1930",
     "relation": "RoRo's maternal uncle",
-    "notes": "Vice-president of Capwell's Department Store. President of Temple Sinai. Left estate to charitable/educational foundation.",
-    "parents": ["Samuel Lavenson", "Caroline Lavenson (née Weinman)"]
+    "spouse": "Amy Lavenson (née Furth)",
+    "married": "1894",
+    "notes": "Partner and vice-president of Capwell's Department Store (30 years, from 1890). President of Temple Sinai. Organizer of the Commercial Club (later Oakland Chamber of Commerce). Music patron at Mills College, responsible for construction of Music Building. Chaired Jewish Welfare Campaign of the East Bay (1927). Died at 65 of heart disease. Left estate to charitable/educational foundation.",
+    "parents": ["Samuel Lavenson", "Caroline Lavenson (née Heiman)"],
+    "sources": ["https://www.jta.org/1930/06/11/archive/albert-lavenson-california-philanthropist-dies-at-65"]
+  },
+  {
+    "name": "Amy Lavenson (née Furth)",
+    "relation": "Albert's wife",
+    "spouse": "Albert S. Lavenson",
+    "married": "1894",
+    "notes": "Daughter of Gold Rush merchant Simon Furth."
+  },
+  {
+    "name": "Alma Ruth Lavenson",
+    "born": "1897",
+    "died": "1989",
+    "birthplace": "Oakland, CA",
+    "relation": "RoRo's cousin (Albert's daughter)",
+    "notes": "Noted photographer. Studied under Edward Weston and Imogen Cunningham.",
+    "parents": ["Albert S. Lavenson", "Amy Lavenson (née Furth)"],
+    "sources": ["https://www.jmaw.org/lavenson-capwells-jewish/"]
+  },
+  {
+    "name": "Clara Lavenson Furth",
+    "born": "1870",
+    "died": "1945",
+    "relation": "RoRo's maternal aunt (Helen's sister)",
+    "parents": ["Samuel Lavenson", "Caroline Lavenson (née Heiman)"]
+  },
+  {
+    "name": "Sara Lavenson",
+    "born": "1871",
+    "died": "1946",
+    "relation": "RoRo's maternal aunt (Helen's sister)",
+    "parents": ["Samuel Lavenson", "Caroline Lavenson (née Heiman)"]
   },
   {
     "name": "Frederick Kahn",
@@ -55,7 +93,7 @@
     "deathplace": "Oakland, CA (3933 Harrison Street)",
     "relation": "RoRo's father",
     "spouse": "Helen Kahn (née Lavenson)",
-    "notes": "Joined father's Oakland retail business 1873. Kahn Brothers Dept Store moved 1912 to Beaux-Arts building at 16th & Broadway (architect Charles W. Dickey, 120-ft elliptical dome -now Rotunda Building, Oakland Landmark #132, National Register). First president of Jewish Welfare Federation of the East Bay. Founding member & president of Temple Sinai. Chairman of Advisory Committee of Board of Education ($5M school building program). VP of Alameda County Anti-Tuberculosis Society. Concordia Club, B'nai B'rith. Buried at Home of Eternity Cemetery, Mountain View Cemetery, Oakland.",
+    "notes": "First worked at Bauer Brothers Company (wholesalers of laces and fancy goods, 83 First Street, SF), then joined the family store after it was founded in 1879. Kahn Brothers Dept Store moved 1912 to Beaux-Arts building at 16th & Broadway (architect Charles W. Dickey, 120-ft elliptical dome - now Rotunda Building, Oakland Landmark #132, National Register). First president of Jewish Welfare Federation of the East Bay (founded 1918). Founding member & president of Temple Sinai. Chairman of Advisory Committee of Board of Education ($5M school building program). VP of Alameda County Anti-Tuberculosis Society. Concordia Club, B'nai B'rith. Buried at Home of Eternity Cemetery, Mountain View Cemetery, Oakland.",
     "parents": ["Israel Kahn", "Sarah Kahn (née Bauer)"]
   },
   {
@@ -67,11 +105,14 @@
     "relation": "RoRo's mother",
     "spouse": "Frederick Kahn",
     "notes": "Established the Kahn Foundation in 1928 after Frederick's death. In 1965, foundation donated $125,000 for 71 paintings -the Kahn Collection of 19th-century California art at the Oakland Museum, catalogued by Marjorie Arkelian.",
-    "parents": ["Samuel Lavenson", "Caroline Lavenson (née Weinman)"]
+    "parents": ["Samuel Lavenson", "Caroline Lavenson (née Heiman)"]
   },
   {
-    "name": "Helen Sarah Basinger (née Kahn)",
+    "name": "Helen Sarah Eppinger (née Kahn)",
+    "born": "1913",
+    "died": "1956",
     "relation": "RoRo's sister",
+    "spouse": "Josua Eppinger",
     "parents": ["Frederick Kahn", "Helen Kahn (née Lavenson)"]
   },
   {
@@ -95,41 +136,48 @@
   {
     "name": "Hartwig Cohen",
     "nicknames": ["Reverend Hartwig Cohen"],
-    "born": "1783",
+    "born": "1784",
     "died": "1861",
     "birthplace": "Wartha, Frankenstein, Silesia, Prussia",
     "relation": "Grandpa John's maternal great-great-grandfather",
-    "spouse": "Deborah Marques Cohen",
+    "spouse": "Deborah Marks Cohen",
     "sources": ["https://www.geni.com/people/Rev-Hartwig-Cohen/6000000016009111717", "https://www.wikitree.com/wiki/Cohen-2905"]
   },
   {
-    "name": "Deborah Marques Cohen",
-    "born": "1801",
-    "died": "1888",
+    "name": "Deborah Marks Cohen",
+    "born": "1801-05-03",
+    "died": "1888-02-15",
     "birthplace": "Charleston, SC",
+    "deathplace": "New York, NY",
     "relation": "Grandpa John's maternal great-great-grandmother",
     "spouse": "Hartwig Cohen",
-    "notes": "Maiden name 'Marques' links to Sephardic Marks/Marques family.",
-    "parents": ["Samuel Mendes Mandel Marks"]
+    "notes": "Born Deborah Marks. Family name was anglicized from Marques. Children included Esther 'Hetty' (Sampson), Rosa, Leonora (Baum), Adeline (Phillips), Frances Aaron Cohen, and Fishel Hartwig Cohen.",
+    "parents": ["Samuel Mendel Marks", "Sarah Marks (née Harris)"]
   },
   {
-    "name": "Samuel Mendes Mandel Marks",
-    "relation": "Deborah Marques Cohen's father",
-    "notes": "Son of Isaac Marks and Miriam Simpson/Simons.",
+    "name": "Samuel Mendel Marks",
+    "relation": "Deborah Marks Cohen's father",
+    "spouse": "Sarah Marks (née Harris)",
+    "notes": "Son of Isaac Marks and Miriam Simpson/Simons. Moved to Charleston, SC.",
     "parents": ["Isaac Marks", "Miriam Simpson/Simons"]
+  },
+  {
+    "name": "Sarah Marks (née Harris)",
+    "relation": "Samuel Mendel Marks's wife / Deborah's mother",
+    "spouse": "Samuel Mendel Marks"
   },
   {
     "name": "Isaac Marks",
     "born": "1732",
     "died": "1776",
     "birthplace": "New York, NY",
-    "deathplace": "Charleston, SC",
+    "deathplace": "New York",
     "relation": "Deborah's grandfather / Sephardic ancestor",
     "spouse": "Miriam Simpson/Simons",
-    "notes": "Fought in the American Revolution as private in NY Militia. Listed repeatedly in DAR family histories. Lived in NYC from age 8 (1740) until death. Originally Marques, name anglicized to Marks. Father unknown. Cousin of Bernard Baruch (through granddaughter Sarah Wolfe).",
+    "notes": "Fought in the American Revolution as private in NY Militia. Listed in DAR family histories. Lived in NYC from age 8 (1740). Originally Marques, name anglicized to Marks. Father unknown. Cousin of Bernard Baruch (through granddaughter Sarah Wolfe). His son Samuel Mendel Marks moved to Charleston, SC.",
     "parents": ["Esther de Salomon Levy Maduro"],
     "verification": "contested",
-    "verification_notes": "Connection to Esther de Salomon Levy Maduro as mother appears in multiple Geni/Ancestry trees but lacks primary documentation. Esther's first husband died ~1725, Isaac born 1732 with unknown father. Parentage is plausible but unproven.",
+    "verification_notes": "Connection to Esther de Salomon Levy Maduro as mother appears in multiple Geni/Ancestry trees but lacks primary documentation. Esther's first husband died ~1725, Isaac born 1732 with unknown father. Parentage is plausible but unproven. Death place listed as 'New York' per residence records; 'Charleston, SC' in some trees but that was his son's location. Military service claim lacks muster roll confirmation.",
     "sources": ["https://www.geni.com/people/Pvt-Isaac-Marks-NY-Militia/6000000019301598241", "https://sites.americanjewisharchives.org/publications/fajf/pdfs/stern_p185.pdf", "https://paulskolnick.com/genealogy/chris-ann-maxwell/marques-marks/marques-marks-text-tree/"]
   },
   {
@@ -146,8 +194,10 @@
     "birthplace": "Bordeaux, Gironde, France",
     "deathplace": "Curaçao, Netherlands Antilles",
     "relation": "Isaac Marks's mother / Sephardic matriarch",
-    "notes": "Buried at Beth Haim Cemetery, Curaçao, section IV, row C, grave 621. First married Jacob Rodriguez Marques (May 27, 1722, in Barbados). Jacob died ~1725. Then married Ishac de Shemuel Levy Maduro (buried adjacent plot IV-C-620). Isaac Marks born 1732 with unknown father -possibly conceived in New York. Also had daughter Rachel Marquez (~1725, Barbados). Researched by Matt Reider 2022, corresponded with Ron Gomes Casseres at Beth Haim cemetery. Emmanuel's books contain contradictions: 'History of the Jews of the Netherlands Antilles' (1970) p.943 says she married Jacob 1722, but 'Precious Stones of the Jews of Curaçao' (1957) p.507 lists her as wife of Ishac de Shemuel.",
+    "notes": "Buried at Beth Haim Cemetery, Curaçao, section IV, row C, grave 621. First married Jacob Rodriguez Marques (May 27, 1722, in Barbados). Jacob died ~1725. Then married Ishac de Shemuel Levy Maduro (buried adjacent plot IV-C-620). Isaac Marks born 1732 with unknown father - possibly conceived in New York. Also had daughter Rachel Marquez (~1725, Barbados). Researched by Matt Reider 2022, corresponded with Ron Gomes Casseres at Beth Haim cemetery. Emmanuel's books contain contradictions: 'History of the Jews of the Netherlands Antilles' (1970) p.943 says she married Jacob 1722, but 'Precious Stones of the Jews of Curaçao' (1957) p.507 lists her as wife of Ishac de Shemuel.",
     "parents": ["Ribi Hazzan Salomon de Mosseh Levy Maduro y Dias Sardo"],
+    "verification": "contested",
+    "verification_notes": "Birth year 1699 and birthplace Bordeaux are from Geni user trees. Geneanet/Genealogy Online records show a different Esther de Salomon Levy Maduro y Namias de Castro born 1710 (not 1699) who married Isaac de Samuel Levy Maduro y Vieyra (1712-1784). The Geni profile may conflate two different women named Esther. The Bordeaux birthplace is unsupported; the Levy Maduro family was based in Amsterdam and Curaçao.",
     "sources": ["https://www.geni.com/people/Esther-Marques/6000000010280084001", "https://www.bethhaimcuracao.org", "https://archive.org/stream/willsofearlyjewi00frie/willsofearlyjewi00frie_djvu.txt"]
   },
   {
@@ -161,29 +211,65 @@
   },
   {
     "name": "Ribi Hazzan Salomon de Mosseh Levy Maduro y Dias Sardo",
+    "nicknames": ["Samuel de Mosseh Levy Maduro"],
+    "born": "1673",
+    "died": "1752-04-06",
     "birthplace": "Amsterdam, Netherlands",
+    "deathplace": "Curaçao",
     "relation": "Esther's father / Sephardic rabbi",
-    "notes": "Rabbi (Hazzan). Born in Amsterdam.",
-    "parents": ["Hazzan & Ribi Mosseh de Salomon Levy Maduro"]
+    "notes": "Rabbi (Hazzan). Also known as Samuel (Hebrew name Salomon). Born in Amsterdam.",
+    "parents": ["Hazzan & Ribi Mosseh de Salomon Levy Maduro"],
+    "sources": ["https://gw.geneanet.org/camiloro?lang=en&n=levy+maduro+y+dias+sardo&p=samuel+de+mosseh"]
   },
   {
     "name": "Hazzan & Ribi Mosseh de Salomon Levy Maduro",
+    "born": "1649",
+    "died": "1708-11-10",
     "birthplace": "Amsterdam, Netherlands",
+    "deathplace": "Curaçao",
     "relation": "Sephardic rabbi ancestor",
-    "notes": "Rabbi. Born in Amsterdam.",
-    "parents": ["Salomon (Salomão) de Moshe Levy Maduro"]
+    "spouse": "Hester Dias Sardo",
+    "married": "1670-07-13",
+    "notes": "Rabbi and cantor. Arrived Curaçao 1672. Full name includes 'y de Crasto' from his mother's family.",
+    "parents": ["Salomon (Salomão) de Moshe Levy Maduro"],
+    "sources": ["https://www.geni.com/people/Hazzan-Ribi-Mosseh-Levy-Maduro/6000000004281588224", "https://www.genealogieonline.nl/en/stamboom-lobe/I20033.php"]
+  },
+  {
+    "name": "Hester Dias Sardo",
+    "relation": "Mosseh de Salomon Levy Maduro's wife",
+    "spouse": "Hazzan & Ribi Mosseh de Salomon Levy Maduro",
+    "married": "1670-07-13"
   },
   {
     "name": "Salomon (Salomão) de Moshe Levy Maduro",
+    "nicknames": ["Salomon Levy Maduro Rodriguez"],
+    "born": "1629",
+    "died": "1699",
     "birthplace": "Amsterdam, Netherlands",
     "relation": "Sephardic ancestor",
-    "parents": ["Mosseh Levy o Maduro"]
+    "spouse": "Chana de Castro",
+    "married": "1648-10-27",
+    "parents": ["Mosseh Levy o Maduro"],
+    "sources": ["https://www.genealogieonline.nl/en/stamboom-lobe/I20035.php"]
+  },
+  {
+    "name": "Chana de Castro",
+    "relation": "Salomon Levy Maduro's wife",
+    "spouse": "Salomon (Salomão) de Moshe Levy Maduro",
+    "married": "1648-10-27"
   },
   {
     "name": "Mosseh Levy o Maduro",
+    "born": "~1591",
+    "died": "1640-01-01",
     "birthplace": "Portugal",
+    "deathplace": "Amsterdam, Netherlands",
     "relation": "Sephardic ancestor from Portugal",
-    "parents": ["Solomon Levy"]
+    "spouse": "Clara Rodriguez",
+    "married": "1622-07-27",
+    "notes": "Adopted the 'Maduro' name. Married Clara (also known as Rachel/Raquel) Rodriguez in Amsterdam.",
+    "parents": ["Solomon Levy"],
+    "sources": ["https://www.geni.com/people/Mosseh-Levy-o-Maduro/6000000004281963094"]
   },
   {
     "name": "Solomon Levy",
@@ -228,7 +314,7 @@
     "relation": "Grandpa John's paternal grandmother",
     "spouse": "Joseph H. Sampson",
     "notes": "Siblings: Sarah (Cohen) Wolfe (Bernard Baruch's grandmother) and Frances A. Cohen. Mother of Cornelia C. (Sampson) Ehrich and Dr. Arthur Fischel Sampson.",
-    "parents": ["Hartwig Cohen", "Deborah Marques Cohen"],
+    "parents": ["Hartwig Cohen", "Deborah Marks Cohen"],
     "sources": ["https://www.wikitree.com/wiki/Cohen-2905", "https://www.geni.com/people/Esther-Sampson/325137901420005493"]
   },
   {
@@ -285,7 +371,7 @@
   },
   {
     "name": "Cornelia 'Nellie' Sampson",
-    "born": "1893-08-08",
+    "born": "1894-08-08",
     "died": "1989",
     "birthplace": "Galveston, TX",
     "deathplace": "San Francisco, CA",
@@ -406,7 +492,7 @@
     "relation": "Pete's father",
     "spouse": "Louise J. Reider (née Cohen)",
     "married": "1927",
-    "notes": "BA and MD from Western Reserve University (now Case Western Reserve). Trained at Menninger Clinic, Topeka (1934-1939). Headed Dept of Psychiatry at Mt. Zion Hospital, SF. Among founding members of California Psychoanalytic Society. Featured in TIME magazine (1947) for 'The Unmarried Father.' Wrote 'Chess, Oedipus, and the Mater Dolorosa' (1959). Papers archived at SF Center for Psychoanalysis (4.6 linear feet, 1822-1980s).",
+    "notes": "BA and MD from Western Reserve University (now Case Western Reserve). Trained at Menninger Clinic, Topeka (1934-1939). Chief of Psychiatry at Mt. Zion Hospital, SF (succeeding Jascha Kasanin). Early member of the San Francisco Psychoanalytic Society (founded 1942; Norman arrived SF 1946). Featured in TIME magazine (1947) for 'The Unmarried Father.' Wrote 'Chess, Oedipus, and the Mater Dolorosa' (1959). ACLU board member (Northern California). Papers archived at SF Center for Psychoanalysis (4.6 linear feet, 1822-1980s).",
     "parents": ["Maurice Jacob Reider (née Rudner)", "Lillian Reider (née Cohen)"]
   },
   {

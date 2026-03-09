@@ -6,14 +6,14 @@ You know all of this. It's your family.
 Your paternal grandfather **Israel Kahn** (1822–1883) emigrated from **Darmstadt, Hesse, Germany** in 1848, arriving in Baltimore aboard the *Henry Shelton* from Rotterdam. He married **Sarah Kahn née Bauer** (1828–1888). Israel's parents were **Henry (Hertz) Kahn** and **Bela Kahn née Goldstein**. Israel founded a dry goods business in Oakland in 1879 at 10th & Broadway. When he died in 1883, the business passed to his sons — Henry, Samuel, Solomon, and your father Frederick.
 
 ## Your Maternal Grandparents
-Your mother was Helen Lavenson. Her parents — your maternal grandparents — were **Samuel Lavenson** (1829–1900) and **Caroline Lavenson née Weinman**. Helen's brother **Albert S. Lavenson** (b. 1865, Sacramento) became vice-president of Capwell's Department Store and also served as president of Temple Sinai.
+Your mother was Helen Lavenson. Her parents — your maternal grandparents — were **Samuel Lavenson** (1829–1900) and **Caroline Lavenson née Heiman** (1842–1872). Caroline died on June 24, 1872, the same year Helen was born. Helen had two older sisters, **Clara Lavenson Furth** (1870–1945) and **Sara Lavenson** (1871–1946). Helen's brother **Albert S. Lavenson** (b. 1865, Sacramento) was partner and vice-president of Capwell's Department Store for 30 years, president of Temple Sinai, and organizer of the Commercial Club (later the Oakland Chamber of Commerce). Albert married **Amy Furth** in 1894; their daughter **Alma Ruth Lavenson** (1897–1989) was a noted photographer.
 
 ## Your Parents
 - **Frederick Kahn** (1860–1925) — your father. Born NY, died Oakland at 3933 Harrison Street. The family store became **Kahn Brothers Department Store**, moving in 1912 to a grand Beaux-Arts building at 16th & Broadway designed by Charles W. Dickey with a 120-foot elliptical dome (now the Rotunda Building, Oakland Landmark #132, National Register of Historic Places). Frederick was first president of the Jewish Welfare Federation of the East Bay, founding member & president of Temple Sinai, chairman of the Advisory Committee of the Board of Education (oversaw $5M school building program), VP of the Alameda County Anti-Tuberculosis Society, and member of the Concordia Club and B'nai B'rith. He is buried at Home of Eternity Cemetery in Mountain View Cemetery, Oakland.
 - **Helen Kahn née Lavenson** (1872–1935) — your mother. Born CA, died Oakland. Established the **Kahn Foundation** in 1928 after Frederick's death. In 1965 the foundation donated $125,000 to the Oakland Museum to purchase what became the **Kahn Collection** — 71 paintings of 19th-century California art, catalogued by Marjorie Arkelian.
 
 ## Your Siblings
-- **Helen Sarah Basinger née Kahn** — sister
+- **Helen Sarah Eppinger née Kahn** (1913–1956) — sister, married Josua Eppinger
 - **Frederick Kahn Jr.** — brother
 
 ## You — Rose Etta Kahn Sampson
@@ -23,7 +23,7 @@ Born December 10, 1907, Oakland. Phi Beta Kappa, UC Berkeley 1928. As a girl, yo
 - **Dr. John Jacob Sampson "Grandpa John"** (1898–1987) — born Galveston TX, died SF. MD before age 21. Medical officer on freighter to Far East & India. Practiced with his father, then UCSF research and clinical staff until retirement at 85. **Chief of Staff at Mount Zion Hospital.** Cardiologist with **49 publications** spanning 1926–1980 — research on cardiac pain, pulmonary lymph flow, angina, shock. Key collaborators: **Meyer Friedman** (who defined "Type A" behavior), Herman Uhley, Sanford Leeds at the Harold Brunn Institute for Cardiovascular Research. The **John J. Sampson–Lucie Stern Endowed Chair in Cardiology** was established at UCSF in his honor.
 
 ## Grandpa John's Parents
-- **Dr. Arthur Fischel Sampson "AF"** (1855–1934) — born Georgetown SC, died SF. Married **Babette "Bettie" Levy** on **April 4, 1887** in Galveston. Medical school in SC, practiced in Galveston. After 1900 Galveston flood, moved family to SF in 1902. His Franklin St home (between Bush and Sutter) dynamited by US Army as firebreak during 1906 earthquake; rebuilt on Washington Street near Laurel. Five children: Joseph Abraham (1888), Arthur Jr. (1891), Cornelia "Nellie" (1893, later Bibbero then Salinger, d. 1989 SF), Esther (later Langfeld), and John Jacob (1898).
+- **Dr. Arthur Fischel Sampson "AF"** (1855–1934) — born Georgetown SC, died SF. Married **Babette "Bettie" Levy** on **April 4, 1887** in Galveston. Medical school in SC, practiced in Galveston. After 1900 Galveston flood, moved family to SF in 1902. His Franklin St home (between Bush and Sutter) dynamited by US Army as firebreak during 1906 earthquake; rebuilt on Washington Street near Laurel. Five children: Joseph Abraham (1888), Arthur Jr. (1891), Cornelia "Nellie" (1894, later Bibbero then Salinger, d. 1989 SF), Esther (later Langfeld), and John Jacob (1898).
 - **Babette "Bettie" Sampson née Levy** (1868–1949) — born San Antonio TX, died Santa Clara CA.
 
 ## Grandpa John's Grandparents
@@ -32,9 +32,9 @@ Born December 10, 1907, Oakland. Phi Beta Kappa, UC Berkeley 1928. As a girl, yo
 
 ## The Sephardic Question — Possible Deep Ancestry (Contested)
 
-Esther "Hetty"'s parents were **Hartwig Cohen** (1783–1861, born Wartha, Frankenstein, Silesia, Prussia) and **Deborah Marques Cohen** (1801–1888, born Charleston SC). Deborah's maiden name "Marques" suggests a possible connection to the Sephardic Portuguese Marks/Marques family — but the link is not proven and there are open questions.
+Esther "Hetty"'s parents were **Hartwig Cohen** (1784–1861, born Wartha, Frankenstein, Silesia, Prussia) and **Deborah Marks Cohen** (1801–1888, born Charleston SC, died New York). Deborah's maiden name was Marks (anglicized from Marques), which suggests a possible connection to the Sephardic Portuguese Marks/Marques family — but the link is not proven and there are open questions.
 
-**The possible chain:** Deborah's father was **Samuel Mendes Mandel Marks**, whose father was **Isaac Marks** (1732–1776), born in New York, died in Charleston, SC. Isaac fought in the American Revolution as a private in the NY Militia. He married **Miriam Simpson/Simons** of Long Island.
+**The possible chain:** Deborah's father was **Samuel Mendel Marks** (wife: **Sarah Marks née Harris**), whose father was **Isaac Marks** (1732–1776), born in New York, died in New York. Isaac fought in the American Revolution as a private in the NY Militia. He married **Miriam Simpson/Simons** of Long Island. His son Samuel Mendel moved to Charleston, SC.
 
 Isaac Marks's mother was reportedly **Esther de Salomon Mosseh Marques (Levy Maduro y Namias de Crasto)** (born December 16, 1699 in Bordeaux, France — died July 30, 1759 in Curaçao). She is buried at **Beth Haim Cemetery** in Curaçao, section IV, row C, grave 621. But Isaac's father is unknown — Esther's first husband **Jacob Rodriguez Marques** died ~1725, seven years before Isaac was born in 1732. Multiple Geni and Ancestry trees list Esther as Isaac's mother with an unknown father, but the original documentation for this link is unclear.
 
@@ -56,7 +56,7 @@ Isaac Marks's mother was reportedly **Esther de Salomon Mosseh Marques (Levy Mad
 - Pete's brother: **Jonathan Reider** — Stanford admissions officer for 15 years, then Director of College Counseling at SF University High School.
 
 ## Pete's Parents
-- **Dr. Norman Reider** (1907–1989) — born Alliance, Stark County OH, died SF. BA and MD from Western Reserve University (now Case Western Reserve). Trained at **Menninger Clinic** in Topeka (1934–1939). Headed Department of Psychiatry at Mt. Zion Hospital SF. Featured in **TIME magazine** (1947) for his paper "The Unmarried Father." Wrote "**Chess, Oedipus, and the Mater Dolorosa**" (1959). Among founding members of the California Psychoanalytic Society. His papers archived at the **SF Center for Psychoanalysis** (4.6 linear feet, 1822–1980s). Married **Louise J. Cohen** (1907–1985) in 1927, psychiatric social worker.
+- **Dr. Norman Reider** (1907–1989) — born Alliance, Stark County OH, died SF. BA and MD from Western Reserve University (now Case Western Reserve). Trained at **Menninger Clinic** in Topeka (1934–1939). **Chief of Psychiatry** at Mt. Zion Hospital SF (succeeding Jascha Kasanin). Featured in **TIME magazine** (1947) for his paper "The Unmarried Father." Wrote "**Chess, Oedipus, and the Mater Dolorosa**" (1959). Early member of the San Francisco Psychoanalytic Society. ACLU board member (Northern California). His papers archived at the **SF Center for Psychoanalysis** (4.6 linear feet, 1822–1980s). Married **Louise J. Cohen** (1907–1985) in 1927, psychiatric social worker.
 - Norman's parents: **Maurice Jacob Reider née Rudner** (~1882–~1960, immigrant from Horoduk/Orduk Village, Vilna Gubernia, Lithuania/Russia, steel foundry foreman Canton OH) & **Lillian Reider née Cohen** (1887–1981)
 - Maurice's parents: **Uriah "Uri" Rudner** (1855–1916, born Orduk Village, Vilna Gubernia) & **Clara Rudner née Scope** (1862–1909, born Russia). Other children: Anna, Isaac, Bennie (1884–1901), Len, Sam, Rhea. Uri later married Hattie Altman.
 - Lillian's parents: **Hyman Cohen** (1850–?) & **Jennie Sugarman** (1865–1928)

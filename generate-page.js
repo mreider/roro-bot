@@ -93,12 +93,13 @@ Output ONLY the HTML content. No markdown fences, no explanation.`;
   }
 
   const treeData = familyJson;
+  const changelogMd = loadFile(join(__dirname, 'CHANGELOG.md'));
 
   // Version tag so the bot can detect when GitHub Pages has deployed
   const version = new Date().toISOString();
 
   // Assemble the full page
-  const html = buildFullPage(narrativeHtml, treeData, version);
+  const html = buildFullPage(narrativeHtml, treeData, changelogMd, version);
 
   mkdirSync(DOCS_DIR, { recursive: true });
   writeFileSync(INDEX_PATH, html, 'utf-8');
@@ -112,7 +113,33 @@ Output ONLY the HTML content. No markdown fences, no explanation.`;
   return { html, version };
 }
 
-function buildFullPage(narrativeHtml, treeDataJson, version) {
+function markdownToHtml(md) {
+  // Simple markdown-to-HTML for the changelog
+  let html = md;
+  // Headers
+  html = html.replace(/^### (.+)$/gm, '<h3>$1</h3>');
+  html = html.replace(/^## (.+)$/gm, '<h2>$1</h2>');
+  html = html.replace(/^# (.+)$/gm, '<h1>$1</h1>');
+  // Bold
+  html = html.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+  // Links [text](url)
+  html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank">$1</a>');
+  // List items
+  html = html.replace(/^- (.+)$/gm, '<li>$1</li>');
+  // Wrap consecutive <li> in <ul>
+  html = html.replace(/((?:<li>.*<\/li>\n?)+)/g, '<ul>$1</ul>');
+  // Paragraphs for non-tag lines
+  html = html.split('\n').map(line => {
+    const trimmed = line.trim();
+    if (!trimmed) return '';
+    if (/^<[hul\/]/.test(trimmed)) return trimmed;
+    if (/^<li/.test(trimmed)) return trimmed;
+    return '<p>' + trimmed + '</p>';
+  }).join('\n');
+  return html;
+}
+
+function buildFullPage(narrativeHtml, treeDataJson, changelogMd, version) {
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -218,6 +245,19 @@ header p { font-size: 0.95rem; opacity: 0.8; font-weight: 300; }
 .sib-pill { padding: 0.3rem 0.7rem; background: var(--white); border: 1px solid var(--border); border-radius: 100px; cursor: pointer; font-size: 0.8rem; color: var(--secondary); font-weight: 400; transition: all 0.15s; font-family: var(--sans); }
 .sib-pill:hover { border-color: var(--primary); color: var(--primary); }
 
+/* Changelog */
+#changelog-view { max-width: 720px; margin: 0 auto; padding: 2.5rem 1.5rem; }
+#changelog-view h1 { font-family: var(--serif); font-size: 1.6rem; color: var(--secondary); margin-bottom: 1.5rem; }
+#changelog-view h2 { font-family: var(--serif); font-size: 1.2rem; color: var(--dark); margin: 2rem 0 0.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
+#changelog-view h2:first-of-type { border-top: none; padding-top: 0; }
+#changelog-view h3 { font-size: 0.95rem; color: var(--secondary); font-weight: 600; margin: 1rem 0 0.4rem; }
+#changelog-view p { color: var(--muted); margin-bottom: 0.5rem; font-size: 0.9rem; }
+#changelog-view ul { margin: 0.3rem 0 1rem 1.5rem; color: var(--muted); font-size: 0.88rem; }
+#changelog-view li { margin-bottom: 0.35rem; line-height: 1.6; }
+#changelog-view a { color: var(--primary); }
+#changelog-view a:hover { text-decoration: underline; }
+#changelog-view strong { color: var(--dark); font-weight: 600; }
+
 footer { text-align: center; padding: 2rem; color: var(--muted); font-size: 0.8rem; border-top: 1px solid var(--border); background: var(--white); }
 footer a { color: var(--muted); }
 footer a:hover { color: var(--primary); }
@@ -247,12 +287,19 @@ footer a:hover { color: var(--primary); }
 <div class="tabs">
   <button class="tab active" onclick="switchTab('narrative', this)">Our Story</button>
   <button class="tab" onclick="switchTab('tree', this)">Family Tree</button>
+  <button class="tab" onclick="switchTab('changelog', this)">Changes</button>
 </div>
 
 <div id="narrative-tab" class="tab-content active">
   <div id="narrative-view">
     <img src="roro.png" alt="Rose Etta Kahn Sampson" class="roro-portrait">
     ${narrativeHtml}
+  </div>
+</div>
+
+<div id="changelog-tab" class="tab-content">
+  <div id="changelog-view">
+    ${markdownToHtml(changelogMd)}
   </div>
 </div>
 
@@ -313,13 +360,15 @@ function fdNode(person, isActive) {
 
 var currentPerson = null;
 
-function showPerson(name) {
+function showPerson(name, skipHash) {
   var person = byName[name];
   if (!person) return;
   currentPerson = name;
 
-  var newHash = '#' + encodeURIComponent(name);
-  if (location.hash !== newHash) history.pushState(null, '', newHash);
+  if (!skipHash) {
+    var newHash = '#' + encodeURIComponent(name);
+    if (location.hash !== newHash) history.replaceState(null, '', newHash);
+  }
 
   var treeTab = document.getElementById('tree-tab');
   if (!treeTab.classList.contains('active')) {
@@ -454,10 +503,14 @@ function switchTab(tab, btn) {
   document.querySelectorAll('.tab').forEach(function(el) { el.classList.remove('active'); });
   document.getElementById(tab + '-tab').classList.add('active');
   btn.classList.add('active');
+  // Clear hash when leaving tree tab
+  if (tab !== 'tree' && location.hash) {
+    history.replaceState(null, '', location.pathname);
+  }
   // Lazy-load tree on first visit
   if (tab === 'tree' && !treeLoaded) {
     treeLoaded = true;
-    showPerson('Rose Etta Kahn Sampson');
+    showPerson('Rose Etta Kahn Sampson', true);
   }
 }
 

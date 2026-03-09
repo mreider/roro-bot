@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="page-version" content="2026-03-09T13:00:34.242Z">
+<meta name="page-version" content="2026-03-09T13:30:59.133Z">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Sampson-Kahn Family</title>
 <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
@@ -103,6 +103,19 @@ header p { font-size: 0.95rem; opacity: 0.8; font-weight: 300; }
 .sib-pill { padding: 0.3rem 0.7rem; background: var(--white); border: 1px solid var(--border); border-radius: 100px; cursor: pointer; font-size: 0.8rem; color: var(--secondary); font-weight: 400; transition: all 0.15s; font-family: var(--sans); }
 .sib-pill:hover { border-color: var(--primary); color: var(--primary); }
 
+/* Changelog */
+#changelog-view { max-width: 720px; margin: 0 auto; padding: 2.5rem 1.5rem; }
+#changelog-view h1 { font-family: var(--serif); font-size: 1.6rem; color: var(--secondary); margin-bottom: 1.5rem; }
+#changelog-view h2 { font-family: var(--serif); font-size: 1.2rem; color: var(--dark); margin: 2rem 0 0.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
+#changelog-view h2:first-of-type { border-top: none; padding-top: 0; }
+#changelog-view h3 { font-size: 0.95rem; color: var(--secondary); font-weight: 600; margin: 1rem 0 0.4rem; }
+#changelog-view p { color: var(--muted); margin-bottom: 0.5rem; font-size: 0.9rem; }
+#changelog-view ul { margin: 0.3rem 0 1rem 1.5rem; color: var(--muted); font-size: 0.88rem; }
+#changelog-view li { margin-bottom: 0.35rem; line-height: 1.6; }
+#changelog-view a { color: var(--primary); }
+#changelog-view a:hover { text-decoration: underline; }
+#changelog-view strong { color: var(--dark); font-weight: 600; }
+
 footer { text-align: center; padding: 2rem; color: var(--muted); font-size: 0.8rem; border-top: 1px solid var(--border); background: var(--white); }
 footer a { color: var(--muted); }
 footer a:hover { color: var(--primary); }
@@ -132,130 +145,207 @@ footer a:hover { color: var(--primary); }
 <div class="tabs">
   <button class="tab active" onclick="switchTab('narrative', this)">Our Story</button>
   <button class="tab" onclick="switchTab('tree', this)">Family Tree</button>
+  <button class="tab" onclick="switchTab('changelog', this)">Changes</button>
 </div>
 
 <div id="narrative-tab" class="tab-content active">
   <div id="narrative-view">
     <img src="roro.png" alt="Rose Etta Kahn Sampson" class="roro-portrait">
     <div class="section introduction">
-  <h2>A Note from RoRo</h2>
-  <p>I'm Rose Etta Kahn Sampson. Born in Oakland in 1907, died in San Francisco in 1997. I kept the family history for most of my life, researching it with Jean Wildberg, tracking down records, verifying dates. This is what I know about our family.</p>
-  <p>The Kahns came from Germany. The Sampsons from South Carolina and England before that. We built businesses, practiced medicine, kept our faith. Some of the deep ancestry is still being worked out, particularly the Sephardic connection through the Marques line. Matt researched that extensively. I'll tell you what's confirmed and what remains theory.</p>
+<h2>Our Family</h2>
+<p>I'm Rose Etta Kahn Sampson. Born December 10, 1907, in Oakland. I married John Jacob Sampson on May 17, 1931. Together we raised three children in San Francisco. I've spent years researching this family with Jean Wildberg, tracing the Kahns and Sampsons back through California, South Carolina, Germany, and perhaps even to the Sephardic Jews of Portugal.</p>
+<p>This is what I know. These are the people who came before us, and the ones who carry us forward.</p>
 </div>
 
 <div class="section kahn-origins">
-  <h2>The Kahn Family: From Darmstadt to Oakland</h2>
-  <p>My grandfather <strong>Israel Kahn</strong> arrived in Baltimore in 1848 from Darmstadt, Hesse, Germany, aboard the <em>Henry Shelton</em> from Rotterdam. He was twenty-six years old. His parents were Henry (Hertz) Kahn and Bela Kahn, born Goldstein.</p>
-  <p>Israel married Sarah Bauer. They had five sons: Henry, Samuel, Solomon, John, and my father Frederick. In 1879, Israel founded a dry goods business in Oakland at 10th and Broadway. When he died in 1883, his sons took over.</p>
-  <p>My father <strong>Frederick Kahn</strong> was born in New York in 1860. He joined his father's business at thirteen. The store became Kahn Brothers Department Store. In 1912 they moved to a grand Beaux-Arts building at 16th and Broadway, designed by Charles W. Dickey with a 120-foot elliptical dome. It's now the Rotunda Building, an Oakland landmark on the National Register of Historic Places.</p>
-  <p>Frederick was more than a merchant. He was the first president of the Jewish Welfare Federation of the East Bay. A founding member and president of Temple Sinai. I carried the key at the dedication ceremony when I was a girl. He chaired the Advisory Committee of the Board of Education and oversaw a five-million-dollar school building program. He served as vice president of the Alameda County Anti-Tuberculosis Society. He belonged to the Concordia Club and B'nai B'rith.</p>
-  <p>He died August 19, 1925, at our home on 3933 Harrison Street in Oakland. He's buried at Home of Eternity Cemetery in Mountain View Cemetery.</p>
+<h2>The Kahns of Oakland</h2>
+<p>My grandfather Israel Kahn arrived in Baltimore in 1848, aboard the <em>Henry Shelton</em> from Rotterdam. He was born in 1822 in Darmstadt, Hesse, Germany. His parents were Henry (Hertz) Kahn and Bela Kahn, née Goldstein. Israel married Sarah Bauer, and they made their way west.</p>
+<p>In 1879, Israel founded a dry goods business in Oakland at 10th and Broadway. When he died in 1883, the business passed to his sons: Henry, Samuel, Solomon, and my father Frederick.</p>
+
+<h3>My Father, Frederick Kahn</h3>
+<p>Frederick was born September 21, 1860, in New York. He first worked at Bauer Brothers Company in San Francisco, then joined the family store. The business grew into Kahn Brothers Department Store. In 1912, it moved to a grand Beaux-Arts building at 16th and Broadway. Charles W. Dickey designed it, with a 120-foot elliptical dome. It's now the Rotunda Building, an Oakland landmark on the National Register.</p>
+<p>My father did more than run a store. He was the first president of the Jewish Welfare Federation of the East Bay. He helped found Temple Sinai and served as its president. He chaired the Advisory Committee of the Board of Education, overseeing a five-million-dollar school building program. He was vice president of the Alameda County Anti-Tuberculosis Society. He belonged to the Concordia Club and B'nai B'rith.</p>
+<p>He died August 19, 1925, at our home on 3933 Harrison Street. He's buried at Home of Eternity Cemetery in Mountain View Cemetery, Oakland.</p>
+
+<h3>My Mother, Helen Lavenson Kahn</h3>
+<p>My mother Helen was born May 20, 1872, in California. Her mother Caroline Heiman Lavenson died on June 24, 1872, the same year Helen was born. Caroline was only 29 or 30. She's buried at Home of Peace Cemetery in Sacramento.</p>
+<p>Helen had two older sisters: Clara Lavenson Furth (1870-1945) and Sara Lavenson (1871-1946). Her brother Albert S. Lavenson was partner and vice president of Capwell's Department Store for thirty years. He was president of Temple Sinai. He organized the Commercial Club, which became the Oakland Chamber of Commerce. Albert married Amy Furth in 1894. Their daughter, Alma Ruth Lavenson, became a noted photographer. She studied under Edward Weston and Imogen Cunningham.</p>
+<p>After my father died, my mother established the Kahn Foundation in 1928. In 1965, the foundation donated $125,000 to the Oakland Museum to purchase what became the Kahn Collection: 71 paintings of 19th-century California art, catalogued by Marjorie Arkelian.</p>
+<p>My mother died March 4, 1935, in Oakland.</p>
 </div>
 
-<div class="section lavenson">
-  <h2>The Lavensons: My Mother's Family</h2>
-  <p>My mother was <strong>Helen Lavenson</strong>, born in California in 1872. Her parents were Samuel Lavenson and Caroline Weinman. Her brother <strong>Albert S. Lavenson</strong> was born in Sacramento in 1865. He became vice president of Capwell's Department Store and president of Temple Sinai.</p>
-  <p>After my father died in 1925, my mother established the <strong>Kahn Foundation</strong> in 1928. In 1965, the foundation donated $125,000 to the Oakland Museum to purchase what became the Kahn Collection: seventy-one paintings of nineteenth-century California art, catalogued by Marjorie Arkelian.</p>
-  <p>My mother died March 4, 1935, in Oakland.</p>
+<div class="section roro">
+<h2>Rose Etta Kahn</h2>
+<p>I was born December 10, 1907, in Oakland. I graduated from UC Berkeley in 1928, Phi Beta Kappa. As a girl, I carried the key at Temple Sinai's dedication ceremony.</p>
+<p>I took up weaving and won awards for it. I wove the furniture upholstery for our Seacliff home. I made a needlepoint cushion for the Haas-Lilienthal House.</p>
+<p>After my mother died, I became president of the Kahn Foundation.</p>
+<p>I had a sister, Helen Sarah, born in 1913. She married Josua Eppinger. She died in 1956. I had a brother, Frederick Kahn Jr.</p>
 </div>
 
 <div class="section sampson-origins">
-  <h2>The Sampson Family: Georgetown and Charleston</h2>
-  <p><strong>Joseph H. Sampson</strong>, my husband's grandfather, was born in Georgetown, South Carolina, in 1823. He and his brother Samuel were prominent Jewish merchants and shipping operators there. By 1800, Georgetown had about eighty Jews, roughly ten percent of the white population. It was the second largest Jewish community in South Carolina after Charleston.</p>
-  <p>The Sampson family names appear in the records of Kahal Kadosh Beth Elohim in Charleston. They originally came from Bury St. Edmunds, England. The surname is an anglicization of the Hebrew Shimshon, meaning sun. The p was introduced in the Greek transliteration.</p>
-  <p>Joseph married <strong>Esther Cohen</strong>, called Hetty, born in Charleston in 1832. Her parents were Hartwig Cohen, a rabbi born in Wartha, Silesia, Prussia in 1783, and Deborah Marques Cohen, born in Charleston in 1801. Deborah's maiden name Marques is the key to the Sephardic question I'll discuss later.</p>
-  <p>Esther's siblings included Sarah Cohen, who married a man named Wolfe. Sarah was the grandmother of Bernard Baruch, the Wall Street financier and presidential advisor. We're cousins through that line.</p>
-  <p>After the Civil War, Joseph and Samuel revived their mercantile business and expanded into shipping. Joseph died July 14, 1883, and is buried in the Jewish Cemetery in Georgetown, established in 1772. Esther died in Georgetown in 1897.</p>
+<h2>The Sampsons of Georgetown</h2>
+<p>The Sampson family originally came from Bury St. Edmunds, England. The name is an anglicization of the Hebrew Shimshon, meaning sun. The p was introduced in Greek transliteration.</p>
+<p>Joseph H. Sampson was born June 10, 1823, in Georgetown, South Carolina. He and his brother Samuel were prominent Jewish merchants and shipping operators. By 1800, Georgetown had about 80 Jews, roughly ten percent of the white population. It was the second largest Jewish community in South Carolina after Charleston.</p>
+<p>The Sampson family names appear in the records of Kahal Kadosh Beth Elohim in Charleston.</p>
+<p>Joseph married Esther Cohen, called Hetty. She was born June 30, 1832, in Charleston. Her parents were Hartwig Cohen (born 1784 in Wartha, Frankenstein, Silesia, Prussia) and Deborah Marks Cohen (born 1801 in Charleston). Deborah's maiden name was Marks, anglicized from Marques.</p>
+<p>Esther's siblings included Sarah Cohen Wolfe (grandmother of Bernard Baruch, the Wall Street financier) and Frances A. Cohen.</p>
+<p>After the Civil War, Joseph and Samuel revived their mercantile business and expanded into shipping. Joseph died July 14, 1883. He's buried in the Jewish Cemetery in Georgetown, established in 1772. Esther died September 22, 1897, in Georgetown.</p>
+
+<h3>Dr. Arthur Fischel Sampson</h3>
+<p>Joseph and Esther's son Arthur Fischel was born July 1, 1855, in Georgetown. He went to medical school in South Carolina and practiced in Galveston, Texas.</p>
+<p>He married Babette Levy, called Bettie, on April 4, 1887, in Galveston. She was born March 24, 1868, in San Antonio. Her parents were Abraham Levy (1827-1879) and Esther Haff Levy (1833-1908).</p>
+<p>Arthur and Bettie had five children in Galveston: Joseph Abraham (born December 4, 1888), Arthur Jr. (born June 2, 1891), Cornelia, called Nellie (born August 8, 1894), Esther, and John Jacob (born April 28, 1898).</p>
+<p>After the 1900 Galveston flood, Arthur moved his family to San Francisco in 1902. Their home on Franklin Street, between Bush and Sutter, was dynamited by the U.S. Army as a firebreak during the 1906 earthquake. They rebuilt on Washington Street near Laurel.</p>
+<p>Arthur died November 26, 1934, in San Francisco. Bettie died March 21, 1949, in Santa Clara.</p>
 </div>
 
-<div class="section sampson-texas">
-  <h2>From South Carolina to Texas to San Francisco</h2>
-  <p>Joseph and Esther's son <strong>Dr. Arthur Fischel Sampson</strong>, called AF, was born in Georgetown in 1855. He went to medical school in South Carolina and moved to Galveston, Texas, to practice. On April 4, 1887, he married <strong>Babette Levy</strong>, called Bettie, born in San Antonio in 1868. Her parents were Abraham Levy and Esther Haff.</p>
-  <p>Arthur and Bettie had five children in Galveston: Joseph Abraham in 1888, Arthur Jr. in 1891, Cornelia (Nellie) in 1893, Esther, and John Jacob in 1898.</p>
-  <p>The 1900 Galveston flood devastated the city. In 1902, Arthur moved the family to San Francisco. They lived on Franklin Street between Bush and Sutter. During the 1906 earthquake, the U.S. Army dynamited their home as a firebreak to stop the fire from spreading. They rebuilt on Washington Street near Laurel.</p>
-  <p>Arthur died in San Francisco in 1934. Bettie died in Santa Clara in 1949.</p>
-</div>
-
-<div class="section roro-and-john">
-  <h2>My Life with Grandpa John</h2>
-  <p>I was born Rose Etta Kahn on December 10, 1907, in Oakland. I graduated Phi Beta Kappa from UC Berkeley in 1928. I was an award-winning weaver. I wove the furniture upholstery for our Seacliff home and made a needlepoint cushion for the Haas-Lilienthal House.</p>
-  <p>I married <strong>Dr. John Jacob Sampson</strong> on May 17, 1931. Everyone called him Grandpa John. He was born in Galveston on April 28, 1898, the youngest of Arthur and Bettie's children.</p>
-  <p>John earned his medical degree before he was twenty-one. He spent three years at UC, then went straight to medical school. He served as a medical officer on a freighter to the Far East and India. He practiced with his father, then joined the research and clinical staff at UCSF. He worked until he was eighty-five.</p>
-  <p>John was Chief of Staff at Mount Zion Hospital. As a cardiologist, he published forty-nine papers between 1926 and 1980 on cardiac pain, pulmonary lymph flow, angina, and shock. He collaborated with Meyer Friedman, the man who defined Type A behavior, and with Herman Uhley and Sanford Leeds at the Harold Brunn Institute for Cardiovascular Research.</p>
-  <p>UCSF established the John J. Sampson-Lucie Stern Endowed Chair in Cardiology in his honor.</p>
-  <p>I served as president of the Kahn Foundation. I volunteered at Mount Zion Hospital into my eighties, made weekly visits to nursery schools as Grandma RoRo, and attended services and concerts at Congregation Emanu-El.</p>
-  <p>John died December 24, 1987, in San Francisco. I died July 12, 1997, of a lung embolism at Mount Zion Hospital. My memorial service was August 4 at Congregation Emanu-El.</p>
+<div class="section grandpa-john">
+<h2>Grandpa John</h2>
+<p>John Jacob Sampson was born April 28, 1898, in Galveston. He earned his MD before age 21. Three years at UC, then medical school. He served as a medical officer on a freighter to the Far East and India. He practiced with his father, then joined the UCSF research and clinical staff. He worked until he was 85.</p>
+<p>He was Chief of Staff at Mount Zion Hospital.</p>
+<p>As a cardiologist, he published 49 papers between 1926 and 1980. He researched cardiac pain, pulmonary lymph flow, angina, and shock. He collaborated with Meyer Friedman (who defined Type A behavior), Herman Uhley, and Sanford Leeds at the Harold Brunn Institute for Cardiovascular Research.</p>
+<p>The John J. Sampson-Lucie Stern Endowed Chair in Cardiology was established at UCSF in his honor.</p>
+<p>We married May 17, 1931. He died December 24, 1987, in San Francisco.</p>
 </div>
 
 <div class="section children">
-  <h2>Our Children</h2>
-  <p>John and I had three children.</p>
-  
-  <h3>Deborah Sampson Green</h3>
-  <p>Our eldest, <strong>Deborah</strong>, was born January 11, 1934, in San Francisco. She became an educator and college instructor of English literature. She attended Presidio Junior High, Lowell High School, and Wellesley, graduating in 1978. She married John R. Green and lives in Seattle. Their son Caleb married Kate Banta-Green. Caleb and Kate have two sons, Robert Bruce and Peter Caleb.</p>
-  
-  <h3>John Frederick Sampson</h3>
-  <p><strong>Johnny</strong> was born March 18, 1935, in San Francisco. He became an appraiser and real estate broker. He attended Lowell High School, spent three years at Reed College, earned his AB from the University of San Francisco in 1957, and went to Wharton in 1960. He married Louise Adler in 1962. They divorced in 1991. They had three children: Jennifer Ruth, John Frederick Jr., and Juliet Margaret. Johnny married Sharon Litsky in 1999.</p>
-  
-  <h3>Janet Sampson Reider</h3>
-  <p><strong>Janet</strong> was born March 1, 1937, in San Francisco. She's a photographer. You can see her work at janetreider.com. She met Pete Reider at Lowell High School when she was thirteen. They married in the spring of 1958.</p>
+<h2>Our Children</h2>
+
+<h3>Deborah Sampson Green</h3>
+<p>Deborah was born January 11, 1934, in San Francisco. She's an educator and English literature professor. She married John R. Green. They lived in Seattle. John was born around 1921 and died around 1996.</p>
+<p>Their son Caleb married Kate Banta-Green. They have two sons: Robert Bruce and Peter Caleb Banta-Green.</p>
+
+<h3>John Frederick Sampson</h3>
+<p>John was born March 18, 1935, in San Francisco. He went to Lowell High School, Reed College for three years, then got his AB from the University of San Francisco in 1957. He went to Wharton and graduated in 1960. He became an appraiser and real estate broker in San Francisco.</p>
+<p>He married Louise Adler in 1962. They divorced in 1991. They have three children: Jennifer Ruth, John Frederick Jr., and Juliet Margaret.</p>
+<p>He married Sharon Litsky in 1999.</p>
+
+<h3>Janet Sampson Reider</h3>
+<p>Janet was born March 1, 1937, in San Francisco. She met Pete Reider at Lowell High School when she was 13. They married in the spring of 1958.</p>
+<p>Janet is a photographer. Her work is at janetreider.com.</p>
 </div>
 
 <div class="section pete-reider">
-  <h2>Pete Reider: Janet's Husband</h2>
-  <p><strong>Arthur Elliott Reider</strong>, called Pete, was born November 1, 1936, in Topeka, Kansas. He attended Presidio Hill School, Grant School, and Lowell High School in San Francisco, then Harvard, Class of 1958. He went to Harvard Medical School.</p>
-  <p>Pete was captain of the Harvard track team. He ran a 4:11 mile, which was the Harvard record in 1957. He set two-mile records. His coach, Bill McCurdy, called him "one of the toughest little men I have ever known." Pete was inducted into the Harvard Athletic Hall of Fame in 1982 and named to the All-Ivy League Cross Country Team.</p>
-  <p>Pete became a psychiatrist. He had a private practice in Cambridge, Hyannis, and Newton, Massachusetts, before retiring in San Francisco. He published <em>Stepping Stones</em>, a collection of poetry and fiction, in 2014. He was a member of the Fromm Institute at USF and the Osher Foundation Lifelong Learning Institute at Brandeis.</p>
-  <p>Pete died of lymphoma on August 13, 2015, at home in San Francisco with Janet and their three children. His memorial service was August 17, 2015, at Congregation Emanu-El.</p>
-  <p>Pete's father was <strong>Dr. Norman Reider</strong>, born in Alliance, Ohio, in 1907. Norman earned his BA and MD from Western Reserve University, now Case Western Reserve. He trained at the Menninger Clinic in Topeka from 1934 to 1939. He headed the Department of Psychiatry at Mount Zion Hospital and was among the founding members of the California Psychoanalytic Society. TIME magazine featured him in 1947 for his paper "The Unmarried Father." He also wrote "Chess, Oedipus, and the Mater Dolorosa" in 1959. His papers are archived at the San Francisco Center for Psychoanalysis. Norman died in San Francisco in 1989.</p>
-  <p>Norman married Louise J. Cohen in 1927. Louise was a psychiatric social worker who stopped practicing around 1946. She died in San Francisco in 1985.</p>
-  <p>Pete's brother <strong>Jonathan Reider</strong> was a Stanford admissions officer for fifteen years, then Director of College Counseling at San Francisco University High School.</p>
+<h2>Pete Reider</h2>
+<p>Arthur Elliott Reider, called Pete, was born November 1, 1936, in Topeka, Kansas. He went to Presidio Hill School, Grant School, and Lowell High School. He graduated from Harvard in 1958, then went to Harvard Medical School.</p>
+<p>At Harvard, he was captain of the track team. He ran a 4:11 mile in 1957, a Harvard record. He set two-mile records. His coach, Bill McCurdy, called him "one of the toughest little men I have ever known." He was inducted into the Harvard Athletic Hall of Fame in 1982. He made the All-Ivy League Cross Country Team.</p>
+<p>He became a psychiatrist. He practiced in Cambridge, Hyannis, and Newton, Massachusetts. He retired in San Francisco.</p>
+<p>In 2014, he published <em>Stepping Stones</em>, a collection of poetry and fiction. He was a member of the Fromm Institute at USF and the Osher Foundation Lifelong Learning Institute at Brandeis.</p>
+<p>He died of lymphoma on August 13, 2015, at home with Janet and their three children. His memorial was at Congregation Emanu-El on August 17, 2015.</p>
+
+<h3>Dr. Norman Reider</h3>
+<p>Pete's father Norman was born July 3, 1907, in Alliance, Stark County, Ohio. He got his BA and MD from Western Reserve University, now Case Western Reserve. He trained at the Menninger Clinic in Topeka from 1934 to 1939.</p>
+<p>He became Chief of Psychiatry at Mount Zion Hospital in San Francisco, succeeding Jascha Kasanin. He was an early member of the San Francisco Psychoanalytic Society, founded in 1942. Norman arrived in San Francisco in 1946.</p>
+<p>TIME magazine featured him in 1947 for his paper "The Unmarried Father." He wrote "Chess, Oedipus, and the Mater Dolorosa" in 1959. He served on the ACLU board in Northern California.</p>
+<p>His papers are archived at the San Francisco Center for Psychoanalysis. 4.6 linear feet, covering 1822 to the 1980s.</p>
+<p>He married Louise J. Cohen in 1927. She was born November 29, 1907, in Cleveland, Ohio. She was a psychiatric social worker. She stopped practicing around 1946. Louise died February 22, 1985. Norman died March 23, 1989, both in San Francisco.</p>
+<p>Norman's parents were Maurice Jacob Reider (originally Rudner) and Lillian Cohen. Maurice was born around 1882 in Horoduk Village, Vilna Gubernia, Lithuania. He was a foreman at a steel foundry in Canton, Ohio. He died around 1960. Lillian was born in 1887 and died in 1981. Her parents were Hyman Cohen (born 1850) and Jennie Sugarman (1865-1928).</p>
+<p>Maurice's father was Uriah Rudner, called Uri. He was born in February 1855 in Orduk Village, Vilna Gubernia, then part of the Russian Empire. He died April 23, 1916, in Canton, Ohio. His first wife was Clara Scope (1862-1909, born in Russia). Their children included Anna, Morris (who became Maurice Reider), Isaac, Bennie (1884-1901), Len, Sam, and Rhea. After Clara died, Uri married Hattie Altman.</p>
+<p>Louise's parents were Abe Cohen, full name Abba Elyia Pasek Cohen (1886 to about 1915), and Rena Shepsenwol (born 1886). Abe's father was Aaron Cohen Pasek. Rena's parents were Max Cohen and a woman with the maiden name Levine Shepsenwol.</p>
+<p>Pete's brother Jonathan was a Stanford admissions officer for 15 years. Then he became Director of College Counseling at San Francisco University High School.</p>
 </div>
 
 <div class="section grandchildren">
-  <h2>Grandchildren</h2>
-  
-  <h3>Jacob M. Reider</h3>
-  <p><strong>Jacob</strong>, Janet and Pete's eldest, was born June 25, 1963, in Boston. He's a family physician. He graduated from Hampshire College in 1983 and Albany Medical College in 1994. From 2011 to 2014, he was Deputy National Coordinator for Health IT at the Department of Health and Human Services, and also served as Acting National Coordinator. Before that he was CMIO at Allscripts. Later he was CEO of the Alliance for Better Health from 2016 to 2021.</p>
-  <p>Jacob co-founded five health IT startups, including Twistle, which was acquired by Health Catalyst, and Physera, which was acquired by Omada. He's maintained a blog at docnotes.net since 1999.</p>
-  <p>Jacob married Alicia Ouellette, who was the eighteenth president and dean of Albany Law School from 2015 to 2023. She's now dean at Lewis & Clark Law School. They have two children, Molly and Sampson, and live in Slingerlands, New York.</p>
-  
-  <h3>Suzie Reider</h3>
-  <p><strong>Suzie</strong> was born March 29, 1965, in Boston. She's Executive Vice President of Lyft Media and Business at Lyft. Previously she was Global Chief Revenue Officer at Waze. She married Brian Smith. They have two daughters, Rose and Charlotte.</p>
-  
-  <h3>Matt Reider</h3>
-  <p><strong>Matt</strong> was born December 22, 1969, in Boston. He works in software and lives in Oakland, California. He married Alison Cohen on June 19, 2003. Matt did extensive research on the Sephardic ancestry in 2022. He's the one who brought me into this chat. They have two children, Max Nathan, born March 3, 2007, and Zoe Ella, born July 29, 2008.</p>
+<h2>Grandchildren</h2>
+
+<h3>Jacob M. Reider</h3>
+<p>Jacob was born June 25, 1963, in Boston. He's a family physician. He went to Hampshire College in 1983 and Albany Medical College in 1994.</p>
+<p>From 2011 to 2014, he was Deputy National Coordinator for Health IT at the Department of Health and Human Services. He also served as Acting National Coordinator. Before that, he was CMIO at Allscripts from 2006 to 2010. From 2016 to 2021, he was CEO of the Alliance for Better Health.</p>
+<p>He co-founded five health IT startups, including Twistle (acquired by Health Catalyst) and Physera (acquired by Omada). He's kept a blog at docnotes.net since 1999.</p>
+<p>He married Alicia Ouellette. She was the 18th President and Dean of Albany Law School from 2015 to 2023. Now she's Dean at Lewis & Clark Law School.</p>
+<p>They have two children: Molly and Sampson. They live in Slingerlands, New York.</p>
+
+<h3>Suzie Reider</h3>
+<p>Suzie was born March 29, 1965, in Boston. She's EVP of Lyft Media and Business at Lyft. Before that, she was Global CRO at Waze.</p>
+<p>She married Brian Smith. They have two daughters: Rose and Charlotte Reider Smith.</p>
+
+<h3>Matt Reider</h3>
+<p>Matt was born December 22, 1969, in Boston. He works in software and lives in Oakland, California.</p>
+<p>He married Alison Cohen on June 19, 2003. She was born August 7, 1972.</p>
+<p>They have two children: Max Nathan, born March 3, 2007, and Zoe Ella, born July 29, 2008, both in Oakland.</p>
+<p>Matt is the one who brought me into this chat.</p>
 </div>
 
-<div class="section sephardic-question">
-  <h2>The Sephardic Question: An Open Mystery</h2>
-  <p>There's a possible Sephardic Portuguese line through Deborah Marques Cohen, Esther Cohen's mother. The maiden name Marques suggests a connection to the Sephardic Marks or Marques family, but the link isn't proven.</p>
-  <p>The chain goes like this. Deborah's father was Samuel Mendes Mandel Marks. His father was <strong>Isaac Marks</strong>, born in New York in 1732, died in Charleston in 1776. Isaac fought in the American Revolution as a private in the New York Militia. He married Miriam Simpson or Simons of Long Island.</p>
-  <p>Multiple genealogy trees list Isaac's mother as <strong>Esther de Salomon Levy Maduro</strong>, also called Esther Marques, born December 16, 1699, in Bordeaux, France, died July 30, 1759, in Curaçao. She's buried at Beth Haim Cemetery in Curaçao, section IV, row C, grave 621. But Isaac's father is unknown.</p>
-  <p>Esther first married Jacob Rodriguez Marques on May 27, 1722, in Barbados. Jacob died around 1725. Isaac was born in 1732, seven years later. The original documentation for this maternal link is unclear. Matt researched this extensively in 2022 and corresponded with Ron Gomes Casseres at the Beth Haim cemetery and looked into the work of genealogist Isaac S. Emmanuel, whose books contain apparent contradictions about Esther's marriages.</p>
-  <p>Bernard Baruch, our cousin through Sarah Cohen Wolfe, claimed descent from Isaac Rodriguez Marques in his autobiography, but the dates don't work for a direct line.</p>
-  <p>If the connection holds, the Levy Maduro line goes back through rabbis in Amsterdam to Portugal in the 1400s. Esther's father was Ribi Hazzan Salomon de Mosseh Levy Maduro y Dias Sardo of Amsterdam. The line continues back through several generations of Levy Maduros to Mosseh Levy o Maduro in Portugal, and ultimately to Diogo Rodrigues and Clara Roiz in Portugal in the 1400s.</p>
-  <p>However, Matt's DNA test from the 2010s showed 99% Ashkenazi Jewish with no Sephardic markers, which casts doubt on the Portuguese connection. DNA tests from that era had limitations, and the Sephardic line would be many generations back. The story is fascinating family lore and serious genealogical research, but it should be presented as an open question, not established fact.</p>
+<div class="section sephardic">
+<h2>The Sephardic Question</h2>
+<p>There's a thread in this family that may reach back to the Sephardic Jews of Portugal and Amsterdam. It's fascinating, but it's not proven. Here's what we know.</p>
+<p>Esther Cohen, Grandpa John's grandmother, was born Esther Marks. Her father was Samuel Mendel Marks. His father was Isaac Marks, born 1732 in New York. Isaac fought in the American Revolution as a private in the New York Militia. He married Miriam Simpson (or Simons) of Long Island.</p>
+<p>Multiple genealogy trees list Isaac's mother as Esther de Salomon Mosseh Marques, also called Esther Levy Maduro y Namias de Crasto. She was born December 16, 1699, reportedly in Bordeaux, France. She died July 30, 1759, in Curaçao. She's buried at Beth Haim Cemetery in Curaçao, section IV, row C, grave 621.</p>
+<p>But here's the problem: Esther's first husband, Jacob Rodriguez Marques, died around 1725. Isaac Marks was born in 1732. The father is unknown. The connection is plausible but unproven.</p>
+<p>Bernard Baruch, the Wall Street financier (a cousin through Sarah Cohen Wolfe), claimed descent from Isaac Rodriguez Marques in his autobiography. But the dates don't work for a direct line.</p>
+<p>Matt researched this extensively in 2022. He corresponded with Ron Gomes Casseres at the Beth Haim cemetery in Curaçao, and with records from genealogist Isaac S. Emmanuel. Emmanuel's own books contain contradictions about Esther's marriages.</p>
+<p>If the connection holds, the line goes back through rabbis in Amsterdam to Portugal in the 1400s. Esther's father was Ribi Hazzan Salomon de Mosseh Levy Maduro y Dias Sardo, born 1673 in Amsterdam, died 1752 in Curaçao. His father was Hazzan and Ribi Mosseh de Salomon Levy Maduro, born 1649 in Amsterdam, died 1708 in Curaçao. He married Hester Dias Sardo on July 13, 1670. He arrived in Curaçao in 1672.</p>
+<p>The line continues back through several generations of Levy Maduros to Mosseh Levy o Maduro, born around 1591 in Portugal, died 1640 in Amsterdam. He married Clara Rodriguez (also called Rachel or Raquel) on July 27, 1622, in Amsterdam.</p>
+<p>The trail goes further: Mosseh's father Solomon Levy, Solomon's father Salomon (Samuel) Levy, then Antonio Ha Levy Abulafia, and ultimately to Diogo Rodrigues and Clara Roiz in Portugal in the 1400s.</p>
+<p>It's a beautiful story. But the original documentation for the link between Esther de Salomon and Isaac Marks is unclear. I note it here as a theory, well-supported but not confirmed.</p>
 </div>
 
 <div class="section places">
-  <h2>The Places That Shaped Us</h2>
-  
-  <h3>Oakland</h3>
-  <p>Where I was born and raised. Where my grandfather Israel built his business at 10th and Broadway. Where my father helped build Temple Sinai and oversaw the schools. Where the Rotunda Building still stands at 16th and Broadway. Where my parents are buried at Mountain View Cemetery.</p>
-  
-  <h3>Georgetown, South Carolina</h3>
-  <p>Where the Sampsons were merchants and shippers. Where Joseph H. Sampson is buried in the Jewish cemetery established in 1772. A small port town that was ten percent Jewish by 1800, the second largest Jewish community in South Carolina after Charleston.</p>
-  
-  <h3>Galveston, Texas</h3>
-  <p>Where Dr. Arthur Fischel Sampson practiced medicine. Where he and Bettie raised their five children. Where Grandpa John was born in 1898. The 1900 flood changed everything and sent the family west to San Francisco.</p>
-  
-  <h3>San Francisco</h3>
-  <p>Where John and I made our life together. Where we raised our three children in Seacliff. Where John was Chief of Staff at Mount Zion Hospital and I volunteered there for decades. Where we attended Congregation Emanu-El. Where we're both buried.</p>
-  
-  <h3>Curaçao</h3>
-  <p>Where Esther de Salomon Levy Maduro is buried at Beth Haim Cemetery, if the Sephardic connection is real. A thread that might tie us back to Bordeaux, Amsterdam, and Portugal, or might be a genealogical puzzle we'll never fully solve.</p>
+<h2>Places That Shaped Us</h2>
+
+<h3>Oakland</h3>
+<p>My grandfather Israel founded his business here in 1879. My father built Kahn Brothers into a landmark at 16th and Broadway. I was born here, went to school here, carried the key at Temple Sinai's dedication. The Kahn Foundation we established still supports this city. My parents are buried at Mountain View Cemetery.</p>
+
+<h3>Georgetown, South Carolina</h3>
+<p>The Sampsons were merchants and shippers here from the 1820s through the Civil War and beyond. Joseph H. Sampson and his brother Samuel helped build the Jewish community, which by 1800 was the second largest in South Carolina. Joseph is buried in the Jewish Cemetery, established in 1772. The family worshiped at Kahal Kadosh Beth Elohim in Charleston.</p>
+
+<h3>Galveston, Texas</h3>
+<p>Dr. Arthur Fischel Sampson practiced medicine here. He married Bettie Levy here in 1887. All five of their children were born in Galveston, including Grandpa John in 1898. The 1900 flood changed everything. Arthur moved the family to San Francisco in 1902.</p>
+
+<h3>San Francisco</h3>
+<p>This became our home. Arthur rebuilt after the 1906 earthquake. Grandpa John joined UCSF and became Chief of Staff at Mount Zion Hospital. We married here in 1931. We raised our children in Seacliff. I volunteered at Mount Zion into my 80s. I attended services and concerts at Congregation Emanu-El. I died here on July 12, 1997, at Mount Zion Hospital. My memorial was at Emanu-El on August 4.</p>
+
+<h3>Curaçao</h3>
+<p>If the Sephardic line is real, this island holds part of our history. Esther de Salomon Levy Maduro is buried at Beth Haim Cemetery. Her father and grandfather, both rabbis, lived and died here. The cemetery records go back centuries. Matt visited the archives. It's still an open question, but the graves are real.</p>
 </div>
+
+<div class="section closing">
+<h2>Carrying Forward</h2>
+<p>This family came from Germany, from South Carolina, from Lithuania, from Texas, perhaps from Portugal and Amsterdam. We built businesses, practiced medicine, taught, created art, raised children. We served our communities. We kept records.</p>
+<p>Now there are great-grandchildren: Robert Bruce and Peter Caleb Banta-Green. Molly and Sampson Reider. Max Nathan and Zoe Ella Reider. Rose and Charlotte Reider Smith.</p>
+<p>This is what I know. This is what I've verified. This is the family.</p>
+</div>
+  </div>
+</div>
+
+<div id="changelog-tab" class="tab-content">
+  <div id="changelog-view">
+    <h1>Family Tree Change Log</h1>
+
+<h2>2026-03-09 - Data verification against Geni.com and genealogy sources</h2>
+<p><strong>By:</strong> Matt Reider (via Claude Code research)</p>
+
+<h3>Corrections</h3>
+<ul><li><strong>Caroline Lavenson</strong>: Maiden name corrected from "Weinman" to <strong>"Heiman"</strong> — <a href="https://www.findagrave.com/memorial/198472140/caroline-lavenson" target="_blank">Find a Grave #198472140</a></li>
+<li><strong>Caroline Lavenson</strong>: Added death date (1872-06-24) and death place (Sacramento, CA) — she died the same year her daughter Helen was born</li>
+<li><strong>Helen Sarah Eppinger</strong>: Corrected married name from "Basinger" to <strong>"Eppinger"</strong> — married Josua Eppinger — <a href="https://www.findagrave.com/memorial/18982153/frederick-kahn" target="_blank">Find a Grave</a>, <a href="https://www.geni.com/people/Frederick-Kahn/6000000000677780658" target="_blank">Geni</a></li>
+<li><strong>Frederick Kahn</strong>: Corrected note from "joined father's business 1873" — the store was founded in <strong>1879</strong>; Frederick first worked at Bauer Brothers in SF — <a href="https://oaklandwiki.org/Israel_Kahn" target="_blank">Oakland LocalWiki</a></li>
+<li><strong>Hartwig Cohen</strong>: Birth year corrected from 1783 to <strong>1784</strong> — <a href="https://www.geni.com/people/Rev-Hartwig-Cohen/6000000016009111717" target="_blank">Geni</a></li>
+<li><strong>Deborah Marks Cohen</strong>: Maiden name corrected from "Marques" to <strong>"Marks"</strong> per Geni records; added death place <strong>New York</strong> — <a href="https://www.geni.com/people/Deborah-Cohen/6000000016009389677" target="_blank">Geni</a></li>
+<li><strong>Samuel Mendes Mandel Marks</strong>: Name corrected to <strong>"Samuel Mendel Marks"</strong> per Geni records; added mother <strong>Sarah Marks (née Harris)</strong></li>
+<li><strong>Cornelia "Nellie" Sampson</strong>: Birth year corrected from 1893 to <strong>1894</strong> — <a href="https://www.geni.com/people/Cornelia-Salinger-Bibbero/6000000029698659248" target="_blank">Geni</a></li>
+<li><strong>Norman Reider</strong>: Removed claim of being "founding member" of CA Psychoanalytic Society — he arrived SF in 1946; the society was founded in 1942 with 10 named charter members. He was an important <strong>early member</strong> — <a href="https://www.encyclopedia.com/psychology/dictionaries-thesauruses-pictures-and-press-releases/san-francisco-psychoanalytic-society-and-institute" target="_blank">Encyclopedia.com</a></li>
+<li><strong>Isaac Marks</strong>: Death place changed from "Charleston, SC" to <strong>"New York"</strong> — his son Samuel Mendel moved to Charleston, not Isaac himself. Added verification note about death location.</li>
+</ul>
+<h3>Additions</h3>
+<ul><li><strong>Albert S. Lavenson</strong>: Added wife <strong>Amy Furth</strong> (married 1894), death details (heart disease, age 65) — <a href="https://www.jta.org/1930/06/11/archive/albert-lavenson-california-philanthropist-dies-at-65" target="_blank">JTA obituary</a></li>
+<li><strong>Alma Ruth Lavenson</strong>: Added as Albert's daughter (1897-1989), noted photographer — <a href="https://www.jmaw.org/lavenson-capwells-jewish/" target="_blank">JMAW</a></li>
+<li><strong>Amy Furth Lavenson</strong>: Added as Albert's wife</li>
+<li><strong>Clara Lavenson Furth</strong>: Added as Helen's sister (1870-1945) — <a href="https://www.findagrave.com/memorial/198472140/caroline-lavenson" target="_blank">Find a Grave</a></li>
+<li><strong>Sara Lavenson</strong>: Added as Helen's sister (1871-1946)</li>
+<li><strong>Miriam Simpson</strong>: Added birth/death details where available from Geni</li>
+<li><strong>Sarah Marks (née Harris)</strong>: Added as Samuel Mendel Marks's mother</li>
+<li><strong>Esther de Salomon Levy Maduro</strong>: Added verification note about conflicting birth year (1699 vs 1710) and birthplace (Bordeaux unconfirmed)</li>
+<li>Added `verification` fields for contested Sephardic connections</li>
+<li>Added Levy Maduro chain dates from Genealogy Online / Lobe tree</li>
+</ul>
+<h3>Notes</h3>
+<ul><li>Frederick Kahn's birth date: headstone says Sep 21, 1860; obituary says October 1860 — noted as known discrepancy</li>
+<li>Helen Kahn's death year: JSON says 1935; two Find a Grave entries say 1936 — kept 1935 pending primary source verification</li>
+<li>Norman Reider's birthplace: Geni says Alliance; archival finding aid says Canton (both Stark County, OH) — kept Alliance</li>
+<li>Norman & Louise marriage: notes say 1927; Geni says Jan 3, 1929 — kept 1927 per archival finding aid</li>
+<li>Israel Kahn's parents (Henry/Hertz Kahn, Bela Goldstein) could not be independently verified</li>
+</ul>
   </div>
 </div>
 
@@ -310,12 +400,16 @@ var rawData = [
     "born": "1829",
     "died": "1900",
     "relation": "RoRo's maternal grandfather",
-    "spouse": "Caroline Lavenson (née Weinman)"
+    "spouse": "Caroline Lavenson (née Heiman)"
   },
   {
-    "name": "Caroline Lavenson (née Weinman)",
+    "name": "Caroline Lavenson (née Heiman)",
+    "born": "1842",
+    "died": "1872-06-24",
+    "deathplace": "Sacramento, CA",
     "relation": "RoRo's maternal grandmother",
-    "spouse": "Samuel Lavenson"
+    "spouse": "Samuel Lavenson",
+    "notes": "Died at age 29-30, the same year her daughter Helen was born. Buried at Home of Peace Cemetery, Sacramento. Three children: Clara (1870), Sara (1871), Helen (1872)."
   },
   {
     "name": "Albert S. Lavenson",
@@ -323,8 +417,42 @@ var rawData = [
     "birthplace": "Sacramento, CA",
     "died": "1930",
     "relation": "RoRo's maternal uncle",
-    "notes": "Vice-president of Capwell's Department Store. President of Temple Sinai. Left estate to charitable/educational foundation.",
-    "parents": ["Samuel Lavenson", "Caroline Lavenson (née Weinman)"]
+    "spouse": "Amy Lavenson (née Furth)",
+    "married": "1894",
+    "notes": "Partner and vice-president of Capwell's Department Store (30 years, from 1890). President of Temple Sinai. Organizer of the Commercial Club (later Oakland Chamber of Commerce). Music patron at Mills College, responsible for construction of Music Building. Chaired Jewish Welfare Campaign of the East Bay (1927). Died at 65 of heart disease. Left estate to charitable/educational foundation.",
+    "parents": ["Samuel Lavenson", "Caroline Lavenson (née Heiman)"],
+    "sources": ["https://www.jta.org/1930/06/11/archive/albert-lavenson-california-philanthropist-dies-at-65"]
+  },
+  {
+    "name": "Amy Lavenson (née Furth)",
+    "relation": "Albert's wife",
+    "spouse": "Albert S. Lavenson",
+    "married": "1894",
+    "notes": "Daughter of Gold Rush merchant Simon Furth."
+  },
+  {
+    "name": "Alma Ruth Lavenson",
+    "born": "1897",
+    "died": "1989",
+    "birthplace": "Oakland, CA",
+    "relation": "RoRo's cousin (Albert's daughter)",
+    "notes": "Noted photographer. Studied under Edward Weston and Imogen Cunningham.",
+    "parents": ["Albert S. Lavenson", "Amy Lavenson (née Furth)"],
+    "sources": ["https://www.jmaw.org/lavenson-capwells-jewish/"]
+  },
+  {
+    "name": "Clara Lavenson Furth",
+    "born": "1870",
+    "died": "1945",
+    "relation": "RoRo's maternal aunt (Helen's sister)",
+    "parents": ["Samuel Lavenson", "Caroline Lavenson (née Heiman)"]
+  },
+  {
+    "name": "Sara Lavenson",
+    "born": "1871",
+    "died": "1946",
+    "relation": "RoRo's maternal aunt (Helen's sister)",
+    "parents": ["Samuel Lavenson", "Caroline Lavenson (née Heiman)"]
   },
   {
     "name": "Frederick Kahn",
@@ -334,7 +462,7 @@ var rawData = [
     "deathplace": "Oakland, CA (3933 Harrison Street)",
     "relation": "RoRo's father",
     "spouse": "Helen Kahn (née Lavenson)",
-    "notes": "Joined father's Oakland retail business 1873. Kahn Brothers Dept Store moved 1912 to Beaux-Arts building at 16th & Broadway (architect Charles W. Dickey, 120-ft elliptical dome -now Rotunda Building, Oakland Landmark #132, National Register). First president of Jewish Welfare Federation of the East Bay. Founding member & president of Temple Sinai. Chairman of Advisory Committee of Board of Education ($5M school building program). VP of Alameda County Anti-Tuberculosis Society. Concordia Club, B'nai B'rith. Buried at Home of Eternity Cemetery, Mountain View Cemetery, Oakland.",
+    "notes": "First worked at Bauer Brothers Company (wholesalers of laces and fancy goods, 83 First Street, SF), then joined the family store after it was founded in 1879. Kahn Brothers Dept Store moved 1912 to Beaux-Arts building at 16th & Broadway (architect Charles W. Dickey, 120-ft elliptical dome - now Rotunda Building, Oakland Landmark #132, National Register). First president of Jewish Welfare Federation of the East Bay (founded 1918). Founding member & president of Temple Sinai. Chairman of Advisory Committee of Board of Education ($5M school building program). VP of Alameda County Anti-Tuberculosis Society. Concordia Club, B'nai B'rith. Buried at Home of Eternity Cemetery, Mountain View Cemetery, Oakland.",
     "parents": ["Israel Kahn", "Sarah Kahn (née Bauer)"]
   },
   {
@@ -346,11 +474,14 @@ var rawData = [
     "relation": "RoRo's mother",
     "spouse": "Frederick Kahn",
     "notes": "Established the Kahn Foundation in 1928 after Frederick's death. In 1965, foundation donated $125,000 for 71 paintings -the Kahn Collection of 19th-century California art at the Oakland Museum, catalogued by Marjorie Arkelian.",
-    "parents": ["Samuel Lavenson", "Caroline Lavenson (née Weinman)"]
+    "parents": ["Samuel Lavenson", "Caroline Lavenson (née Heiman)"]
   },
   {
-    "name": "Helen Sarah Basinger (née Kahn)",
+    "name": "Helen Sarah Eppinger (née Kahn)",
+    "born": "1913",
+    "died": "1956",
     "relation": "RoRo's sister",
+    "spouse": "Josua Eppinger",
     "parents": ["Frederick Kahn", "Helen Kahn (née Lavenson)"]
   },
   {
@@ -374,39 +505,48 @@ var rawData = [
   {
     "name": "Hartwig Cohen",
     "nicknames": ["Reverend Hartwig Cohen"],
-    "born": "1783",
+    "born": "1784",
     "died": "1861",
     "birthplace": "Wartha, Frankenstein, Silesia, Prussia",
     "relation": "Grandpa John's maternal great-great-grandfather",
-    "spouse": "Deborah Marques Cohen",
+    "spouse": "Deborah Marks Cohen",
     "sources": ["https://www.geni.com/people/Rev-Hartwig-Cohen/6000000016009111717", "https://www.wikitree.com/wiki/Cohen-2905"]
   },
   {
-    "name": "Deborah Marques Cohen",
-    "born": "1801",
-    "died": "1888",
+    "name": "Deborah Marks Cohen",
+    "born": "1801-05-03",
+    "died": "1888-02-15",
     "birthplace": "Charleston, SC",
+    "deathplace": "New York, NY",
     "relation": "Grandpa John's maternal great-great-grandmother",
     "spouse": "Hartwig Cohen",
-    "notes": "Maiden name 'Marques' links to Sephardic Marks/Marques family.",
-    "parents": ["Samuel Mendes Mandel Marks"]
+    "notes": "Born Deborah Marks. Family name was anglicized from Marques. Children included Esther 'Hetty' (Sampson), Rosa, Leonora (Baum), Adeline (Phillips), Frances Aaron Cohen, and Fishel Hartwig Cohen.",
+    "parents": ["Samuel Mendel Marks", "Sarah Marks (née Harris)"]
   },
   {
-    "name": "Samuel Mendes Mandel Marks",
-    "relation": "Deborah Marques Cohen's father",
-    "notes": "Son of Isaac Marks and Miriam Simpson/Simons.",
+    "name": "Samuel Mendel Marks",
+    "relation": "Deborah Marks Cohen's father",
+    "spouse": "Sarah Marks (née Harris)",
+    "notes": "Son of Isaac Marks and Miriam Simpson/Simons. Moved to Charleston, SC.",
     "parents": ["Isaac Marks", "Miriam Simpson/Simons"]
+  },
+  {
+    "name": "Sarah Marks (née Harris)",
+    "relation": "Samuel Mendel Marks's wife / Deborah's mother",
+    "spouse": "Samuel Mendel Marks"
   },
   {
     "name": "Isaac Marks",
     "born": "1732",
     "died": "1776",
     "birthplace": "New York, NY",
-    "deathplace": "Charleston, SC",
+    "deathplace": "New York",
     "relation": "Deborah's grandfather / Sephardic ancestor",
     "spouse": "Miriam Simpson/Simons",
-    "notes": "Fought in the American Revolution as private in NY Militia. Listed repeatedly in DAR family histories. Lived in NYC from age 8 (1740) until death. Originally Marques -name anglicized to Marks. Father unknown. Cousin of Bernard Baruch (through granddaughter Sarah Wolfe). Connection to Esther is contested -multiple Geni/Ancestry trees list her as mother but original documentation unclear.",
+    "notes": "Fought in the American Revolution as private in NY Militia. Listed in DAR family histories. Lived in NYC from age 8 (1740). Originally Marques, name anglicized to Marks. Father unknown. Cousin of Bernard Baruch (through granddaughter Sarah Wolfe). His son Samuel Mendel Marks moved to Charleston, SC.",
     "parents": ["Esther de Salomon Levy Maduro"],
+    "verification": "contested",
+    "verification_notes": "Connection to Esther de Salomon Levy Maduro as mother appears in multiple Geni/Ancestry trees but lacks primary documentation. Esther's first husband died ~1725, Isaac born 1732 with unknown father. Parentage is plausible but unproven. Death place listed as 'New York' per residence records; 'Charleston, SC' in some trees but that was his son's location. Military service claim lacks muster roll confirmation.",
     "sources": ["https://www.geni.com/people/Pvt-Isaac-Marks-NY-Militia/6000000019301598241", "https://sites.americanjewisharchives.org/publications/fajf/pdfs/stern_p185.pdf", "https://paulskolnick.com/genealogy/chris-ann-maxwell/marques-marks/marques-marks-text-tree/"]
   },
   {
@@ -423,8 +563,10 @@ var rawData = [
     "birthplace": "Bordeaux, Gironde, France",
     "deathplace": "Curaçao, Netherlands Antilles",
     "relation": "Isaac Marks's mother / Sephardic matriarch",
-    "notes": "Buried at Beth Haim Cemetery, Curaçao, section IV, row C, grave 621. First married Jacob Rodriguez Marques (May 27, 1722, in Barbados). Jacob died ~1725. Then married Ishac de Shemuel Levy Maduro (buried adjacent plot IV-C-620). Isaac Marks born 1732 with unknown father -possibly conceived in New York. Also had daughter Rachel Marquez (~1725, Barbados). Researched by Matt Reider 2022, corresponded with Ron Gomes Casseres at Beth Haim cemetery. Emmanuel's books contain contradictions: 'History of the Jews of the Netherlands Antilles' (1970) p.943 says she married Jacob 1722, but 'Precious Stones of the Jews of Curaçao' (1957) p.507 lists her as wife of Ishac de Shemuel.",
+    "notes": "Buried at Beth Haim Cemetery, Curaçao, section IV, row C, grave 621. First married Jacob Rodriguez Marques (May 27, 1722, in Barbados). Jacob died ~1725. Then married Ishac de Shemuel Levy Maduro (buried adjacent plot IV-C-620). Isaac Marks born 1732 with unknown father - possibly conceived in New York. Also had daughter Rachel Marquez (~1725, Barbados). Researched by Matt Reider 2022, corresponded with Ron Gomes Casseres at Beth Haim cemetery. Emmanuel's books contain contradictions: 'History of the Jews of the Netherlands Antilles' (1970) p.943 says she married Jacob 1722, but 'Precious Stones of the Jews of Curaçao' (1957) p.507 lists her as wife of Ishac de Shemuel.",
     "parents": ["Ribi Hazzan Salomon de Mosseh Levy Maduro y Dias Sardo"],
+    "verification": "contested",
+    "verification_notes": "Birth year 1699 and birthplace Bordeaux are from Geni user trees. Geneanet/Genealogy Online records show a different Esther de Salomon Levy Maduro y Namias de Castro born 1710 (not 1699) who married Isaac de Samuel Levy Maduro y Vieyra (1712-1784). The Geni profile may conflate two different women named Esther. The Bordeaux birthplace is unsupported; the Levy Maduro family was based in Amsterdam and Curaçao.",
     "sources": ["https://www.geni.com/people/Esther-Marques/6000000010280084001", "https://www.bethhaimcuracao.org", "https://archive.org/stream/willsofearlyjewi00frie/willsofearlyjewi00frie_djvu.txt"]
   },
   {
@@ -438,29 +580,65 @@ var rawData = [
   },
   {
     "name": "Ribi Hazzan Salomon de Mosseh Levy Maduro y Dias Sardo",
+    "nicknames": ["Samuel de Mosseh Levy Maduro"],
+    "born": "1673",
+    "died": "1752-04-06",
     "birthplace": "Amsterdam, Netherlands",
+    "deathplace": "Curaçao",
     "relation": "Esther's father / Sephardic rabbi",
-    "notes": "Rabbi (Hazzan). Born in Amsterdam.",
-    "parents": ["Hazzan & Ribi Mosseh de Salomon Levy Maduro"]
+    "notes": "Rabbi (Hazzan). Also known as Samuel (Hebrew name Salomon). Born in Amsterdam.",
+    "parents": ["Hazzan & Ribi Mosseh de Salomon Levy Maduro"],
+    "sources": ["https://gw.geneanet.org/camiloro?lang=en&n=levy+maduro+y+dias+sardo&p=samuel+de+mosseh"]
   },
   {
     "name": "Hazzan & Ribi Mosseh de Salomon Levy Maduro",
+    "born": "1649",
+    "died": "1708-11-10",
     "birthplace": "Amsterdam, Netherlands",
+    "deathplace": "Curaçao",
     "relation": "Sephardic rabbi ancestor",
-    "notes": "Rabbi. Born in Amsterdam.",
-    "parents": ["Salomon (Salomão) de Moshe Levy Maduro"]
+    "spouse": "Hester Dias Sardo",
+    "married": "1670-07-13",
+    "notes": "Rabbi and cantor. Arrived Curaçao 1672. Full name includes 'y de Crasto' from his mother's family.",
+    "parents": ["Salomon (Salomão) de Moshe Levy Maduro"],
+    "sources": ["https://www.geni.com/people/Hazzan-Ribi-Mosseh-Levy-Maduro/6000000004281588224", "https://www.genealogieonline.nl/en/stamboom-lobe/I20033.php"]
+  },
+  {
+    "name": "Hester Dias Sardo",
+    "relation": "Mosseh de Salomon Levy Maduro's wife",
+    "spouse": "Hazzan & Ribi Mosseh de Salomon Levy Maduro",
+    "married": "1670-07-13"
   },
   {
     "name": "Salomon (Salomão) de Moshe Levy Maduro",
+    "nicknames": ["Salomon Levy Maduro Rodriguez"],
+    "born": "1629",
+    "died": "1699",
     "birthplace": "Amsterdam, Netherlands",
     "relation": "Sephardic ancestor",
-    "parents": ["Mosseh Levy o Maduro"]
+    "spouse": "Chana de Castro",
+    "married": "1648-10-27",
+    "parents": ["Mosseh Levy o Maduro"],
+    "sources": ["https://www.genealogieonline.nl/en/stamboom-lobe/I20035.php"]
+  },
+  {
+    "name": "Chana de Castro",
+    "relation": "Salomon Levy Maduro's wife",
+    "spouse": "Salomon (Salomão) de Moshe Levy Maduro",
+    "married": "1648-10-27"
   },
   {
     "name": "Mosseh Levy o Maduro",
+    "born": "~1591",
+    "died": "1640-01-01",
     "birthplace": "Portugal",
+    "deathplace": "Amsterdam, Netherlands",
     "relation": "Sephardic ancestor from Portugal",
-    "parents": ["Solomon Levy"]
+    "spouse": "Clara Rodriguez",
+    "married": "1622-07-27",
+    "notes": "Adopted the 'Maduro' name. Married Clara (also known as Rachel/Raquel) Rodriguez in Amsterdam.",
+    "parents": ["Solomon Levy"],
+    "sources": ["https://www.geni.com/people/Mosseh-Levy-o-Maduro/6000000004281963094"]
   },
   {
     "name": "Solomon Levy",
@@ -505,7 +683,7 @@ var rawData = [
     "relation": "Grandpa John's paternal grandmother",
     "spouse": "Joseph H. Sampson",
     "notes": "Siblings: Sarah (Cohen) Wolfe (Bernard Baruch's grandmother) and Frances A. Cohen. Mother of Cornelia C. (Sampson) Ehrich and Dr. Arthur Fischel Sampson.",
-    "parents": ["Hartwig Cohen", "Deborah Marques Cohen"],
+    "parents": ["Hartwig Cohen", "Deborah Marks Cohen"],
     "sources": ["https://www.wikitree.com/wiki/Cohen-2905", "https://www.geni.com/people/Esther-Sampson/325137901420005493"]
   },
   {
@@ -562,7 +740,7 @@ var rawData = [
   },
   {
     "name": "Cornelia 'Nellie' Sampson",
-    "born": "1893-08-08",
+    "born": "1894-08-08",
     "died": "1989",
     "birthplace": "Galveston, TX",
     "deathplace": "San Francisco, CA",
@@ -683,7 +861,7 @@ var rawData = [
     "relation": "Pete's father",
     "spouse": "Louise J. Reider (née Cohen)",
     "married": "1927",
-    "notes": "BA and MD from Western Reserve University (now Case Western Reserve). Trained at Menninger Clinic, Topeka (1934-1939). Headed Dept of Psychiatry at Mt. Zion Hospital, SF. Among founding members of California Psychoanalytic Society. Featured in TIME magazine (1947) for 'The Unmarried Father.' Wrote 'Chess, Oedipus, and the Mater Dolorosa' (1959). Papers archived at SF Center for Psychoanalysis (4.6 linear feet, 1822-1980s).",
+    "notes": "BA and MD from Western Reserve University (now Case Western Reserve). Trained at Menninger Clinic, Topeka (1934-1939). Chief of Psychiatry at Mt. Zion Hospital, SF (succeeding Jascha Kasanin). Early member of the San Francisco Psychoanalytic Society (founded 1942; Norman arrived SF 1946). Featured in TIME magazine (1947) for 'The Unmarried Father.' Wrote 'Chess, Oedipus, and the Mater Dolorosa' (1959). ACLU board member (Northern California). Papers archived at SF Center for Psychoanalysis (4.6 linear feet, 1822-1980s).",
     "parents": ["Maurice Jacob Reider (née Rudner)", "Lillian Reider (née Cohen)"]
   },
   {
@@ -878,13 +1056,15 @@ function fdNode(person, isActive) {
 
 var currentPerson = null;
 
-function showPerson(name) {
+function showPerson(name, skipHash) {
   var person = byName[name];
   if (!person) return;
   currentPerson = name;
 
-  var newHash = '#' + encodeURIComponent(name);
-  if (location.hash !== newHash) history.pushState(null, '', newHash);
+  if (!skipHash) {
+    var newHash = '#' + encodeURIComponent(name);
+    if (location.hash !== newHash) history.replaceState(null, '', newHash);
+  }
 
   var treeTab = document.getElementById('tree-tab');
   if (!treeTab.classList.contains('active')) {
@@ -1019,10 +1199,14 @@ function switchTab(tab, btn) {
   document.querySelectorAll('.tab').forEach(function(el) { el.classList.remove('active'); });
   document.getElementById(tab + '-tab').classList.add('active');
   btn.classList.add('active');
+  // Clear hash when leaving tree tab
+  if (tab !== 'tree' && location.hash) {
+    history.replaceState(null, '', location.pathname);
+  }
   // Lazy-load tree on first visit
   if (tab === 'tree' && !treeLoaded) {
     treeLoaded = true;
-    showPerson('Rose Etta Kahn Sampson');
+    showPerson('Rose Etta Kahn Sampson', true);
   }
 }
 
