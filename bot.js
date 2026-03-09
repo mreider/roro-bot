@@ -29,7 +29,7 @@ const FAMILY_JSON_PATH = join(__dirname, 'family-tree.json');
 const MEMORY_PATH = join(__dirname, 'MEMORY.md');
 const GROUP_CONFIG_PATH = join(__dirname, 'group-config.json');
 const MODEL = 'claude-sonnet-4-5-20250929';
-const SITE_URL = 'https://mreider.github.io/roro-bot/';
+const SITE_URL = 'https://family.mreider.com/';
 
 // Mention triggers (case-insensitive)
 const TRIGGERS = ['roro', 'grandma', 'grandmother', 'rosie', 'rose'];
