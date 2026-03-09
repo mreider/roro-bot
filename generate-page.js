@@ -58,7 +58,6 @@ Output ONLY the HTML content. No markdown fences, no explanation.`;
   let narrativeHtml = response.content[0]?.text || '';
   narrativeHtml = narrativeHtml.replace(/^```html?\n?/, '').replace(/\n?```$/, '').trim();
 
-  // Build the D3 tree data from family-tree.json
   const treeData = familyJson;
 
   // Assemble the full page
@@ -83,183 +82,115 @@ function buildFullPage(narrativeHtml, treeDataJson) {
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Sampson-Kahn Family</title>
-<script src="https://d3js.org/d3.v7.min.js"><\/script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
 <style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --primary: #5bc1ac;
+  --secondary: #5a6f80;
+  --bg: #f0f8ff;
+  --white: #fff;
+  --dark: #1a1a1a;
+  --muted: #717275;
+  --border: #e0e7ed;
+  --radius: 10px;
+  --sans: 'Inter', -apple-system, sans-serif;
+  --serif: 'Playfair Display', Georgia, serif;
+}
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: var(--sans); background: var(--bg); color: var(--dark); line-height: 1.7; font-weight: 300; }
+a { color: var(--secondary); text-decoration: none; transition: color 0.2s; }
+a:hover { color: var(--primary); }
 
-  body {
-    font-family: 'Georgia', 'Times New Roman', serif;
-    background: #faf8f4;
-    color: #3a3226;
-    line-height: 1.7;
-  }
+/* Header */
+header { background: var(--secondary); color: var(--white); padding: 3rem 1.5rem; text-align: center; }
+header h1 { font-family: var(--serif); font-size: 2rem; font-weight: 400; letter-spacing: 0.02em; margin-bottom: 0.3rem; }
+header p { font-size: 0.95rem; opacity: 0.8; font-weight: 300; }
 
-  header {
-    background: linear-gradient(135deg, #4a3728 0%, #6b5344 100%);
-    color: #f5f0e8;
-    padding: 2.5rem 1.5rem;
-    text-align: center;
-  }
+/* Tabs */
+.tabs { display: flex; justify-content: center; gap: 0; background: var(--white); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
+.tab { padding: 0.85rem 2rem; cursor: pointer; font-family: var(--sans); font-size: 0.9rem; font-weight: 400; color: var(--muted); border: none; background: none; border-bottom: 2px solid transparent; transition: all 0.2s; letter-spacing: 0.03em; }
+.tab:hover { color: var(--dark); }
+.tab.active { color: var(--dark); border-bottom-color: var(--primary); font-weight: 600; }
+.tab-content { display: none; }
+.tab-content.active { display: block; }
 
-  header h1 {
-    font-size: 2.2rem;
-    font-weight: 400;
-    letter-spacing: 0.05em;
-    margin-bottom: 0.3rem;
-  }
+/* Narrative */
+#narrative-view { max-width: 720px; margin: 0 auto; padding: 2.5rem 1.5rem; }
+#narrative-view .section { margin-bottom: 2.5rem; }
+#narrative-view h2 { font-family: var(--serif); font-size: 1.4rem; color: var(--secondary); margin-bottom: 0.8rem; }
+#narrative-view h3 { font-size: 1.05rem; color: var(--dark); font-weight: 600; margin: 1.2rem 0 0.4rem; }
+#narrative-view p { color: var(--muted); margin-bottom: 0.8rem; }
+#narrative-view ul { margin: 0.5rem 0 1rem 1.5rem; color: var(--muted); }
+#narrative-view li { margin-bottom: 0.3rem; }
 
-  header p {
-    font-size: 1rem;
-    opacity: 0.85;
-    font-style: italic;
-  }
+/* Explorer */
+.explorer { max-width: 680px; margin: 0 auto; padding: 1.5rem; }
 
-  /* Tabs */
-  .tabs {
-    display: flex;
-    justify-content: center;
-    background: #e8e0d4;
-    border-bottom: 2px solid #c9b99a;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-  }
+/* Search */
+.search-wrap { position: relative; margin-bottom: 1.5rem; }
+.search-box { width: 100%; padding: 0.7rem 1rem; font-family: var(--sans); font-size: 0.95rem; border: 1px solid var(--border); border-radius: var(--radius); background: var(--white); color: var(--dark); outline: none; font-weight: 300; }
+.search-box:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(91,193,172,0.15); }
+.search-results { position: absolute; top: 100%; left: 0; right: 0; background: var(--white); border: 1px solid var(--border); border-top: none; border-radius: 0 0 var(--radius) var(--radius); max-height: 280px; overflow-y: auto; z-index: 200; display: none; box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
+.search-item { padding: 0.55rem 1rem; cursor: pointer; border-bottom: 1px solid var(--bg); }
+.search-item:hover { background: var(--bg); }
+.search-item:last-child { border-bottom: none; }
+.si-name { font-weight: 600; font-size: 0.9rem; }
+.si-detail { font-size: 0.8rem; color: var(--muted); }
 
-  .tab {
-    padding: 0.9rem 2rem;
-    cursor: pointer;
-    font-family: Georgia, serif;
-    font-size: 1rem;
-    color: #6b5344;
-    border: none;
-    background: none;
-    border-bottom: 3px solid transparent;
-    transition: all 0.2s;
-  }
+/* Mini family diagram */
+.family-diagram { text-align: center; margin-bottom: 1.5rem; }
+.fd-row { display: flex; justify-content: center; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
+.fd-line { width: 1px; height: 1.2rem; background: var(--border); margin: 0 auto; }
+.fd-node { display: inline-flex; flex-direction: column; align-items: center; padding: 0.4rem 0.8rem; background: var(--white); border: 1px solid var(--border); border-radius: 6px; cursor: pointer; font-size: 0.8rem; line-height: 1.3; transition: all 0.15s; max-width: 140px; text-align: center; }
+.fd-node:hover { border-color: var(--primary); background: var(--bg); }
+.fd-node.active { border-color: var(--primary); background: var(--primary); color: var(--white); }
+.fd-node.active .fd-dates { color: rgba(255,255,255,0.8); }
+.fd-name { font-weight: 600; font-size: 0.78rem; }
+.fd-dates { font-size: 0.7rem; color: var(--muted); }
+.fd-couple { display: inline-flex; align-items: center; gap: 0; }
+.fd-couple .fd-node { border-radius: 6px 0 0 6px; }
+.fd-couple .fd-node:last-child { border-radius: 0 6px 6px 0; border-left: none; }
+.fd-children-row { display: flex; justify-content: center; gap: 0.4rem; flex-wrap: wrap; }
+.fd-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin: 0.3rem 0; }
 
-  .tab:hover { color: #3a3226; background: rgba(255,255,255,0.3); }
-  .tab.active { color: #3a3226; border-bottom-color: #8b6914; font-weight: 600; }
+/* Person card */
+.person-card { background: var(--white); border-radius: var(--radius); padding: 1.8rem; margin-bottom: 1.5rem; box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
+.person-card h2 { font-family: var(--serif); font-size: 1.5rem; color: var(--dark); margin-bottom: 0.15rem; font-weight: 400; }
+.person-nicknames { font-style: italic; color: var(--muted); margin-bottom: 0.6rem; font-size: 0.9rem; }
+.person-relation { display: inline-block; font-size: 0.75rem; background: var(--bg); color: var(--secondary); padding: 0.2rem 0.6rem; border-radius: 100px; margin-bottom: 0.8rem; font-weight: 400; }
+.person-meta { margin-bottom: 0.8rem; }
+.meta-row { display: flex; gap: 0.4rem; margin-bottom: 0.2rem; font-size: 0.9rem; }
+.meta-label { color: var(--muted); min-width: 4rem; flex-shrink: 0; font-weight: 400; }
+.meta-value { color: var(--dark); font-weight: 300; }
+.spouse-link { color: var(--primary); cursor: pointer; font-weight: 400; }
+.spouse-link:hover { text-decoration: underline; }
+.person-notes { border-top: 1px solid var(--border); padding-top: 0.8rem; margin-top: 0.5rem; color: var(--muted); font-size: 0.9rem; line-height: 1.7; }
 
-  .tab-content { display: none; }
-  .tab-content.active { display: block; }
+/* Siblings */
+.siblings-section { margin-bottom: 1.5rem; }
+.siblings-section h3 { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 0.4rem; }
+.siblings-section .pills { display: flex; flex-wrap: wrap; gap: 0.3rem; }
+.sib-pill { padding: 0.3rem 0.7rem; background: var(--white); border: 1px solid var(--border); border-radius: 100px; cursor: pointer; font-size: 0.8rem; color: var(--secondary); font-weight: 400; transition: all 0.15s; font-family: var(--sans); }
+.sib-pill:hover { border-color: var(--primary); color: var(--primary); }
 
-  /* Tree tab */
-  #tree-view {
-    width: 100%;
-    overflow: auto;
-    background: #faf8f4;
-    min-height: 80vh;
-    position: relative;
-  }
+footer { text-align: center; padding: 2rem; color: var(--muted); font-size: 0.8rem; border-top: 1px solid var(--border); background: var(--white); }
+footer a { color: var(--muted); }
+footer a:hover { color: var(--primary); }
 
-  #tree-container { width: 100%; }
-
-  #tree-container svg { display: block; margin: 0 auto; }
-
-  .node rect {
-    fill: #fff;
-    stroke: #c9b99a;
-    stroke-width: 1.5;
-    rx: 6;
-    cursor: pointer;
-    transition: all 0.2s;
-  }
-
-  .node rect:hover {
-    stroke: #8b6914;
-    stroke-width: 2;
-    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
-  }
-
-  .node text { font-family: Georgia, serif; fill: #3a3226; pointer-events: none; }
-  .node .name { font-size: 12px; font-weight: 600; }
-  .node .dates { font-size: 10px; fill: #8b7355; }
-
-  .link {
-    fill: none;
-    stroke: #c9b99a;
-    stroke-width: 1.5;
-  }
-
-  .tree-controls {
-    position: sticky;
-    top: 50px;
-    z-index: 50;
-    display: flex;
-    justify-content: center;
-    gap: 0.5rem;
-    padding: 0.8rem;
-    background: rgba(250, 248, 244, 0.95);
-    border-bottom: 1px solid #e8e0d4;
-  }
-
-  .tree-controls button {
-    padding: 0.4rem 1rem;
-    font-family: Georgia, serif;
-    font-size: 0.85rem;
-    background: #fff;
-    border: 1px solid #c9b99a;
-    border-radius: 4px;
-    cursor: pointer;
-    color: #6b5344;
-  }
-
-  .tree-controls button:hover { background: #f0ebe3; }
-  .tree-controls button.active { background: #6b5344; color: #fff; border-color: #6b5344; }
-
-  /* Tooltip */
-  .tooltip {
-    position: absolute;
-    background: #fff;
-    border: 1px solid #c9b99a;
-    border-radius: 8px;
-    padding: 1rem;
-    font-size: 0.85rem;
-    max-width: 320px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    pointer-events: none;
-    z-index: 200;
-    display: none;
-  }
-
-  .tooltip h3 { margin-bottom: 0.3rem; color: #4a3728; font-size: 1rem; }
-  .tooltip .detail { color: #8b7355; margin: 0.15rem 0; }
-  .tooltip .notes { margin-top: 0.4rem; font-style: italic; color: #6b5344; }
-
-  /* Narrative tab */
-  #narrative-view {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 2rem 1.5rem;
-  }
-
-  #narrative-view .section { margin-bottom: 2.5rem; }
-  #narrative-view h2 {
-    font-size: 1.5rem;
-    color: #4a3728;
-    border-bottom: 1px solid #d4c9b0;
-    padding-bottom: 0.4rem;
-    margin-bottom: 1rem;
-  }
-  #narrative-view h3 { font-size: 1.15rem; color: #6b5344; margin: 1rem 0 0.5rem; }
-  #narrative-view p { margin-bottom: 0.8rem; }
-  #narrative-view ul { margin: 0.5rem 0 1rem 1.5rem; }
-  #narrative-view li { margin-bottom: 0.4rem; }
-
-  footer {
-    text-align: center;
-    padding: 2rem;
-    color: #a0937e;
-    font-size: 0.85rem;
-    font-style: italic;
-    border-top: 1px solid #e8e0d4;
-  }
-
-  @media (max-width: 600px) {
-    header h1 { font-size: 1.6rem; }
-    .tab { padding: 0.7rem 1.2rem; font-size: 0.9rem; }
-    #narrative-view { padding: 1.5rem 1rem; }
-  }
+@media (max-width: 600px) {
+  header h1 { font-size: 1.5rem; }
+  header { padding: 2rem 1rem; }
+  .tab { padding: 0.7rem 1.2rem; font-size: 0.85rem; }
+  .explorer { padding: 1rem; }
+  .person-card { padding: 1.2rem; }
+  .person-card h2 { font-size: 1.3rem; }
+  .meta-row { flex-direction: column; gap: 0; }
+  .meta-label { min-width: auto; }
+  #narrative-view { padding: 1.5rem 1rem; }
+  .fd-node { max-width: 110px; padding: 0.3rem 0.5rem; }
+  .fd-name { font-size: 0.72rem; }
+}
 </style>
 </head>
 <body>
@@ -270,251 +201,225 @@ function buildFullPage(narrativeHtml, treeDataJson) {
 </header>
 
 <div class="tabs">
-  <button class="tab active" onclick="switchTab('tree')">Family Tree</button>
-  <button class="tab" onclick="switchTab('narrative')">Our Story</button>
+  <button class="tab active" onclick="switchTab('narrative', this)">Our Story</button>
+  <button class="tab" onclick="switchTab('tree', this)">Family Tree</button>
 </div>
 
-<div id="tree-tab" class="tab-content active">
-  <div class="tree-controls">
-    <button id="btn-zoom-in" onclick="zoomIn()">Zoom In</button>
-    <button id="btn-zoom-out" onclick="zoomOut()">Zoom Out</button>
-    <button id="btn-fit" onclick="fitTree()">Fit All</button>
-    <button id="btn-roro" class="active" onclick="centerOn('Rose Etta Kahn Sampson')">RoRo</button>
-  </div>
-  <div id="tree-view">
-    <div id="tree-container"></div>
-    <div class="tooltip" id="tooltip"></div>
-  </div>
-</div>
-
-<div id="narrative-tab" class="tab-content">
+<div id="narrative-tab" class="tab-content active">
   <div id="narrative-view">
     ${narrativeHtml}
   </div>
 </div>
 
+<div id="tree-tab" class="tab-content">
+  <div class="explorer">
+    <div class="search-wrap">
+      <input type="text" id="search-input" class="search-box" placeholder="Search for a family member...">
+      <div id="search-results" class="search-results"></div>
+    </div>
+    <div id="person-view"></div>
+  </div>
+</div>
+
 <footer>
-  Composed by RoRo. The family historian knows what the family historian knows.<br>
-  <a href="https://family.mreider.com" style="color:#a0937e">family.mreider.com</a>
+  Composed by RoRo &middot;
+  <a href="https://family.mreider.com">family.mreider.com</a>
+  &middot;
+  <a href="sampson-kahn.ged" download>Download GEDCOM</a>
 </footer>
 
 <script>
-// --- Family data ---
-const rawData = ${treeDataJson};
+var rawData = ${treeDataJson};
+var byName = {};
+rawData.forEach(function(p) { byName[p.name] = p; });
 
-// --- Build tree hierarchy ---
-function buildTree(data) {
-  const byName = {};
-  data.forEach(p => { byName[p.name] = { ...p, children: [] }; });
+function esc(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
 
-  // Find parent->child relationships
-  data.forEach(p => {
-    if (p.parents) {
-      p.parents.forEach(parentName => {
-        if (byName[parentName]) {
-          const child = byName[p.name];
-          if (!byName[parentName].children.find(c => c.name === child.name)) {
-            byName[parentName].children.push(child);
-          }
-        }
-      });
+function getYears(p) {
+  var parts = [];
+  if (p.born) { var b = String(p.born); parts.push(b.length > 4 ? b.split('-')[0] : b); }
+  if (p.died) { var d = String(p.died); parts.push(d.length > 4 ? d.split('-')[0] : d); }
+  else if (parts.length) parts.push('');
+  return parts.length < 2 ? (parts[0] || '') : parts[0] + '\\u2013' + parts[1];
+}
+
+function getChildren(name) {
+  return rawData.filter(function(p) { return p.parents && p.parents.indexOf(name) !== -1; })
+    .sort(function(a, b) { return (a.born ? parseInt(a.born) : 9999) - (b.born ? parseInt(b.born) : 9999); });
+}
+
+function getSiblings(name) {
+  var person = byName[name];
+  if (!person || !person.parents) return [];
+  return rawData.filter(function(p) {
+    if (p.name === name || !p.parents) return false;
+    for (var i = 0; i < p.parents.length; i++) { if (person.parents.indexOf(p.parents[i]) !== -1) return true; }
+    return false;
+  }).sort(function(a, b) { return (a.born ? parseInt(a.born) : 9999) - (b.born ? parseInt(b.born) : 9999); });
+}
+
+function fdNode(person, isActive) {
+  var y = getYears(person);
+  var cls = 'fd-node' + (isActive ? ' active' : '');
+  return '<div class="' + cls + '" data-name="' + esc(person.name) + '">' +
+    '<span class="fd-name">' + esc(person.name) + '</span>' +
+    (y ? '<span class="fd-dates">' + y + '</span>' : '') + '</div>';
+}
+
+var currentPerson = null;
+
+function showPerson(name) {
+  var person = byName[name];
+  if (!person) return;
+  currentPerson = name;
+
+  var newHash = '#' + encodeURIComponent(name);
+  if (location.hash !== newHash) history.pushState(null, '', newHash);
+
+  var treeTab = document.getElementById('tree-tab');
+  if (!treeTab.classList.contains('active')) {
+    var btns = document.querySelectorAll('.tab');
+    switchTab('tree', btns[1]);
+  }
+
+  var parents = (person.parents || []).map(function(n) { return byName[n]; }).filter(Boolean);
+  var children = getChildren(name);
+  var siblings = getSiblings(name);
+  var spousePerson = person.spouse ? byName[person.spouse] : null;
+
+  // --- Mini family diagram ---
+  var diagram = '<div class="family-diagram">';
+
+  // Parents row
+  if (parents.length > 0) {
+    diagram += '<div class="fd-label">Parents</div>';
+    if (parents.length === 2 && parents[0].spouse === parents[1].name) {
+      diagram += '<div class="fd-row"><div class="fd-couple">' + fdNode(parents[0], false) + fdNode(parents[1], false) + '</div></div>';
+    } else {
+      diagram += '<div class="fd-row">' + parents.map(function(p) { return fdNode(p, false); }).join('') + '</div>';
     }
-  });
+    diagram += '<div class="fd-line"></div>';
+  }
 
-  // Root nodes: people with no parents in the dataset
-  const childNames = new Set();
-  data.forEach(p => {
-    if (p.parents) p.parents.forEach(pn => {
-      if (byName[pn]) childNames.add(p.name);
-    });
-  });
+  // Current person + spouse
+  if (spousePerson) {
+    diagram += '<div class="fd-row"><div class="fd-couple">' + fdNode(person, true) + fdNode(spousePerson, false) + '</div></div>';
+  } else {
+    diagram += '<div class="fd-row">' + fdNode(person, true) + '</div>';
+  }
 
-  // Find the best root — use RoRo's earliest ancestors
-  // Start from RoRo and walk up to find top-level roots
-  const roots = data.filter(p => !p.parents || !p.parents.some(pn => byName[pn]));
-  const rootNodes = roots.map(r => byName[r.name]).filter(r => r.children.length > 0 || childNames.has(r.name));
+  // Children
+  if (children.length > 0) {
+    diagram += '<div class="fd-line"></div>';
+    diagram += '<div class="fd-label">Children</div>';
+    diagram += '<div class="fd-children-row">' + children.map(function(c) { return fdNode(c, false); }).join('') + '</div>';
+  }
 
-  // Create a virtual root
-  const virtualRoot = {
-    name: 'Sampson-Kahn Family',
-    children: rootNodes.length > 0 ? rootNodes : [byName['Rose Etta Kahn Sampson'] || Object.values(byName)[0]],
-    _virtual: true,
-  };
+  diagram += '</div>';
 
-  return virtualRoot;
+  // --- Person card ---
+  var card = '<div class="person-card">';
+  card += '<h2>' + esc(person.name) + '</h2>';
+
+  if (person.nicknames && person.nicknames.length) {
+    card += '<div class="person-nicknames">' + person.nicknames.map(function(n) { return esc(n); }).join(', ') + '</div>';
+  }
+
+  if (person.relation && person.relation !== 'self') {
+    card += '<div class="person-relation">' + esc(person.relation) + '</div>';
+  }
+
+  card += '<div class="person-meta">';
+  if (person.born || person.birthplace) {
+    var bt = ''; if (person.born) bt += String(person.born); if (person.birthplace) bt += (bt ? ', ' : '') + person.birthplace;
+    card += '<div class="meta-row"><span class="meta-label">Born</span><span class="meta-value">' + esc(bt) + '</span></div>';
+  }
+  if (person.died || person.deathplace) {
+    var dt = ''; if (person.died) dt += String(person.died); if (person.deathplace) dt += (dt ? ', ' : '') + person.deathplace;
+    card += '<div class="meta-row"><span class="meta-label">Died</span><span class="meta-value">' + esc(dt) + '</span></div>';
+  }
+  if (person.spouse) {
+    if (spousePerson) {
+      card += '<div class="meta-row"><span class="meta-label">Spouse</span><span class="meta-value"><a class="spouse-link" data-name="' + esc(person.spouse) + '">' + esc(person.spouse) + '</a></span></div>';
+    } else {
+      card += '<div class="meta-row"><span class="meta-label">Spouse</span><span class="meta-value">' + esc(person.spouse) + '</span></div>';
+    }
+  }
+  if (person.married) {
+    card += '<div class="meta-row"><span class="meta-label">Married</span><span class="meta-value">' + esc(String(person.married)) + '</span></div>';
+  }
+  card += '</div>';
+
+  if (person.notes) {
+    card += '<div class="person-notes">' + esc(person.notes) + '</div>';
+  }
+  card += '</div>';
+
+  // Siblings
+  var sibHtml = '';
+  if (siblings.length > 0) {
+    sibHtml = '<div class="siblings-section"><h3>Siblings</h3><div class="pills">' +
+      siblings.map(function(s) { return '<button class="sib-pill" data-name="' + esc(s.name) + '">' + esc(s.name) + '</button>'; }).join('') +
+      '</div></div>';
+  }
+
+  var view = document.getElementById('person-view');
+  view.innerHTML = diagram + card + sibHtml;
+  view.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
-function getDates(person) {
-  const parts = [];
-  if (person.born) {
-    const b = String(person.born);
-    parts.push(b.length > 4 ? b.split('-')[0] : b);
-  }
-  if (person.died) {
-    const d = String(person.died);
-    parts.push(d.length > 4 ? d.split('-')[0] : d);
-  } else if (person.is_alive || (!person.died && person.born)) {
-    parts.push('');
-  }
-  if (parts.length === 0) return '';
-  if (parts.length === 1) return parts[0];
-  return parts[0] + '–' + parts[1];
-}
-
-// --- D3 Tree ---
-const treeRoot = buildTree(rawData);
-
-const container = document.getElementById('tree-container');
-const viewDiv = document.getElementById('tree-view');
-const tooltip = document.getElementById('tooltip');
-
-const nodeW = 160, nodeH = 52, hGap = 20, vGap = 70;
-
-const hierarchy = d3.hierarchy(treeRoot);
-const treeLayout = d3.tree().nodeSize([nodeW + hGap, nodeH + vGap]);
-treeLayout(hierarchy);
-
-// Compute bounds
-let x0 = Infinity, x1 = -Infinity, y0 = Infinity, y1 = -Infinity;
-hierarchy.each(d => {
-  if (d.x < x0) x0 = d.x;
-  if (d.x > x1) x1 = d.x;
-  if (d.y < y0) y0 = d.y;
-  if (d.y > y1) y1 = d.y;
+// Event delegation
+document.getElementById('person-view').addEventListener('click', function(e) {
+  var node = e.target.closest('.fd-node'); if (node && !node.classList.contains('active')) { showPerson(node.dataset.name); return; }
+  var pill = e.target.closest('.sib-pill'); if (pill) { showPerson(pill.dataset.name); return; }
+  var link = e.target.closest('.spouse-link'); if (link) { showPerson(link.dataset.name); return; }
 });
 
-const padding = 80;
-const svgW = (x1 - x0) + nodeW + padding * 2;
-const svgH = (y1 - y0) + nodeH + padding * 2;
+// Search
+var searchInput = document.getElementById('search-input');
+var searchResults = document.getElementById('search-results');
 
-const svg = d3.select('#tree-container')
-  .append('svg')
-  .attr('width', svgW)
-  .attr('height', svgH);
-
-const g = svg.append('g')
-  .attr('transform', \`translate(\${-x0 + padding + nodeW/2}, \${-y0 + padding + 20})\`);
-
-// Zoom
-const zoom = d3.zoom()
-  .scaleExtent([0.15, 3])
-  .on('zoom', (e) => g.attr('transform', e.transform));
-svg.call(zoom);
-
-// Initial transform
-const initialTransform = d3.zoomIdentity
-  .translate(-x0 + padding + nodeW/2, -y0 + padding + 20);
-svg.call(zoom.transform, initialTransform);
-
-// Links
-g.selectAll('.link')
-  .data(hierarchy.links().filter(d => !d.source.data._virtual || true))
-  .enter()
-  .append('path')
-  .attr('class', 'link')
-  .attr('d', d => {
-    const sx = d.source.x, sy = d.source.y + nodeH/2;
-    const tx = d.target.x, ty = d.target.y - nodeH/2;
-    const mid = (sy + ty) / 2;
-    return \`M\${sx},\${sy} C\${sx},\${mid} \${tx},\${mid} \${tx},\${ty}\`;
-  });
-
-// Nodes
-const nodes = g.selectAll('.node')
-  .data(hierarchy.descendants())
-  .enter()
-  .append('g')
-  .attr('class', 'node')
-  .attr('transform', d => \`translate(\${d.x - nodeW/2}, \${d.y - nodeH/2})\`)
-  .style('display', d => d.data._virtual ? 'none' : null);
-
-nodes.append('rect')
-  .attr('width', nodeW)
-  .attr('height', nodeH)
-  .on('mouseover', (event, d) => showTooltip(event, d.data))
-  .on('mousemove', (event) => moveTooltip(event))
-  .on('mouseout', hideTooltip);
-
-nodes.append('text')
-  .attr('class', 'name')
-  .attr('x', nodeW/2)
-  .attr('y', nodeH/2 - 4)
-  .attr('text-anchor', 'middle')
-  .text(d => {
-    const name = d.data.name || '';
-    return name.length > 22 ? name.slice(0, 20) + '…' : name;
-  });
-
-nodes.append('text')
-  .attr('class', 'dates')
-  .attr('x', nodeW/2)
-  .attr('y', nodeH/2 + 12)
-  .attr('text-anchor', 'middle')
-  .text(d => getDates(d.data));
-
-// Tooltip
-function showTooltip(event, data) {
-  let html = '<h3>' + data.name + '</h3>';
-  if (data.nicknames) html += '<div class="detail">Also: ' + data.nicknames.join(', ') + '</div>';
-  const dates = getDates(data);
-  if (dates) html += '<div class="detail">' + dates + '</div>';
-  if (data.birthplace) html += '<div class="detail">Born: ' + data.birthplace + '</div>';
-  if (data.deathplace) html += '<div class="detail">Died: ' + data.deathplace + '</div>';
-  if (data.spouse) html += '<div class="detail">Spouse: ' + data.spouse + '</div>';
-  if (data.relation) html += '<div class="detail">' + data.relation + '</div>';
-  if (data.notes) {
-    const notes = data.notes.length > 200 ? data.notes.slice(0, 200) + '…' : data.notes;
-    html += '<div class="notes">' + notes + '</div>';
-  }
-  tooltip.innerHTML = html;
-  tooltip.style.display = 'block';
-}
-
-function moveTooltip(event) {
-  const rect = viewDiv.getBoundingClientRect();
-  tooltip.style.left = (event.clientX - rect.left + 15) + 'px';
-  tooltip.style.top = (event.clientY - rect.top + 15) + 'px';
-}
-
-function hideTooltip() { tooltip.style.display = 'none'; }
-
-// Controls
-function zoomIn() { svg.transition().duration(300).call(zoom.scaleBy, 1.4); }
-function zoomOut() { svg.transition().duration(300).call(zoom.scaleBy, 0.7); }
-
-function fitTree() {
-  const vw = viewDiv.clientWidth, vh = viewDiv.clientHeight;
-  const scale = Math.min(vw / svgW, vh / svgH, 1) * 0.9;
-  const tx = (vw - svgW * scale) / 2;
-  const ty = (vh - svgH * scale) / 2;
-  svg.transition().duration(500)
-    .call(zoom.transform, d3.zoomIdentity.translate(tx, ty).scale(scale));
-}
-
-function centerOn(name) {
-  const node = hierarchy.descendants().find(d => d.data.name === name);
-  if (!node) return;
-  const vw = viewDiv.clientWidth, vh = viewDiv.clientHeight;
-  const scale = 1;
-  const tx = vw/2 - node.x * scale;
-  const ty = vh/3 - node.y * scale;
-  svg.transition().duration(500)
-    .call(zoom.transform, d3.zoomIdentity.translate(tx, ty).scale(scale));
-}
+searchInput.addEventListener('input', function() {
+  var q = searchInput.value.trim().toLowerCase();
+  if (!q) { searchResults.style.display = 'none'; return; }
+  var matches = rawData.filter(function(p) {
+    if (p.name.toLowerCase().indexOf(q) !== -1) return true;
+    if (p.nicknames) { for (var i = 0; i < p.nicknames.length; i++) { if (p.nicknames[i].toLowerCase().indexOf(q) !== -1) return true; } }
+    return false;
+  }).slice(0, 8);
+  if (!matches.length) { searchResults.style.display = 'none'; return; }
+  searchResults.innerHTML = matches.map(function(p) {
+    var y = getYears(p);
+    return '<div class="search-item" data-name="' + esc(p.name) + '"><span class="si-name">' + esc(p.name) + '</span>' +
+      (y ? '<span class="si-detail"> ' + y + '</span>' : '') +
+      (p.relation ? '<br><span class="si-detail">' + esc(p.relation) + '</span>' : '') + '</div>';
+  }).join('');
+  searchResults.style.display = 'block';
+});
+searchResults.addEventListener('click', function(e) {
+  var item = e.target.closest('.search-item');
+  if (item) { showPerson(item.dataset.name); searchInput.value = ''; searchResults.style.display = 'none'; }
+});
+searchInput.addEventListener('blur', function() { setTimeout(function() { searchResults.style.display = 'none'; }, 200); });
 
 // Tab switching
-function switchTab(tab) {
-  document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
-  document.querySelectorAll('.tab').forEach(el => el.classList.remove('active'));
+function switchTab(tab, btn) {
+  document.querySelectorAll('.tab-content').forEach(function(el) { el.classList.remove('active'); });
+  document.querySelectorAll('.tab').forEach(function(el) { el.classList.remove('active'); });
   document.getElementById(tab + '-tab').classList.add('active');
-  event.target.classList.add('active');
-  if (tab === 'tree') setTimeout(fitTree, 100);
+  btn.classList.add('active');
 }
 
-// Initial fit
-setTimeout(fitTree, 200);
-<\/script>
+// Hash navigation
+window.addEventListener('popstate', function() {
+  var name = location.hash ? decodeURIComponent(location.hash.slice(1)) : null;
+  if (name && byName[name] && name !== currentPerson) showPerson(name);
+});
 
+var initialHash = location.hash ? decodeURIComponent(location.hash.slice(1)) : null;
+if (initialHash && byName[initialHash]) { showPerson(initialHash); }
+else { showPerson('Rose Etta Kahn Sampson'); }
+<\/script>
 </body>
 </html>`;
 }

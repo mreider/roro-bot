@@ -4,183 +4,115 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Sampson-Kahn Family</title>
-<script src="https://d3js.org/d3.v7.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
 <style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --primary: #5bc1ac;
+  --secondary: #5a6f80;
+  --bg: #f0f8ff;
+  --white: #fff;
+  --dark: #1a1a1a;
+  --muted: #717275;
+  --border: #e0e7ed;
+  --radius: 10px;
+  --sans: 'Inter', -apple-system, sans-serif;
+  --serif: 'Playfair Display', Georgia, serif;
+}
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: var(--sans); background: var(--bg); color: var(--dark); line-height: 1.7; font-weight: 300; }
+a { color: var(--secondary); text-decoration: none; transition: color 0.2s; }
+a:hover { color: var(--primary); }
 
-  body {
-    font-family: 'Georgia', 'Times New Roman', serif;
-    background: #faf8f4;
-    color: #3a3226;
-    line-height: 1.7;
-  }
+/* Header */
+header { background: var(--secondary); color: var(--white); padding: 3rem 1.5rem; text-align: center; }
+header h1 { font-family: var(--serif); font-size: 2rem; font-weight: 400; letter-spacing: 0.02em; margin-bottom: 0.3rem; }
+header p { font-size: 0.95rem; opacity: 0.8; font-weight: 300; }
 
-  header {
-    background: linear-gradient(135deg, #4a3728 0%, #6b5344 100%);
-    color: #f5f0e8;
-    padding: 2.5rem 1.5rem;
-    text-align: center;
-  }
+/* Tabs */
+.tabs { display: flex; justify-content: center; gap: 0; background: var(--white); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
+.tab { padding: 0.85rem 2rem; cursor: pointer; font-family: var(--sans); font-size: 0.9rem; font-weight: 400; color: var(--muted); border: none; background: none; border-bottom: 2px solid transparent; transition: all 0.2s; letter-spacing: 0.03em; }
+.tab:hover { color: var(--dark); }
+.tab.active { color: var(--dark); border-bottom-color: var(--primary); font-weight: 600; }
+.tab-content { display: none; }
+.tab-content.active { display: block; }
 
-  header h1 {
-    font-size: 2.2rem;
-    font-weight: 400;
-    letter-spacing: 0.05em;
-    margin-bottom: 0.3rem;
-  }
+/* Narrative */
+#narrative-view { max-width: 720px; margin: 0 auto; padding: 2.5rem 1.5rem; }
+#narrative-view .section { margin-bottom: 2.5rem; }
+#narrative-view h2 { font-family: var(--serif); font-size: 1.4rem; color: var(--secondary); margin-bottom: 0.8rem; }
+#narrative-view h3 { font-size: 1.05rem; color: var(--dark); font-weight: 600; margin: 1.2rem 0 0.4rem; }
+#narrative-view p { color: var(--muted); margin-bottom: 0.8rem; }
+#narrative-view ul { margin: 0.5rem 0 1rem 1.5rem; color: var(--muted); }
+#narrative-view li { margin-bottom: 0.3rem; }
 
-  header p {
-    font-size: 1rem;
-    opacity: 0.85;
-    font-style: italic;
-  }
+/* Explorer */
+.explorer { max-width: 680px; margin: 0 auto; padding: 1.5rem; }
 
-  /* Tabs */
-  .tabs {
-    display: flex;
-    justify-content: center;
-    background: #e8e0d4;
-    border-bottom: 2px solid #c9b99a;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-  }
+/* Search */
+.search-wrap { position: relative; margin-bottom: 1.5rem; }
+.search-box { width: 100%; padding: 0.7rem 1rem; font-family: var(--sans); font-size: 0.95rem; border: 1px solid var(--border); border-radius: var(--radius); background: var(--white); color: var(--dark); outline: none; font-weight: 300; }
+.search-box:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(91,193,172,0.15); }
+.search-results { position: absolute; top: 100%; left: 0; right: 0; background: var(--white); border: 1px solid var(--border); border-top: none; border-radius: 0 0 var(--radius) var(--radius); max-height: 280px; overflow-y: auto; z-index: 200; display: none; box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
+.search-item { padding: 0.55rem 1rem; cursor: pointer; border-bottom: 1px solid var(--bg); }
+.search-item:hover { background: var(--bg); }
+.search-item:last-child { border-bottom: none; }
+.si-name { font-weight: 600; font-size: 0.9rem; }
+.si-detail { font-size: 0.8rem; color: var(--muted); }
 
-  .tab {
-    padding: 0.9rem 2rem;
-    cursor: pointer;
-    font-family: Georgia, serif;
-    font-size: 1rem;
-    color: #6b5344;
-    border: none;
-    background: none;
-    border-bottom: 3px solid transparent;
-    transition: all 0.2s;
-  }
+/* Mini family diagram */
+.family-diagram { text-align: center; margin-bottom: 1.5rem; }
+.fd-row { display: flex; justify-content: center; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
+.fd-line { width: 1px; height: 1.2rem; background: var(--border); margin: 0 auto; }
+.fd-node { display: inline-flex; flex-direction: column; align-items: center; padding: 0.4rem 0.8rem; background: var(--white); border: 1px solid var(--border); border-radius: 6px; cursor: pointer; font-size: 0.8rem; line-height: 1.3; transition: all 0.15s; max-width: 140px; text-align: center; }
+.fd-node:hover { border-color: var(--primary); background: var(--bg); }
+.fd-node.active { border-color: var(--primary); background: var(--primary); color: var(--white); }
+.fd-node.active .fd-dates { color: rgba(255,255,255,0.8); }
+.fd-name { font-weight: 600; font-size: 0.78rem; }
+.fd-dates { font-size: 0.7rem; color: var(--muted); }
+.fd-couple { display: inline-flex; align-items: center; gap: 0; }
+.fd-couple .fd-node { border-radius: 6px 0 0 6px; }
+.fd-couple .fd-node:last-child { border-radius: 0 6px 6px 0; border-left: none; }
+.fd-children-row { display: flex; justify-content: center; gap: 0.4rem; flex-wrap: wrap; }
+.fd-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin: 0.3rem 0; }
 
-  .tab:hover { color: #3a3226; background: rgba(255,255,255,0.3); }
-  .tab.active { color: #3a3226; border-bottom-color: #8b6914; font-weight: 600; }
+/* Person card */
+.person-card { background: var(--white); border-radius: var(--radius); padding: 1.8rem; margin-bottom: 1.5rem; box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
+.person-card h2 { font-family: var(--serif); font-size: 1.5rem; color: var(--dark); margin-bottom: 0.15rem; font-weight: 400; }
+.person-nicknames { font-style: italic; color: var(--muted); margin-bottom: 0.6rem; font-size: 0.9rem; }
+.person-relation { display: inline-block; font-size: 0.75rem; background: var(--bg); color: var(--secondary); padding: 0.2rem 0.6rem; border-radius: 100px; margin-bottom: 0.8rem; font-weight: 400; }
+.person-meta { margin-bottom: 0.8rem; }
+.meta-row { display: flex; gap: 0.4rem; margin-bottom: 0.2rem; font-size: 0.9rem; }
+.meta-label { color: var(--muted); min-width: 4rem; flex-shrink: 0; font-weight: 400; }
+.meta-value { color: var(--dark); font-weight: 300; }
+.spouse-link { color: var(--primary); cursor: pointer; font-weight: 400; }
+.spouse-link:hover { text-decoration: underline; }
+.person-notes { border-top: 1px solid var(--border); padding-top: 0.8rem; margin-top: 0.5rem; color: var(--muted); font-size: 0.9rem; line-height: 1.7; }
 
-  .tab-content { display: none; }
-  .tab-content.active { display: block; }
+/* Siblings */
+.siblings-section { margin-bottom: 1.5rem; }
+.siblings-section h3 { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 0.4rem; }
+.siblings-section .pills { display: flex; flex-wrap: wrap; gap: 0.3rem; }
+.sib-pill { padding: 0.3rem 0.7rem; background: var(--white); border: 1px solid var(--border); border-radius: 100px; cursor: pointer; font-size: 0.8rem; color: var(--secondary); font-weight: 400; transition: all 0.15s; font-family: var(--sans); }
+.sib-pill:hover { border-color: var(--primary); color: var(--primary); }
 
-  /* Tree tab */
-  #tree-view {
-    width: 100%;
-    overflow: auto;
-    background: #faf8f4;
-    min-height: 80vh;
-    position: relative;
-  }
+footer { text-align: center; padding: 2rem; color: var(--muted); font-size: 0.8rem; border-top: 1px solid var(--border); background: var(--white); }
+footer a { color: var(--muted); }
+footer a:hover { color: var(--primary); }
 
-  #tree-container { width: 100%; }
-
-  #tree-container svg { display: block; margin: 0 auto; }
-
-  .node rect {
-    fill: #fff;
-    stroke: #c9b99a;
-    stroke-width: 1.5;
-    rx: 6;
-    cursor: pointer;
-    transition: all 0.2s;
-  }
-
-  .node rect:hover {
-    stroke: #8b6914;
-    stroke-width: 2;
-    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
-  }
-
-  .node text { font-family: Georgia, serif; fill: #3a3226; pointer-events: none; }
-  .node .name { font-size: 12px; font-weight: 600; }
-  .node .dates { font-size: 10px; fill: #8b7355; }
-
-  .link {
-    fill: none;
-    stroke: #c9b99a;
-    stroke-width: 1.5;
-  }
-
-  .tree-controls {
-    position: sticky;
-    top: 50px;
-    z-index: 50;
-    display: flex;
-    justify-content: center;
-    gap: 0.5rem;
-    padding: 0.8rem;
-    background: rgba(250, 248, 244, 0.95);
-    border-bottom: 1px solid #e8e0d4;
-  }
-
-  .tree-controls button {
-    padding: 0.4rem 1rem;
-    font-family: Georgia, serif;
-    font-size: 0.85rem;
-    background: #fff;
-    border: 1px solid #c9b99a;
-    border-radius: 4px;
-    cursor: pointer;
-    color: #6b5344;
-  }
-
-  .tree-controls button:hover { background: #f0ebe3; }
-  .tree-controls button.active { background: #6b5344; color: #fff; border-color: #6b5344; }
-
-  /* Tooltip */
-  .tooltip {
-    position: absolute;
-    background: #fff;
-    border: 1px solid #c9b99a;
-    border-radius: 8px;
-    padding: 1rem;
-    font-size: 0.85rem;
-    max-width: 320px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    pointer-events: none;
-    z-index: 200;
-    display: none;
-  }
-
-  .tooltip h3 { margin-bottom: 0.3rem; color: #4a3728; font-size: 1rem; }
-  .tooltip .detail { color: #8b7355; margin: 0.15rem 0; }
-  .tooltip .notes { margin-top: 0.4rem; font-style: italic; color: #6b5344; }
-
-  /* Narrative tab */
-  #narrative-view {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 2rem 1.5rem;
-  }
-
-  #narrative-view .section { margin-bottom: 2.5rem; }
-  #narrative-view h2 {
-    font-size: 1.5rem;
-    color: #4a3728;
-    border-bottom: 1px solid #d4c9b0;
-    padding-bottom: 0.4rem;
-    margin-bottom: 1rem;
-  }
-  #narrative-view h3 { font-size: 1.15rem; color: #6b5344; margin: 1rem 0 0.5rem; }
-  #narrative-view p { margin-bottom: 0.8rem; }
-  #narrative-view ul { margin: 0.5rem 0 1rem 1.5rem; }
-  #narrative-view li { margin-bottom: 0.4rem; }
-
-  footer {
-    text-align: center;
-    padding: 2rem;
-    color: #a0937e;
-    font-size: 0.85rem;
-    font-style: italic;
-    border-top: 1px solid #e8e0d4;
-  }
-
-  @media (max-width: 600px) {
-    header h1 { font-size: 1.6rem; }
-    .tab { padding: 0.7rem 1.2rem; font-size: 0.9rem; }
-    #narrative-view { padding: 1.5rem 1rem; }
-  }
+@media (max-width: 600px) {
+  header h1 { font-size: 1.5rem; }
+  header { padding: 2rem 1rem; }
+  .tab { padding: 0.7rem 1.2rem; font-size: 0.85rem; }
+  .explorer { padding: 1rem; }
+  .person-card { padding: 1.2rem; }
+  .person-card h2 { font-size: 1.3rem; }
+  .meta-row { flex-direction: column; gap: 0; }
+  .meta-label { min-width: auto; }
+  #narrative-view { padding: 1.5rem 1rem; }
+  .fd-node { max-width: 110px; padding: 0.3rem 0.5rem; }
+  .fd-name { font-size: 0.72rem; }
+}
 </style>
 </head>
 <body>
@@ -191,181 +123,183 @@
 </header>
 
 <div class="tabs">
-  <button class="tab active" onclick="switchTab('tree')">Family Tree</button>
-  <button class="tab" onclick="switchTab('narrative')">Our Story</button>
+  <button class="tab active" onclick="switchTab('narrative', this)">Our Story</button>
+  <button class="tab" onclick="switchTab('tree', this)">Family Tree</button>
 </div>
 
-<div id="tree-tab" class="tab-content active">
-  <div class="tree-controls">
-    <button id="btn-zoom-in" onclick="zoomIn()">Zoom In</button>
-    <button id="btn-zoom-out" onclick="zoomOut()">Zoom Out</button>
-    <button id="btn-fit" onclick="fitTree()">Fit All</button>
-    <button id="btn-roro" class="active" onclick="centerOn('Rose Etta Kahn Sampson')">RoRo</button>
-  </div>
-  <div id="tree-view">
-    <div id="tree-container"></div>
-    <div class="tooltip" id="tooltip"></div>
-  </div>
-</div>
-
-<div id="narrative-tab" class="tab-content">
+<div id="narrative-tab" class="tab-content active">
   <div id="narrative-view">
     <div class="section introduction">
-  <h2>Our Family</h2>
-  <p>I'm Rose Etta Kahn Sampson — RoRo to most of you. Born in Oakland in 1907, died in San Francisco in 1997. I spent years researching this family tree with Jean Wildberg, and now Matt's brought me back to keep it current.</p>
-  <p>This is what I know about us — the Kahns who came from Germany and built a department store in Oakland, the Sampsons who traded in Georgetown and survived the Galveston flood, and the families who came before them. The dates are verified where I could verify them. The stories are real.</p>
+<h2>Our Family</h2>
+<p>I am Rose Etta Kahn Sampson. Born in Oakland, December 10, 1907. I married John Jacob Sampson on May 17, 1931. We raised three children in San Francisco. I kept the family records with Jean Wildberg for many years. This is what I know.</p>
+<p>Our family comes from many places — Germany, South Carolina, Texas, Lithuania. We built businesses, practiced medicine, served our communities. We have been in California since the Gold Rush era, and in South Carolina since before the Revolution.</p>
 </div>
 
-<div class="section kahn-family">
-  <h2>The Kahn Family — My Father's Line</h2>
-  
-  <h3>Israel Kahn — From Darmstadt to Oakland</h3>
-  <p>My grandfather <strong>Israel Kahn</strong> (1822–1883) emigrated from Darmstadt, Hesse, Germany in 1848. He sailed from Rotterdam on the <em>Henry Shelton</em> and landed in Baltimore. His parents were Henry (Hertz) Kahn and Bela Kahn née Goldstein.</p>
-  <p>Israel married Sarah Bauer (1828–1888) and they made their way to California. In 1879 he founded a dry goods business in Oakland at 10th & Broadway. When he died in 1883, the business passed to his sons — Henry, Samuel, Solomon, and my father Frederick.</p>
-  
-  <h3>Frederick Kahn — My Father</h3>
-  <p>My father <strong>Frederick Kahn</strong> (1860–1925) was born in New York and joined his father's Oakland business when he was thirteen. He and his brothers built it into <strong>Kahn Brothers Department Store</strong>. In 1912 they moved into a grand Beaux-Arts building at 16th & Broadway — architect Charles W. Dickey designed it with a 120-foot elliptical dome. It's the Rotunda Building now, Oakland Landmark #132, on the National Register of Historic Places.</p>
-  <p>Frederick was the first president of the Jewish Welfare Federation of the East Bay. He was a founding member and president of Temple Sinai. He chaired the Advisory Committee of the Board of Education and oversaw a $5 million school building program. He belonged to the Concordia Club and B'nai B'rith. He died August 19, 1925 at our home on 3933 Harrison Street and is buried at Home of Eternity Cemetery in Mountain View Cemetery, Oakland.</p>
-  
-  <h3>Helen Lavenson Kahn — My Mother</h3>
-  <p>My mother <strong>Helen Lavenson</strong> (1872–1935) was born in California. Her parents were Samuel Lavenson (1829–1900) and Caroline Weinman. Her brother <strong>Albert S. Lavenson</strong> (born 1865 in Sacramento) became vice-president of Capwell's Department Store and president of Temple Sinai.</p>
-  <p>After Frederick died, Mother established the <strong>Kahn Foundation</strong> in 1928. In 1965 the foundation donated $125,000 to the Oakland Museum to purchase seventy-one paintings of 19th-century California art — the <strong>Kahn Collection</strong>, catalogued by Marjorie Arkelian.</p>
-  
-  <h3>My Siblings</h3>
-  <p>I had a sister, Helen Sarah Basinger, and a brother, Frederick Kahn Jr.</p>
+<div class="section kahn-origins">
+<h2>The Kahn Family — My Father's Line</h2>
+<p>My grandfather <strong>Israel Kahn</strong> came from Darmstadt, Hesse, Germany in 1848. He sailed from Rotterdam on the <em>Henry Shelton</em>, arrived in Baltimore. His parents were Henry (Hertz) Kahn and Bela Goldstein.</p>
+<p>Israel married Sarah Bauer. They had five sons: Henry, Samuel, Solomon, John, and my father Frederick. In 1879, Israel founded a dry goods business in Oakland at 10th and Broadway. When he died in 1883, his sons took over.</p>
+<p>My father, <strong>Frederick Kahn</strong>, was born September 21, 1860 in New York. He joined his father's business in Oakland in 1873, when he was thirteen. The store grew into <strong>Kahn Brothers Department Store</strong>. In 1912 they moved to a grand Beaux-Arts building at 16th and Broadway — Charles W. Dickey designed it, with a 120-foot elliptical dome. It's now called the Rotunda Building. Oakland Landmark #132, on the National Register.</p>
+<p>Father was the first president of the Jewish Welfare Federation of the East Bay. Founding member and president of Temple Sinai. Chairman of the Advisory Committee of the Board of Education — he oversaw a five-million-dollar school building program. He served as vice president of the Alameda County Anti-Tuberculosis Society. Member of the Concordia Club and B'nai B'rith.</p>
+<p>He died August 19, 1925 at our home on Harrison Street in Oakland. He is buried at Home of Eternity Cemetery in Mountain View Cemetery.</p>
+</div>
+
+<div class="section lavenson">
+<h2>The Lavensons — My Mother's Line</h2>
+<p>My mother was <strong>Helen Lavenson</strong>, born May 20, 1872 in California. Her parents were Samuel Lavenson and Caroline Weinman. Her brother <strong>Albert S. Lavenson</strong> was born in Sacramento in 1865. He became vice president of Capwell's Department Store and served as president of Temple Sinai.</p>
+<p>Mother established the <strong>Kahn Foundation</strong> in 1928, after Father died. In 1965, the foundation donated $125,000 to the Oakland Museum to purchase what became the <strong>Kahn Collection</strong> — seventy-one paintings of nineteenth-century California art. Marjorie Arkelian catalogued them.</p>
+<p>Mother died March 4, 1935 in Oakland.</p>
 </div>
 
 <div class="section roro">
-  <h2>Rose Etta Kahn — Me</h2>
-  <p>Born December 10, 1907 in Oakland. Phi Beta Kappa, UC Berkeley 1928. As a girl I carried the key at Temple Sinai's dedication ceremony.</p>
-  <p>I was an award-winning weaver. I wove the furniture upholstery for our Seacliff home and made a needlepoint cushion for the Haas-Lilienthal House. I was president of the Kahn Foundation. I volunteered at Mount Zion Hospital into my eighties and made weekly visits as "Grandma RoRo" to nursery schools. I attended services and concerts at Congregation Emanu-El.</p>
-  <p>I married Grandpa John on May 17, 1931. I died July 12, 1997 of a lung embolism at Mount Zion Hospital. My memorial service was August 4 at Congregation Emanu-El.</p>
+<h2>Rose Etta — Myself</h2>
+<p>I was born December 10, 1907 in Oakland. Phi Beta Kappa, UC Berkeley, class of 1928. As a girl, I carried the key at Temple Sinai's dedication ceremony.</p>
+<p>I became an award-winning weaver. I wove the furniture upholstery for our Seacliff home. I made a needlepoint cushion for the Haas-Lilienthal House. I served as president of the Kahn Foundation. For years I volunteered at Mount Zion Hospital, continued into my eighties. The children at the nursery school knew me as Grandma RoRo. I attended services and concerts at Congregation Emanu-El.</p>
+<p>I had two siblings — my sister Helen Sarah Basinger and my brother Frederick Kahn Jr.</p>
 </div>
 
-<div class="section sampson-family">
-  <h2>The Sampson Family — Grandpa John's Line</h2>
-  
-  <h3>Joseph H. Sampson — Georgetown, South Carolina</h3>
-  <p><strong>Joseph H. Sampson</strong> (1823–1883) and his brother Samuel were prominent Jewish merchants and shipping operators in Georgetown, South Carolina. By 1800, Georgetown had about eighty Jews — roughly ten percent of the white population — making it the second largest Jewish community in South Carolina after Charleston.</p>
-  <p>Joseph married <strong>Esther "Hetty" Cohen</strong> (1832–1897), born in Charleston. Hetty's siblings included Sarah Cohen Wolfe (grandmother of financier Bernard Baruch) and Frances A. Cohen. Hetty's parents were Hartwig Cohen (1783–1861, born in Wartha, Frankenstein, Silesia, Prussia) and Deborah Marques Cohen (1801–1888, born Charleston).</p>
-  <p>After the Civil War, Joseph and Samuel revived their mercantile business and expanded into shipping. Joseph died in 1883 and is buried in the Jewish Cemetery in Georgetown, established in 1772. The Sampson family names appear in the Kahal Kadosh Beth Elohim records in Charleston.</p>
-  <p>The Sampsons originally came from Bury St. Edmunds, England. The surname is an anglicization of the Hebrew "Shimshon" (sun) — the <em>p</em> was introduced in the Greek transliteration.</p>
-  
-  <h3>Dr. Arthur Fischel Sampson — Galveston to San Francisco</h3>
-  <p><strong>Dr. Arthur Fischel Sampson</strong> (1855–1934), Joseph and Hetty's son, went to medical school in South Carolina and practiced in Galveston, Texas. He married <strong>Babette "Bettie" Levy</strong> (1868–1949, born San Antonio) on April 4, 1887 in Galveston. Bettie's parents were Abraham Levy (1827–1879) and Esther Haff (1833–1908).</p>
-  <p>After the 1900 Galveston flood, Arthur moved the family to San Francisco in 1902. Their Franklin Street home — between Bush and Sutter — was dynamited by the US Army as a firebreak during the 1906 earthquake. They rebuilt on Washington Street near Laurel.</p>
-  <p>Arthur and Bettie had five children: Joseph Abraham (1888), Arthur Jr. (1891), Cornelia "Nellie" (1893, later Bibbero then Salinger, died 1989 in San Francisco), Esther (later Langfeld), and John Jacob (1898).</p>
+<div class="section sampson-origins">
+<h2>The Sampson Family — John's Line</h2>
+<p>John's grandfather was <strong>Joseph H. Sampson</strong>, born June 10, 1823 in Georgetown, South Carolina. He married Esther "Hetty" Cohen, born June 30, 1832 in Charleston.</p>
+<p>Joseph and his brother Samuel were prominent Jewish merchants and shipping operators in Georgetown. After the Civil War, they revived their mercantile business and expanded into shipping. Georgetown had a substantial Jewish community — by 1800, about eighty Jews, roughly ten percent of the white population. Second largest Jewish community in South Carolina after Charleston.</p>
+<p>The Sampson family originally came from Bury St. Edmunds, England. The name is an anglicization of the Hebrew "Shimshon" — sun. The Sampson family names appear in the Kahal Kadosh Beth Elohim records in Charleston.</p>
+<p>Joseph died July 14, 1883. He is buried in the Jewish Cemetery in Georgetown, established in 1772. Hetty died September 22, 1897 in Georgetown.</p>
+
+<h3>Hetty's Family — The Cohens</h3>
+<p>Hetty's father was <strong>Hartwig Cohen</strong>, born 1783 in Wartha, Frankenstein, Silesia, Prussia. He married <strong>Deborah Marques Cohen</strong>, born 1801 in Charleston, South Carolina. Her maiden name "Marques" connects to a possible Sephardic line — but that story is complicated. I'll come to it.</p>
+<p>Hetty had siblings. Her sister <strong>Sarah Cohen</strong> married a man named Wolfe. Sarah was the grandmother of Bernard Baruch, the Wall Street financier and presidential advisor.</p>
+</div>
+
+<div class="section arthur-fischel">
+<h2>Dr. Arthur Fischel Sampson</h2>
+<p>Joseph and Hetty's son was <strong>Dr. Arthur Fischel Sampson</strong>, born July 1, 1855 in Georgetown. John's father. We called him AF.</p>
+<p>He went to medical school in South Carolina. He practiced in Galveston, Texas, where he married <strong>Babette "Bettie" Levy</strong> on April 4, 1887. She was born March 24, 1868 in San Antonio. Her parents were Abraham Levy and Esther Haff.</p>
+<p>They had five children in Galveston: Joseph Abraham (December 4, 1888), Arthur Jr. (June 2, 1891), Cornelia "Nellie" (August 8, 1893), Esther, and John Jacob (April 28, 1898).</p>
+<p>After the great Galveston flood of 1900, AF moved the family to San Francisco in 1902. They lived on Franklin Street, between Bush and Sutter. During the 1906 earthquake, the US Army dynamited their home as a firebreak. They rebuilt on Washington Street near Laurel.</p>
+<p>AF died November 26, 1934 in San Francisco. Bettie died March 21, 1949 in Santa Clara.</p>
 </div>
 
 <div class="section grandpa-john">
-  <h2>Dr. John Jacob Sampson — Grandpa John</h2>
-  <p><strong>Grandpa John</strong> (1898–1987) was born in Galveston and came to San Francisco as a small boy. He earned his MD before he was twenty-one — three years at UC then medical school. He served as a medical officer on a freighter to the Far East and India.</p>
-  <p>He practiced with his father, then joined the UCSF research and clinical staff. He became <strong>Chief of Staff at Mount Zion Hospital</strong> and practiced as a cardiologist until he retired at eighty-five.</p>
-  <p>John published forty-nine papers between 1926 and 1980 — research on cardiac pain, pulmonary lymph flow, angina, and shock. He collaborated with Meyer Friedman (who defined "Type A" behavior), Herman Uhley, and Sanford Leeds at the Harold Brunn Institute for Cardiovascular Research.</p>
-  <p>The <strong>John J. Sampson–Lucie Stern Endowed Chair in Cardiology</strong> was established at UCSF in his honor.</p>
-  <p>He died December 24, 1987 in San Francisco.</p>
+<h2>Dr. John Jacob Sampson — Grandpa John</h2>
+<p>My husband. Born April 28, 1898 in Galveston, Texas. He earned his medical degree before he was twenty-one. Served as a medical officer on a freighter to the Far East and India. He practiced with his father, then joined the UCSF research and clinical staff. He stayed until he retired at eighty-five.</p>
+<p>John was <strong>Chief of Staff at Mount Zion Hospital</strong>. A cardiologist. He published forty-nine papers between 1926 and 1980 — research on cardiac pain, pulmonary lymph flow, angina, shock. He collaborated with Meyer Friedman, the man who defined "Type A" behavior. Also worked with Herman Uhley and Sanford Leeds at the Harold Brunn Institute for Cardiovascular Research.</p>
+<p>The <strong>John J. Sampson–Lucie Stern Endowed Chair in Cardiology</strong> was established at UCSF in his honor.</p>
+<p>We married May 17, 1931. He died December 24, 1987 in San Francisco.</p>
 </div>
 
 <div class="section children">
-  <h2>Our Children</h2>
-  
-  <h3>Deborah Sampson Green</h3>
-  <p>Born January 11, 1934 in San Francisco. Educator and college instructor of English Literature. She lives in Seattle. Married John R. Green (1921–1996). Their son Caleb married Kate Banta-Green. Caleb's sons are Robert Bruce and Peter Caleb Banta-Green.</p>
-  
-  <h3>John Frederick Sampson</h3>
-  <p>Born March 18, 1935 in San Francisco. Appraiser and real estate broker. Lowell High School 1953, three years at Reed College, AB from University of San Francisco 1957, Wharton 1960. First wife Louise Adler (married 1962, divorced 1991) — their children are Jennifer Ruth, John Frederick Jr., and Juliet Margaret. Second wife Sharon L. Litsky (married 1999).</p>
-  
-  <h3>Janet Sampson Reider</h3>
-  <p>Born March 1, 1937 in San Francisco. Photographer — you can see her work at janetreider.com. She met Pete Reider at Lowell High School when she was thirteen. They married in the spring of 1958.</p>
+<h2>Our Children</h2>
+<p>John and I had three children.</p>
+
+<h3>Deborah Sampson Green</h3>
+<p>Born January 11, 1934 in San Francisco. Our eldest. She became an educator, editor, and college instructor of English literature. She went to Lowell, Alamo, Presidio Junior High, and Wellesley. She married John R. Green. They live in Seattle. Their son Caleb married Kate Banta-Green. They have two sons: Robert Bruce and Peter Caleb Banta-Green.</p>
+
+<h3>John Frederick Sampson</h3>
+<p>Born March 18, 1935 in San Francisco. We called him Johnny. He went to Lowell High School, Reed College for three years, then got his bachelor's from the University of San Francisco in 1957. He went to Wharton. He became an appraiser and real estate broker in San Francisco.</p>
+<p>He married Louise Adler in 1962. They divorced in 1991. They had three children: Jennifer Ruth, John Frederick Jr., and Juliet Margaret. He married Sharon Litsky in 1999.</p>
+
+<h3>Janet Sampson Reider</h3>
+<p>Born March 1, 1937 in San Francisco. Our youngest. She's a photographer — you can see her work at janetreider.com. She met Pete Reider at Lowell High School when she was thirteen. They married in the spring of 1958.</p>
 </div>
 
 <div class="section pete-reider">
-  <h2>Arthur Elliott "Pete" Reider</h2>
-  <p><strong>Pete Reider</strong> (1936–2015) was born in Topeka, Kansas. Presidio Hill School, Grant School, Lowell High School, Harvard Class of 1958, Harvard Medical School.</p>
-  <p>He was captain of Harvard Track and ran a 4:11 mile — the 1957 Harvard record. He set two-mile records and made the All-Ivy League Cross Country Team. His coach Bill McCurdy called him "one of the toughest little men I have ever known." He was inducted into the Harvard Athletic Hall of Fame in 1982.</p>
-  <p>Pete practiced psychiatry in Cambridge, Hyannis, and Newton, Massachusetts, then retired to San Francisco. He published <em>Stepping Stones</em> in 2014 — poetry and fiction. He was a member of the Fromm Institute at USF and the Osher Foundation Lifelong Learning Institute at Brandeis.</p>
-  <p>He died of lymphoma on August 13, 2015 at home in San Francisco with Janet and their three children. His memorial service was at Congregation Emanu-El on August 17.</p>
-  
-  <h3>Pete's Parents — Dr. Norman and Louise Reider</h3>
-  <p><strong>Dr. Norman Reider</strong> (1907–1989) was born in Alliance, Ohio. BA and MD from Western Reserve University (now Case Western Reserve). He trained at the Menninger Clinic in Topeka from 1934 to 1939. He headed the Department of Psychiatry at Mount Zion Hospital in San Francisco.</p>
-  <p>Norman was among the founding members of the California Psychoanalytic Society. TIME magazine featured him in 1947 for his paper "The Unmarried Father." He wrote "Chess, Oedipus, and the Mater Dolorosa" in 1959. His papers are archived at the San Francisco Center for Psychoanalysis — 4.6 linear feet covering 1822 to the 1980s.</p>
-  <p>He married <strong>Louise J. Cohen</strong> (1907–1985), a psychiatric social worker, in 1927.</p>
-  <p>Norman's parents were Maurice Jacob Reider (originally Rudner, ~1882–~1960) — an immigrant from Horoduk Village, Vilna Gubernia, Lithuania, who worked as a foreman at a steel foundry in Canton, Ohio — and Lillian Cohen (1887–1981). Maurice's parents were Uriah "Uri" Rudner (1855–1916, born in Orduk Village, Vilna Gubernia) and Clara Scope (1862–1909, born Russia).</p>
+<h2>Arthur Elliott "Pete" Reider</h2>
+<p>Janet's husband. Born November 1, 1936 in Topeka, Kansas. He went to Presidio Hill School, Grant School, Lowell High School, then Harvard, class of 1958. Then Harvard Medical School.</p>
+<p>Pete was captain of the Harvard track team. He ran a 4:11 mile in 1957 — a Harvard record. He set two-mile records. His coach Bill McCurdy called him "one of the toughest little men I have ever known." Harvard Athletic Hall of Fame in 1982. All-Ivy League Cross Country Team.</p>
+<p>He became a psychiatrist. He practiced in Cambridge, Hyannis, and Newton, Massachusetts, then retired in San Francisco. He published <em>Stepping Stones</em> in 2014, a collection of poetry and fiction. He was a member of the Fromm Institute at USF and the Osher Foundation Lifelong Learning Institute at Brandeis.</p>
+<p>He died August 13, 2015 at home in San Francisco of lymphoma. Janet and their three children were with him. His memorial service was held at Congregation Emanu-El on August 17.</p>
+
+<h3>Pete's Father — Dr. Norman Reider</h3>
+<p>Pete's father was <strong>Dr. Norman Reider</strong>, born July 3, 1907 in Alliance, Stark County, Ohio. He got his bachelor's and medical degree from Western Reserve University — now Case Western Reserve. He trained at the Menninger Clinic in Topeka from 1934 to 1939.</p>
+<p>Norman headed the Department of Psychiatry at Mount Zion Hospital in San Francisco. He was among the founding members of the California Psychoanalytic Society. TIME magazine featured him in 1947 for his paper "The Unmarried Father." He wrote "Chess, Oedipus, and the Mater Dolorosa" in 1959. His papers are archived at the San Francisco Center for Psychoanalysis — 4.6 linear feet, spanning 1822 to the 1980s.</p>
+<p>He married <strong>Louise J. Cohen</strong> in 1927. She was a psychiatric social worker, born November 29, 1907 in Cleveland. Norman died March 23, 1989 in San Francisco. Louise died February 22, 1985.</p>
+
+<h3>Norman's Parents</h3>
+<p>Norman's father was <strong>Maurice Jacob Reider</strong>, originally named Rudner. Born around 1882 in Horoduk Village, Vilna Gubernia, Lithuania. He immigrated to America and worked as a foreman at a steel foundry in Canton, Ohio. He changed the family name from Rudner to Reider.</p>
+<p>Maurice's father was <strong>Uriah "Uri" Rudner</strong>, born February 1855 in Orduk Village, Vilna Gubernia, in the Russian Empire. He married <strong>Clara Scope</strong>, born June 1862 in Russia. Clara died September 15, 1909 in Canton. Uri later married Hattie Altman. He died April 23, 1916 in Canton.</p>
+<p>Norman's mother was <strong>Lillian Cohen</strong>, born 1887, died 1981. Her parents were Hyman Cohen (born 1850) and Jennie Sugarman (1865–1928).</p>
+<p>Louise's parents were <strong>Abe (Abba Elyia) Pasek Cohen</strong> (1886–circa 1915) and <strong>Rena Shepsenwol</strong> (born 1886).</p>
 </div>
 
 <div class="section grandchildren">
-  <h2>Grandchildren — Janet and Pete's Children</h2>
-  
-  <h3>Jacob M. Reider</h3>
-  <p>Born June 25, 1963 in Boston. Family physician. Hampshire College 1983, Albany Medical College 1994. He was Deputy National Coordinator for Health IT at HHS from 2011 to 2014, and also served as Acting National Coordinator. He was CMIO at Allscripts and CEO of Alliance for Better Health.</p>
-  <p>Jacob co-founded five health IT startups including Twistle (acquired by Health Catalyst) and Physera (acquired by Omada). He's maintained the blog docnotes.net since 1999.</p>
-  <p>He married Alicia Ouellette, who was the 18th President and Dean of Albany Law School and is now Dean at Lewis & Clark Law School. They live in Slingerlands, New York. Their children are Molly and Sampson.</p>
-  
-  <h3>Suzie Reider</h3>
-  <p>Born March 29, 1965 in Boston. Executive Vice President of Lyft Media & Business at Lyft. Previously Global CRO at Waze. Married Brian Smith. Their daughters are Rose and Charlotte Reider Smith.</p>
-  
-  <h3>Matt Reider</h3>
-  <p>Born December 22, 1969 in Boston. Software engineer. Lives in Oakland. He married Alison Cohen (born August 7, 1972) on June 19, 2003. Their children are Max Nathan (born March 3, 2007) and Zoe Ella (born July 29, 2008).</p>
-  <p>Matt's the one who brought me into this chat to keep the family tree current.</p>
+<h2>Grandchildren</h2>
+<p>Janet and Pete had three children.</p>
+
+<h3>Jacob M. Reider</h3>
+<p>Born June 25, 1963 in Boston. He went to Hampshire College, graduated 1983. Albany Medical College, graduated 1994. He's a family physician.</p>
+<p>Jacob was Deputy National Coordinator for Health IT at the Department of Health and Human Services from 2011 to 2014 — also served as Acting National Coordinator. He was Chief Medical Information Officer at Allscripts from 2006 to 2010. CEO of the Alliance for Better Health from 2016 to 2021. He co-founded five health IT startups, including Twistle, which was acquired by Health Catalyst, and Physera, acquired by Omada. He's kept a blog at docnotes.net since 1999.</p>
+<p>He married <strong>Alicia Ouellette</strong>. She was the eighteenth president and dean of Albany Law School from 2015 to 2023. Now she's dean at Lewis & Clark Law School. They have two children: Molly and Sampson. They live in Slingerlands, New York.</p>
+
+<h3>Suzie Reider</h3>
+<p>Born March 29, 1965 in Boston. She's Executive Vice President of Lyft Media & Business at Lyft. Before that, she was Global Chief Revenue Officer at Waze. She married Brian Smith. They have two daughters: Rose and Charlotte Reider Smith.</p>
+
+<h3>Matt Reider</h3>
+<p>Born December 22, 1969 in Boston. He works in software. Lives in Oakland, California. He married <strong>Alison Cohen</strong>, born August 7, 1972, on June 19, 2003. They have two children: Max Nathan, born March 3, 2007, and Zoe Ella, born July 29, 2008, both born in Oakland.</p>
+<p>Matt is the one who brought me into this chat.</p>
 </div>
 
 <div class="section sephardic">
-  <h2>The Sephardic Question — A Fascinating Mystery</h2>
-  <p>Hetty Cohen's mother was <strong>Deborah Marques Cohen</strong> (1801–1888, born Charleston). That maiden name "Marques" suggests a possible connection to the Sephardic Portuguese Marks/Marques family — but the link isn't proven.</p>
-  <p>The possible chain: Deborah's father was Samuel Mendes Mandel Marks, whose father was <strong>Isaac Marks</strong> (1732–1776). Isaac was born in New York and died in Charleston. He fought in the American Revolution as a private in the New York Militia. He married Miriam Simpson (or Simons) of Long Island.</p>
-  <p>Multiple genealogy trees list Isaac's mother as <strong>Esther de Salomon Mosseh Marques</strong> (born December 16, 1699 in Bordeaux, France — died July 30, 1759 in Curaçao). She's buried at Beth Haim Cemetery in Curaçao, section IV, row C, grave 621. But Isaac's father is unknown — Esther's first husband Jacob Rodriguez Marques died around 1725, seven years before Isaac was born in 1732. The original documentation for this link is unclear.</p>
-  <p>Bernard Baruch — the Wall Street financier, a cousin through Isaac Marks's granddaughter Sarah Wolfe — claimed descent from Isaac Rodriguez Marques in his autobiography, but the dates don't work for a direct line.</p>
-  <p>Matt researched this extensively in 2022. He corresponded with Ron Gomes Casseres at the Beth Haim cemetery in Curaçao and studied Isaac S. Emmanuel's genealogical records. Emmanuel's own books contain apparent contradictions about Esther's marriages.</p>
-  
-  <h3>If the Connection Holds</h3>
-  <p>If the Sephardic connection is real, the Levy Maduro line goes back through rabbis in Amsterdam to Portugal in the 1400s:</p>
-  <ul>
-    <li>Esther's father: <strong>Ribi Hazzan Salomon de Mosseh Levy Maduro y Dias Sardo</strong> — Amsterdam</li>
-    <li>Back through several generations of Levy Maduros</li>
-    <li>To <strong>Mosseh Levy o Maduro</strong> in Portugal</li>
-    <li>Ultimately to <strong>Diogo Rodrigues</strong> and <strong>Clara Roiz</strong> in Portugal in the 1400s</li>
-  </ul>
-  
-  <h3>The DNA Question</h3>
-  <p>Matt's DNA test in the 2010s showed 99% Ashkenazi Jewish with no Sephardic markers, which casts doubt on the Portuguese connection — though DNA tests from that era had limitations, and the Sephardic line would be many generations back.</p>
-  <p>The story is fascinating family lore and serious genealogical research. But it should be presented as an open question, not established fact.</p>
+<h2>The Sephardic Question — A Story Still Unfolding</h2>
+<p>There is a story in our family — a possible connection to Sephardic Jews from Portugal and Curaçao. It goes back through Hetty Cohen's mother, Deborah Marques Cohen. The maiden name "Marques" is the clue.</p>
+<p>Deborah's father was <strong>Samuel Mendes Mandel Marks</strong>. His father was <strong>Isaac Marks</strong>, born 1732 in New York, died 1776 in Charleston. Isaac fought in the American Revolution as a private in the New York Militia. His name appears repeatedly in DAR family histories. He married Miriam Simpson or Simons of Long Island.</p>
+<p>The name was originally Marques, anglicized to Marks. Isaac's father is unknown. Multiple genealogical trees — Geni, Ancestry — list his mother as <strong>Esther de Salomon Levy Maduro</strong>, also called Esther Marques. But the original documentation for this connection is unclear.</p>
+<p>Esther was born December 16, 1699 in Bordeaux, France. She died July 30, 1759 in Curaçao. She is buried at Beth Haim Cemetery, section IV, row C, grave 621. She first married <strong>Jacob Rodriguez Marques</strong> on May 27, 1722 in Barbados. Jacob died around 1725. She later married Ishac de Shemuel Levy Maduro, buried in the adjacent plot.</p>
+<p>The problem: Isaac Marks was born in 1732, seven years after Jacob Rodriguez Marques died. Who was Isaac's father? The records don't say.</p>
+<p>Bernard Baruch — the Wall Street financier, a cousin through Isaac Marks's granddaughter Sarah Wolfe — claimed descent from Isaac Rodriguez Marques in his autobiography. But the dates don't work for a direct line.</p>
+<p>Matt researched this extensively in 2022. He corresponded with Ron Gomes Casseres at the Beth Haim cemetery in Curaçao, and with records from genealogist Isaac S. Emmanuel. Emmanuel's own books contain contradictions about Esther's marriages.</p>
+<p>If the connection holds, the Levy Maduro line goes back through rabbis in Amsterdam to Portugal in the 1400s. Esther's father was <strong>Ribi Hazzan Salomon de Mosseh Levy Maduro y Dias Sardo</strong> in Amsterdam. The line continues back through several generations of Levy Maduros to <strong>Mosseh Levy o Maduro</strong> in Portugal, and ultimately to <strong>Diogo Rodrigues</strong> and <strong>Clara Roiz</strong> in the 1400s.</p>
+<p>But Matt's DNA test in the 2010s showed 99% Ashkenazi Jewish with no Sephardic markers. That casts doubt on the Portuguese connection — though DNA tests from that era had limitations, and the Sephardic line would be many generations back.</p>
+<p>It's a fascinating story. Serious genealogical research supports parts of it. But it remains an open question, not established fact.</p>
 </div>
 
 <div class="section places">
-  <h2>The Places That Shaped Us</h2>
-  
-  <h3>Oakland</h3>
-  <p>Where the Kahns built their business and their community. The Rotunda Building still stands at 16th & Broadway — our family's monument to Oakland. Temple Sinai, where my father was founding president and where I carried the key as a girl. Home of Eternity Cemetery in Mountain View, where Frederick is buried.</p>
-  
-  <h3>Georgetown, South Carolina</h3>
-  <p>Where the Sampsons were merchants and shippers. The Jewish Cemetery, established 1772, where Joseph H. Sampson is buried. A place where Jews made up ten percent of the white population by 1800 — the second largest Jewish community in South Carolina.</p>
-  
-  <h3>Galveston, Texas</h3>
-  <p>Where Dr. Arthur Fischel Sampson practiced medicine and where Grandpa John was born in 1898. The 1900 flood that drove the family to California and changed everything.</p>
-  
-  <h3>San Francisco</h3>
-  <p>Where John and I made our life. Where he became Chief of Staff at Mount Zion Hospital and practiced cardiology for more than sixty years. Where I volunteered and wove and kept the family history. Our home in Seacliff. Congregation Emanu-El, where both our memorial services were held.</p>
-  
-  <h3>Curaçao</h3>
-  <p>Beth Haim Cemetery, where Esther de Salomon Levy Maduro is buried — section IV, row C, grave 621. The possible link to our Sephardic past. Matt corresponded with the cemetery keeper trying to trace the connection.</p>
+<h2>Places That Shaped Us</h2>
+
+<h3>Oakland</h3>
+<p>Where I was born. Where my grandfather Israel built his dry goods business in 1879. Where my father led the Jewish Welfare Federation and Temple Sinai. Where Kahn Brothers Department Store opened its grand Beaux-Arts building in 1912. Where my mother established the Kahn Foundation.</p>
+
+<h3>Georgetown, South Carolina</h3>
+<p>Where John's grandfather Joseph H. Sampson was a prominent merchant and shipping operator. Home to a thriving Jewish community since the 1700s. The Jewish Cemetery there was established in 1772. Joseph is buried there.</p>
+
+<h3>Galveston, Texas</h3>
+<p>Where John's father Arthur Fischel Sampson practiced medicine. Where John was born in 1898. The great flood of 1900 changed everything — that's what brought the family to San Francisco.</p>
+
+<h3>San Francisco</h3>
+<p>Where John and I made our life together. Where we raised our children. Where John was Chief of Staff at Mount Zion Hospital. Where I volunteered for decades. Where Congregation Emanu-El became our spiritual home. Where our family still lives.</p>
+
+<h3>Curaçao</h3>
+<p>Where Esther de Salomon Levy Maduro is buried at Beth Haim Cemetery. A place that might connect us to Sephardic ancestors from Portugal and Bordeaux. Matt went looking for those records. The story is still unfolding.</p>
 </div>
 
 <div class="section closing">
-  <h2>The Work Continues</h2>
-  <p>This is the family as I know it. The dates are verified where I could verify them — census records, vital records, cemetery headstones, published genealogies. Some connections are family knowledge. The Sephardic line is contested.</p>
-  <p>Matt keeps this current now. When someone shares new information — births, marriages, corrections, discoveries — he updates the tree. That's how it should be. The family goes on.</p>
+<h2>Keeping the Record</h2>
+<p>I researched this family tree with Jean Wildberg. We tracked down dates, verified records, connected the branches. It has been my work to maintain it.</p>
+<p>Some facts are solid — birth certificates, cemetery records, census data. Some come from family knowledge — stories passed down, letters kept, memories shared. Some are theories — plausible connections not yet proven.</p>
+<p>The Sephardic line fascinates me. I wish I knew for certain. But I won't claim what I can't verify.</p>
+<p>This is what I know. This is our family.</p>
 </div>
+  </div>
+</div>
+
+<div id="tree-tab" class="tab-content">
+  <div class="explorer">
+    <div class="search-wrap">
+      <input type="text" id="search-input" class="search-box" placeholder="Search for a family member...">
+      <div id="search-results" class="search-results"></div>
+    </div>
+    <div id="person-view"></div>
   </div>
 </div>
 
 <footer>
-  Composed by RoRo. The family historian knows what the family historian knows.<br>
-  <a href="https://family.mreider.com" style="color:#a0937e">family.mreider.com</a>
+  Composed by RoRo &middot;
+  <a href="https://family.mreider.com">family.mreider.com</a>
+  &middot;
+  <a href="sampson-kahn.ged" download>Download GEDCOM</a>
 </footer>
 
 <script>
-// --- Family data ---
-const rawData = [
+var rawData = [
   {
     "name": "Henry (Hertz) Kahn",
     "relation": "RoRo's paternal great-grandfather",
@@ -928,219 +862,195 @@ const rawData = [
   }
 ]
 ;
+var byName = {};
+rawData.forEach(function(p) { byName[p.name] = p; });
 
-// --- Build tree hierarchy ---
-function buildTree(data) {
-  const byName = {};
-  data.forEach(p => { byName[p.name] = { ...p, children: [] }; });
+function esc(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
 
-  // Find parent->child relationships
-  data.forEach(p => {
-    if (p.parents) {
-      p.parents.forEach(parentName => {
-        if (byName[parentName]) {
-          const child = byName[p.name];
-          if (!byName[parentName].children.find(c => c.name === child.name)) {
-            byName[parentName].children.push(child);
-          }
-        }
-      });
+function getYears(p) {
+  var parts = [];
+  if (p.born) { var b = String(p.born); parts.push(b.length > 4 ? b.split('-')[0] : b); }
+  if (p.died) { var d = String(p.died); parts.push(d.length > 4 ? d.split('-')[0] : d); }
+  else if (parts.length) parts.push('');
+  return parts.length < 2 ? (parts[0] || '') : parts[0] + '\u2013' + parts[1];
+}
+
+function getChildren(name) {
+  return rawData.filter(function(p) { return p.parents && p.parents.indexOf(name) !== -1; })
+    .sort(function(a, b) { return (a.born ? parseInt(a.born) : 9999) - (b.born ? parseInt(b.born) : 9999); });
+}
+
+function getSiblings(name) {
+  var person = byName[name];
+  if (!person || !person.parents) return [];
+  return rawData.filter(function(p) {
+    if (p.name === name || !p.parents) return false;
+    for (var i = 0; i < p.parents.length; i++) { if (person.parents.indexOf(p.parents[i]) !== -1) return true; }
+    return false;
+  }).sort(function(a, b) { return (a.born ? parseInt(a.born) : 9999) - (b.born ? parseInt(b.born) : 9999); });
+}
+
+function fdNode(person, isActive) {
+  var y = getYears(person);
+  var cls = 'fd-node' + (isActive ? ' active' : '');
+  return '<div class="' + cls + '" data-name="' + esc(person.name) + '">' +
+    '<span class="fd-name">' + esc(person.name) + '</span>' +
+    (y ? '<span class="fd-dates">' + y + '</span>' : '') + '</div>';
+}
+
+var currentPerson = null;
+
+function showPerson(name) {
+  var person = byName[name];
+  if (!person) return;
+  currentPerson = name;
+
+  var newHash = '#' + encodeURIComponent(name);
+  if (location.hash !== newHash) history.pushState(null, '', newHash);
+
+  var treeTab = document.getElementById('tree-tab');
+  if (!treeTab.classList.contains('active')) {
+    var btns = document.querySelectorAll('.tab');
+    switchTab('tree', btns[1]);
+  }
+
+  var parents = (person.parents || []).map(function(n) { return byName[n]; }).filter(Boolean);
+  var children = getChildren(name);
+  var siblings = getSiblings(name);
+  var spousePerson = person.spouse ? byName[person.spouse] : null;
+
+  // --- Mini family diagram ---
+  var diagram = '<div class="family-diagram">';
+
+  // Parents row
+  if (parents.length > 0) {
+    diagram += '<div class="fd-label">Parents</div>';
+    if (parents.length === 2 && parents[0].spouse === parents[1].name) {
+      diagram += '<div class="fd-row"><div class="fd-couple">' + fdNode(parents[0], false) + fdNode(parents[1], false) + '</div></div>';
+    } else {
+      diagram += '<div class="fd-row">' + parents.map(function(p) { return fdNode(p, false); }).join('') + '</div>';
     }
-  });
+    diagram += '<div class="fd-line"></div>';
+  }
 
-  // Root nodes: people with no parents in the dataset
-  const childNames = new Set();
-  data.forEach(p => {
-    if (p.parents) p.parents.forEach(pn => {
-      if (byName[pn]) childNames.add(p.name);
-    });
-  });
+  // Current person + spouse
+  if (spousePerson) {
+    diagram += '<div class="fd-row"><div class="fd-couple">' + fdNode(person, true) + fdNode(spousePerson, false) + '</div></div>';
+  } else {
+    diagram += '<div class="fd-row">' + fdNode(person, true) + '</div>';
+  }
 
-  // Find the best root — use RoRo's earliest ancestors
-  // Start from RoRo and walk up to find top-level roots
-  const roots = data.filter(p => !p.parents || !p.parents.some(pn => byName[pn]));
-  const rootNodes = roots.map(r => byName[r.name]).filter(r => r.children.length > 0 || childNames.has(r.name));
+  // Children
+  if (children.length > 0) {
+    diagram += '<div class="fd-line"></div>';
+    diagram += '<div class="fd-label">Children</div>';
+    diagram += '<div class="fd-children-row">' + children.map(function(c) { return fdNode(c, false); }).join('') + '</div>';
+  }
 
-  // Create a virtual root
-  const virtualRoot = {
-    name: 'Sampson-Kahn Family',
-    children: rootNodes.length > 0 ? rootNodes : [byName['Rose Etta Kahn Sampson'] || Object.values(byName)[0]],
-    _virtual: true,
-  };
+  diagram += '</div>';
 
-  return virtualRoot;
+  // --- Person card ---
+  var card = '<div class="person-card">';
+  card += '<h2>' + esc(person.name) + '</h2>';
+
+  if (person.nicknames && person.nicknames.length) {
+    card += '<div class="person-nicknames">' + person.nicknames.map(function(n) { return esc(n); }).join(', ') + '</div>';
+  }
+
+  if (person.relation && person.relation !== 'self') {
+    card += '<div class="person-relation">' + esc(person.relation) + '</div>';
+  }
+
+  card += '<div class="person-meta">';
+  if (person.born || person.birthplace) {
+    var bt = ''; if (person.born) bt += String(person.born); if (person.birthplace) bt += (bt ? ', ' : '') + person.birthplace;
+    card += '<div class="meta-row"><span class="meta-label">Born</span><span class="meta-value">' + esc(bt) + '</span></div>';
+  }
+  if (person.died || person.deathplace) {
+    var dt = ''; if (person.died) dt += String(person.died); if (person.deathplace) dt += (dt ? ', ' : '') + person.deathplace;
+    card += '<div class="meta-row"><span class="meta-label">Died</span><span class="meta-value">' + esc(dt) + '</span></div>';
+  }
+  if (person.spouse) {
+    if (spousePerson) {
+      card += '<div class="meta-row"><span class="meta-label">Spouse</span><span class="meta-value"><a class="spouse-link" data-name="' + esc(person.spouse) + '">' + esc(person.spouse) + '</a></span></div>';
+    } else {
+      card += '<div class="meta-row"><span class="meta-label">Spouse</span><span class="meta-value">' + esc(person.spouse) + '</span></div>';
+    }
+  }
+  if (person.married) {
+    card += '<div class="meta-row"><span class="meta-label">Married</span><span class="meta-value">' + esc(String(person.married)) + '</span></div>';
+  }
+  card += '</div>';
+
+  if (person.notes) {
+    card += '<div class="person-notes">' + esc(person.notes) + '</div>';
+  }
+  card += '</div>';
+
+  // Siblings
+  var sibHtml = '';
+  if (siblings.length > 0) {
+    sibHtml = '<div class="siblings-section"><h3>Siblings</h3><div class="pills">' +
+      siblings.map(function(s) { return '<button class="sib-pill" data-name="' + esc(s.name) + '">' + esc(s.name) + '</button>'; }).join('') +
+      '</div></div>';
+  }
+
+  var view = document.getElementById('person-view');
+  view.innerHTML = diagram + card + sibHtml;
+  view.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
-function getDates(person) {
-  const parts = [];
-  if (person.born) {
-    const b = String(person.born);
-    parts.push(b.length > 4 ? b.split('-')[0] : b);
-  }
-  if (person.died) {
-    const d = String(person.died);
-    parts.push(d.length > 4 ? d.split('-')[0] : d);
-  } else if (person.is_alive || (!person.died && person.born)) {
-    parts.push('');
-  }
-  if (parts.length === 0) return '';
-  if (parts.length === 1) return parts[0];
-  return parts[0] + '–' + parts[1];
-}
-
-// --- D3 Tree ---
-const treeRoot = buildTree(rawData);
-
-const container = document.getElementById('tree-container');
-const viewDiv = document.getElementById('tree-view');
-const tooltip = document.getElementById('tooltip');
-
-const nodeW = 160, nodeH = 52, hGap = 20, vGap = 70;
-
-const hierarchy = d3.hierarchy(treeRoot);
-const treeLayout = d3.tree().nodeSize([nodeW + hGap, nodeH + vGap]);
-treeLayout(hierarchy);
-
-// Compute bounds
-let x0 = Infinity, x1 = -Infinity, y0 = Infinity, y1 = -Infinity;
-hierarchy.each(d => {
-  if (d.x < x0) x0 = d.x;
-  if (d.x > x1) x1 = d.x;
-  if (d.y < y0) y0 = d.y;
-  if (d.y > y1) y1 = d.y;
+// Event delegation
+document.getElementById('person-view').addEventListener('click', function(e) {
+  var node = e.target.closest('.fd-node'); if (node && !node.classList.contains('active')) { showPerson(node.dataset.name); return; }
+  var pill = e.target.closest('.sib-pill'); if (pill) { showPerson(pill.dataset.name); return; }
+  var link = e.target.closest('.spouse-link'); if (link) { showPerson(link.dataset.name); return; }
 });
 
-const padding = 80;
-const svgW = (x1 - x0) + nodeW + padding * 2;
-const svgH = (y1 - y0) + nodeH + padding * 2;
+// Search
+var searchInput = document.getElementById('search-input');
+var searchResults = document.getElementById('search-results');
 
-const svg = d3.select('#tree-container')
-  .append('svg')
-  .attr('width', svgW)
-  .attr('height', svgH);
-
-const g = svg.append('g')
-  .attr('transform', `translate(${-x0 + padding + nodeW/2}, ${-y0 + padding + 20})`);
-
-// Zoom
-const zoom = d3.zoom()
-  .scaleExtent([0.15, 3])
-  .on('zoom', (e) => g.attr('transform', e.transform));
-svg.call(zoom);
-
-// Initial transform
-const initialTransform = d3.zoomIdentity
-  .translate(-x0 + padding + nodeW/2, -y0 + padding + 20);
-svg.call(zoom.transform, initialTransform);
-
-// Links
-g.selectAll('.link')
-  .data(hierarchy.links().filter(d => !d.source.data._virtual || true))
-  .enter()
-  .append('path')
-  .attr('class', 'link')
-  .attr('d', d => {
-    const sx = d.source.x, sy = d.source.y + nodeH/2;
-    const tx = d.target.x, ty = d.target.y - nodeH/2;
-    const mid = (sy + ty) / 2;
-    return `M${sx},${sy} C${sx},${mid} ${tx},${mid} ${tx},${ty}`;
-  });
-
-// Nodes
-const nodes = g.selectAll('.node')
-  .data(hierarchy.descendants())
-  .enter()
-  .append('g')
-  .attr('class', 'node')
-  .attr('transform', d => `translate(${d.x - nodeW/2}, ${d.y - nodeH/2})`)
-  .style('display', d => d.data._virtual ? 'none' : null);
-
-nodes.append('rect')
-  .attr('width', nodeW)
-  .attr('height', nodeH)
-  .on('mouseover', (event, d) => showTooltip(event, d.data))
-  .on('mousemove', (event) => moveTooltip(event))
-  .on('mouseout', hideTooltip);
-
-nodes.append('text')
-  .attr('class', 'name')
-  .attr('x', nodeW/2)
-  .attr('y', nodeH/2 - 4)
-  .attr('text-anchor', 'middle')
-  .text(d => {
-    const name = d.data.name || '';
-    return name.length > 22 ? name.slice(0, 20) + '…' : name;
-  });
-
-nodes.append('text')
-  .attr('class', 'dates')
-  .attr('x', nodeW/2)
-  .attr('y', nodeH/2 + 12)
-  .attr('text-anchor', 'middle')
-  .text(d => getDates(d.data));
-
-// Tooltip
-function showTooltip(event, data) {
-  let html = '<h3>' + data.name + '</h3>';
-  if (data.nicknames) html += '<div class="detail">Also: ' + data.nicknames.join(', ') + '</div>';
-  const dates = getDates(data);
-  if (dates) html += '<div class="detail">' + dates + '</div>';
-  if (data.birthplace) html += '<div class="detail">Born: ' + data.birthplace + '</div>';
-  if (data.deathplace) html += '<div class="detail">Died: ' + data.deathplace + '</div>';
-  if (data.spouse) html += '<div class="detail">Spouse: ' + data.spouse + '</div>';
-  if (data.relation) html += '<div class="detail">' + data.relation + '</div>';
-  if (data.notes) {
-    const notes = data.notes.length > 200 ? data.notes.slice(0, 200) + '…' : data.notes;
-    html += '<div class="notes">' + notes + '</div>';
-  }
-  tooltip.innerHTML = html;
-  tooltip.style.display = 'block';
-}
-
-function moveTooltip(event) {
-  const rect = viewDiv.getBoundingClientRect();
-  tooltip.style.left = (event.clientX - rect.left + 15) + 'px';
-  tooltip.style.top = (event.clientY - rect.top + 15) + 'px';
-}
-
-function hideTooltip() { tooltip.style.display = 'none'; }
-
-// Controls
-function zoomIn() { svg.transition().duration(300).call(zoom.scaleBy, 1.4); }
-function zoomOut() { svg.transition().duration(300).call(zoom.scaleBy, 0.7); }
-
-function fitTree() {
-  const vw = viewDiv.clientWidth, vh = viewDiv.clientHeight;
-  const scale = Math.min(vw / svgW, vh / svgH, 1) * 0.9;
-  const tx = (vw - svgW * scale) / 2;
-  const ty = (vh - svgH * scale) / 2;
-  svg.transition().duration(500)
-    .call(zoom.transform, d3.zoomIdentity.translate(tx, ty).scale(scale));
-}
-
-function centerOn(name) {
-  const node = hierarchy.descendants().find(d => d.data.name === name);
-  if (!node) return;
-  const vw = viewDiv.clientWidth, vh = viewDiv.clientHeight;
-  const scale = 1;
-  const tx = vw/2 - node.x * scale;
-  const ty = vh/3 - node.y * scale;
-  svg.transition().duration(500)
-    .call(zoom.transform, d3.zoomIdentity.translate(tx, ty).scale(scale));
-}
+searchInput.addEventListener('input', function() {
+  var q = searchInput.value.trim().toLowerCase();
+  if (!q) { searchResults.style.display = 'none'; return; }
+  var matches = rawData.filter(function(p) {
+    if (p.name.toLowerCase().indexOf(q) !== -1) return true;
+    if (p.nicknames) { for (var i = 0; i < p.nicknames.length; i++) { if (p.nicknames[i].toLowerCase().indexOf(q) !== -1) return true; } }
+    return false;
+  }).slice(0, 8);
+  if (!matches.length) { searchResults.style.display = 'none'; return; }
+  searchResults.innerHTML = matches.map(function(p) {
+    var y = getYears(p);
+    return '<div class="search-item" data-name="' + esc(p.name) + '"><span class="si-name">' + esc(p.name) + '</span>' +
+      (y ? '<span class="si-detail"> ' + y + '</span>' : '') +
+      (p.relation ? '<br><span class="si-detail">' + esc(p.relation) + '</span>' : '') + '</div>';
+  }).join('');
+  searchResults.style.display = 'block';
+});
+searchResults.addEventListener('click', function(e) {
+  var item = e.target.closest('.search-item');
+  if (item) { showPerson(item.dataset.name); searchInput.value = ''; searchResults.style.display = 'none'; }
+});
+searchInput.addEventListener('blur', function() { setTimeout(function() { searchResults.style.display = 'none'; }, 200); });
 
 // Tab switching
-function switchTab(tab) {
-  document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
-  document.querySelectorAll('.tab').forEach(el => el.classList.remove('active'));
+function switchTab(tab, btn) {
+  document.querySelectorAll('.tab-content').forEach(function(el) { el.classList.remove('active'); });
+  document.querySelectorAll('.tab').forEach(function(el) { el.classList.remove('active'); });
   document.getElementById(tab + '-tab').classList.add('active');
-  event.target.classList.add('active');
-  if (tab === 'tree') setTimeout(fitTree, 100);
+  btn.classList.add('active');
 }
 
-// Initial fit
-setTimeout(fitTree, 200);
-</script>
+// Hash navigation
+window.addEventListener('popstate', function() {
+  var name = location.hash ? decodeURIComponent(location.hash.slice(1)) : null;
+  if (name && byName[name] && name !== currentPerson) showPerson(name);
+});
 
+var initialHash = location.hash ? decodeURIComponent(location.hash.slice(1)) : null;
+if (initialHash && byName[initialHash]) { showPerson(initialHash); }
+else { showPerson('Rose Etta Kahn Sampson'); }
+</script>
 </body>
 </html>

@@ -9,6 +9,7 @@ import makeWASocket, {
 import Anthropic from '@anthropic-ai/sdk';
 import pino from 'pino';
 import { generateAndPublish } from './generate-page.js';
+import { publishGedcom } from './generate-gedcom.js';
 import {
   isGeniConfigured,
   geniGetProfile,
@@ -211,6 +212,14 @@ const TOOLS = [
       },
     },
   },
+  {
+    name: 'export_gedcom',
+    description: 'Generate a GEDCOM (.ged) file from the family tree data and publish it to the website for download. Use when someone asks for a GEDCOM export or wants to import the tree into genealogy software.',
+    input_schema: {
+      type: 'object',
+      properties: {},
+    },
+  },
 ];
 
 // --- Geni tools (added dynamically if configured) ---
@@ -339,7 +348,11 @@ if (isGeniConfigured()) {
 }
 
 // --- Tool executors ---
-async function executeTool(toolName, input) {
+// sendInterim is an optional callback to send a WhatsApp message mid-tool-execution.
+// Slow tools (like republish_page, which generates a full page via Claude) use this
+// to send a "working on it" message so the user isn't left waiting in silence for ~2 min.
+// If you add new slow tools, use sendInterim the same way — see toolRepublishPage for example.
+async function executeTool(toolName, input, { sendInterim } = {}) {
   switch (toolName) {
     case 'web_fetch':
       return await toolWebFetch(input);
@@ -348,7 +361,9 @@ async function executeTool(toolName, input) {
     case 'update_family_narrative':
       return await toolUpdateFamilyNarrative(input);
     case 'republish_page':
-      return await toolRepublishPage(input);
+      return await toolRepublishPage(input, { sendInterim });
+    case 'export_gedcom':
+      return await toolExportGedcom();
     case 'geni_search':
       return await geniSearch(input.name);
     case 'geni_profile':
@@ -449,8 +464,13 @@ async function toolUpdateFamilyNarrative({ section, content }) {
   }
 }
 
-async function toolRepublishPage({ context } = {}) {
+async function toolRepublishPage({ context } = {}, { sendInterim } = {}) {
   try {
+    // Page generation calls Claude to write ~12k tokens of narrative HTML, which takes
+    // 1-2 minutes. Send a heads-up so the user isn't staring at silence.
+    if (sendInterim) {
+      await sendInterim('Give me a minute or two — I\'m regenerating the family page now.');
+    }
     const ok = await generateAndPublish(context || '');
     if (ok) {
       return { success: true, message: `Page republished at ${SITE_URL}` };
@@ -458,6 +478,18 @@ async function toolRepublishPage({ context } = {}) {
     return { error: 'Page was generated but git push failed. Matt may need to check.' };
   } catch (err) {
     return { error: `Failed to republish: ${err.message}` };
+  }
+}
+
+async function toolExportGedcom() {
+  try {
+    const ok = publishGedcom();
+    if (ok) {
+      return { success: true, message: `GEDCOM file published at ${SITE_URL}sampson-kahn.ged` };
+    }
+    return { error: 'GEDCOM was generated but git push failed.' };
+  } catch (err) {
+    return { error: `Failed to export GEDCOM: ${err.message}` };
   }
 }
 
@@ -509,7 +541,7 @@ Only output YES or NO.`,
 }
 
 // --- Claude API with tool use ---
-async function askRoRo(message, senderName) {
+async function askRoRo(message, senderName, { sendInterim } = {}) {
   const systemPrompt = buildSystemPrompt();
   const userContent = senderName ? `[${senderName}]: ${message}` : message;
   addToConversation('user', userContent);
@@ -552,7 +584,7 @@ async function askRoRo(message, senderName) {
 
       for (const tool of toolBlocks) {
         console.log(`[tool] ${tool.name}(${JSON.stringify(tool.input).slice(0, 200)})`);
-        const result = await executeTool(tool.name, tool.input);
+        const result = await executeTool(tool.name, tool.input, { sendInterim });
         console.log(`[tool] ${tool.name} → ${JSON.stringify(result).slice(0, 200)}`);
         toolResults.push({
           type: 'tool_result',
@@ -705,7 +737,9 @@ async function startBot() {
       // Show typing indicator
       await sock.sendPresenceUpdate('composing', chatJid);
 
-      const reply = await askRoRo(text, senderName);
+      const reply = await askRoRo(text, senderName, {
+        sendInterim: (text) => sock.sendMessage(chatJid, { text }),
+      });
 
       await sock.sendPresenceUpdate('paused', chatJid);
 
