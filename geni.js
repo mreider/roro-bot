@@ -161,14 +161,60 @@ function flattenParams(obj, prefix = '') {
 
 // --- Profile ID normalization ---
 
-function normalizeProfileId(id) {
+// Geni has two ID formats:
+//   Internal: profile-5368178 (works for API calls)
+//   GUID: 325120088920006414 (used in URLs, does NOT work for API calls)
+// GUIDs are 15+ digits; internal IDs are shorter.
+// When we get a GUID, we search by name to resolve it.
+
+const guidCache = new Map(); // guid -> internal profile id
+
+async function resolveProfileId(id) {
   if (!id) return id;
+
   // Strip URL parts if a full Geni URL was passed
-  const urlMatch = id.match(/(\d{5,})(?:\?|$)/);
-  if (urlMatch) id = urlMatch[1];
-  // Add "profile-" prefix if it's just a numeric ID
-  if (/^\d+$/.test(id)) return `profile-${id}`;
-  return id;
+  // Also extract the name from the URL path if present (e.g. /people/John-Sampson/12345)
+  let nameFromUrl = null;
+  const urlNameMatch = id.match(/\/people\/([^/]+)\/(\d+)/);
+  if (urlNameMatch) {
+    nameFromUrl = urlNameMatch[1].replace(/-/g, ' ');
+    id = urlNameMatch[2];
+  } else {
+    const urlMatch = id.match(/(\d{5,})(?:\?|$)/);
+    if (urlMatch) id = urlMatch[1];
+  }
+
+  // Already in profile-NNN format
+  if (id.startsWith('profile-')) {
+    const num = id.replace('profile-', '');
+    if (num.length < 15) return id; // internal ID, good to go
+    id = num; // it's a GUID, resolve below
+  }
+
+  // Short numeric ID = internal ID
+  if (/^\d+$/.test(id) && id.length < 15) return `profile-${id}`;
+
+  // It's a GUID — check cache
+  if (guidCache.has(id)) return guidCache.get(id);
+
+  // Resolve GUID by searching with the name extracted from URL
+  if (nameFromUrl) {
+    try {
+      const searchData = await geniGet(`profile/search`, { names: nameFromUrl });
+      const match = searchData.results?.find(r => r.guid === id);
+      if (match) {
+        console.log(`[geni] Resolved GUID ${id} → ${match.id} (${match.name})`);
+        guidCache.set(id, match.id);
+        return match.id;
+      }
+    } catch (err) {
+      console.log(`[geni] GUID search failed: ${err.message}`);
+    }
+  }
+
+  // Fallback — return with profile- prefix (may not work for GUIDs)
+  console.log(`[geni] Warning: using GUID ${id} directly — use geni_search to get the internal ID first`);
+  return `profile-${id}`;
 }
 
 // --- Profile helpers ---
@@ -214,7 +260,7 @@ export function isGeniConfigured() {
 
 export async function geniGetProfile(profileId) {
   try {
-    profileId = normalizeProfileId(profileId);
+    profileId = await resolveProfileId(profileId);
     const profile = await geniGet(profileId);
     return { success: true, profile: formatProfile(profile), raw_id: profile.id };
   } catch (err) {
@@ -224,7 +270,7 @@ export async function geniGetProfile(profileId) {
 
 export async function geniGetImmediateFamily(profileId) {
   try {
-    profileId = normalizeProfileId(profileId);
+    profileId = await resolveProfileId(profileId);
     const data = await geniGet(`${profileId}/immediate-family`);
     const focus = data.focus;
     const nodes = data.nodes || {};
@@ -267,7 +313,7 @@ export async function geniGetImmediateFamily(profileId) {
 
 export async function geniGetAncestors(profileId) {
   try {
-    profileId = normalizeProfileId(profileId);
+    profileId = await resolveProfileId(profileId);
     const data = await geniGet(`${profileId}/ancestors`);
     const nodes = data.nodes || data.results || {};
     const ancestors = [];
@@ -305,8 +351,8 @@ export async function geniSearch(name) {
 
 export async function geniPathTo(fromId, toId) {
   try {
-    fromId = normalizeProfileId(fromId);
-    toId = normalizeProfileId(toId);
+    fromId = await resolveProfileId(fromId);
+    toId = await resolveProfileId(toId);
     const data = await geniGet(`${fromId}/path-to/${toId}`);
     const path = data.path || [];
     const nodes = data.nodes || {};
@@ -343,7 +389,7 @@ function buildEventParam(dateStr, location) {
 
 export async function geniUpdateProfile(profileId, updates) {
   try {
-    profileId = normalizeProfileId(profileId);
+    profileId = await resolveProfileId(profileId);
     const params = {};
     if (updates.first_name) params.first_name = updates.first_name;
     if (updates.last_name) params.last_name = updates.last_name;
@@ -372,7 +418,7 @@ export async function geniUpdateProfile(profileId, updates) {
 
 export async function geniAddChild(parentProfileId, childData) {
   try {
-    parentProfileId = normalizeProfileId(parentProfileId);
+    parentProfileId = await resolveProfileId(parentProfileId);
     const params = {};
     if (childData.first_name) params.first_name = childData.first_name;
     if (childData.last_name) params.last_name = childData.last_name;
@@ -392,7 +438,7 @@ export async function geniAddChild(parentProfileId, childData) {
 
 export async function geniAddParent(childProfileId, parentData) {
   try {
-    childProfileId = normalizeProfileId(childProfileId);
+    childProfileId = await resolveProfileId(childProfileId);
     const params = {};
     if (parentData.first_name) params.first_name = parentData.first_name;
     if (parentData.last_name) params.last_name = parentData.last_name;
@@ -414,7 +460,7 @@ export async function geniAddParent(childProfileId, parentData) {
 
 export async function geniAddPartner(profileId, partnerData) {
   try {
-    profileId = normalizeProfileId(profileId);
+    profileId = await resolveProfileId(profileId);
     const params = {};
     if (partnerData.first_name) params.first_name = partnerData.first_name;
     if (partnerData.last_name) params.last_name = partnerData.last_name;
