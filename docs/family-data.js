@@ -305,7 +305,7 @@ var rawData = [
     "relation": "Grandpa John's paternal grandfather",
     "spouse": "Esther 'Hetty' Sampson (née Cohen)",
     "notes": "Prominent Jewish merchant and shipping operator in Georgetown, SC, with brother Samuel. After the Civil War, revived their mercantile business and expanded into shipping. Family originally from Bury St. Edmunds, England. Sampson family names appear in Kahal Kadosh Beth Elohim records in Charleston. Georgetown had ~80 Jews by 1800 (~10% of white population), second largest Jewish community in SC. Buried in Jewish Cemetery, Georgetown (est. 1772).",
-    "sources": ["https://billiongraves.com/grave/Joseph-Sampson/3278781", "https://www.isjl.org/south-carolina-georgetown-encyclopedia.html", "https://jhssc.org/synagogue/beth-elohim/"]
+    "sources": ["https://billiongraves.com/grave/Joseph-Sampson/3278781", "https://www.isjl.org/south-carolina-georgetown-encyclopedia.html", "https://jhssc.org/synagogue/beth-elohim/", "https://www.geni.com/people/Joseph-Sampson/6000000019856863522"]
   },
   {
     "name": "Esther 'Hetty' Sampson (née Cohen)",
@@ -430,7 +430,8 @@ var rawData = [
   {
     "name": "Peter Caleb Banta-Green",
     "relation": "RoRo's great-grandchild (Caleb's son)",
-    "parents": ["Caleb Green", "Kate Banta-Green"]
+    "parents": ["Caleb Green", "Kate Banta-Green"],
+    "sources": ["https://www.geni.com/people/Peter-Caleb-Banta-Green/325171412150004588"]
   },
   {
     "name": "John Frederick Sampson",
@@ -485,9 +486,11 @@ var rawData = [
   },
   {
     "name": "Rose Etta Mays-Smith",
+    "born": "2007-11",
     "relation": "RoRo's great-grandchild (Juliet's daughter)",
     "notes": "Named after Rose Etta Kahn Sampson (RoRo).",
-    "parents": ["Juliet Margaret Sampson", "Simon Mays-Smith"]
+    "parents": ["Juliet Margaret Sampson", "Simon Mays-Smith"],
+    "sources": ["https://www.geni.com/people/Rose-Etta-Mays-Smith/5718790939480037956"]
   },
   {
     "name": "Janet Sampson Reider",
@@ -514,9 +517,13 @@ var rawData = [
   },
   {
     "name": "Jonathan Reider",
+    "born": "~1947",
+    "birthplace": "San Francisco, CA",
     "relation": "Pete's brother",
+    "spouse": "Leah Reider (née Druker)",
     "notes": "Stanford admissions officer for 15 years, then Director of College Counseling at SF University High School.",
-    "parents": ["Dr. Norman Reider", "Louise J. Reider (née Cohen)"]
+    "parents": ["Dr. Norman Reider", "Louise J. Reider (née Cohen)"],
+    "sources": ["https://www.geni.com/people/Jonathan-Perry-'Jon'-Reider/6000000124860573921"]
   },
   {
     "name": "Dr. Norman Reider",
@@ -680,7 +687,183 @@ var rawData = [
     "born": "2008-07-29",
     "birthplace": "Oakland, CA",
     "relation": "RoRo's great-grandchild (Matt's daughter)",
-    "parents": ["Matt Reider", "Alison Cohen"]
+    "parents": ["Matt Reider", "Alison Cohen"],
+    "sources": ["https://www.geni.com/people/Zoe-Ella-Reider/6000000006944795205"]
+  },
+  {
+    "name": "Josua Eppinger",
+    "relation": "Helen Sarah Eppinger's husband / RoRo's brother-in-law",
+    "spouse": "Helen Sarah Eppinger (née Kahn)"
+  },
+  {
+    "name": "Joan Eppinger",
+    "relation": "RoRo's niece (Helen's daughter)",
+    "parents": ["Helen Sarah Eppinger (née Kahn)", "Josua Eppinger"]
+  },
+  {
+    "name": "Josua Eppinger Jr.",
+    "relation": "RoRo's nephew (Helen's son)",
+    "parents": ["Helen Sarah Eppinger (née Kahn)", "Josua Eppinger"]
+  },
+  {
+    "name": "Wendy Eppinger Shulman",
+    "relation": "RoRo's niece (Helen's daughter)",
+    "spouse": "Jonas Shulman",
+    "parents": ["Helen Sarah Eppinger (née Kahn)", "Josua Eppinger"]
+  },
+  {
+    "name": "Dwight Frederick Eppinger",
+    "relation": "RoRo's nephew (Helen's son)",
+    "parents": ["Helen Sarah Eppinger (née Kahn)", "Josua Eppinger"]
+  },
+  {
+    "name": "Carolyn Kahn",
+    "relation": "Frederick Jr.'s wife / RoRo's sister-in-law",
+    "spouse": "Frederick Kahn Jr."
+  },
+  {
+    "name": "Susan Kahn Levy",
+    "relation": "RoRo's niece (Frederick Jr.'s daughter)",
+    "spouse": "Louis Levy",
+    "parents": ["Frederick Kahn Jr.", "Carolyn Kahn"]
+  },
+  {
+    "name": "Margery Kahn Zelles",
+    "relation": "RoRo's niece (Frederick Jr.'s daughter)",
+    "spouse": "Herman Zelles",
+    "parents": ["Frederick Kahn Jr.", "Carolyn Kahn"]
+  },
+  {
+    "name": "Leah Reider (née Druker)",
+    "relation": "Jonathan Reider's wife",
+    "spouse": "Jonathan Reider"
+  },
+  {
+    "name": "Rebecca Reider",
+    "relation": "Jonathan and Leah's daughter",
+    "parents": ["Jonathan Reider", "Leah Reider (née Druker)"]
+  },
+  {
+    "name": "Abby Reider",
+    "born": "1984-03-10",
+    "birthplace": "Palo Alto, CA",
+    "relation": "Jonathan and Leah's daughter",
+    "parents": ["Jonathan Reider", "Leah Reider (née Druker)"]
+  },
+  {
+    "name": "Louise Adler",
+    "relation": "John Frederick Sampson's first wife",
+    "spouse": "John Frederick Sampson",
+    "married": "1962",
+    "notes": "Divorced 1991."
+  },
+  {
+    "name": "Harry Langfeld",
+    "relation": "Esther Sampson Langfeld's husband",
+    "spouse": "Esther Sampson Langfeld"
+  },
+  {
+    "name": "Daniel Langfeld",
+    "relation": "Grandpa John's nephew (Esther's son)",
+    "parents": ["Esther Sampson Langfeld", "Harry Langfeld"]
+  },
+  {
+    "name": "Henrietta Langfeld",
+    "relation": "Grandpa John's niece (Esther's daughter)",
+    "parents": ["Esther Sampson Langfeld", "Harry Langfeld"]
+  },
+  {
+    "name": "Ilsa Sampson",
+    "born": "~1902",
+    "relation": "Joseph Abraham Sampson's wife",
+    "spouse": "Joseph Abraham Sampson"
+  },
+  {
+    "name": "Sidney Bibbero",
+    "relation": "Cornelia 'Nellie' Sampson's first husband",
+    "spouse": "Cornelia 'Nellie' Sampson"
+  },
+  {
+    "name": "Richard Bibbero",
+    "born": "1915",
+    "relation": "Grandpa John's nephew (Nellie's son)",
+    "parents": ["Cornelia 'Nellie' Sampson", "Sidney Bibbero"]
+  },
+  {
+    "name": "Donald Bibbero",
+    "relation": "Grandpa John's nephew (Nellie's son)",
+    "parents": ["Cornelia 'Nellie' Sampson", "Sidney Bibbero"]
+  },
+  {
+    "name": "Herbert Salinger",
+    "relation": "Cornelia 'Nellie' Sampson's second husband",
+    "spouse": "Cornelia 'Nellie' Sampson"
+  },
+  {
+    "name": "Samuel Kahn",
+    "relation": "RoRo's uncle (Israel's son)",
+    "spouse": "Ida Kahn",
+    "parents": ["Israel Kahn", "Sarah Kahn (née Bauer)"]
+  },
+  {
+    "name": "Hannah Kahn Zeimer",
+    "relation": "RoRo's aunt (Israel's daughter)",
+    "spouse": "Leo Zeimer",
+    "parents": ["Israel Kahn", "Sarah Kahn (née Bauer)"]
+  },
+  {
+    "name": "Solomon Kahn",
+    "relation": "RoRo's uncle (Israel's son)",
+    "parents": ["Israel Kahn", "Sarah Kahn (née Bauer)"]
+  },
+  {
+    "name": "John Kahn",
+    "relation": "RoRo's uncle (Israel's son)",
+    "spouse": "Gertrude Kahn",
+    "parents": ["Israel Kahn", "Sarah Kahn (née Bauer)"]
+  },
+  {
+    "name": "Bertha Kahn Elkus",
+    "relation": "RoRo's aunt (Israel's daughter)",
+    "spouse": "Albert Elkus",
+    "parents": ["Israel Kahn", "Sarah Kahn (née Bauer)"]
+  },
+  {
+    "name": "Rosetta Kahn Katten",
+    "relation": "RoRo's aunt (Israel's daughter)",
+    "spouse": "Simon Katten",
+    "parents": ["Israel Kahn", "Sarah Kahn (née Bauer)"]
+  },
+  {
+    "name": "Henrietta Kahn Manheim",
+    "relation": "RoRo's aunt (Israel's daughter)",
+    "spouse": "Henry Manheim",
+    "parents": ["Israel Kahn", "Sarah Kahn (née Bauer)"]
+  },
+  {
+    "name": "Moses Lavenson",
+    "relation": "RoRo's maternal uncle (Samuel's son)",
+    "spouse": "Lotta Lavenson",
+    "parents": ["Samuel Lavenson", "Caroline Lavenson (née Heiman)"]
+  },
+  {
+    "name": "Etta Lavenson Brandt",
+    "relation": "RoRo's maternal aunt (Samuel's daughter)",
+    "spouse": "Maurice Brandt",
+    "parents": ["Samuel Lavenson", "Caroline Lavenson (née Heiman)"]
+  },
+  {
+    "name": "George Lavenson",
+    "relation": "RoRo's maternal uncle (Samuel's son)",
+    "spouse": "Edith Lavenson",
+    "parents": ["Samuel Lavenson", "Caroline Lavenson (née Heiman)"]
+  },
+  {
+    "name": "Lawrence Reider",
+    "born": "1909",
+    "birthplace": "Canton, OH",
+    "relation": "Norman's brother / Pete's uncle",
+    "parents": ["Maurice Jacob Reider (née Rudner)", "Lillian Reider (née Cohen)"]
   }
 ]
 ;
