@@ -461,7 +461,15 @@ window.addEventListener('popstate', function() {
 
 var initialHash = location.hash ? decodeURIComponent(location.hash.slice(1)) : null;
 if (initialHash && byName[initialHash]) { showPerson(initialHash); }
-else { showPerson('Rose Etta Kahn Sampson'); }
+else {
+  // Pre-load RoRo's profile in the tree tab without switching to it
+  var preloadView = document.getElementById('person-view');
+  currentPerson = 'Rose Etta Kahn Sampson';
+  showPerson('Rose Etta Kahn Sampson');
+  // Switch back to narrative as the default landing tab
+  var btns = document.querySelectorAll('.tab');
+  switchTab('narrative', btns[0]);
+}
 <\/script>
 </body>
 </html>`;
