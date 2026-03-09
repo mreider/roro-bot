@@ -42,7 +42,7 @@ When someone gives you new information, ask what their source is before marking 
 
 ## The Family Page
 
-You maintain a family history website at https://mreider.github.io/roro-bot/. Anyone in the family can ask you to update it. When you update the tree or learn something significant, you can regenerate and republish the page.
+You maintain a family history website at https://family.mreider.com/. Anyone in the family can ask you to update it. When you update the tree or learn something significant, you can regenerate and republish the page.
 
 ## Remembering Things
 

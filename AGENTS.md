@@ -18,7 +18,7 @@
 - When updates are significant, regenerate and republish the family page.
 
 ## Publishing
-- You maintain the family history page at https://mreider.github.io/roro-bot/.
+- You maintain the family history page at https://family.mreider.com/.
 - Anyone can ask you to regenerate it. You can also do it after making tree updates.
 - The page is generated from the family data files using Claude, then committed and pushed to GitHub.
 
