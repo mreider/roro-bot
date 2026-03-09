@@ -2,14 +2,37 @@ import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import { execSync } from 'child_process';
+import { createHash } from 'crypto';
 import Anthropic from '@anthropic-ai/sdk';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const DOCS_DIR = join(__dirname, 'docs');
 const INDEX_PATH = join(DOCS_DIR, 'index.html');
+const NARRATIVE_CACHE_PATH = join(__dirname, '.narrative-cache.json');
 
 function loadFile(path) {
   try { return readFileSync(path, 'utf-8'); } catch { return ''; }
+}
+
+// Hash the narrative source files to detect changes
+function hashSources(familyMd, familyJson, soul) {
+  return createHash('sha256').update(familyMd + familyJson + soul).digest('hex');
+}
+
+// Load cached narrative if sources haven't changed
+function loadCachedNarrative(currentHash) {
+  try {
+    const cache = JSON.parse(readFileSync(NARRATIVE_CACHE_PATH, 'utf-8'));
+    if (cache.hash === currentHash && cache.html) {
+      console.log('[page] Narrative cache hit - sources unchanged, skipping Claude call');
+      return cache.html;
+    }
+  } catch {}
+  return null;
+}
+
+function saveCachedNarrative(hash, html) {
+  writeFileSync(NARRATIVE_CACHE_PATH, JSON.stringify({ hash, html }), 'utf-8');
 }
 
 export async function generatePage(requestContext) {
@@ -17,10 +40,13 @@ export async function generatePage(requestContext) {
   const familyJson = loadFile(join(__dirname, 'family-tree.json'));
   const soul = loadFile(join(__dirname, 'SOUL.md'));
 
-  const anthropic = new Anthropic();
+  const sourceHash = hashSources(familyMd, familyJson, soul);
+  let narrativeHtml = loadCachedNarrative(sourceHash);
 
-  // Generate the narrative section via Claude
-  const prompt = `You are generating the NARRATIVE section of a family history page for the Sampson-Kahn family, in the voice of Grandma RoRo (Rose Etta Kahn Sampson, 1907–1997).
+  if (!narrativeHtml) {
+    const anthropic = new Anthropic();
+
+    const prompt = `You are generating the NARRATIVE section of a family history page for the Sampson-Kahn family, in the voice of Grandma RoRo (Rose Etta Kahn Sampson, 1907-1997).
 
 Here is RoRo's personality and voice:
 ${soul}
@@ -33,7 +59,7 @@ ${familyJson}
 
 ${requestContext ? `The family member who requested this page said: "${requestContext}". Take their request into account for the tone, focus, or style.` : ''}
 
-Generate ONLY the narrative HTML content (no <!DOCTYPE>, no <html>, no <head>, no <body> — just the inner content divs). Requirements:
+Generate ONLY the narrative HTML content (no <!DOCTYPE>, no <html>, no <head>, no <body> - just the inner content divs). Requirements:
 
 1. **Voice**: Written as if RoRo is telling you about her family. First person where natural. Warm, composed, proud but not boastful. Short, graceful sentences.
 
@@ -47,16 +73,24 @@ Generate ONLY the narrative HTML content (no <!DOCTYPE>, no <html>, no <head>, n
 
 4. **Technical**: Just HTML content divs. No page structure, no CSS, no JavaScript. Use <p>, <h2>, <h3>, <ul>, <li> etc.
 
+5. **IMPORTANT**: Never use em dashes. Use commas, periods, semicolons, or rewrite the sentence instead. Hyphens in hyphenated words are fine.
+
 Output ONLY the HTML content. No markdown fences, no explanation.`;
 
-  const response = await anthropic.messages.create({
-    model: 'claude-sonnet-4-5-20250929',
-    max_tokens: 12000,
-    messages: [{ role: 'user', content: prompt }],
-  });
+    const response = await anthropic.messages.create({
+      model: 'claude-sonnet-4-5-20250929',
+      max_tokens: 12000,
+      messages: [{ role: 'user', content: prompt }],
+    });
 
-  let narrativeHtml = response.content[0]?.text || '';
-  narrativeHtml = narrativeHtml.replace(/^```html?\n?/, '').replace(/\n?```$/, '').trim();
+    narrativeHtml = response.content[0]?.text || '';
+    narrativeHtml = narrativeHtml.replace(/^```html?\n?/, '').replace(/\n?```$/, '').trim();
+    // Strip any em dashes that slipped through
+    narrativeHtml = narrativeHtml.replace(/\u2014/g, ' - ').replace(/\u2013/g, '-');
+
+    saveCachedNarrative(sourceHash, narrativeHtml);
+    console.log('[page] Narrative generated and cached');
+  }
 
   const treeData = familyJson;
 
@@ -201,7 +235,7 @@ footer a:hover { color: var(--primary); }
 
 <header>
   <h1>The Sampson-Kahn Family</h1>
-  <p>Kept by RoRo &mdash; Rose Etta Kahn Sampson, 1907&ndash;1997</p>
+  <p>Kept by RoRo - Rose Etta Kahn Sampson, 1907-1997</p>
 </header>
 
 <div class="tabs">

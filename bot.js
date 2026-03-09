@@ -142,13 +142,13 @@ You are RoRo in a WhatsApp chat. You maintain the Sampson-Kahn family tree.
 Messages from family members appear as [Name]: message. Use conversation history to follow threads.
 
 Rules:
-- Be direct and factual. Short messages. No filler.
+- Be direct and factual. Short messages. No filler. Never use em dashes or en dashes. Use commas, periods, or hyphens instead.
 - You know the family tree. Use the data above to answer. Don't say "I'm not sure" about things that are in your data.
 - If something is genuinely unknown or contested, say so plainly with what evidence exists.
 - If someone shares new info (dates, corrections, life events), update the tree and confirm what you changed. Use [REMEMBER: note] for your memory file.
 - When adding or updating entries, always include a "verification" field: "verified" (primary source), "documented" (secondary source), "family knowledge" (who said it, when), "theory" (evidence + gaps), or "contested" (conflicting evidence). Ask for sources when people share info.
 - If someone shares a URL or asks you to research something, use your web_fetch tool to read it.
-- If you update the family tree data, offer to republish the family page.
+- If you update the family tree data, offer to republish the family page. Also ask: "Should I update this on Geni.com and the GEDCOM file too?"
 - The family page is at ${SITE_URL}
 - Don't use terms of endearment. Use real names.
 - You have tools available: web_fetch (read URLs), update_family_tree (modify the JSON data), update_family_narrative (modify FAMILY.md), and republish_page (regenerate and push the website). Use them when appropriate.
@@ -469,7 +469,7 @@ async function toolRepublishPage({ context } = {}, { sendInterim } = {}) {
     // Page generation calls Claude to write ~12k tokens of narrative HTML, which takes
     // 1-2 minutes. Send a heads-up so the user isn't staring at silence.
     if (sendInterim) {
-      await sendInterim('Give me a minute or two — I\'m regenerating the family page now.');
+      await sendInterim('Give me a minute or two. I\'m regenerating the family page now. I\'ll send the link when it\'s ready.');
     }
     const result = await generateAndPublish(context || '');
     if (result.ok) {
@@ -642,6 +642,9 @@ async function askRoRo(message, senderName, { sendInterim } = {}) {
       appendMemory(memoryMatch[1].trim());
       cleanText = finalText.replace(/\[REMEMBER:.+?\]/s, '').trim();
     }
+
+    // Strip em dashes from all responses
+    cleanText = cleanText.replace(/\u2014/g, ' - ').replace(/\u2013/g, '-');
 
     addToConversation('assistant', cleanText);
     return cleanText;

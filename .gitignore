@@ -6,3 +6,4 @@ group-config.json
 pull-and-restart.sh
 geni-tokens.json
 geni-config.json
+.narrative-cache.json
