@@ -344,7 +344,8 @@ var rawData = [
     "spouse": "Babette 'Bettie' Sampson (née Levy)",
     "married": "1887-04-04",
     "notes": "Physician. Medical school in SC, practiced in Galveston TX. Married Bettie in Galveston. After 1900 Galveston flood, moved to SF 1902. Franklin Street home (between Bush and Sutter) dynamited by US Army as firebreak during 1906 earthquake. Rebuilt on Washington Street near Laurel. Five children: Joseph Abraham (1888), Arthur Jr. (1891), Cornelia 'Nellie' (1893), Esther, John Jacob (1898).",
-    "parents": ["Joseph H. Sampson", "Esther 'Hetty' Sampson (née Cohen)"]
+    "parents": ["Joseph H. Sampson", "Esther 'Hetty' Sampson (née Cohen)"],
+    "sources": ["https://www.geni.com/people/Dr.-Arthur-Fischel-Sampson/325131943140001618"]
   },
   {
     "name": "Babette 'Bettie' Sampson (née Levy)",
@@ -439,12 +440,17 @@ var rawData = [
     "relation": "RoRo's son",
     "spouse": "Sharon L. Litsky (second wife)",
     "notes": "Appraiser and real estate broker in SF. Lowell HS (1953), Reed College (3 yrs), AB Univ of SF (1957), Wharton (1960). First wife Louise Adler (1962, div. 1991). Second wife Sharon L. Litsky (1999).",
-    "parents": ["Dr. John Jacob Sampson", "Rose Etta Kahn Sampson"]
+    "parents": ["Dr. John Jacob Sampson", "Rose Etta Kahn Sampson"],
+    "sources": ["https://www.geni.com/people/John-Frederick-Sampson/287594964040008991"]
   },
   {
     "name": "Jennifer Ruth Sampson",
+    "born": "1969-10-22",
+    "birthplace": "San Francisco, CA",
     "relation": "RoRo's grandchild (John's daughter)",
-    "parents": ["John Frederick Sampson", "Louise Adler"]
+    "notes": "Lives in Berkeley, CA.",
+    "parents": ["John Frederick Sampson", "Louise Adler"],
+    "sources": ["https://www.geni.com/people/Jennifer-Ruth-Sampson/325120278230006393"]
   },
   {
     "name": "John Frederick Sampson Jr.",
@@ -453,8 +459,35 @@ var rawData = [
   },
   {
     "name": "Juliet Margaret Sampson",
+    "born": "1968-05-19",
+    "birthplace": "San Francisco, CA",
     "relation": "RoRo's grandchild (John's daughter)",
-    "parents": ["John Frederick Sampson", "Louise Adler"]
+    "spouse": "Simon Mays-Smith",
+    "notes": "Country Financial Analyst. Lives in London.",
+    "parents": ["John Frederick Sampson", "Louise Adler"],
+    "sources": ["https://www.geni.com/people/Juliet-Margaret-Sampson/325120088920006414"]
+  },
+  {
+    "name": "Simon Mays-Smith",
+    "relation": "Juliet's husband",
+    "spouse": "Juliet Margaret Sampson"
+  },
+  {
+    "name": "Isaac Mays-Smith",
+    "relation": "RoRo's great-grandchild (Juliet's son)",
+    "parents": ["Juliet Margaret Sampson", "Simon Mays-Smith"],
+    "sources": ["https://www.geni.com/people/Isaac-Mays-Smith/325123506560001643"]
+  },
+  {
+    "name": "Noah Mays-Smith",
+    "relation": "RoRo's great-grandchild (Juliet's son)",
+    "parents": ["Juliet Margaret Sampson", "Simon Mays-Smith"]
+  },
+  {
+    "name": "Rose Etta Mays-Smith",
+    "relation": "RoRo's great-grandchild (Juliet's daughter)",
+    "notes": "Named after Rose Etta Kahn Sampson (RoRo).",
+    "parents": ["Juliet Margaret Sampson", "Simon Mays-Smith"]
   },
   {
     "name": "Janet Sampson Reider",
