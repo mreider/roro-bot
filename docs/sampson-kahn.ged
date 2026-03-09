@@ -172,10 +172,12 @@
 2 SURN Cohen
 2 NICK Reverend Hartwig Cohen
 1 BIRT
-2 DATE 1784
+2 DATE 14 NOV 1784
 2 PLAC Wartha, Frankenstein, Silesia, Prussia
 1 DEAT
-2 DATE 1861
+2 DATE 12 OCT 1861
+2 PLAC Winnsboro, Fairfield County, SC
+1 NOTE Spiritual leader of Charleston's Kahal Kadosh Beth Elohim.
 1 SOUR https://www.geni.com/people/Rev-Hartwig-Cohen/6000000016009111717
 1 SOUR https://www.wikitree.com/wiki/Cohen-2905
 1 FAMS @F8@
@@ -353,7 +355,7 @@
 2 SURN Sampson
 1 BIRT
 2 DATE 10 JUN 1823
-2 PLAC Georgetown, SC
+2 PLAC Charleston, SC
 1 DEAT
 2 DATE 14 JUL 1883
 1 NOTE Prominent Jewish merchant and shipping operator in Georgetown, SC, with brother Samuel. After the Civil War, revived their mercantile business and expanded into shipping. Family originally from Bury St. Edmunds, England. Sampson family names appear
@@ -387,9 +389,9 @@
 2 DATE 1879
 1 FAMS @F17@
 0 @I39@ INDI
-1 NAME Esther /Haff/
+1 NAME Esther /Halff/
 2 GIVN Esther
-2 SURN Haff
+2 SURN Halff
 1 BIRT
 2 DATE 1833
 1 DEAT
@@ -443,7 +445,7 @@
 2 GIVN Cornelia 'Nellie'
 2 SURN Sampson
 1 BIRT
-2 DATE 8 AUG 1894
+2 DATE 8 AUG 1893
 2 PLAC Galveston, TX
 1 DEAT
 2 DATE 1989

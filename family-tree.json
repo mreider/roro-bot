@@ -136,11 +136,13 @@
   {
     "name": "Hartwig Cohen",
     "nicknames": ["Reverend Hartwig Cohen"],
-    "born": "1784",
-    "died": "1861",
+    "born": "1784-11-14",
+    "died": "1861-10-12",
     "birthplace": "Wartha, Frankenstein, Silesia, Prussia",
+    "deathplace": "Winnsboro, Fairfield County, SC",
     "relation": "Grandpa John's maternal great-great-grandfather",
     "spouse": "Deborah Marks Cohen",
+    "notes": "Spiritual leader of Charleston's Kahal Kadosh Beth Elohim.",
     "sources": ["https://www.geni.com/people/Rev-Hartwig-Cohen/6000000016009111717", "https://www.wikitree.com/wiki/Cohen-2905"]
   },
   {
@@ -299,7 +301,7 @@
     "name": "Joseph H. Sampson",
     "born": "1823-06-10",
     "died": "1883-07-14",
-    "birthplace": "Georgetown, SC",
+    "birthplace": "Charleston, SC",
     "relation": "Grandpa John's paternal grandfather",
     "spouse": "Esther 'Hetty' Sampson (née Cohen)",
     "notes": "Prominent Jewish merchant and shipping operator in Georgetown, SC, with brother Samuel. After the Civil War, revived their mercantile business and expanded into shipping. Family originally from Bury St. Edmunds, England. Sampson family names appear in Kahal Kadosh Beth Elohim records in Charleston. Georgetown had ~80 Jews by 1800 (~10% of white population), second largest Jewish community in SC. Buried in Jewish Cemetery, Georgetown (est. 1772).",
@@ -322,10 +324,10 @@
     "born": "1827",
     "died": "1879",
     "relation": "Grandpa John's maternal grandfather",
-    "spouse": "Esther Levy (née Haff)"
+    "spouse": "Esther Levy (née Halff)"
   },
   {
-    "name": "Esther Levy (née Haff)",
+    "name": "Esther Levy (née Halff)",
     "born": "1833",
     "died": "1908",
     "relation": "Grandpa John's maternal grandmother",
@@ -353,7 +355,7 @@
     "relation": "Grandpa John's mother / RoRo's mother-in-law",
     "spouse": "Dr. Arthur Fischel Sampson",
     "married": "1887-04-04",
-    "parents": ["Abraham Levy", "Esther Levy (née Haff)"]
+    "parents": ["Abraham Levy", "Esther Levy (née Halff)"]
   },
   {
     "name": "Joseph Abraham Sampson",
@@ -371,7 +373,7 @@
   },
   {
     "name": "Cornelia 'Nellie' Sampson",
-    "born": "1894-08-08",
+    "born": "1893-08-08",
     "died": "1989",
     "birthplace": "Galveston, TX",
     "deathplace": "San Francisco, CA",

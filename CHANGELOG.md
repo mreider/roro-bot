@@ -11,7 +11,10 @@
 - **Hartwig Cohen**: Birth year corrected from 1783 to **1784** — [Geni](https://www.geni.com/people/Rev-Hartwig-Cohen/6000000016009111717)
 - **Deborah Marks Cohen**: Maiden name corrected from "Marques" to **"Marks"** per Geni records; added death place **New York** — [Geni](https://www.geni.com/people/Deborah-Cohen/6000000016009389677)
 - **Samuel Mendes Mandel Marks**: Name corrected to **"Samuel Mendel Marks"** per Geni records; added mother **Sarah Marks (née Harris)**
-- **Cornelia "Nellie" Sampson**: Birth year corrected from 1893 to **1894** — [Geni](https://www.geni.com/people/Cornelia-Salinger-Bibbero/6000000029698659248)
+- **Cornelia "Nellie" Sampson**: Birth year confirmed as **1893** per Galveston County birth index (primary record: "SAMPSON CORNELIA 08/08/1893"); Geni says 1894 but the official birth record is more authoritative — [Galveston Birth Index](https://www.txgalveston.org/birth/birth-s.htm)
+- **Esther Levy**: Maiden name corrected from "Haff" to **"Halff"** — prominent San Antonio Jewish family — [Geni](https://www.geni.com/people/Esther-Levy/6000000003344934247), [TSHA - Solomon Halff](https://www.tshaonline.org/handbook/entries/halff-solomon)
+- **Joseph H. Sampson**: Birthplace corrected from "Georgetown, SC" to **"Charleston, SC"** — [BillionGraves](https://billiongraves.com/grave/Joseph-Sampson/3278781)
+- **Hartwig Cohen**: Added exact dates (born Nov 14, 1784; died Oct 12, 1861), death place **Winnsboro, Fairfield County, SC**, and role as spiritual leader of Charleston's Kahal Kadosh Beth Elohim
 - **Norman Reider**: Removed claim of being "founding member" of CA Psychoanalytic Society — he arrived SF in 1946; the society was founded in 1942 with 10 named charter members. He was an important **early member** — [Encyclopedia.com](https://www.encyclopedia.com/psychology/dictionaries-thesauruses-pictures-and-press-releases/san-francisco-psychoanalytic-society-and-institute)
 - **Isaac Marks**: Death place changed from "Charleston, SC" to **"New York"** — his son Samuel Mendel moved to Charleston, not Isaac himself. Added verification note about death location.
 
