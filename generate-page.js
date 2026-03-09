@@ -60,8 +60,11 @@ Output ONLY the HTML content. No markdown fences, no explanation.`;
 
   const treeData = familyJson;
 
+  // Version tag so the bot can detect when GitHub Pages has deployed
+  const version = new Date().toISOString();
+
   // Assemble the full page
-  const html = buildFullPage(narrativeHtml, treeData);
+  const html = buildFullPage(narrativeHtml, treeData, version);
 
   mkdirSync(DOCS_DIR, { recursive: true });
   writeFileSync(INDEX_PATH, html, 'utf-8');
@@ -70,16 +73,17 @@ Output ONLY the HTML content. No markdown fences, no explanation.`;
   if (!existsSync(cnamePath)) {
     writeFileSync(cnamePath, 'family.mreider.com\n', 'utf-8');
   }
-  console.log(`[page] Generated ${html.length} bytes → ${INDEX_PATH}`);
+  console.log(`[page] Generated ${html.length} bytes → ${INDEX_PATH} (version: ${version})`);
 
-  return html;
+  return { html, version };
 }
 
-function buildFullPage(narrativeHtml, treeDataJson) {
+function buildFullPage(narrativeHtml, treeDataJson, version) {
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="page-version" content="${version || ''}">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Sampson-Kahn Family</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -425,7 +429,7 @@ else { showPerson('Rose Etta Kahn Sampson'); }
 }
 
 export async function generateAndPublish(requestContext) {
-  await generatePage(requestContext);
+  const { version } = await generatePage(requestContext);
 
   try {
     execSync('git add docs/index.html', { cwd: __dirname, stdio: 'pipe' });
@@ -433,10 +437,10 @@ export async function generateAndPublish(requestContext) {
     execSync(`git commit -m "${msg}"`, { cwd: __dirname, stdio: 'pipe' });
     execSync('git push', { cwd: __dirname, stdio: 'pipe' });
     console.log('[page] Committed and pushed.');
-    return true;
+    return { ok: true, version };
   } catch (err) {
     console.error('[page] Git push failed:', err.message);
-    return false;
+    return { ok: false, version: null };
   }
 }
 
@@ -446,6 +450,6 @@ if (process.argv[1] && process.argv[1].endsWith('generate-page.js')) {
   if (publish) {
     generateAndPublish().catch(console.error);
   } else {
-    generatePage().then(() => console.log('[page] Done (local only).')).catch(console.error);
+    generatePage().then(({ version }) => console.log(`[page] Done (local only, version: ${version}).`)).catch(console.error);
   }
 }

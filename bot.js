@@ -471,14 +471,49 @@ async function toolRepublishPage({ context } = {}, { sendInterim } = {}) {
     if (sendInterim) {
       await sendInterim('Give me a minute or two — I\'m regenerating the family page now.');
     }
-    const ok = await generateAndPublish(context || '');
-    if (ok) {
-      return { success: true, message: `Page republished at ${SITE_URL}` };
+    const result = await generateAndPublish(context || '');
+    if (result.ok) {
+      // Poll GitHub Pages in the background to detect when the deploy is live.
+      // When it is, sendInterim announces it to the chat.
+      if (sendInterim && result.version) {
+        pollForDeploy(result.version, sendInterim);
+      }
+      return { success: true, message: `Page pushed. I'll let you know when it's live at ${SITE_URL}` };
     }
     return { error: 'Page was generated but git push failed. Matt may need to check.' };
   } catch (err) {
     return { error: `Failed to republish: ${err.message}` };
   }
+}
+
+// Poll the live site until the new version meta tag appears (GitHub Pages deploy).
+// Runs in the background — doesn't block the tool response.
+function pollForDeploy(version, sendInterim) {
+  const MAX_ATTEMPTS = 30;      // up to 5 minutes
+  const INTERVAL_MS = 10000;    // every 10 seconds
+  let attempts = 0;
+
+  const timer = setInterval(async () => {
+    attempts++;
+    try {
+      const resp = await fetch(SITE_URL, {
+        headers: { 'Cache-Control': 'no-cache' },
+        signal: AbortSignal.timeout(8000),
+      });
+      if (resp.ok) {
+        const html = await resp.text();
+        if (html.includes(version)) {
+          clearInterval(timer);
+          console.log(`[page] Deploy detected after ${attempts * 10}s`);
+          await sendInterim(`The family page is live: ${SITE_URL}`);
+        }
+      }
+    } catch (_) { /* network hiccup, keep polling */ }
+    if (attempts >= MAX_ATTEMPTS) {
+      clearInterval(timer);
+      console.log('[page] Deploy poll timed out after 5 minutes');
+    }
+  }, INTERVAL_MS);
 }
 
 async function toolExportGedcom() {
