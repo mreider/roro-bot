@@ -4,3 +4,5 @@ whatsapp-auth/
 MEMORY.md
 group-config.json
 pull-and-restart.sh
+geni-tokens.json
+geni-config.json

@@ -9,6 +9,15 @@ import makeWASocket, {
 import Anthropic from '@anthropic-ai/sdk';
 import pino from 'pino';
 import { generateAndPublish } from './generate-page.js';
+import {
+  isGeniConfigured,
+  geniGetProfile,
+  geniGetImmediateFamily,
+  geniGetAncestors,
+  geniSearch,
+  geniPathTo,
+  geniGetMyProfile,
+} from './geni.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -138,6 +147,9 @@ Rules:
 - The family page is at ${SITE_URL}
 - Don't use terms of endearment. Use real names.
 - You have tools available: web_fetch (read URLs), update_family_tree (modify the JSON data), update_family_narrative (modify FAMILY.md), and republish_page (regenerate and push the website). Use them when appropriate.
+- You also have Geni.com tools for exploring the online family tree: geni_search (find people by name), geni_profile (get full profile details), geni_family (get someone's immediate family — parents, siblings, partners, children), geni_ancestors (get ancestor tree), and geni_path (find how two people are related). Use these when someone asks about connections, wants to explore branches, or when you need to cross-reference Geni data with your local tree.
+- Matt's Geni profile ID is profile-2160559. Use it as a starting point when exploring the tree.
+- When presenting Geni data, include the profile IDs in brackets like [profile-123456] so you can look up more details if asked.
 `;
 
   return prompt;
@@ -194,6 +206,71 @@ const TOOLS = [
   },
 ];
 
+// --- Geni tools (added dynamically if configured) ---
+if (isGeniConfigured()) {
+  console.log('[geni] Geni.com integration enabled');
+  TOOLS.push(
+    {
+      name: 'geni_search',
+      description: 'Search for people in the Geni.com family tree by name. Returns matching profiles with IDs you can use with other Geni tools.',
+      input_schema: {
+        type: 'object',
+        properties: {
+          name: { type: 'string', description: 'Name to search for (e.g., "Rose Kahn", "Sampson")' },
+        },
+        required: ['name'],
+      },
+    },
+    {
+      name: 'geni_profile',
+      description: 'Get detailed profile information for a person on Geni.com. Returns birth/death dates, locations, and biographical details.',
+      input_schema: {
+        type: 'object',
+        properties: {
+          profile_id: { type: 'string', description: 'Geni profile ID (e.g., "profile-2160559")' },
+        },
+        required: ['profile_id'],
+      },
+    },
+    {
+      name: 'geni_family',
+      description: 'Get the immediate family of a person on Geni.com — parents, partners, children, and siblings. Each person includes their profile ID for further lookup.',
+      input_schema: {
+        type: 'object',
+        properties: {
+          profile_id: { type: 'string', description: 'Geni profile ID (e.g., "profile-2160559")' },
+        },
+        required: ['profile_id'],
+      },
+    },
+    {
+      name: 'geni_ancestors',
+      description: 'Get the ancestor tree for a person on Geni.com. Returns parents, grandparents, and further back.',
+      input_schema: {
+        type: 'object',
+        properties: {
+          profile_id: { type: 'string', description: 'Geni profile ID (e.g., "profile-2160559")' },
+        },
+        required: ['profile_id'],
+      },
+    },
+    {
+      name: 'geni_path',
+      description: 'Find the relationship path between two people on Geni.com. Shows how they are connected through the family tree.',
+      input_schema: {
+        type: 'object',
+        properties: {
+          from_id: { type: 'string', description: 'Starting profile ID' },
+          to_id: { type: 'string', description: 'Target profile ID' },
+        },
+        required: ['from_id', 'to_id'],
+      },
+    },
+  );
+} else {
+  console.log('[geni] Geni.com not configured — run geni-auth.js to enable');
+}
+
 // --- Tool executors ---
 async function executeTool(toolName, input) {
   switch (toolName) {
@@ -205,6 +282,16 @@ async function executeTool(toolName, input) {
       return await toolUpdateFamilyNarrative(input);
     case 'republish_page':
       return await toolRepublishPage(input);
+    case 'geni_search':
+      return await geniSearch(input.name);
+    case 'geni_profile':
+      return await geniGetProfile(input.profile_id);
+    case 'geni_family':
+      return await geniGetImmediateFamily(input.profile_id);
+    case 'geni_ancestors':
+      return await geniGetAncestors(input.profile_id);
+    case 'geni_path':
+      return await geniPathTo(input.from_id, input.to_id);
     default:
       return { error: `Unknown tool: ${toolName}` };
   }
