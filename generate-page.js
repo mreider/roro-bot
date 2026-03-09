@@ -319,7 +319,7 @@ function showPerson(name) {
   currentPerson = name;
 
   var newHash = '#' + encodeURIComponent(name);
-  if (!_skipHash && location.hash !== newHash) history.pushState(null, '', newHash);
+  if (location.hash !== newHash) history.pushState(null, '', newHash);
 
   var treeTab = document.getElementById('tree-tab');
   if (!treeTab.classList.contains('active')) {
@@ -448,11 +448,17 @@ searchResults.addEventListener('click', function(e) {
 searchInput.addEventListener('blur', function() { setTimeout(function() { searchResults.style.display = 'none'; }, 200); });
 
 // Tab switching
+var treeLoaded = false;
 function switchTab(tab, btn) {
   document.querySelectorAll('.tab-content').forEach(function(el) { el.classList.remove('active'); });
   document.querySelectorAll('.tab').forEach(function(el) { el.classList.remove('active'); });
   document.getElementById(tab + '-tab').classList.add('active');
   btn.classList.add('active');
+  // Lazy-load tree on first visit
+  if (tab === 'tree' && !treeLoaded) {
+    treeLoaded = true;
+    showPerson('Rose Etta Kahn Sampson');
+  }
 }
 
 // Hash navigation
@@ -461,17 +467,12 @@ window.addEventListener('popstate', function() {
   if (name && byName[name] && name !== currentPerson) showPerson(name);
 });
 
-var _skipHash = true;
+// On load: if hash links to a person, go to tree; otherwise stay on narrative
 var initialHash = location.hash ? decodeURIComponent(location.hash.slice(1)) : null;
-if (initialHash && byName[initialHash]) { _skipHash = false; showPerson(initialHash); }
-else {
-  showPerson('Rose Etta Kahn Sampson');
-  // Switch back to narrative as the default landing tab
-  var btns = document.querySelectorAll('.tab');
-  switchTab('narrative', btns[0]);
-  history.replaceState(null, '', location.pathname);
+if (initialHash && byName[initialHash]) {
+  treeLoaded = true;
+  showPerson(initialHash);
 }
-_skipHash = false;
 <\/script>
 </body>
 </html>`;
