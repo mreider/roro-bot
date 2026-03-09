@@ -159,6 +159,18 @@ function flattenParams(obj, prefix = '') {
   return params;
 }
 
+// --- Profile ID normalization ---
+
+function normalizeProfileId(id) {
+  if (!id) return id;
+  // Strip URL parts if a full Geni URL was passed
+  const urlMatch = id.match(/(\d{5,})(?:\?|$)/);
+  if (urlMatch) id = urlMatch[1];
+  // Add "profile-" prefix if it's just a numeric ID
+  if (/^\d+$/.test(id)) return `profile-${id}`;
+  return id;
+}
+
 // --- Profile helpers ---
 
 function formatProfile(p) {
@@ -202,6 +214,7 @@ export function isGeniConfigured() {
 
 export async function geniGetProfile(profileId) {
   try {
+    profileId = normalizeProfileId(profileId);
     const profile = await geniGet(profileId);
     return { success: true, profile: formatProfile(profile), raw_id: profile.id };
   } catch (err) {
@@ -211,6 +224,7 @@ export async function geniGetProfile(profileId) {
 
 export async function geniGetImmediateFamily(profileId) {
   try {
+    profileId = normalizeProfileId(profileId);
     const data = await geniGet(`${profileId}/immediate-family`);
     const focus = data.focus;
     const nodes = data.nodes || {};
@@ -253,6 +267,7 @@ export async function geniGetImmediateFamily(profileId) {
 
 export async function geniGetAncestors(profileId) {
   try {
+    profileId = normalizeProfileId(profileId);
     const data = await geniGet(`${profileId}/ancestors`);
     const nodes = data.nodes || data.results || {};
     const ancestors = [];
@@ -290,6 +305,8 @@ export async function geniSearch(name) {
 
 export async function geniPathTo(fromId, toId) {
   try {
+    fromId = normalizeProfileId(fromId);
+    toId = normalizeProfileId(toId);
     const data = await geniGet(`${fromId}/path-to/${toId}`);
     const path = data.path || [];
     const nodes = data.nodes || {};
@@ -326,6 +343,7 @@ function buildEventParam(dateStr, location) {
 
 export async function geniUpdateProfile(profileId, updates) {
   try {
+    profileId = normalizeProfileId(profileId);
     const params = {};
     if (updates.first_name) params.first_name = updates.first_name;
     if (updates.last_name) params.last_name = updates.last_name;
@@ -354,6 +372,7 @@ export async function geniUpdateProfile(profileId, updates) {
 
 export async function geniAddChild(parentProfileId, childData) {
   try {
+    parentProfileId = normalizeProfileId(parentProfileId);
     const params = {};
     if (childData.first_name) params.first_name = childData.first_name;
     if (childData.last_name) params.last_name = childData.last_name;
@@ -373,6 +392,7 @@ export async function geniAddChild(parentProfileId, childData) {
 
 export async function geniAddParent(childProfileId, parentData) {
   try {
+    childProfileId = normalizeProfileId(childProfileId);
     const params = {};
     if (parentData.first_name) params.first_name = parentData.first_name;
     if (parentData.last_name) params.last_name = parentData.last_name;
@@ -394,6 +414,7 @@ export async function geniAddParent(childProfileId, parentData) {
 
 export async function geniAddPartner(profileId, partnerData) {
   try {
+    profileId = normalizeProfileId(profileId);
     const params = {};
     if (partnerData.first_name) params.first_name = partnerData.first_name;
     if (partnerData.last_name) params.last_name = partnerData.last_name;
