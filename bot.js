@@ -400,9 +400,40 @@ function isMentioned(text) {
   return TRIGGERS.some(t => new RegExp(`\\b${t}\\b`, 'i').test(lower));
 }
 
-// --- Claude API with tool use ---
+// --- Claude API ---
 const anthropic = new Anthropic();
 
+// --- Should RoRo respond? (lightweight classifier for group messages) ---
+const CLASSIFIER_MODEL = 'claude-haiku-4-5-20251001';
+
+async function shouldRoRoRespond(text, senderName, recentContext) {
+  try {
+    const recent = recentContext.slice(-6).map(m => m.content).join('\n');
+    const resp = await anthropic.messages.create({
+      model: CLASSIFIER_MODEL,
+      max_tokens: 3,
+      system: `You are a classifier. RoRo is a family historian bot in a WhatsApp group chat for the Sampson-Kahn family. She maintains the family tree, knows genealogy, and can look things up on Geni.com.
+
+Respond YES if the message is directed at RoRo or is something she should answer — family questions, genealogy, requests about the family tree/page, follow-ups to something she said, or questions only she would know. Also YES if someone is clearly talking to her even without using her name.
+
+Respond NO if it's casual chat between family members, greetings not aimed at her, discussions about plans/logistics, or anything unrelated to family history.
+
+Only output YES or NO.`,
+      messages: [{
+        role: 'user',
+        content: `Recent chat context:\n${recent}\n\nNew message from ${senderName}: ${text}`,
+      }],
+    });
+    const answer = resp.content[0]?.text?.trim().toUpperCase();
+    console.log(`[classify] "${text.slice(0, 60)}" → ${answer}`);
+    return answer === 'YES';
+  } catch (err) {
+    console.error('[classify] error:', err.message);
+    return false; // fail closed — don't respond if classifier fails
+  }
+}
+
+// --- Claude API with tool use ---
 async function askRoRo(message, senderName) {
   const systemPrompt = buildSystemPrompt();
   const userContent = senderName ? `[${senderName}]: ${message}` : message;
@@ -584,11 +615,14 @@ async function startBot() {
         return jidNum === ourPhone || jidNum === ourLid || jidNum === mappedLid;
       });
 
-      const shouldRespond = !isGroup || isMentioned(text) || wasAtMentioned;
+      let shouldRespond = !isGroup || isMentioned(text) || wasAtMentioned;
 
+      // If not explicitly mentioned in a group, ask the classifier
       if (isGroup && !shouldRespond) {
         addGroupContext(senderName, text);
-        continue;
+        const conv = getConversation();
+        shouldRespond = await shouldRoRoRespond(text, senderName, conv.messages);
+        if (!shouldRespond) continue;
       }
 
       console.log(`[msg] ${senderName}: ${text}`);
