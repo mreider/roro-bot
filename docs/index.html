@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="page-version" content="2026-03-09T14:02:38.981Z">
+<meta name="page-version" content="2026-03-09T15:18:34.817Z">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Sampson-Kahn Family</title>
+<title>Our Story - The Sampson-Kahn Family</title>
 <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
@@ -12,360 +12,214 @@
 <link rel="shortcut icon" href="favicon.ico">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
-<style>
-:root {
-  --primary: #5bc1ac;
-  --secondary: #5a6f80;
-  --bg: #f0f8ff;
-  --white: #fff;
-  --dark: #1a1a1a;
-  --muted: #717275;
-  --border: #e0e7ed;
-  --radius: 10px;
-  --sans: 'Inter', -apple-system, sans-serif;
-  --serif: 'Playfair Display', Georgia, serif;
-}
-*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-body { font-family: var(--sans); background: var(--bg); color: var(--dark); line-height: 1.7; font-weight: 300; }
-a { color: var(--secondary); text-decoration: none; transition: color 0.2s; }
-a:hover { color: var(--primary); }
-
-/* Header */
-header { background: var(--secondary); color: var(--white); padding: 3rem 1.5rem; text-align: center; }
-header h1 { font-family: var(--serif); font-size: 2rem; font-weight: 400; letter-spacing: 0.02em; margin-bottom: 0.3rem; }
-header p { font-size: 0.95rem; opacity: 0.8; font-weight: 300; }
-
-/* Tabs */
-.tabs { display: flex; justify-content: center; gap: 0; background: var(--white); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
-.tab { padding: 0.85rem 2rem; cursor: pointer; font-family: var(--sans); font-size: 0.9rem; font-weight: 400; color: var(--muted); border: none; background: none; border-bottom: 2px solid transparent; transition: all 0.2s; letter-spacing: 0.03em; }
-.tab:hover { color: var(--dark); }
-.tab.active { color: var(--dark); border-bottom-color: var(--primary); font-weight: 600; }
-.tab-content { display: none; }
-.tab-content.active { display: block; }
-
-/* Narrative */
-#narrative-view { max-width: 720px; margin: 0 auto; padding: 2.5rem 1.5rem; }
-.roro-portrait { display: block; width: 160px; height: 160px; border-radius: 50%; object-fit: cover; margin: 0 auto 1.5rem; border: 3px solid var(--border); box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
-#narrative-view .section { margin-bottom: 2.5rem; }
-#narrative-view h2 { font-family: var(--serif); font-size: 1.4rem; color: var(--secondary); margin-bottom: 0.8rem; }
-#narrative-view h3 { font-size: 1.05rem; color: var(--dark); font-weight: 600; margin: 1.2rem 0 0.4rem; }
-#narrative-view p { color: var(--muted); margin-bottom: 0.8rem; }
-#narrative-view ul { margin: 0.5rem 0 1rem 1.5rem; color: var(--muted); }
-#narrative-view li { margin-bottom: 0.3rem; }
-
-/* Explorer */
-.explorer { max-width: 680px; margin: 0 auto; padding: 1.5rem; }
-
-/* Search */
-.search-wrap { position: relative; margin-bottom: 1.5rem; }
-.search-box { width: 100%; padding: 0.7rem 1rem; font-family: var(--sans); font-size: 0.95rem; border: 1px solid var(--border); border-radius: var(--radius); background: var(--white); color: var(--dark); outline: none; font-weight: 300; }
-.search-box:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(91,193,172,0.15); }
-.search-results { position: absolute; top: 100%; left: 0; right: 0; background: var(--white); border: 1px solid var(--border); border-top: none; border-radius: 0 0 var(--radius) var(--radius); max-height: 280px; overflow-y: auto; z-index: 200; display: none; box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
-.search-item { padding: 0.55rem 1rem; cursor: pointer; border-bottom: 1px solid var(--bg); }
-.search-item:hover { background: var(--bg); }
-.search-item:last-child { border-bottom: none; }
-.si-name { font-weight: 600; font-size: 0.9rem; }
-.si-detail { font-size: 0.8rem; color: var(--muted); }
-
-/* Mini family diagram */
-.family-diagram { text-align: center; margin-bottom: 1.5rem; }
-.fd-row { display: flex; justify-content: center; align-items: stretch; gap: 0.5rem; flex-wrap: wrap; }
-.fd-line { width: 1px; height: 1.2rem; background: var(--border); margin: 0 auto; }
-.fd-node { display: inline-flex; flex-direction: column; align-items: center; justify-content: center; padding: 0.4rem 0.8rem; background: var(--white); border: 1px solid var(--border); border-radius: 6px; cursor: pointer; font-size: 0.8rem; line-height: 1.3; transition: all 0.15s; width: 140px; min-height: 52px; text-align: center; }
-.fd-node:hover { border-color: var(--primary); background: var(--bg); }
-.fd-node.active { border-color: var(--primary); background: var(--primary); color: var(--white); }
-.fd-node.active .fd-dates { color: rgba(255,255,255,0.8); }
-.fd-name { font-weight: 600; font-size: 0.78rem; }
-.fd-dates { font-size: 0.7rem; color: var(--muted); }
-.fd-couple { display: inline-flex; align-items: stretch; gap: 0; }
-.fd-couple .fd-node { border-radius: 6px 0 0 6px; }
-.fd-couple .fd-node:last-child { border-radius: 0 6px 6px 0; border-left: none; }
-.fd-children-row { display: flex; justify-content: center; gap: 0.4rem; flex-wrap: wrap; }
-.fd-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin: 0.3rem 0; }
-
-/* Person card */
-.person-card { background: var(--white); border-radius: var(--radius); padding: 1.8rem; margin-bottom: 1.5rem; box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
-.person-card h2 { font-family: var(--serif); font-size: 1.5rem; color: var(--dark); margin-bottom: 0.15rem; font-weight: 400; }
-.person-nicknames { font-style: italic; color: var(--muted); margin-bottom: 0.6rem; font-size: 0.9rem; }
-.person-relation { display: inline-block; font-size: 0.75rem; background: var(--bg); color: var(--secondary); padding: 0.2rem 0.6rem; border-radius: 100px; margin-bottom: 0.8rem; font-weight: 400; }
-.person-meta { margin-bottom: 0.8rem; }
-.meta-row { display: flex; gap: 0.4rem; margin-bottom: 0.2rem; font-size: 0.9rem; }
-.meta-label { color: var(--muted); min-width: 4rem; flex-shrink: 0; font-weight: 400; }
-.meta-value { color: var(--dark); font-weight: 300; }
-.spouse-link { color: var(--primary); cursor: pointer; font-weight: 400; }
-.spouse-link:hover { text-decoration: underline; }
-.person-notes { border-top: 1px solid var(--border); padding-top: 0.8rem; margin-top: 0.5rem; color: var(--muted); font-size: 0.9rem; line-height: 1.7; }
-
-/* Siblings */
-.siblings-section { margin-bottom: 1.5rem; }
-.siblings-section h3 { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 0.4rem; }
-.siblings-section .pills { display: flex; flex-wrap: wrap; gap: 0.3rem; }
-.sib-pill { padding: 0.3rem 0.7rem; background: var(--white); border: 1px solid var(--border); border-radius: 100px; cursor: pointer; font-size: 0.8rem; color: var(--secondary); font-weight: 400; transition: all 0.15s; font-family: var(--sans); }
-.sib-pill:hover { border-color: var(--primary); color: var(--primary); }
-
-/* Changelog */
-#changelog-view { max-width: 720px; margin: 0 auto; padding: 2.5rem 1.5rem; }
-#changelog-view h1 { font-family: var(--serif); font-size: 1.6rem; color: var(--secondary); margin-bottom: 1.5rem; }
-#changelog-view h2 { font-family: var(--serif); font-size: 1.2rem; color: var(--dark); margin: 2rem 0 0.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
-#changelog-view h2:first-of-type { border-top: none; padding-top: 0; }
-#changelog-view h3 { font-size: 0.95rem; color: var(--secondary); font-weight: 600; margin: 1rem 0 0.4rem; }
-#changelog-view p { color: var(--muted); margin-bottom: 0.5rem; font-size: 0.9rem; }
-#changelog-view ul { margin: 0.3rem 0 1rem 1.5rem; color: var(--muted); font-size: 0.88rem; }
-#changelog-view li { margin-bottom: 0.35rem; line-height: 1.6; }
-#changelog-view a { color: var(--primary); }
-#changelog-view a:hover { text-decoration: underline; }
-#changelog-view strong { color: var(--dark); font-weight: 600; }
-
-/* About */
-#about-view { max-width: 720px; margin: 0 auto; padding: 2.5rem 1.5rem; }
-#about-view h2 { font-family: var(--serif); font-size: 1.4rem; color: var(--secondary); margin-bottom: 1rem; }
-#about-view p { color: var(--muted); margin-bottom: 1rem; font-size: 0.95rem; line-height: 1.8; }
-#about-view a { color: var(--primary); }
-#about-view a:hover { text-decoration: underline; }
-
-footer { text-align: center; padding: 2rem; color: var(--muted); font-size: 0.8rem; border-top: 1px solid var(--border); background: var(--white); }
-footer a { color: var(--muted); }
-footer a:hover { color: var(--primary); }
-
-@media (max-width: 600px) {
-  header h1 { font-size: 1.5rem; }
-  header { padding: 2rem 1rem; }
-  .tab { padding: 0.7rem 1.2rem; font-size: 0.85rem; }
-  .explorer { padding: 1rem; }
-  .person-card { padding: 1.2rem; }
-  .person-card h2 { font-size: 1.3rem; }
-  .meta-row { flex-direction: column; gap: 0; }
-  .meta-label { min-width: auto; }
-  #narrative-view { padding: 1.5rem 1rem; }
-  .fd-node { width: 110px; min-height: 46px; padding: 0.3rem 0.5rem; }
-  .fd-name { font-size: 0.72rem; }
-}
-</style>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-
 <header>
   <h1>The Sampson-Kahn Family</h1>
   <p>Kept by RoRo - Rose Etta Kahn Sampson, 1907-1997</p>
 </header>
+<nav class="nav">
+  <a href="/" class="nav-link active">Our Story</a>
+  <a href="/family-tree.html" class="nav-link">Family Tree</a>
+  <a href="/about.html" class="nav-link">About</a>
+  <a href="/changes.html" class="nav-link">Changes</a>
+</nav>
 
-<div class="tabs">
-  <button class="tab active" onclick="switchTab('narrative', this)">Our Story</button>
-  <button class="tab" onclick="switchTab('tree', this)">Family Tree</button>
-  <button class="tab" onclick="switchTab('about', this)">About</button>
-  <button class="tab" onclick="switchTab('changelog', this)">Changes</button>
+<div id="narrative-view">
+  <img src="roro.png" alt="Rose Etta Kahn Sampson" class="roro-portrait">
+  <div class="section">
+  <h2>Introduction</h2>
+  <p>I'm Rose Etta Kahn Sampson. RoRo to most of you. Born December 10, 1907, in Oakland. Died July 12, 1997, at Mount Zion Hospital in San Francisco.</p>
+  <p>This is our family history. I researched it with Jean Wildberg for years, and Matt brought me into this chat to keep it current. What follows is what I know about the Kahn and Sampson families, how they came to California, and the lives we built here.</p>
 </div>
 
-<div id="narrative-tab" class="tab-content active">
-  <div id="narrative-view">
-    <img src="roro.png" alt="Rose Etta Kahn Sampson" class="roro-portrait">
-    <div class="section introduction">
-<h2>Our Family</h2>
-<p>I'm Rose Etta Kahn Sampson. Born in Oakland in 1907, I've spent my life knowing this family's story. I researched our tree with Jean Wildberg. This is what I know.</p>
-<p>We come from merchants and rabbis, from Germany and South Carolina, from the Galveston flood and the San Francisco earthquake. We built department stores and hospitals. We carried forward what mattered.</p>
+<div class="section">
+  <h2>The Kahn Family: From Darmstadt to Oakland</h2>
+  
+  <h3>Israel Kahn (1822-1883)</h3>
+  <p>My grandfather Israel Kahn was born in Darmstadt, Hesse, Germany in 1822. His parents were Henry (Hertz) Kahn and Bela Goldstein. In 1848, Israel emigrated from Germany, arriving in Baltimore on the ship Henry Shelton from Rotterdam. He married Sarah Bauer (1828-1888), and together they had five sons: Henry, Samuel, Solomon, Frederick, and John.</p>
+  <p>In 1879, Israel founded a dry goods business in Oakland at 10th and Broadway. The business grew into Kahn Brothers Department Store, which my father Frederick and his brothers ran for decades.</p>
+
+  <h3>Frederick Kahn (1860-1925)</h3>
+  <p>My father was born September 21, 1860, in New York. He first worked at Bauer Brothers Company, wholesalers of laces and fancy goods at 83 First Street in San Francisco. Then he joined the family store after it was founded in 1879.</p>
+  <p>In 1912, Kahn Brothers moved to a magnificent Beaux-Arts building at 16th and Broadway. Architect Charles W. Dickey designed it with a 120-foot elliptical dome. It's now called the Rotunda Building, Oakland Landmark #132, on the National Register. In 1946, the store faced a labor strike over wages and working conditions.</p>
+  <p>Papa was the first president of the Jewish Welfare Federation of the East Bay, founded in 1918. He was a founding member and president of Temple Sinai. As a little girl, I carried the key at Temple Sinai's dedication. He also chaired the Advisory Committee of the Board of Education during a $5 million school building program. He belonged to the Concordia Club and B'nai B'rith.</p>
+  <p>Papa died August 19, 1925, at our home at 3933 Harrison Street in Oakland. He's buried at Home of Eternity Cemetery in Mountain View Cemetery, Oakland.</p>
+
+  <h3>Helen Kahn née Lavenson (1872-1935)</h3>
+  <p>My mother was born May 20, 1872, in California. Her father was Samuel Lavenson (1829-1900), and her mother Caroline Heiman (1842-1872). Caroline died June 24, 1872, in Sacramento, the same year mother was born. She was only 29 or 30. She's buried at Home of Peace Cemetery in Sacramento. Mother had two older sisters: Clara (born 1870) and Sara (born 1871).</p>
+  <p>After Papa died in 1925, mother established the Kahn Foundation in 1928. In 1965, the foundation donated $125,000 for 71 paintings to the Oakland Museum. It's called the Kahn Collection of 19th-century California art. Marjorie Arkelian catalogued it.</p>
+  <p>Mother died March 4, 1935, in Oakland.</p>
+
+  <h3>The Lavenson Family</h3>
+  <p>My uncle Albert S. Lavenson (1865-1930) was born in Sacramento. He married Amy Furth in 1894. Amy's father, Simon Furth, was a Gold Rush merchant. Before 1900, the Lavensons and the Locke family partnered to run a department store in Sacramento.</p>
+  <p>Uncle Albert was partner and vice-president of Capwell's Department Store for 30 years, starting in 1890. He was president of Temple Sinai. He organized the Commercial Club, which became the Oakland Chamber of Commerce. He was a music patron at Mills College and responsible for building their Music Building. In 1927, he chaired the Jewish Welfare Campaign of the East Bay. He died at 65 of heart disease and left his estate to a charitable and educational foundation.</p>
+  <p>His daughter, my cousin Alma Ruth Lavenson (1897-1989), became a noted photographer. She studied under Edward Weston and Imogen Cunningham.</p>
+  <p>Mother's sisters Clara Lavenson Furth (1870-1945) and Sara Lavenson (1871-1946) both lived long lives in California.</p>
+
+  <h3>My Siblings</h3>
+  <p>I had a sister, Helen Sarah Kahn Eppinger (1913-1956), who married Josua Eppinger. And a brother, Frederick Kahn Jr.</p>
 </div>
 
-<div class="section kahn-origins">
-<h2>The Kahn Family: From Darmstadt to Oakland</h2>
-<p>My grandfather Israel Kahn came from Darmstadt, Hesse, Germany in 1848. He sailed from Rotterdam on the Henry Shelton, landing in Baltimore. His parents were Henry (Hertz) Kahn and Bela Goldstein.</p>
-<p>Israel married Sarah Bauer. In 1879 he founded a dry goods business in Oakland at 10th and Broadway. When he died in 1883, the business passed to his sons: Henry, Samuel, Solomon, and my father Frederick.</p>
+<div class="section">
+  <h2>The Sampson Family: From England to South Carolina to California</h2>
 
-<h3>My Father, Frederick Kahn</h3>
-<p>My father was born in New York in 1860. He first worked at Bauer Brothers Company in San Francisco, then joined the family store. In 1912, Kahn Brothers Department Store moved to a grand Beaux-Arts building at 16th and Broadway. The architect Charles W. Dickey designed it with a 120-foot elliptical dome. That building still stands. It's now the Rotunda Building, an Oakland landmark on the National Register of Historic Places.</p>
-<p>Father was the first president of the Jewish Welfare Federation of the East Bay. He was a founding member and president of Temple Sinai. He served as chairman of the Advisory Committee of the Board of Education, overseeing a five million dollar school building program. He belonged to the Concordia Club and B'nai B'rith. He died in 1925 at our home on Harrison Street. He's buried at Home of Eternity Cemetery in Mountain View Cemetery, Oakland.</p>
+  <h3>Joseph H. Sampson (1823-1883)</h3>
+  <p>Grandpa John's grandfather Joseph H. Sampson was born June 10, 1823, in Charleston, South Carolina. The Sampson family originally came from Bury St. Edmunds, England. Their names appear in the records of Kahal Kadosh Beth Elohim in Charleston.</p>
+  <p>Joseph and his brother Samuel were prominent Jewish merchants and shipping operators in Georgetown, South Carolina. Georgetown had about 80 Jews by 1800, roughly 10% of the white population, making it the second largest Jewish community in South Carolina. There was a Jewish cemetery there established in 1772.</p>
+  <p>After the Civil War, Joseph and Samuel revived their mercantile business and expanded into shipping.</p>
+  <p>Joseph married Esther "Hetty" Cohen (1832-1897). Hetty was born June 30, 1832, in Charleston. Her parents were Reverend Hartwig Cohen (1784-1861) and Deborah Marks Cohen (1801-1888). Hartwig was the spiritual leader of Charleston's Kahal Kadosh Beth Elohim. He was born in Wartha, Frankenstein, Silesia, Prussia, and died October 12, 1861, in Winnsboro, Fairfield County, South Carolina.</p>
+  <p>Joseph died July 14, 1883, and is buried in the Jewish Cemetery in Georgetown. A headstone photo is on BillionGraves.</p>
 
-<h3>My Mother, Helen Lavenson Kahn</h3>
-<p>My mother Helen was born in 1872, the same year her mother Caroline died. Caroline Heiman Lavenson was only twenty-nine when she passed, leaving three daughters: Clara, Sara, and Helen.</p>
-<p>After my father died in 1925, Mother established the Kahn Foundation in 1928. In 1965, the foundation donated $125,000 to the Oakland Museum. That gift purchased seventy-one paintings of nineteenth-century California art, catalogued by Marjorie Arkelian. They call it the Kahn Collection.</p>
+  <h3>Dr. Arthur Fischel Sampson (1855-1934)</h3>
+  <p>Grandpa John's father Arthur was born July 1, 1855, in Georgetown. He went to medical school in South Carolina and practiced in Galveston, Texas. On April 4, 1887, he married Babette "Bettie" Levy (1868-1949) in Galveston. Bettie was born March 24, 1868, in San Antonio. Her parents were Abraham Levy (1827-1879) and Esther Halff (1833-1908).</p>
+  <p>Arthur and Bettie had five children in Galveston: Joseph Abraham (December 4, 1888), Arthur Jr. (June 2, 1891), Cornelia "Nellie" (August 8, 1893), Esther, and John Jacob (April 28, 1898).</p>
+  <p>After the great Galveston flood of 1900, the family moved to San Francisco in 1902. They lived on Franklin Street between Bush and Sutter. During the 1906 earthquake, the U.S. Army dynamited their home as a firebreak. They rebuilt on Washington Street near Laurel.</p>
+  <p>Arthur died November 26, 1934, in San Francisco. Bettie died March 21, 1949, in Santa Clara, California.</p>
+
+  <h3>Grandpa John's Siblings</h3>
+  <p>Joseph Abraham Sampson was born in Galveston. Arthur Fischel Sampson Jr. was also born there. Cornelia "Nellie" Sampson (1893-1989) married first Sidney Bibbero (their son Richard was born in 1915), then Herbert Salinger. She died in San Francisco. Esther Sampson married and became Esther Langfeld.</p>
 </div>
 
-<div class="section lavenson-family">
-<h2>The Lavensons</h2>
-<p>My mother's parents were Samuel Lavenson and Caroline Heiman. Caroline died on June 24, 1872, in Sacramento. She's buried at Home of Peace Cemetery there.</p>
-<p>Mother's brother Albert was born in Sacramento in 1865. He was partner and vice president of Capwell's Department Store for thirty years. He served as president of Temple Sinai and organized the Commercial Club, which became the Oakland Chamber of Commerce. He was a music patron at Mills College and chaired the Jewish Welfare Campaign of the East Bay in 1927.</p>
-<p>Albert married Amy Furth in 1894. Her father Simon Furth was a Gold Rush merchant. Their daughter Alma Ruth Lavenson became a noted photographer. She studied under Edward Weston and Imogen Cunningham.</p>
+<div class="section">
+  <h2>Rose Etta and Dr. John Jacob Sampson</h2>
+
+  <h3>My Education and Early Life</h3>
+  <p>I graduated Phi Beta Kappa from UC Berkeley in 1928. I was an award-winning weaver. I wove furniture upholstery for our Seacliff home and made a cushion for the Haas-Lilienthal House. I served as president of the Kahn Foundation and volunteered at Mount Zion Hospital into my 80s.</p>
+
+  <h3>Dr. John Jacob Sampson (1898-1987)</h3>
+  <p>John was born April 28, 1898, in Galveston, the youngest of five children. He earned his MD before age 21, spending three years at UC before medical school. He served as a medical officer on a freighter to the Far East and India.</p>
+  <p>He practiced with his father, then joined the UCSF research and clinical staff. He didn't retire until age 85. He became Chief of Staff at Mount Zion Hospital.</p>
+  <p>John was a cardiologist with 49 publications between 1926 and 1980 on cardiac pain, pulmonary lymph flow, angina, and shock. He collaborated with Meyer Friedman (who developed the Type A behavior theory), Herman Uhley, and Sanford Leeds at the Harold Brunn Institute for Cardiovascular Research. UCSF established the John J. Sampson-Lucie Stern Endowed Chair in Cardiology in his honor.</p>
+  <p>We married May 17, 1931. John died December 24, 1987, in San Francisco.</p>
+
+  <h3>My Final Years</h3>
+  <p>I died July 12, 1997, at Mount Zion Hospital from a lung embolism. My memorial service was held August 4 at Congregation Emanu-El.</p>
 </div>
 
-<div class="section sampson-origins">
-<h2>The Sampson Family: Georgetown and Charleston</h2>
-<p>My husband John's family came from South Carolina. His grandfather Joseph H. Sampson was born in Charleston in 1823. Joseph and his brother Samuel were prominent Jewish merchants and shipping operators in Georgetown, South Carolina.</p>
-<p>Georgetown had a significant Jewish community. By 1800, Jews made up about ten percent of the white population. It was the second largest Jewish community in South Carolina after Charleston. The Jewish cemetery there was established in 1772. Joseph is buried there. He died in 1883.</p>
-<p>Joseph married Esther Cohen, called Hetty. She was born in Charleston in 1832. Her father was Hartwig Cohen, a spiritual leader at Kahal Kadosh Beth Elohim in Charleston. Hetty's siblings included Sarah Cohen Wolfe and Frances A. Cohen. Sarah was Bernard Baruch's grandmother.</p>
-<p>The Sampson name came from England, from Bury St. Edmunds. It's an anglicization of the Hebrew Shimshon, meaning sun. The p was introduced in the Greek transliteration.</p>
+<div class="section">
+  <h2>Our Children</h2>
 
-<h3>Dr. Arthur Fischel Sampson</h3>
-<p>Joseph and Hetty's son Arthur Fischel was born in Georgetown in 1855. He went to medical school in South Carolina and practiced in Galveston, Texas. There he married Babette Levy from San Antonio on April 4, 1887.</p>
-<p>After the 1900 Galveston flood, Arthur moved his family to San Francisco in 1902. They lived on Franklin Street between Bush and Sutter. During the 1906 earthquake, the US Army dynamited their home as a firebreak. Arthur rebuilt on Washington Street near Laurel.</p>
-<p>Arthur and Bettie had five children: Joseph Abraham, Arthur Jr., Cornelia (who we called Nellie), Esther, and John Jacob.</p>
+  <h3>Deborah Sampson Green (born 1934)</h3>
+  <p>Our eldest, Deborah, was born January 11, 1934, in San Francisco. She's an educator, editor, and college instructor of English Literature. She attended Lowell, Alamo, and Presidio Jr. High, then Wellesley (1978). She married John R. Green (about 1921 to 1996) and lives in Seattle.</p>
+  <p>Their son Caleb married Kate Banta-Green. They have two sons: Robert Bruce Banta-Green and Peter Caleb Banta-Green.</p>
+
+  <h3>John Frederick Sampson (born 1935)</h3>
+  <p>John was born March 18, 1935, in San Francisco. He's an appraiser and real estate broker in San Francisco. He attended Lowell High School (graduated 1953), spent three years at Reed College, earned his AB from the University of San Francisco (1957), and went to Wharton (1960).</p>
+  <p>He married Louise Adler in 1962. They divorced in 1991. They have three children: Jennifer Ruth, John Frederick Jr. (born November 2, 1966), and Juliet Margaret.</p>
+  <p>In 1999, John married Sharon L. Litsky.</p>
+
+  <h3>Janet Sampson Reider (born 1937)</h3>
+  <p>Janet was born March 1, 1937, in San Francisco. She's a photographer. You can see her work at janetreider.com.</p>
+  <p>She met Pete Reider at Lowell High School when she was 13. They married in 1958.</p>
 </div>
 
-<div class="section roro-and-john">
-<h2>John and Me</h2>
-<p>I was born December 10, 1907, in Oakland. I graduated Phi Beta Kappa from UC Berkeley in 1928. As a girl, I carried the key at Temple Sinai's dedication ceremony.</p>
-<p>John Jacob Sampson was born in Galveston on April 28, 1898. He got his medical degree before he was twenty-one. Three years at UC, then medical school. He served as a medical officer on a freighter to the Far East and India. He practiced with his father Arthur, then joined the research and clinical staff at UCSF. He didn't retire until he was eighty-five.</p>
-<p>John became Chief of Staff at Mount Zion Hospital. He was a cardiologist. He published forty-nine papers between 1926 and 1980, research on cardiac pain, pulmonary lymph flow, angina, shock. He worked with Meyer Friedman, the man who defined Type A behavior. Also with Herman Uhley and Sanford Leeds at the Harold Brunn Institute for Cardiovascular Research.</p>
-<p>We married May 17, 1931. I was an award-winning weaver. I wove the furniture upholstery for our Seacliff home. I made a needlepoint cushion for the Haas-Lilienthal House. I served as president of the Kahn Foundation. I volunteered at Mount Zion Hospital into my eighties, made weekly visits to nursery schools as Grandma RoRo, attended services and concerts at Congregation Emanu-El.</p>
-<p>John died December 24, 1987. UCSF established the John J. Sampson-Lucie Stern Endowed Chair in Cardiology in his honor.</p>
-<p>I died July 12, 1997, of a lung embolism at Mount Zion Hospital. My memorial service was August 4 at Congregation Emanu-El.</p>
+<div class="section">
+  <h2>The Reider Family</h2>
+
+  <h3>Dr. Norman Reider (1907-1989)</h3>
+  <p>Pete's father Norman was born July 3, 1907, in Alliance, Stark County, Ohio. He earned his BA and MD from Western Reserve University (now Case Western Reserve). He trained at the Menninger Clinic in Topeka from 1934 to 1939.</p>
+  <p>Norman became Chief of Psychiatry at Mount Zion Hospital in San Francisco, succeeding Jascha Kasanin. He was an early member of the San Francisco Psychoanalytic Society, founded in 1942. Norman arrived in San Francisco in 1946.</p>
+  <p>TIME magazine featured him in 1947 for his work on "The Unmarried Father." He wrote "Chess, Oedipus, and the Mater Dolorosa" in 1959. He served on the ACLU board in Northern California. His papers are archived at the San Francisco Center for Psychoanalysis, 4.6 linear feet covering 1822 to the 1980s.</p>
+  <p>Norman's father was Maurice Jacob Reider (about 1882 to 1960), originally named Rudner, from Horoduk/Orduk Village in Vilna Gubernia, Lithuania. Maurice changed his name to Reider and worked as a foreman at a steel foundry in Canton, Ohio. He married Lillian Cohen (1887-1981) on June 7, 1906, in Canton. Maurice's father was Uriah "Uri" Rudner (1855-1916), who came from Orduk Village and died in Canton. Uri's first wife was Clara Scope (1862-1909). Lillian's parents were Hyman Cohen (born 1850) and Jennie Sugarman (1865-1928).</p>
+  <p>Norman married Louise J. Cohen (1907-1985) in 1927. Louise was born November 29, 1907, in Cleveland, Ohio, and died February 22, 1985, in San Francisco. She was a psychiatric social worker who stopped practicing around 1946. Her father was Abe (Abba Elyia) Pasek Cohen (1886 to about 1915), son of Aaron Cohen Pasek. Her mother was Rena Posak Cohen née Shepsenwol (born 1886), daughter of Max Cohen and a Levine Shepsenwol.</p>
+  <p>Norman died March 23, 1989, in San Francisco.</p>
+
+  <h3>Arthur Elliott "Pete" Reider (1936-2015)</h3>
+  <p>Pete was born November 1, 1936, in Topeka, Kansas. He attended Presidio Hill School, Grant School, and Lowell High School in San Francisco. He went to Harvard, Class of 1958, then Harvard Medical School.</p>
+  <p>At Harvard, Pete was captain of the track team and ran a 4:11 mile, which was the Harvard record in 1957. He was on the All-Ivy League Cross Country Team. Coach McCurdy called him "one of the toughest little men I have ever known." Harvard inducted him into their Athletic Hall of Fame in 1982.</p>
+  <p>Pete became a psychiatrist with a private practice in Cambridge, Hyannis, and Newton, Massachusetts. He retired in San Francisco. In 2014, he published Stepping Stones, a collection of poetry and fiction. He took classes at the Fromm Institute at USF and the Osher Foundation at Brandeis.</p>
+  <p>Pete died of lymphoma at home on August 13, 2015. His memorial service was at Congregation Emanu-El on August 17, 2015.</p>
+  <p>Pete's brother Jonathan Reider worked as a Stanford admissions officer for 15 years, then became Director of College Counseling at SF University High School.</p>
 </div>
 
-<div class="section children">
-<h2>Our Children</h2>
-<p>John and I had three children.</p>
+<div class="section">
+  <h2>Grandchildren</h2>
 
-<h3>Deborah</h3>
-<p>Deborah was born January 11, 1934. She's an educator and English literature professor. She went to Wellesley. She married John R. Green and they live in Seattle. Their son Caleb married Kate Banta-Green. Caleb and Kate have two sons, Robert Bruce and Peter Caleb.</p>
+  <h3>Jacob M. Reider (born 1963)</h3>
+  <p>Jacob was born June 25, 1963, in Boston. He's a family physician (FAAFP). He graduated from Hampshire College in 1983 and Albany Medical College in 1994.</p>
+  <p>Jacob was Deputy National Coordinator for Health IT at HHS from 2011 to 2014, and also served as Acting National Coordinator. Before that, he was CMIO at Allscripts (2006-2010). From 2016 to 2021, he was CEO of the Alliance for Better Health. He co-founded five health IT startups, including Twistle (acquired by Health Catalyst) and Physera (acquired by Omada). He's maintained his blog, docnotes.net, since 1999.</p>
+  <p>Jacob married Alicia Ouellette. Alicia was the 18th President and Dean of Albany Law School from 2015 to 2023. She's now Dean at Lewis & Clark Law School. They have two children: Molly and Sampson. Molly is nonbinary and married Brandon LaFollette. They live in Slingerlands, New York.</p>
 
-<h3>John Frederick</h3>
-<p>John Frederick was born March 18, 1935. He went to Lowell High School, spent three years at Reed College, got his AB from the University of San Francisco in 1957, then went to Wharton. He's an appraiser and real estate broker in San Francisco. He married Louise Adler in 1962. They divorced in 1991. They had three children: Jennifer Ruth, John Frederick Jr., and Juliet Margaret. John married Sharon Litsky in 1999.</p>
+  <h3>Suzie Reider (born 1965)</h3>
+  <p>Suzie was born March 29, 1965, in Boston. She's EVP of Lyft Media & Business at Lyft. Before that, she was Global CRO at Waze.</p>
+  <p>Suzie married Brian Smith in 1992. They divorced in 2019. They have two daughters: Rose Reider Smith and Charlotte Reider Smith.</p>
 
-<h3>Janet</h3>
-<p>Janet was born March 1, 1937. She's a photographer. You can see her work at janetreider.com. She met Pete Reider at Lowell High School when she was thirteen. They married in the spring of 1958.</p>
+  <h3>Matt Reider (born 1969)</h3>
+  <p>Matt was born December 22, 1969, in Boston. He works in software and lives in Oakland, California. He married Alison Cohen on June 19, 2003. Alison was born August 7, 1972. They have two children: Max Nathan (born March 3, 2007) and Zoe Ella (born July 29, 2008), both in Oakland.</p>
+  <p>Matt is the one who brought me into this chat to keep the family history current.</p>
 </div>
 
-<div class="section pete-reider">
-<h2>Pete Reider</h2>
-<p>Arthur Elliott Reider, called Pete, was born in Topeka, Kansas, on November 1, 1936. He went to Presidio Hill School, Grant School, and Lowell High School. Then Harvard, Class of 1958, then Harvard Medical School.</p>
-<p>At Harvard he was captain of the track team. He ran a 4:11 mile in 1957, a Harvard record. He set two-mile records. His coach Bill McCurdy called him one of the toughest little men he'd ever known. Pete was inducted into the Harvard Athletic Hall of Fame in 1982. He made the All-Ivy League Cross Country Team.</p>
-<p>Pete was a psychiatrist. He had a private practice in Cambridge, Hyannis, and Newton, Massachusetts, before retiring in San Francisco. He published a book in 2014, Stepping Stones, a collection of poetry and fiction. He was a member of the Fromm Institute at USF and the Osher Foundation Lifelong Learning Institute at Brandeis.</p>
-<p>He died of lymphoma on August 13, 2015, at home with Janet and their three children. His memorial was at Congregation Emanu-El on August 17.</p>
+<div class="section">
+  <h2>The Sephardic Question: Deborah Marks Cohen and the Levy Maduro Family</h2>
+  
+  <p>There may be a Sephardic Portuguese line through Grandpa John's grandmother Esther "Hetty" Cohen's mother, Deborah Marks Cohen (1801-1888).</p>
+  
+  <p>Deborah's maiden name was Marks, but the family name was originally Marques, anglicized from the Portuguese. Her father was Samuel Mendel Marks, who moved to Charleston. His father was Isaac Marks (1732-1776), who fought as a private in the New York Militia during the American Revolution. Isaac lived in New York City from age 8 (1740). His parentage is uncertain, but multiple family trees list his mother as Esther de Salomon Levy Maduro.</p>
 
-<h3>Pete's Father, Norman Reider</h3>
-<p>Pete's father Norman was born in Alliance, Ohio, in 1907, the same year I was born. He got his BA and MD from Western Reserve University, now Case Western Reserve. He trained at the Menninger Clinic in Topeka from 1934 to 1939.</p>
-<p>Norman became Chief of Psychiatry at Mount Zion Hospital in San Francisco, succeeding Jascha Kasanin. He was an early member of the San Francisco Psychoanalytic Society. TIME magazine featured him in 1947 for his paper "The Unmarried Father." He wrote "Chess, Oedipus, and the Mater Dolorosa" in 1959. He served on the ACLU board in Northern California.</p>
-<p>Norman married Louise J. Cohen in 1927. She was a psychiatric social worker. Norman's papers are archived at the San Francisco Center for Psychoanalysis, 4.6 linear feet covering 1822 to the 1980s. He died in 1989. Louise died in 1985.</p>
-<p>Norman's father Maurice Jacob Reider was born Rudner in Horoduk Village, Vilna Gubernia, Lithuania. He changed the name to Reider. He worked as a foreman at a steel foundry in Canton, Ohio. His father was Uriah Rudner, born in 1855 in Orduk Village. Uriah's wife was Clara Scope.</p>
+  <h3>Esther de Salomon Levy Maduro (1699-1759)</h3>
+  <p>Esther is listed in multiple Geni and Ancestry trees as born December 16, 1699, in Bordeaux, France, and died July 30, 1759, in Curaçao. She's buried at Beth Haim Cemetery, Curaçao, section IV, row C, grave 621. Matt researched this in 2022 and corresponded with Ron Gomes Casseres at Beth Haim cemetery.</p>
+  
+  <p>Esther first married Jacob Rodriguez Marques on May 27, 1722, in Barbados at St. Michaels. Jacob died around 1725. Jacob's father Isaac Rodriguez Marques (1695-1706) was a ship owner (the Dolphin) who sailed between New York and England. His will from 1706 mentions son Jacob and daughter Esther (a different Esther).</p>
+  
+  <p>After Jacob's death, Esther married Ishac de Shemuel Levy Maduro, who is buried adjacent to her (plot IV-C-620). Isaac Marks was born in 1732 with an unknown father, possibly conceived in New York. Esther also had a daughter Rachel Marquez (about 1725, Barbados).</p>
+  
+  <p>There are contradictions in the Emmanuel books. "History of the Jews of the Netherlands Antilles" (1970), page 943, says she married Jacob in 1722, but "Precious Stones of the Jews of Curaçao" (1957), page 507, lists her as wife of Ishac de Shemuel. Also, there are records of a different Esther de Salomon Levy Maduro y Namias de Castro born 1710 (not 1699) who married Isaac de Samuel Levy Maduro y Vieyra (1712-1784). The Geni profile may conflate two different women. The Bordeaux birthplace is unsupported. The Levy Maduro family was based in Amsterdam and Curaçao.</p>
+
+  <h3>The Levy Maduro Rabbinical Line</h3>
+  <p>If the connection to Esther holds, it traces back through a line of rabbis (Hazzanim) in Amsterdam and Curaçao:</p>
+  
+  <ul>
+    <li>Ribi Hazzan Salomon de Mosseh Levy Maduro y Dias Sardo (1673-1752), Esther's father. Rabbi and Hazzan, born in Amsterdam, died in Curaçao.</li>
+    <li>Hazzan & Ribi Mosseh de Salomon Levy Maduro (1649-1708), born in Amsterdam, died in Curaçao. Rabbi and cantor who arrived in Curaçao in 1672. He married Hester Dias Sardo on July 13, 1670.</li>
+    <li>Salomon (Salomão) de Moshe Levy Maduro (1629-1699), born in Amsterdam. Also known as Salomon Levy Maduro Rodriguez. He married Chana de Castro on October 27, 1648.</li>
+    <li>Mosseh Levy o Maduro (about 1591-1640), born in Portugal, died in Amsterdam. He adopted the "Maduro" name. He married Clara Rodriguez (also known as Rachel/Raquel) on July 27, 1622, in Amsterdam.</li>
+    <li>Solomon Levy, son of Salomon (Samuel) Levy.</li>
+    <li>Salomon (Samuel) Levy, son of Antonio Ha Levy, Abulafia.</li>
+    <li>Antonio Ha Levy, Abulafia, son of Diogo Rodrigues and Clara Roiz.</li>
+    <li>Diogo Rodrigues and Clara Roiz, the earliest known ancestors from 1400s Portugal.</li>
+  </ul>
+
+  <h3>What the DNA Shows</h3>
+  <p>Matt's DNA test showed 99% Ashkenazi ancestry. If there is a Sephardic line, it's far back and has been overwhelmed by Ashkenazi ancestors on all other branches.</p>
+
+  <h3>Verification Status</h3>
+  <p>The connection through Isaac Marks to Esther de Salomon Levy Maduro appears in multiple trees but lacks primary documentation. Esther's first husband died around 1725, and Isaac was born in 1732 with an unknown father. The link is plausible but unproven. Isaac's military service claim also lacks muster roll confirmation. Some trees list his death place as Charleston, but that was his son's location. He died in New York.</p>
+
+  <p>This is an open research question, not established fact. The story is fascinating and worth pursuing, but treat it carefully.</p>
 </div>
 
-<div class="section grandchildren">
-<h2>Grandchildren</h2>
+<div class="section">
+  <h2>Places That Shaped This Family</h2>
 
-<h3>Jacob M. Reider</h3>
-<p>Jacob was born June 25, 1963, in Boston. He's a family physician. He went to Hampshire College and Albany Medical College. He was Deputy National Coordinator for Health IT at HHS from 2011 to 2014, also served as Acting National Coordinator. Before that he was CMIO at Allscripts. He was CEO of Alliance for Better Health from 2016 to 2021.</p>
-<p>Jacob co-founded five health IT startups. Twistle was acquired by Health Catalyst. Physera was acquired by Omada. He's kept a blog at docnotes.net since 1999.</p>
-<p>He married Alicia Ouellette. She was the 18th President and Dean of Albany Law School from 2015 to 2023. Now she's Dean at Lewis & Clark Law School. They have two children, Molly and Sampson. They live in Slingerlands, New York.</p>
+  <h3>Oakland, California</h3>
+  <p>My birthplace. Israel Kahn founded his dry goods business here in 1879 at 10th and Broadway. Kahn Brothers Department Store moved to the magnificent Beaux-Arts building at 16th and Broadway in 1912, designed by Charles W. Dickey with a 120-foot elliptical dome. It's now the Rotunda Building, Oakland Landmark #132, on the National Register of Historic Places.</p>
+  <p>Papa was the first president of the Jewish Welfare Federation of the East Bay, founded in 1918. He and Uncle Albert were founding members and presidents of Temple Sinai. I carried the key at Temple Sinai's dedication as a girl.</p>
+  <p>Mother established the Kahn Foundation in 1928. In 1965, it donated 71 paintings (the Kahn Collection of 19th-century California art) to the Oakland Museum.</p>
 
-<h3>Suzie Reider</h3>
-<p>Suzie was born March 29, 1965, in Boston. She's EVP of Lyft Media and Business at Lyft. Before that she was Global CRO at Waze. She married Brian Smith in 1992. They divorced in 2019. They have two daughters, Rose and Charlotte.</p>
+  <h3>Georgetown, South Carolina</h3>
+  <p>Joseph H. Sampson and his brother Samuel were prominent merchants and shipping operators here. Georgetown had about 80 Jews by 1800, roughly 10% of the white population, making it the second largest Jewish community in South Carolina. The Jewish cemetery there was established in 1772. Joseph is buried there.</p>
 
-<h3>Matt Reider</h3>
-<p>Matt was born December 22, 1969, in Boston. He works in software. He lives in Oakland. He married Alison Cohen on June 19, 2003. They have two children, Max Nathan, born March 3, 2007, and Zoe Ella, born July 29, 2008. Matt's the one who brought me into this chat.</p>
+  <h3>Charleston, South Carolina</h3>
+  <p>The center of Southern Jewish life. Kahal Kadosh Beth Elohim, where Reverend Hartwig Cohen served as spiritual leader. Joseph H. Sampson was born here in 1823. The Sampson family names appear in the synagogue's records.</p>
+
+  <h3>Galveston, Texas</h3>
+  <p>Where Dr. Arthur Fischel Sampson practiced medicine and where Grandpa John was born in 1898. The family lived through the great 1900 flood and moved to San Francisco in 1902.</p>
+
+  <h3>San Francisco</h3>
+  <p>Where John and I built our life together. Where he became Chief of Staff at Mount Zion Hospital and collaborated on groundbreaking cardiac research. Where I volunteered at Mount Zion into my 80s. Where we raised our three children. Where John died in 1987 and where I died in 1997. Both our memorial services were at Congregation Emanu-El.</p>
+
+  <h3>Curaçao</h3>
+  <p>The Caribbean island where the Levy Maduro rabbis served and where Esther de Salomon Levy Maduro is buried at Beth Haim Cemetery. If the Sephardic connection is real, this is where that line passed through on its way from Portugal and Amsterdam to the Americas.</p>
 </div>
 
-<div class="section sephardic-question">
-<h2>The Sephardic Line: An Open Question</h2>
-<p>There's a possible Sephardic connection through Grandpa John's grandmother Hetty Cohen. Her mother was Deborah Marks Cohen, born in Charleston in 1801. The Marks name was anglicized from Marques, which suggests Portuguese Sephardic origins. But the links aren't proven.</p>
-<p>Deborah's father was Samuel Mendel Marks. His father was Isaac Marks, born in New York in 1732. Isaac fought in the American Revolution as a private in the New York Militia. He married Miriam Simpson of Long Island. His son Samuel Mendel moved to Charleston.</p>
-<p>Multiple genealogy trees list Isaac's mother as Esther de Salomon Mosseh Marques, also called Esther Levy Maduro y Namias de Crasto. She was born December 16, 1699, reportedly in Bordeaux, France. She died July 30, 1759, in Curaçao. She's buried at Beth Haim Cemetery there, section IV, row C, grave 621.</p>
-<p>But here's the problem. Esther's first husband Jacob Rodriguez Marques died around 1725. Isaac was born in 1732. That's seven years later. Isaac's father is unknown. The documentation for this maternal link is unclear.</p>
-<p>Bernard Baruch, the Wall Street financier, was a cousin through Isaac Marks' granddaughter Sarah Wolfe. He claimed descent from Isaac Rodriguez Marques in his autobiography. But the dates don't work for a direct line.</p>
-<p>Matt researched this extensively in 2022. He corresponded with Ron Gomes Casseres at the Beth Haim cemetery in Curaçao and studied genealogist Isaac S. Emmanuel's records. Emmanuel's own books contain contradictions about Esther's marriages.</p>
-<p>If the Sephardic connection holds, the Levy Maduro line goes back through rabbis in Amsterdam to Portugal in the 1400s. Esther's father was Ribi Hazzan Salomon de Mosseh Levy Maduro y Dias Sardo, a rabbi in Amsterdam. The line traces through several generations of Levy Maduros to Mosseh Levy o Maduro in Portugal, and ultimately to Diogo Rodrigues and Clara Roiz in the 1400s.</p>
-<p>It's a fascinating possibility. But it remains a theory, not proven fact.</p>
+<div class="section">
+  <h2>What Matters</h2>
+  <p>We came from Germany, England, Portugal, Lithuania, and South Carolina. We built department stores, practiced medicine, taught, created art, led synagogues, served our communities.</p>
+  <p>The facts are in the records. The dates and places, the ships and cemeteries, the buildings and institutions. But what matters is what we built: families, communities, lives of purpose.</p>
+  <p>Keep the history accurate. Keep it current. Pass it on.</p>
 </div>
-
-<div class="section places">
-<h2>The Places That Shaped Us</h2>
-
-<h3>Oakland</h3>
-<p>Oakland was home. Israel Kahn founded his dry goods business there in 1879. The Kahn Brothers Department Store building at 16th and Broadway still stands, a landmark with its great dome. Temple Sinai, where my father served as president, where I carried the key at the dedication. The Oakland Museum, home to the Kahn Collection. Home of Eternity Cemetery, where my father rests.</p>
-
-<h3>Georgetown, South Carolina</h3>
-<p>Joseph H. Sampson and his brother Samuel built their merchant and shipping business there after the Civil War. The Jewish cemetery, established in 1772, holds Joseph's grave. Georgetown had a vibrant Jewish community, ten percent of the white population by 1800.</p>
-
-<h3>Galveston</h3>
-<p>Arthur Fischel Sampson practiced medicine there. He married Bettie Levy there in 1887. Their children were born there: Joseph Abraham, Arthur Jr., Nellie, Esther, and John. The great flood of 1900 changed everything. In 1902, Arthur moved his family to San Francisco.</p>
-
-<h3>San Francisco</h3>
-<p>Arthur rebuilt after the 1906 earthquake took his Franklin Street home. John and I made our life there, in Seacliff. Mount Zion Hospital, where John was Chief of Staff, where I volunteered into my eighties, where I died in 1997. Congregation Emanu-El, where we held memorials for both John and me. UCSF, where John spent his career.</p>
-
-<h3>Curaçao</h3>
-<p>If the Sephardic connection is real, this is where it runs deepest. Esther de Salomon Levy Maduro is buried at Beth Haim Cemetery. Her father Ribi Hazzan Salomon arrived there in 1672. The cemetery, the synagogue, the records, they tell the story of Sephardic Jews who fled Portugal and Spain, who built new lives in the Caribbean, who kept their faith across oceans and centuries.</p>
-</div>
-
-<div class="section closing">
-<h2>What Endures</h2>
-<p>Names change. Marques becomes Marks. Rudner becomes Reider. Shimshon becomes Sampson. People cross oceans, flee disasters, rebuild after earthquakes and floods.</p>
-<p>What endures is what we carry forward. The businesses we build. The hospitals we staff. The schools we fund. The art we collect. The knowledge we preserve. The family we raise.</p>
-<p>This is our family's history. I've kept it as well as I can.</p>
-</div>
-  </div>
-</div>
-
-<div id="about-tab" class="tab-content">
-  <div id="about-view">
-    <h2>How This Was Built</h2>
-
-    <p>This site is generated by a WhatsApp bot named RoRo, after my grandmother Rose Etta Kahn Sampson. The idea started after I read <a href="https://medium.com/@pbrudny/building-a-family-tree-ai-assistant-from-gedcom-to-whatsapp-bot-with-a-graph-database-b1fcf0b3cc9e" target="_blank">a blog post about building a family tree AI assistant</a> that connected a GEDCOM file to a WhatsApp bot using a graph database. I thought: I could do something like that for our family.</p>
-
-    <p>I already had a WhatsApp bot running on <a href="https://github.com/opensouls/openclaw" target="_blank">OpenClaw</a>, an open-source framework for building AI personas on messaging platforms. My brother and I had been using it to chat with "Pepper," a bot modeled after our childhood dog. Pepper was just there for fun, nothing serious. But after reading that blog post, I wanted to build something more useful, something the whole family could interact with around a topic that actually matters to us: our history.</p>
-
-    <p>The first version of RoRo had personality but not much substance. I had some family facts saved in a couple of markdown files, and she ran as an OpenClaw agent. I asked her a dozen times, "Who are your grandparents?" and she had no idea. The information was too loosely structured for her to work with.</p>
-
-    <p>So I rebuilt her from the ground up. Instead of OpenClaw's higher-level framework, I went directly to the libraries it wraps: <a href="https://github.com/WhiskeySockets/Baileys" target="_blank">Baileys</a> for WhatsApp connectivity and the <a href="https://docs.anthropic.com/en/docs/initial-setup" target="_blank">Anthropic SDK</a> for Claude as the language model. I moved the family data into a structured JSON file with proper fields for names, dates, places, relationships, and sources. That made a huge difference. RoRo could suddenly answer questions accurately and tell coherent stories about the family.</p>
-
-    <p>Next, I connected her to <a href="https://www.geni.com" target="_blank">Geni.com</a> through a small app I built for their API. This lets her look things up, validate what she knows, and push updates back when family members share new information. She can also export the tree as a <a href="sampson-kahn.ged" download>GEDCOM file</a> for use in other genealogy software.</p>
-
-    <p>Today, RoRo listens to our WhatsApp family group, answers questions about our history, and can update the family tree interactively. Changes get saved to the JSON, synced to Geni, exported to GEDCOM, and published to this site. She generates the narrative on the "Our Story" tab using Claude, and the whole site is deployed automatically through GitHub Pages.</p>
-
-    <p>I am about to introduce her new self to the family, with all these improvements. Wish us luck.</p>
-
-    <p style="margin-top: 2rem; font-size: 0.85rem; color: var(--muted);">Built by <a href="https://mreider.com">Matt Reider</a>. Source on <a href="https://github.com/mreider/roro-bot" target="_blank">GitHub</a>.</p>
-  </div>
-</div>
-
-<div id="changelog-tab" class="tab-content">
-  <div id="changelog-view">
-    <h1>Family Tree Change Log</h1>
-
-<h2>2026-03-09 - Data verification against Geni.com and genealogy sources</h2>
-<p><strong>By:</strong> Matt Reider (via Claude Code research)</p>
-
-<h3>Corrections</h3>
-<ul><li><strong>Caroline Lavenson</strong>: Maiden name corrected from "Weinman" to <strong>"Heiman"</strong> — <a href="https://www.findagrave.com/memorial/198472140/caroline-lavenson" target="_blank">Find a Grave #198472140</a></li>
-<li><strong>Caroline Lavenson</strong>: Added death date (1872-06-24) and death place (Sacramento, CA) — she died the same year her daughter Helen was born</li>
-<li><strong>Helen Sarah Eppinger</strong>: Corrected married name from "Basinger" to <strong>"Eppinger"</strong> — married Josua Eppinger — <a href="https://www.findagrave.com/memorial/18982153/frederick-kahn" target="_blank">Find a Grave</a>, <a href="https://www.geni.com/people/Frederick-Kahn/6000000000677780658" target="_blank">Geni</a></li>
-<li><strong>Frederick Kahn</strong>: Corrected note from "joined father's business 1873" — the store was founded in <strong>1879</strong>; Frederick first worked at Bauer Brothers in SF — <a href="https://oaklandwiki.org/Israel_Kahn" target="_blank">Oakland LocalWiki</a></li>
-<li><strong>Hartwig Cohen</strong>: Birth year corrected from 1783 to <strong>1784</strong> — <a href="https://www.geni.com/people/Rev-Hartwig-Cohen/6000000016009111717" target="_blank">Geni</a></li>
-<li><strong>Deborah Marks Cohen</strong>: Maiden name corrected from "Marques" to <strong>"Marks"</strong> per Geni records; added death place <strong>New York</strong> — <a href="https://www.geni.com/people/Deborah-Cohen/6000000016009389677" target="_blank">Geni</a></li>
-<li><strong>Samuel Mendes Mandel Marks</strong>: Name corrected to <strong>"Samuel Mendel Marks"</strong> per Geni records; added mother <strong>Sarah Marks (née Harris)</strong></li>
-<li><strong>Cornelia "Nellie" Sampson</strong>: Birth year confirmed as <strong>1893</strong> per Galveston County birth index (primary record: "SAMPSON CORNELIA 08/08/1893"); Geni says 1894 but the official birth record is more authoritative — <a href="https://www.txgalveston.org/birth/birth-s.htm" target="_blank">Galveston Birth Index</a></li>
-<li><strong>Esther Levy</strong>: Maiden name corrected from "Haff" to <strong>"Halff"</strong> — prominent San Antonio Jewish family — <a href="https://www.geni.com/people/Esther-Levy/6000000003344934247" target="_blank">Geni</a>, <a href="https://www.tshaonline.org/handbook/entries/halff-solomon" target="_blank">TSHA - Solomon Halff</a></li>
-<li><strong>Joseph H. Sampson</strong>: Birthplace corrected from "Georgetown, SC" to <strong>"Charleston, SC"</strong> — <a href="https://billiongraves.com/grave/Joseph-Sampson/3278781" target="_blank">BillionGraves</a></li>
-<li><strong>Hartwig Cohen</strong>: Added exact dates (born Nov 14, 1784; died Oct 12, 1861), death place <strong>Winnsboro, Fairfield County, SC</strong>, and role as spiritual leader of Charleston's Kahal Kadosh Beth Elohim</li>
-<li><strong>Norman Reider</strong>: Removed claim of being "founding member" of CA Psychoanalytic Society — he arrived SF in 1946; the society was founded in 1942 with 10 named charter members. He was an important <strong>early member</strong> — <a href="https://www.encyclopedia.com/psychology/dictionaries-thesauruses-pictures-and-press-releases/san-francisco-psychoanalytic-society-and-institute" target="_blank">Encyclopedia.com</a></li>
-<li><strong>Isaac Marks</strong>: Death place changed from "Charleston, SC" to <strong>"New York"</strong> — his son Samuel Mendel moved to Charleston, not Isaac himself. Added verification note about death location.</li>
-</ul>
-<h3>Additions</h3>
-<ul><li><strong>Albert S. Lavenson</strong>: Added wife <strong>Amy Furth</strong> (married 1894), death details (heart disease, age 65) — <a href="https://www.jta.org/1930/06/11/archive/albert-lavenson-california-philanthropist-dies-at-65" target="_blank">JTA obituary</a></li>
-<li><strong>Alma Ruth Lavenson</strong>: Added as Albert's daughter (1897-1989), noted photographer — <a href="https://www.jmaw.org/lavenson-capwells-jewish/" target="_blank">JMAW</a></li>
-<li><strong>Amy Furth Lavenson</strong>: Added as Albert's wife</li>
-<li><strong>Clara Lavenson Furth</strong>: Added as Helen's sister (1870-1945) — <a href="https://www.findagrave.com/memorial/198472140/caroline-lavenson" target="_blank">Find a Grave</a></li>
-<li><strong>Sara Lavenson</strong>: Added as Helen's sister (1871-1946)</li>
-<li><strong>Miriam Simpson</strong>: Added birth/death details where available from Geni</li>
-<li><strong>Sarah Marks (née Harris)</strong>: Added as Samuel Mendel Marks's mother</li>
-<li><strong>Esther de Salomon Levy Maduro</strong>: Added verification note about conflicting birth year (1699 vs 1710) and birthplace (Bordeaux unconfirmed)</li>
-<li>Added `verification` fields for contested Sephardic connections</li>
-<li>Added Levy Maduro chain dates from Genealogy Online / Lobe tree</li>
-</ul>
-<h3>Notes</h3>
-<ul><li>Frederick Kahn's birth date: headstone says Sep 21, 1860; obituary says October 1860 — noted as known discrepancy</li>
-<li>Helen Kahn's death year: JSON says 1935; two Find a Grave entries say 1936 — kept 1935 pending primary source verification</li>
-<li>Norman Reider's birthplace: Geni says Alliance; archival finding aid says Canton (both Stark County, OH) — kept Alliance</li>
-<li>Norman & Louise marriage: notes say 1927; Geni says Jan 3, 1929 — kept 1927 per archival finding aid</li>
-<li>Israel Kahn's parents (Henry/Hertz Kahn, Bela Goldstein) could not be independently verified</li>
-</ul>
-  </div>
-</div>
-
-<div id="tree-tab" class="tab-content">
-  <div class="explorer">
-    <div class="search-wrap">
-      <input type="text" id="search-input" class="search-box" placeholder="Search for a family member...">
-      <div id="search-results" class="search-results"></div>
-    </div>
-    <div id="person-view"></div>
-  </div>
 </div>
 
 <footer>
@@ -376,1083 +230,9 @@ footer a:hover { color: var(--primary); }
 </footer>
 
 <script>
-var rawData = [
-  {
-    "name": "Henry (Hertz) Kahn",
-    "relation": "RoRo's paternal great-grandfather",
-    "spouse": "Bela Kahn (née Goldstein)"
-  },
-  {
-    "name": "Bela Kahn (née Goldstein)",
-    "relation": "RoRo's paternal great-grandmother",
-    "spouse": "Henry (Hertz) Kahn"
-  },
-  {
-    "name": "Israel Kahn",
-    "born": "1822",
-    "died": "1883",
-    "birthplace": "Darmstadt, Hesse, Germany",
-    "relation": "RoRo's paternal grandfather",
-    "spouse": "Sarah Kahn (née Bauer)",
-    "notes": "Emigrated from Germany 1848, arrived Baltimore on the Henry Shelton from Rotterdam. Founded dry goods business in Oakland 1879 at 10th & Broadway. Sons: Henry, Samuel, Solomon, Frederick, John.",
-    "parents": [
-      "Henry (Hertz) Kahn",
-      "Bela Kahn (née Goldstein)"
-    ]
-  },
-  {
-    "name": "Sarah Kahn (née Bauer)",
-    "born": "1828",
-    "died": "1888",
-    "relation": "RoRo's paternal grandmother",
-    "spouse": "Israel Kahn"
-  },
-  {
-    "name": "Samuel Lavenson",
-    "born": "1829",
-    "died": "1900",
-    "relation": "RoRo's maternal grandfather",
-    "spouse": "Caroline Lavenson (née Heiman)"
-  },
-  {
-    "name": "Caroline Lavenson (née Heiman)",
-    "born": "1842",
-    "died": "1872-06-24",
-    "deathplace": "Sacramento, CA",
-    "relation": "RoRo's maternal grandmother",
-    "spouse": "Samuel Lavenson",
-    "notes": "Died at age 29-30, the same year her daughter Helen was born. Buried at Home of Peace Cemetery, Sacramento. Three children: Clara (1870), Sara (1871), Helen (1872)."
-  },
-  {
-    "name": "Albert S. Lavenson",
-    "born": "1865",
-    "birthplace": "Sacramento, CA",
-    "died": "1930",
-    "relation": "RoRo's maternal uncle",
-    "spouse": "Amy Lavenson (née Furth)",
-    "married": "1894",
-    "notes": "Partner and vice-president of Capwell's Department Store (30 years, from 1890). President of Temple Sinai. Organizer of the Commercial Club (later Oakland Chamber of Commerce). Music patron at Mills College, responsible for construction of Music Building. Chaired Jewish Welfare Campaign of the East Bay (1927). Died at 65 of heart disease. Left estate to charitable/educational foundation.",
-    "parents": [
-      "Samuel Lavenson",
-      "Caroline Lavenson (née Heiman)"
-    ],
-    "sources": [
-      "https://www.jta.org/1930/06/11/archive/albert-lavenson-california-philanthropist-dies-at-65"
-    ]
-  },
-  {
-    "name": "Amy Lavenson (née Furth)",
-    "relation": "Albert's wife",
-    "spouse": "Albert S. Lavenson",
-    "married": "1894",
-    "notes": "Daughter of Gold Rush merchant Simon Furth."
-  },
-  {
-    "name": "Alma Ruth Lavenson",
-    "born": "1897",
-    "died": "1989",
-    "birthplace": "Oakland, CA",
-    "relation": "RoRo's cousin (Albert's daughter)",
-    "notes": "Noted photographer. Studied under Edward Weston and Imogen Cunningham.",
-    "parents": [
-      "Albert S. Lavenson",
-      "Amy Lavenson (née Furth)"
-    ],
-    "sources": [
-      "https://www.jmaw.org/lavenson-capwells-jewish/"
-    ]
-  },
-  {
-    "name": "Clara Lavenson Furth",
-    "born": "1870",
-    "died": "1945",
-    "relation": "RoRo's maternal aunt (Helen's sister)",
-    "parents": [
-      "Samuel Lavenson",
-      "Caroline Lavenson (née Heiman)"
-    ]
-  },
-  {
-    "name": "Sara Lavenson",
-    "born": "1871",
-    "died": "1946",
-    "relation": "RoRo's maternal aunt (Helen's sister)",
-    "parents": [
-      "Samuel Lavenson",
-      "Caroline Lavenson (née Heiman)"
-    ]
-  },
-  {
-    "name": "Frederick Kahn",
-    "born": "1860-09-21",
-    "died": "1925-08-19",
-    "birthplace": "New York, NY",
-    "deathplace": "Oakland, CA (3933 Harrison Street)",
-    "relation": "RoRo's father",
-    "spouse": "Helen Kahn (née Lavenson)",
-    "notes": "First worked at Bauer Brothers Company (wholesalers of laces and fancy goods, 83 First Street, SF), then joined the family store after it was founded in 1879. Kahn Brothers Dept Store moved 1912 to Beaux-Arts building at 16th & Broadway (architect Charles W. Dickey, 120-ft elliptical dome - now Rotunda Building, Oakland Landmark #132, National Register). First president of Jewish Welfare Federation of the East Bay (founded 1918). Founding member & president of Temple Sinai. Chairman of Advisory Committee of Board of Education ($5M school building program). VP of Alameda County Anti-Tuberculosis Society. Concordia Club, B'nai B'rith. Buried at Home of Eternity Cemetery, Mountain View Cemetery, Oakland.",
-    "parents": [
-      "Israel Kahn",
-      "Sarah Kahn (née Bauer)"
-    ]
-  },
-  {
-    "name": "Helen Kahn (née Lavenson)",
-    "born": "1872-05-20",
-    "died": "1935-03-04",
-    "birthplace": "California",
-    "deathplace": "Oakland, CA",
-    "relation": "RoRo's mother",
-    "spouse": "Frederick Kahn",
-    "notes": "Established the Kahn Foundation in 1928 after Frederick's death. In 1965, foundation donated $125,000 for 71 paintings -the Kahn Collection of 19th-century California art at the Oakland Museum, catalogued by Marjorie Arkelian.",
-    "parents": [
-      "Samuel Lavenson",
-      "Caroline Lavenson (née Heiman)"
-    ]
-  },
-  {
-    "name": "Helen Sarah Eppinger (née Kahn)",
-    "born": "1913",
-    "died": "1956",
-    "relation": "RoRo's sister",
-    "spouse": "Josua Eppinger",
-    "parents": [
-      "Frederick Kahn",
-      "Helen Kahn (née Lavenson)"
-    ]
-  },
-  {
-    "name": "Frederick Kahn Jr.",
-    "relation": "RoRo's brother",
-    "parents": [
-      "Frederick Kahn",
-      "Helen Kahn (née Lavenson)"
-    ]
-  },
-  {
-    "name": "Rose Etta Kahn Sampson",
-    "nicknames": [
-      "RoRo",
-      "Grandma RoRo",
-      "Lambie",
-      "Ro",
-      "Rosie"
-    ],
-    "born": "1907-12-10",
-    "died": "1997-07-12",
-    "birthplace": "Oakland, CA",
-    "deathplace": "San Francisco, CA (Mount Zion Hospital)",
-    "relation": "self",
-    "spouse": "Dr. John Jacob Sampson",
-    "married": "1931-05-17",
-    "notes": "Phi Beta Kappa, UC Berkeley 1928. Carried the key at Temple Sinai's dedication as a girl. Award-winning weaver -wove furniture upholstery for Seacliff home, made cushion for Haas-Lilienthal House. President of Kahn Foundation. Volunteered at Mt. Zion Hospital into her 80s. Died of lung embolism. Memorial August 4 at Congregation Emanu-El.",
-    "parents": [
-      "Frederick Kahn",
-      "Helen Kahn (née Lavenson)"
-    ]
-  },
-  {
-    "name": "Hartwig Cohen",
-    "nicknames": [
-      "Reverend Hartwig Cohen"
-    ],
-    "born": "1784-11-14",
-    "died": "1861-10-12",
-    "birthplace": "Wartha, Frankenstein, Silesia, Prussia",
-    "deathplace": "Winnsboro, Fairfield County, SC",
-    "relation": "Grandpa John's maternal great-great-grandfather",
-    "spouse": "Deborah Marks Cohen",
-    "notes": "Spiritual leader of Charleston's Kahal Kadosh Beth Elohim.",
-    "sources": [
-      "https://www.geni.com/people/Rev-Hartwig-Cohen/6000000016009111717",
-      "https://www.wikitree.com/wiki/Cohen-2905"
-    ]
-  },
-  {
-    "name": "Deborah Marks Cohen",
-    "born": "1801-05-03",
-    "died": "1888-02-15",
-    "birthplace": "Charleston, SC",
-    "deathplace": "New York, NY",
-    "relation": "Grandpa John's maternal great-great-grandmother",
-    "spouse": "Hartwig Cohen",
-    "notes": "Born Deborah Marks. Family name was anglicized from Marques. Children included Esther 'Hetty' (Sampson), Rosa, Leonora (Baum), Adeline (Phillips), Frances Aaron Cohen, and Fishel Hartwig Cohen.",
-    "parents": [
-      "Samuel Mendel Marks",
-      "Sarah Marks (née Harris)"
-    ]
-  },
-  {
-    "name": "Samuel Mendel Marks",
-    "relation": "Deborah Marks Cohen's father",
-    "spouse": "Sarah Marks (née Harris)",
-    "notes": "Son of Isaac Marks and Miriam Simpson/Simons. Moved to Charleston, SC.",
-    "parents": [
-      "Isaac Marks",
-      "Miriam Simpson/Simons"
-    ]
-  },
-  {
-    "name": "Sarah Marks (née Harris)",
-    "relation": "Samuel Mendel Marks's wife / Deborah's mother",
-    "spouse": "Samuel Mendel Marks"
-  },
-  {
-    "name": "Isaac Marks",
-    "born": "1732",
-    "died": "1776",
-    "birthplace": "New York, NY",
-    "deathplace": "New York",
-    "relation": "Deborah's grandfather / Sephardic ancestor",
-    "spouse": "Miriam Simpson/Simons",
-    "notes": "Fought in the American Revolution as private in NY Militia. Listed in DAR family histories. Lived in NYC from age 8 (1740). Originally Marques, name anglicized to Marks. Father unknown. Cousin of Bernard Baruch (through granddaughter Sarah Wolfe). His son Samuel Mendel Marks moved to Charleston, SC.",
-    "parents": [
-      "Esther de Salomon Levy Maduro"
-    ],
-    "verification": "contested",
-    "verification_notes": "Connection to Esther de Salomon Levy Maduro as mother appears in multiple Geni/Ancestry trees but lacks primary documentation. Esther's first husband died ~1725, Isaac born 1732 with unknown father. Parentage is plausible but unproven. Death place listed as 'New York' per residence records; 'Charleston, SC' in some trees but that was his son's location. Military service claim lacks muster roll confirmation.",
-    "sources": [
-      "https://www.geni.com/people/Pvt-Isaac-Marks-NY-Militia/6000000019301598241",
-      "https://sites.americanjewisharchives.org/publications/fajf/pdfs/stern_p185.pdf",
-      "https://paulskolnick.com/genealogy/chris-ann-maxwell/marques-marks/marques-marks-text-tree/"
-    ]
-  },
-  {
-    "name": "Miriam Simpson/Simons",
-    "relation": "Isaac Marks's wife",
-    "notes": "Of Long Island.",
-    "spouse": "Isaac Marks"
-  },
-  {
-    "name": "Esther de Salomon Levy Maduro",
-    "nicknames": [
-      "Esther Marques",
-      "Esther de Salomon Mosseh Marques",
-      "Esther Levy Maduro y Namias de Crasto"
-    ],
-    "born": "1699-12-16",
-    "died": "1759-07-30",
-    "birthplace": "Bordeaux, Gironde, France",
-    "deathplace": "Curaçao, Netherlands Antilles",
-    "relation": "Isaac Marks's mother / Sephardic matriarch",
-    "notes": "Buried at Beth Haim Cemetery, Curaçao, section IV, row C, grave 621. First married Jacob Rodriguez Marques (May 27, 1722, in Barbados). Jacob died ~1725. Then married Ishac de Shemuel Levy Maduro (buried adjacent plot IV-C-620). Isaac Marks born 1732 with unknown father - possibly conceived in New York. Also had daughter Rachel Marquez (~1725, Barbados). Researched by Matt Reider 2022, corresponded with Ron Gomes Casseres at Beth Haim cemetery. Emmanuel's books contain contradictions: 'History of the Jews of the Netherlands Antilles' (1970) p.943 says she married Jacob 1722, but 'Precious Stones of the Jews of Curaçao' (1957) p.507 lists her as wife of Ishac de Shemuel.",
-    "parents": [
-      "Ribi Hazzan Salomon de Mosseh Levy Maduro y Dias Sardo"
-    ],
-    "verification": "contested",
-    "verification_notes": "Birth year 1699 and birthplace Bordeaux are from Geni user trees. Geneanet/Genealogy Online records show a different Esther de Salomon Levy Maduro y Namias de Castro born 1710 (not 1699) who married Isaac de Samuel Levy Maduro y Vieyra (1712-1784). The Geni profile may conflate two different women named Esther. The Bordeaux birthplace is unsupported; the Levy Maduro family was based in Amsterdam and Curaçao.",
-    "sources": [
-      "https://www.geni.com/people/Esther-Marques/6000000010280084001",
-      "https://www.bethhaimcuracao.org",
-      "https://archive.org/stream/willsofearlyjewi00frie/willsofearlyjewi00frie_djvu.txt"
-    ]
-  },
-  {
-    "name": "Jacob Rodriguez Marques",
-    "died": "~1725",
-    "relation": "Esther de Salomon Levy Maduro's first husband",
-    "spouse": "Esther de Salomon Levy Maduro",
-    "married": "1722-05-27",
-    "notes": "Married Esther in Barbados at St. Michaels. Died ~1725. From the Isaac Rodriguez Marques family of New York/Denmark. His father Isaac Rodriguez Marques (1695-1706) was a ship owner (the Dolphin) who sailed between NY and England. Father's will (1706) mentions son Jacob and daughter Esther (a different Esther). Referenced in Friedman's 'Wills of Early Jewish Settlers in New York' and Baruch's autobiography 'The Adventures of a Wall Street Legend' p.22.",
-    "sources": [
-      "https://archive.org/stream/willsofearlyjewi00frie/willsofearlyjewi00frie_djvu.txt"
-    ]
-  },
-  {
-    "name": "Ribi Hazzan Salomon de Mosseh Levy Maduro y Dias Sardo",
-    "nicknames": [
-      "Samuel de Mosseh Levy Maduro"
-    ],
-    "born": "1673",
-    "died": "1752-04-06",
-    "birthplace": "Amsterdam, Netherlands",
-    "deathplace": "Curaçao",
-    "relation": "Esther's father / Sephardic rabbi",
-    "notes": "Rabbi (Hazzan). Also known as Samuel (Hebrew name Salomon). Born in Amsterdam.",
-    "parents": [
-      "Hazzan & Ribi Mosseh de Salomon Levy Maduro"
-    ],
-    "sources": [
-      "https://gw.geneanet.org/camiloro?lang=en&n=levy+maduro+y+dias+sardo&p=samuel+de+mosseh"
-    ]
-  },
-  {
-    "name": "Hazzan & Ribi Mosseh de Salomon Levy Maduro",
-    "born": "1649",
-    "died": "1708-11-10",
-    "birthplace": "Amsterdam, Netherlands",
-    "deathplace": "Curaçao",
-    "relation": "Sephardic rabbi ancestor",
-    "spouse": "Hester Dias Sardo",
-    "married": "1670-07-13",
-    "notes": "Rabbi and cantor. Arrived Curaçao 1672. Full name includes 'y de Crasto' from his mother's family.",
-    "parents": [
-      "Salomon (Salomão) de Moshe Levy Maduro"
-    ],
-    "sources": [
-      "https://www.geni.com/people/Hazzan-Ribi-Mosseh-Levy-Maduro/6000000004281588224",
-      "https://www.genealogieonline.nl/en/stamboom-lobe/I20033.php"
-    ]
-  },
-  {
-    "name": "Hester Dias Sardo",
-    "relation": "Mosseh de Salomon Levy Maduro's wife",
-    "spouse": "Hazzan & Ribi Mosseh de Salomon Levy Maduro",
-    "married": "1670-07-13"
-  },
-  {
-    "name": "Salomon (Salomão) de Moshe Levy Maduro",
-    "nicknames": [
-      "Salomon Levy Maduro Rodriguez"
-    ],
-    "born": "1629",
-    "died": "1699",
-    "birthplace": "Amsterdam, Netherlands",
-    "relation": "Sephardic ancestor",
-    "spouse": "Chana de Castro",
-    "married": "1648-10-27",
-    "parents": [
-      "Mosseh Levy o Maduro"
-    ],
-    "sources": [
-      "https://www.genealogieonline.nl/en/stamboom-lobe/I20035.php"
-    ]
-  },
-  {
-    "name": "Chana de Castro",
-    "relation": "Salomon Levy Maduro's wife",
-    "spouse": "Salomon (Salomão) de Moshe Levy Maduro",
-    "married": "1648-10-27"
-  },
-  {
-    "name": "Mosseh Levy o Maduro",
-    "born": "~1591",
-    "died": "1640-01-01",
-    "birthplace": "Portugal",
-    "deathplace": "Amsterdam, Netherlands",
-    "relation": "Sephardic ancestor from Portugal",
-    "spouse": "Clara Rodriguez",
-    "married": "1622-07-27",
-    "notes": "Adopted the 'Maduro' name. Married Clara (also known as Rachel/Raquel) Rodriguez in Amsterdam.",
-    "parents": [
-      "Solomon Levy"
-    ],
-    "sources": [
-      "https://www.geni.com/people/Mosseh-Levy-o-Maduro/6000000004281963094"
-    ]
-  },
-  {
-    "name": "Solomon Levy",
-    "relation": "Sephardic ancestor (1500s)",
-    "parents": [
-      "Salomon (Samuel) Levy"
-    ]
-  },
-  {
-    "name": "Salomon (Samuel) Levy",
-    "relation": "Sephardic ancestor (1500s)",
-    "parents": [
-      "Antonio Ha Levy, Abulafia"
-    ]
-  },
-  {
-    "name": "Antonio Ha Levy, Abulafia",
-    "relation": "Sephardic ancestor",
-    "parents": [
-      "Diogo Rodrigues",
-      "Clara Roiz"
-    ]
-  },
-  {
-    "name": "Diogo Rodrigues",
-    "relation": "Earliest known ancestor (1400s, Portugal)"
-  },
-  {
-    "name": "Clara Roiz",
-    "relation": "Earliest known ancestor (1400s, Portugal)",
-    "spouse": "Diogo Rodrigues"
-  },
-  {
-    "name": "Joseph H. Sampson",
-    "born": "1823-06-10",
-    "died": "1883-07-14",
-    "birthplace": "Charleston, SC",
-    "relation": "Grandpa John's paternal grandfather",
-    "spouse": "Esther 'Hetty' Sampson (née Cohen)",
-    "notes": "Prominent Jewish merchant and shipping operator in Georgetown, SC, with brother Samuel. After the Civil War, revived their mercantile business and expanded into shipping. Family originally from Bury St. Edmunds, England. Sampson family names appear in Kahal Kadosh Beth Elohim records in Charleston. Georgetown had ~80 Jews by 1800 (~10% of white population), second largest Jewish community in SC. Buried in Jewish Cemetery, Georgetown (est. 1772).",
-    "sources": [
-      "https://billiongraves.com/grave/Joseph-Sampson/3278781",
-      "https://www.isjl.org/south-carolina-georgetown-encyclopedia.html",
-      "https://jhssc.org/synagogue/beth-elohim/"
-    ]
-  },
-  {
-    "name": "Esther 'Hetty' Sampson (née Cohen)",
-    "born": "1832-06-30",
-    "died": "1897-09-22",
-    "birthplace": "Charleston, SC",
-    "deathplace": "Georgetown, SC",
-    "relation": "Grandpa John's paternal grandmother",
-    "spouse": "Joseph H. Sampson",
-    "notes": "Siblings: Sarah (Cohen) Wolfe (Bernard Baruch's grandmother) and Frances A. Cohen. Mother of Cornelia C. (Sampson) Ehrich and Dr. Arthur Fischel Sampson.",
-    "parents": [
-      "Hartwig Cohen",
-      "Deborah Marks Cohen"
-    ],
-    "sources": [
-      "https://www.wikitree.com/wiki/Cohen-2905",
-      "https://www.geni.com/people/Esther-Sampson/325137901420005493"
-    ]
-  },
-  {
-    "name": "Abraham Levy",
-    "born": "1827",
-    "died": "1879",
-    "relation": "Grandpa John's maternal grandfather",
-    "spouse": "Esther Levy (née Halff)"
-  },
-  {
-    "name": "Esther Levy (née Halff)",
-    "born": "1833",
-    "died": "1908",
-    "relation": "Grandpa John's maternal grandmother",
-    "spouse": "Abraham Levy"
-  },
-  {
-    "name": "Dr. Arthur Fischel Sampson",
-    "nicknames": [
-      "AF"
-    ],
-    "born": "1855-07-01",
-    "died": "1934-11-26",
-    "birthplace": "Georgetown, SC",
-    "deathplace": "San Francisco, CA",
-    "relation": "Grandpa John's father / RoRo's father-in-law",
-    "spouse": "Babette 'Bettie' Sampson (née Levy)",
-    "married": "1887-04-04",
-    "notes": "Physician. Medical school in SC, practiced in Galveston TX. Married Bettie in Galveston. After 1900 Galveston flood, moved to SF 1902. Franklin Street home (between Bush and Sutter) dynamited by US Army as firebreak during 1906 earthquake. Rebuilt on Washington Street near Laurel. Five children: Joseph Abraham (1888), Arthur Jr. (1891), Cornelia 'Nellie' (1893), Esther, John Jacob (1898).",
-    "parents": [
-      "Joseph H. Sampson",
-      "Esther 'Hetty' Sampson (née Cohen)"
-    ]
-  },
-  {
-    "name": "Babette 'Bettie' Sampson (née Levy)",
-    "born": "1868-03-24",
-    "died": "1949-03-21",
-    "birthplace": "San Antonio, TX",
-    "deathplace": "Santa Clara, CA",
-    "relation": "Grandpa John's mother / RoRo's mother-in-law",
-    "spouse": "Dr. Arthur Fischel Sampson",
-    "married": "1887-04-04",
-    "parents": [
-      "Abraham Levy",
-      "Esther Levy (née Halff)"
-    ]
-  },
-  {
-    "name": "Joseph Abraham Sampson",
-    "born": "1888-12-04",
-    "birthplace": "Galveston, TX",
-    "relation": "Grandpa John's brother",
-    "parents": [
-      "Dr. Arthur Fischel Sampson",
-      "Babette 'Bettie' Sampson (née Levy)"
-    ]
-  },
-  {
-    "name": "Arthur Fischel Sampson Jr.",
-    "born": "1891-06-02",
-    "birthplace": "Galveston, TX",
-    "relation": "Grandpa John's brother",
-    "parents": [
-      "Dr. Arthur Fischel Sampson",
-      "Babette 'Bettie' Sampson (née Levy)"
-    ]
-  },
-  {
-    "name": "Cornelia 'Nellie' Sampson",
-    "born": "1893-08-08",
-    "died": "1989",
-    "birthplace": "Galveston, TX",
-    "deathplace": "San Francisco, CA",
-    "relation": "Grandpa John's sister",
-    "notes": "Married first Sidney Bibbero (son Richard Bibbero b. 1915), then Herbert Salinger.",
-    "parents": [
-      "Dr. Arthur Fischel Sampson",
-      "Babette 'Bettie' Sampson (née Levy)"
-    ]
-  },
-  {
-    "name": "Esther Sampson Langfeld",
-    "relation": "Grandpa John's sister",
-    "parents": [
-      "Dr. Arthur Fischel Sampson",
-      "Babette 'Bettie' Sampson (née Levy)"
-    ]
-  },
-  {
-    "name": "Dr. John Jacob Sampson",
-    "nicknames": [
-      "Grandpa John",
-      "Poppy John",
-      "Johnny"
-    ],
-    "born": "1898-04-28",
-    "died": "1987-12-24",
-    "birthplace": "Galveston, TX",
-    "deathplace": "San Francisco, CA",
-    "relation": "RoRo's husband",
-    "spouse": "Rose Etta Kahn Sampson",
-    "married": "1931-05-17",
-    "notes": "MD before age 21. 3 years at UC then medical degree. Medical officer on freighter to Far East and India. Practiced with his father, then UCSF research and clinical staff until retirement at 85. Chief of Staff at Mount Zion Hospital. Cardiologist -49 publications (1926-1980) on cardiac pain, pulmonary lymph flow, angina, shock. Collaborated with Meyer Friedman (Type A behavior), Herman Uhley, Sanford Leeds at Harold Brunn Institute for Cardiovascular Research. The John J. Sampson-Lucie Stern Endowed Chair in Cardiology established at UCSF in his honor.",
-    "parents": [
-      "Dr. Arthur Fischel Sampson",
-      "Babette 'Bettie' Sampson (née Levy)"
-    ]
-  },
-  {
-    "name": "Deborah Sampson Green",
-    "born": "1934-01-11",
-    "birthplace": "San Francisco, CA",
-    "relation": "RoRo's eldest child",
-    "spouse": "John R. Green",
-    "notes": "Educator, editor, college instructor of English Lit. Lives in Seattle. Schools: Lowell, Alamo, Presidio Jr. High, Wellesley (1978).",
-    "parents": [
-      "Dr. John Jacob Sampson",
-      "Rose Etta Kahn Sampson"
-    ]
-  },
-  {
-    "name": "John R. Green",
-    "born": "~1921",
-    "died": "~1996",
-    "relation": "Deborah's husband",
-    "spouse": "Deborah Sampson Green"
-  },
-  {
-    "name": "Caleb Green",
-    "relation": "RoRo's grandchild (Deborah's son)",
-    "spouse": "Kate Banta-Green",
-    "parents": [
-      "Deborah Sampson Green",
-      "John R. Green"
-    ]
-  },
-  {
-    "name": "Robert Bruce Banta-Green",
-    "relation": "RoRo's great-grandchild (Caleb's son)",
-    "parents": [
-      "Caleb Green",
-      "Kate Banta-Green"
-    ]
-  },
-  {
-    "name": "Peter Caleb Banta-Green",
-    "relation": "RoRo's great-grandchild (Caleb's son)",
-    "parents": [
-      "Caleb Green",
-      "Kate Banta-Green"
-    ]
-  },
-  {
-    "name": "John Frederick Sampson",
-    "nicknames": [
-      "Johnny"
-    ],
-    "born": "1935-03-18",
-    "birthplace": "San Francisco, CA",
-    "relation": "RoRo's son",
-    "spouse": "Sharon L. Litsky (second wife)",
-    "notes": "Appraiser and real estate broker in SF. Lowell HS (1953), Reed College (3 yrs), AB Univ of SF (1957), Wharton (1960). First wife Louise Adler (1962, div. 1991). Second wife Sharon L. Litsky (1999).",
-    "parents": [
-      "Dr. John Jacob Sampson",
-      "Rose Etta Kahn Sampson"
-    ]
-  },
-  {
-    "name": "Jennifer Ruth Sampson",
-    "relation": "RoRo's grandchild (John's daughter)",
-    "parents": [
-      "John Frederick Sampson",
-      "Louise Adler"
-    ]
-  },
-  {
-    "name": "John Frederick Sampson Jr.",
-    "relation": "RoRo's grandchild (John's son)",
-    "parents": [
-      "John Frederick Sampson",
-      "Louise Adler"
-    ]
-  },
-  {
-    "name": "Juliet Margaret Sampson",
-    "relation": "RoRo's grandchild (John's daughter)",
-    "parents": [
-      "John Frederick Sampson",
-      "Louise Adler"
-    ]
-  },
-  {
-    "name": "Janet Sampson Reider",
-    "born": "1937-03-01",
-    "birthplace": "San Francisco, CA",
-    "relation": "RoRo's youngest child",
-    "spouse": "Arthur Elliott 'Pete' Reider",
-    "married": "1958",
-    "notes": "Photographer (janetreider.com). Met Pete at Lowell High School at age 13.",
-    "parents": [
-      "Dr. John Jacob Sampson",
-      "Rose Etta Kahn Sampson"
-    ]
-  },
-  {
-    "name": "Arthur Elliott 'Pete' Reider",
-    "nicknames": [
-      "Pete",
-      "Peter Reider"
-    ],
-    "born": "1936-11-01",
-    "died": "2015-08-13",
-    "birthplace": "Topeka, KS",
-    "deathplace": "San Francisco, CA",
-    "relation": "RoRo's son-in-law (Janet's husband)",
-    "spouse": "Janet Sampson Reider",
-    "married": "1958",
-    "notes": "Psychiatrist. Presidio Hill School, Grant School, Lowell HS, Harvard (Class of 1958), Harvard Medical. Captain of Harvard Track -ran 4:11 mile (1957 Harvard record). Harvard Athletic Hall of Fame (1982). All-Ivy League Cross Country Team. Coach McCurdy: 'one of the toughest little men I have ever known.' Private practice in Cambridge, Hyannis, Newton MA. Retired in SF. Published Stepping Stones (2014), poetry and fiction. Fromm Institute at USF, Osher Foundation at Brandeis. Died of lymphoma at home. Memorial at Congregation Emanu-El, August 17, 2015.",
-    "parents": [
-      "Dr. Norman Reider",
-      "Louise J. Reider (née Cohen)"
-    ]
-  },
-  {
-    "name": "Jonathan Reider",
-    "relation": "Pete's brother",
-    "notes": "Stanford admissions officer for 15 years, then Director of College Counseling at SF University High School.",
-    "parents": [
-      "Dr. Norman Reider",
-      "Louise J. Reider (née Cohen)"
-    ]
-  },
-  {
-    "name": "Dr. Norman Reider",
-    "born": "1907-07-03",
-    "died": "1989-03-23",
-    "birthplace": "Alliance, Stark County, OH",
-    "deathplace": "San Francisco, CA",
-    "relation": "Pete's father",
-    "spouse": "Louise J. Reider (née Cohen)",
-    "married": "1927",
-    "notes": "BA and MD from Western Reserve University (now Case Western Reserve). Trained at Menninger Clinic, Topeka (1934-1939). Chief of Psychiatry at Mt. Zion Hospital, SF (succeeding Jascha Kasanin). Early member of the San Francisco Psychoanalytic Society (founded 1942; Norman arrived SF 1946). Featured in TIME magazine (1947) for 'The Unmarried Father.' Wrote 'Chess, Oedipus, and the Mater Dolorosa' (1959). ACLU board member (Northern California). Papers archived at SF Center for Psychoanalysis (4.6 linear feet, 1822-1980s).",
-    "parents": [
-      "Maurice Jacob Reider (née Rudner)",
-      "Lillian Reider (née Cohen)"
-    ]
-  },
-  {
-    "name": "Louise J. Reider (née Cohen)",
-    "born": "1907-11-29",
-    "died": "1985-02-22",
-    "birthplace": "Cleveland, OH",
-    "deathplace": "San Francisco, CA",
-    "relation": "Pete's mother",
-    "spouse": "Dr. Norman Reider",
-    "married": "1927",
-    "notes": "Psychiatric social worker, stopped practicing around 1946.",
-    "parents": [
-      "Abe (Abba Elyia) Pasek Cohen",
-      "Rena Posak Cohen (née Shepsenwol)"
-    ]
-  },
-  {
-    "name": "Maurice Jacob Reider (née Rudner)",
-    "nicknames": [
-      "Morris Jacob Rudner",
-      "Morris Rudman"
-    ],
-    "born": "~1882",
-    "died": "~1960",
-    "birthplace": "Horoduk/Orduk Village, Vilna Gubernia, Lithuania",
-    "deathplace": "Canton, OH",
-    "relation": "Pete's paternal grandfather",
-    "spouse": "Lillian Reider (née Cohen)",
-    "notes": "Originally named Rudner, changed to Reider. Foreman at steel foundry. Married Jun 7, 1906, Canton OH.",
-    "parents": [
-      "Uriah 'Uri' Rudner",
-      "Clara Rudner (née Scope)"
-    ]
-  },
-  {
-    "name": "Uriah 'Uri' Rudner",
-    "born": "1855-02",
-    "died": "1916-04-23",
-    "birthplace": "Orduk Village, Vilna Gubernia, Lithuania (Russian Empire)",
-    "deathplace": "Canton, OH",
-    "relation": "Pete's paternal great-grandfather",
-    "spouse": "Clara Rudner (née Scope)",
-    "notes": "First wife Clara Scope (d. 1909). Children: Anna, Morris (Reider), Isaac, Bennie (1884-1901), Len, Sam, Rhea. Second wife Hattie Altman."
-  },
-  {
-    "name": "Clara Rudner (née Scope)",
-    "born": "1862-06",
-    "died": "1909-09-15",
-    "birthplace": "Russia",
-    "deathplace": "Canton, OH",
-    "relation": "Pete's paternal great-grandmother",
-    "spouse": "Uriah 'Uri' Rudner"
-  },
-  {
-    "name": "Lillian Reider (née Cohen)",
-    "born": "1887",
-    "died": "1981",
-    "relation": "Norman's mother / Pete's paternal grandmother",
-    "spouse": "Maurice Jacob Reider (née Rudner)",
-    "parents": [
-      "Hyman Cohen",
-      "Jennie Sugarman"
-    ]
-  },
-  {
-    "name": "Hyman Cohen",
-    "born": "1850",
-    "relation": "Lillian's father",
-    "spouse": "Jennie Sugarman"
-  },
-  {
-    "name": "Jennie Sugarman",
-    "born": "1865",
-    "died": "1928",
-    "relation": "Lillian's mother",
-    "spouse": "Hyman Cohen"
-  },
-  {
-    "name": "Abe (Abba Elyia) Pasek Cohen",
-    "born": "1886",
-    "died": "~1915",
-    "relation": "Louise J. Cohen's father",
-    "parents": [
-      "Aaron Cohen Pasek"
-    ]
-  },
-  {
-    "name": "Rena Posak Cohen (née Shepsenwol)",
-    "born": "1886",
-    "relation": "Louise J. Cohen's mother",
-    "parents": [
-      "Max Cohen",
-      "? Levine Shepsenwol"
-    ]
-  },
-  {
-    "name": "Jacob M. Reider",
-    "born": "1963-06-25",
-    "birthplace": "Boston, MA",
-    "relation": "RoRo's grandchild (Janet's eldest)",
-    "spouse": "Alicia Ouellette",
-    "notes": "Family physician (FAAFP). Hampshire College '83, Albany Medical College '94. Deputy National Coordinator for Health IT at HHS (2011-2014), also Acting National Coordinator. CMIO at Allscripts (2006-2010). CEO of Alliance for Better Health (2016-2021). Co-founded five health IT startups including Twistle (acquired by Health Catalyst) and Physera (acquired by Omada). Maintains docnotes.net blog since 1999. Married Alicia Ouellette (former Dean of Albany Law School, now Dean at Lewis & Clark Law School). Children: Molly, Sampson. Lives in Slingerlands, NY.",
-    "parents": [
-      "Arthur Elliott 'Pete' Reider",
-      "Janet Sampson Reider"
-    ]
-  },
-  {
-    "name": "Alicia Ouellette",
-    "relation": "Jacob's wife",
-    "spouse": "Jacob M. Reider",
-    "notes": "18th President and Dean of Albany Law School (2015-2023), now Dean at Lewis & Clark Law School."
-  },
-  {
-    "name": "Molly Reider",
-    "relation": "RoRo's great-grandchild (Jacob's daughter)",
-    "parents": [
-      "Jacob M. Reider",
-      "Alicia Ouellette"
-    ]
-  },
-  {
-    "name": "Sampson Reider",
-    "relation": "RoRo's great-grandchild (Jacob's child)",
-    "parents": [
-      "Jacob M. Reider",
-      "Alicia Ouellette"
-    ]
-  },
-  {
-    "name": "Suzie Reider",
-    "born": "1965-03-29",
-    "birthplace": "Boston, MA",
-    "relation": "RoRo's grandchild (Janet's daughter)",
-    "spouse": "Brian Smith (divorced)",
-    "notes": "EVP of Lyft Media & Business at Lyft. Previously Global CRO at Waze.",
-    "parents": [
-      "Arthur Elliott 'Pete' Reider",
-      "Janet Sampson Reider"
-    ],
-    "married": "1992",
-    "divorced": "2019",
-    "verification": "family knowledge - Suzie Reider, March 2026"
-  },
-  {
-    "name": "Rose Reider Smith",
-    "relation": "RoRo's great-grandchild (Suzie's daughter)",
-    "parents": [
-      "Suzie Reider",
-      "Brian Smith"
-    ]
-  },
-  {
-    "name": "Charlotte Reider Smith",
-    "relation": "RoRo's great-grandchild (Suzie's daughter)",
-    "parents": [
-      "Suzie Reider",
-      "Brian Smith"
-    ]
-  },
-  {
-    "name": "Matt Reider",
-    "born": "1969-12-22",
-    "birthplace": "Boston, MA",
-    "relation": "RoRo's grandchild (Janet's youngest)",
-    "spouse": "Alison Cohen",
-    "married": "2003-06-19",
-    "notes": "Software. Lives in Oakland, CA. He's the one who brought RoRo into the chat.",
-    "parents": [
-      "Arthur Elliott 'Pete' Reider",
-      "Janet Sampson Reider"
-    ]
-  },
-  {
-    "name": "Alison Cohen",
-    "born": "1972-08-07",
-    "relation": "Matt's wife",
-    "spouse": "Matt Reider",
-    "married": "2003-06-19"
-  },
-  {
-    "name": "Max Nathan Reider",
-    "born": "2007-03-03",
-    "birthplace": "Oakland, CA",
-    "relation": "RoRo's great-grandchild (Matt's son)",
-    "parents": [
-      "Matt Reider",
-      "Alison Cohen"
-    ]
-  },
-  {
-    "name": "Zoe Ella Reider",
-    "born": "2008-07-29",
-    "birthplace": "Oakland, CA",
-    "relation": "RoRo's great-grandchild (Matt's daughter)",
-    "parents": [
-      "Matt Reider",
-      "Alison Cohen"
-    ]
-  }
-];
-var byName = {};
-rawData.forEach(function(p) { byName[p.name] = p; });
-
-function esc(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
-
-function getYears(p) {
-  var parts = [];
-  if (p.born) { var b = String(p.born); parts.push(b.length > 4 ? b.split('-')[0] : b); }
-  if (p.died) { var d = String(p.died); parts.push(d.length > 4 ? d.split('-')[0] : d); }
-  else if (parts.length) parts.push('');
-  return parts.length < 2 ? (parts[0] || '') : parts[0] + '\u2013' + parts[1];
-}
-
-function getChildren(name) {
-  return rawData.filter(function(p) { return p.parents && p.parents.indexOf(name) !== -1; })
-    .sort(function(a, b) { return (a.born ? parseInt(a.born) : 9999) - (b.born ? parseInt(b.born) : 9999); });
-}
-
-function getSiblings(name) {
-  var person = byName[name];
-  if (!person || !person.parents) return [];
-  return rawData.filter(function(p) {
-    if (p.name === name || !p.parents) return false;
-    for (var i = 0; i < p.parents.length; i++) { if (person.parents.indexOf(p.parents[i]) !== -1) return true; }
-    return false;
-  }).sort(function(a, b) { return (a.born ? parseInt(a.born) : 9999) - (b.born ? parseInt(b.born) : 9999); });
-}
-
-function fdNode(person, isActive) {
-  var y = getYears(person);
-  var cls = 'fd-node' + (isActive ? ' active' : '');
-  return '<div class="' + cls + '" data-name="' + esc(person.name) + '">' +
-    '<span class="fd-name">' + esc(person.name) + '</span>' +
-    (y ? '<span class="fd-dates">' + y + '</span>' : '') + '</div>';
-}
-
-var currentPerson = null;
-
-function showPerson(name, skipHash) {
-  var person = byName[name];
-  if (!person) return;
-  currentPerson = name;
-
-  if (!skipHash) {
-    var newHash = '#' + encodeURIComponent(name);
-    if (location.hash !== newHash) history.replaceState(null, '', newHash);
-  }
-
-  var treeTab = document.getElementById('tree-tab');
-  if (!treeTab.classList.contains('active')) {
-    var btns = document.querySelectorAll('.tab');
-    switchTab('tree', btns[1]);
-  }
-
-  var parents = (person.parents || []).map(function(n) { return byName[n]; }).filter(Boolean);
-  var children = getChildren(name);
-  var siblings = getSiblings(name);
-  var spousePerson = person.spouse ? byName[person.spouse] : null;
-
-  // --- Mini family diagram ---
-  var diagram = '<div class="family-diagram">';
-
-  // Parents row
-  if (parents.length > 0) {
-    diagram += '<div class="fd-label">Parents</div>';
-    if (parents.length === 2 && parents[0].spouse === parents[1].name) {
-      diagram += '<div class="fd-row"><div class="fd-couple">' + fdNode(parents[0], false) + fdNode(parents[1], false) + '</div></div>';
-    } else {
-      diagram += '<div class="fd-row">' + parents.map(function(p) { return fdNode(p, false); }).join('') + '</div>';
-    }
-    diagram += '<div class="fd-line"></div>';
-  }
-
-  // Current person + spouse
-  if (spousePerson) {
-    diagram += '<div class="fd-row"><div class="fd-couple">' + fdNode(person, true) + fdNode(spousePerson, false) + '</div></div>';
-  } else {
-    diagram += '<div class="fd-row">' + fdNode(person, true) + '</div>';
-  }
-
-  // Children
-  if (children.length > 0) {
-    diagram += '<div class="fd-line"></div>';
-    diagram += '<div class="fd-label">Children</div>';
-    diagram += '<div class="fd-children-row">' + children.map(function(c) { return fdNode(c, false); }).join('') + '</div>';
-  }
-
-  diagram += '</div>';
-
-  // --- Person card ---
-  var card = '<div class="person-card">';
-  card += '<h2>' + esc(person.name) + '</h2>';
-
-  if (person.nicknames && person.nicknames.length) {
-    card += '<div class="person-nicknames">' + person.nicknames.map(function(n) { return esc(n); }).join(', ') + '</div>';
-  }
-
-  if (person.relation && person.relation !== 'self') {
-    card += '<div class="person-relation">' + esc(person.relation) + '</div>';
-  }
-
-  card += '<div class="person-meta">';
-  if (person.born || person.birthplace) {
-    var bt = ''; if (person.born) bt += String(person.born); if (person.birthplace) bt += (bt ? ', ' : '') + person.birthplace;
-    card += '<div class="meta-row"><span class="meta-label">Born</span><span class="meta-value">' + esc(bt) + '</span></div>';
-  }
-  if (person.died || person.deathplace) {
-    var dt = ''; if (person.died) dt += String(person.died); if (person.deathplace) dt += (dt ? ', ' : '') + person.deathplace;
-    card += '<div class="meta-row"><span class="meta-label">Died</span><span class="meta-value">' + esc(dt) + '</span></div>';
-  }
-  if (person.spouse) {
-    if (spousePerson) {
-      card += '<div class="meta-row"><span class="meta-label">Spouse</span><span class="meta-value"><a class="spouse-link" data-name="' + esc(person.spouse) + '">' + esc(person.spouse) + '</a></span></div>';
-    } else {
-      card += '<div class="meta-row"><span class="meta-label">Spouse</span><span class="meta-value">' + esc(person.spouse) + '</span></div>';
-    }
-  }
-  if (person.married) {
-    card += '<div class="meta-row"><span class="meta-label">Married</span><span class="meta-value">' + esc(String(person.married)) + '</span></div>';
-  }
-  card += '</div>';
-
-  if (person.notes) {
-    card += '<div class="person-notes">' + esc(person.notes) + '</div>';
-  }
-  card += '</div>';
-
-  // Siblings
-  var sibHtml = '';
-  if (siblings.length > 0) {
-    sibHtml = '<div class="siblings-section"><h3>Siblings</h3><div class="pills">' +
-      siblings.map(function(s) { return '<button class="sib-pill" data-name="' + esc(s.name) + '">' + esc(s.name) + '</button>'; }).join('') +
-      '</div></div>';
-  }
-
-  var view = document.getElementById('person-view');
-  view.innerHTML = diagram + card + sibHtml;
-  view.scrollIntoView({ behavior: 'smooth', block: 'start' });
-}
-
-// Event delegation
-document.getElementById('person-view').addEventListener('click', function(e) {
-  var node = e.target.closest('.fd-node'); if (node && !node.classList.contains('active')) { showPerson(node.dataset.name); return; }
-  var pill = e.target.closest('.sib-pill'); if (pill) { showPerson(pill.dataset.name); return; }
-  var link = e.target.closest('.spouse-link'); if (link) { showPerson(link.dataset.name); return; }
-});
-
-// Search
-var searchInput = document.getElementById('search-input');
-var searchResults = document.getElementById('search-results');
-
-searchInput.addEventListener('input', function() {
-  var q = searchInput.value.trim().toLowerCase();
-  if (!q) { searchResults.style.display = 'none'; return; }
-  var matches = rawData.filter(function(p) {
-    if (p.name.toLowerCase().indexOf(q) !== -1) return true;
-    if (p.nicknames) { for (var i = 0; i < p.nicknames.length; i++) { if (p.nicknames[i].toLowerCase().indexOf(q) !== -1) return true; } }
-    return false;
-  }).slice(0, 8);
-  if (!matches.length) { searchResults.style.display = 'none'; return; }
-  searchResults.innerHTML = matches.map(function(p) {
-    var y = getYears(p);
-    return '<div class="search-item" data-name="' + esc(p.name) + '"><span class="si-name">' + esc(p.name) + '</span>' +
-      (y ? '<span class="si-detail"> ' + y + '</span>' : '') +
-      (p.relation ? '<br><span class="si-detail">' + esc(p.relation) + '</span>' : '') + '</div>';
-  }).join('');
-  searchResults.style.display = 'block';
-});
-searchResults.addEventListener('click', function(e) {
-  var item = e.target.closest('.search-item');
-  if (item) { showPerson(item.dataset.name); searchInput.value = ''; searchResults.style.display = 'none'; }
-});
-searchInput.addEventListener('blur', function() { setTimeout(function() { searchResults.style.display = 'none'; }, 200); });
-
-// Tab switching
-var treeLoaded = false;
-function switchTab(tab, btn) {
-  document.querySelectorAll('.tab-content').forEach(function(el) { el.classList.remove('active'); });
-  document.querySelectorAll('.tab').forEach(function(el) { el.classList.remove('active'); });
-  document.getElementById(tab + '-tab').classList.add('active');
-  btn.classList.add('active');
-  // Clear hash when leaving tree tab
-  if (tab !== 'tree' && location.hash) {
-    history.replaceState(null, '', location.pathname);
-  }
-  // Lazy-load tree on first visit
-  if (tab === 'tree' && !treeLoaded) {
-    treeLoaded = true;
-    showPerson('Rose Etta Kahn Sampson', true);
-  }
-}
-
-// Hash navigation
-window.addEventListener('popstate', function() {
-  var name = location.hash ? decodeURIComponent(location.hash.slice(1)) : null;
-  if (name && byName[name] && name !== currentPerson) showPerson(name);
-});
-
-// On load: if hash links to a person, go to tree; otherwise stay on narrative
-var initialHash = location.hash ? decodeURIComponent(location.hash.slice(1)) : null;
-if (initialHash && byName[initialHash]) {
-  treeLoaded = true;
-  showPerson(initialHash);
+// Redirect old person hash links to the family tree page
+if (location.hash) {
+  location.replace('/family-tree.html' + location.hash);
 }
 </script>
 </body>
