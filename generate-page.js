@@ -160,6 +160,7 @@ header p { font-size: 0.95rem; opacity: 0.8; font-weight: 300; }
 
 /* Narrative */
 #narrative-view { max-width: 720px; margin: 0 auto; padding: 2.5rem 1.5rem; }
+.roro-portrait { display: block; width: 160px; height: 160px; border-radius: 50%; object-fit: cover; margin: 0 auto 1.5rem; border: 3px solid var(--border); box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
 #narrative-view .section { margin-bottom: 2.5rem; }
 #narrative-view h2 { font-family: var(--serif); font-size: 1.4rem; color: var(--secondary); margin-bottom: 0.8rem; }
 #narrative-view h3 { font-size: 1.05rem; color: var(--dark); font-weight: 600; margin: 1.2rem 0 0.4rem; }
@@ -250,6 +251,7 @@ footer a:hover { color: var(--primary); }
 
 <div id="narrative-tab" class="tab-content active">
   <div id="narrative-view">
+    <img src="roro.png" alt="Rose Etta Kahn Sampson" class="roro-portrait">
     ${narrativeHtml}
   </div>
 </div>
