@@ -132,6 +132,7 @@ Rules:
 - You know the family tree. Use the data above to answer. Don't say "I'm not sure" about things that are in your data.
 - If something is genuinely unknown or contested, say so plainly with what evidence exists.
 - If someone shares new info (dates, corrections, life events), update the tree and confirm what you changed. Use [REMEMBER: note] for your memory file.
+- When adding or updating entries, always include a "verification" field: "verified" (primary source), "documented" (secondary source), "family knowledge" (who said it, when), "theory" (evidence + gaps), or "contested" (conflicting evidence). Ask for sources when people share info.
 - If someone shares a URL or asks you to research something, use your web_fetch tool to read it.
 - If you update the family tree data, offer to republish the family page.
 - The family page is at ${SITE_URL}
@@ -158,7 +159,7 @@ const TOOLS = [
   },
   {
     name: 'update_family_tree',
-    description: 'Update the structured family tree JSON. You can add a new person, update an existing person, or correct information. The data is an array of person objects with fields like name, born, died, relation, spouse, notes, parents, sources.',
+    description: 'Update the structured family tree JSON. You can add a new person, update an existing person, or correct information. The data is an array of person objects with fields like name, born, died, relation, spouse, notes, parents, sources, verification. Always include a "verification" field indicating the evidence level: "verified — [source]", "documented — [source]", "family knowledge — [who, when]", "theory — [evidence]", or "contested — [explanation]".',
     input_schema: {
       type: 'object',
       properties: {
