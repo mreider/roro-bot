@@ -1,0 +1,562 @@
+[
+  {
+    "name": "Henry (Hertz) Kahn",
+    "relation": "RoRo's paternal great-grandfather",
+    "spouse": "Bela Kahn (née Goldstein)"
+  },
+  {
+    "name": "Bela Kahn (née Goldstein)",
+    "relation": "RoRo's paternal great-grandmother",
+    "spouse": "Henry (Hertz) Kahn"
+  },
+  {
+    "name": "Israel Kahn",
+    "born": "1822",
+    "died": "1883",
+    "birthplace": "Darmstadt, Hesse, Germany",
+    "relation": "RoRo's paternal grandfather",
+    "spouse": "Sarah Kahn (née Bauer)",
+    "notes": "Emigrated from Germany 1848, arrived Baltimore on the Henry Shelton from Rotterdam. Founded dry goods business in Oakland 1879 at 10th & Broadway. Sons: Henry, Samuel, Solomon, Frederick, John.",
+    "parents": ["Henry (Hertz) Kahn", "Bela Kahn (née Goldstein)"]
+  },
+  {
+    "name": "Sarah Kahn (née Bauer)",
+    "born": "1828",
+    "died": "1888",
+    "relation": "RoRo's paternal grandmother",
+    "spouse": "Israel Kahn"
+  },
+  {
+    "name": "Samuel Lavenson",
+    "born": "1829",
+    "died": "1900",
+    "relation": "RoRo's maternal grandfather",
+    "spouse": "Caroline Lavenson (née Weinman)"
+  },
+  {
+    "name": "Caroline Lavenson (née Weinman)",
+    "relation": "RoRo's maternal grandmother",
+    "spouse": "Samuel Lavenson"
+  },
+  {
+    "name": "Albert S. Lavenson",
+    "born": "1865",
+    "birthplace": "Sacramento, CA",
+    "died": "1930",
+    "relation": "RoRo's maternal uncle",
+    "notes": "Vice-president of Capwell's Department Store. President of Temple Sinai. Left estate to charitable/educational foundation.",
+    "parents": ["Samuel Lavenson", "Caroline Lavenson (née Weinman)"]
+  },
+  {
+    "name": "Frederick Kahn",
+    "born": "1860-09-21",
+    "died": "1925-08-19",
+    "birthplace": "New York, NY",
+    "deathplace": "Oakland, CA (3933 Harrison Street)",
+    "relation": "RoRo's father",
+    "spouse": "Helen Kahn (née Lavenson)",
+    "notes": "Joined father's Oakland retail business 1873. Kahn Brothers Dept Store moved 1912 to Beaux-Arts building at 16th & Broadway (architect Charles W. Dickey, 120-ft elliptical dome — now Rotunda Building, Oakland Landmark #132, National Register). First president of Jewish Welfare Federation of the East Bay. Founding member & president of Temple Sinai. Chairman of Advisory Committee of Board of Education ($5M school building program). VP of Alameda County Anti-Tuberculosis Society. Concordia Club, B'nai B'rith. Buried at Home of Eternity Cemetery, Mountain View Cemetery, Oakland.",
+    "parents": ["Israel Kahn", "Sarah Kahn (née Bauer)"]
+  },
+  {
+    "name": "Helen Kahn (née Lavenson)",
+    "born": "1872-05-20",
+    "died": "1935-03-04",
+    "birthplace": "California",
+    "deathplace": "Oakland, CA",
+    "relation": "RoRo's mother",
+    "spouse": "Frederick Kahn",
+    "notes": "Established the Kahn Foundation in 1928 after Frederick's death. In 1965, foundation donated $125,000 for 71 paintings — the Kahn Collection of 19th-century California art at the Oakland Museum, catalogued by Marjorie Arkelian.",
+    "parents": ["Samuel Lavenson", "Caroline Lavenson (née Weinman)"]
+  },
+  {
+    "name": "Helen Sarah Basinger (née Kahn)",
+    "relation": "RoRo's sister",
+    "parents": ["Frederick Kahn", "Helen Kahn (née Lavenson)"]
+  },
+  {
+    "name": "Frederick Kahn Jr.",
+    "relation": "RoRo's brother",
+    "parents": ["Frederick Kahn", "Helen Kahn (née Lavenson)"]
+  },
+  {
+    "name": "Rose Etta Kahn Sampson",
+    "nicknames": ["RoRo", "Grandma RoRo", "Lambie", "Ro", "Rosie"],
+    "born": "1907-12-10",
+    "died": "1997-07-12",
+    "birthplace": "Oakland, CA",
+    "deathplace": "San Francisco, CA (Mount Zion Hospital)",
+    "relation": "self",
+    "spouse": "Dr. John Jacob Sampson",
+    "married": "1931-05-17",
+    "notes": "Phi Beta Kappa, UC Berkeley 1928. Carried the key at Temple Sinai's dedication as a girl. Award-winning weaver — wove furniture upholstery for Seacliff home, made cushion for Haas-Lilienthal House. President of Kahn Foundation. Volunteered at Mt. Zion Hospital into her 80s. Died of lung embolism. Memorial August 4 at Congregation Emanu-El.",
+    "parents": ["Frederick Kahn", "Helen Kahn (née Lavenson)"]
+  },
+  {
+    "name": "Hartwig Cohen",
+    "nicknames": ["Reverend Hartwig Cohen"],
+    "born": "1783",
+    "died": "1861",
+    "birthplace": "Wartha, Frankenstein, Silesia, Prussia",
+    "relation": "Grandpa John's maternal great-great-grandfather",
+    "spouse": "Deborah Marques Cohen",
+    "sources": ["https://www.geni.com/people/Rev-Hartwig-Cohen/6000000016009111717", "https://www.wikitree.com/wiki/Cohen-2905"]
+  },
+  {
+    "name": "Deborah Marques Cohen",
+    "born": "1801",
+    "died": "1888",
+    "birthplace": "Charleston, SC",
+    "relation": "Grandpa John's maternal great-great-grandmother",
+    "spouse": "Hartwig Cohen",
+    "notes": "Maiden name 'Marques' links to Sephardic Marks/Marques family.",
+    "parents": ["Samuel Mendes Mandel Marks"]
+  },
+  {
+    "name": "Samuel Mendes Mandel Marks",
+    "relation": "Deborah Marques Cohen's father",
+    "notes": "Son of Isaac Marks and Miriam Simpson/Simons.",
+    "parents": ["Isaac Marks", "Miriam Simpson/Simons"]
+  },
+  {
+    "name": "Isaac Marks",
+    "born": "1732",
+    "died": "1776",
+    "birthplace": "New York, NY",
+    "deathplace": "Charleston, SC",
+    "relation": "Deborah's grandfather / Sephardic ancestor",
+    "spouse": "Miriam Simpson/Simons",
+    "notes": "Fought in the American Revolution as private in NY Militia. Listed repeatedly in DAR family histories. Lived in NYC from age 8 (1740) until death. Originally Marques — name anglicized to Marks. Father unknown. Cousin of Bernard Baruch (through granddaughter Sarah Wolfe). Connection to Esther is contested — multiple Geni/Ancestry trees list her as mother but original documentation unclear.",
+    "parents": ["Esther de Salomon Levy Maduro"],
+    "sources": ["https://www.geni.com/people/Pvt-Isaac-Marks-NY-Militia/6000000019301598241", "https://sites.americanjewisharchives.org/publications/fajf/pdfs/stern_p185.pdf", "https://paulskolnick.com/genealogy/chris-ann-maxwell/marques-marks/marques-marks-text-tree/"]
+  },
+  {
+    "name": "Miriam Simpson/Simons",
+    "relation": "Isaac Marks's wife",
+    "notes": "Of Long Island.",
+    "spouse": "Isaac Marks"
+  },
+  {
+    "name": "Esther de Salomon Levy Maduro",
+    "nicknames": ["Esther Marques", "Esther de Salomon Mosseh Marques", "Esther Levy Maduro y Namias de Crasto"],
+    "born": "1699-12-16",
+    "died": "1759-07-30",
+    "birthplace": "Bordeaux, Gironde, France",
+    "deathplace": "Curaçao, Netherlands Antilles",
+    "relation": "Isaac Marks's mother / Sephardic matriarch",
+    "notes": "Buried at Beth Haim Cemetery, Curaçao, section IV, row C, grave 621. First married Jacob Rodriguez Marques (May 27, 1722, in Barbados). Jacob died ~1725. Then married Ishac de Shemuel Levy Maduro (buried adjacent plot IV-C-620). Isaac Marks born 1732 with unknown father — possibly conceived in New York. Also had daughter Rachel Marquez (~1725, Barbados). Researched by Matt Reider 2022, corresponded with Ron Gomes Casseres at Beth Haim cemetery. Emmanuel's books contain contradictions: 'History of the Jews of the Netherlands Antilles' (1970) p.943 says she married Jacob 1722, but 'Precious Stones of the Jews of Curaçao' (1957) p.507 lists her as wife of Ishac de Shemuel.",
+    "parents": ["Ribi Hazzan Salomon de Mosseh Levy Maduro y Dias Sardo"],
+    "sources": ["https://www.geni.com/people/Esther-Marques/6000000010280084001", "https://www.bethhaimcuracao.org", "https://archive.org/stream/willsofearlyjewi00frie/willsofearlyjewi00frie_djvu.txt"]
+  },
+  {
+    "name": "Jacob Rodriguez Marques",
+    "died": "~1725",
+    "relation": "Esther de Salomon Levy Maduro's first husband",
+    "spouse": "Esther de Salomon Levy Maduro",
+    "married": "1722-05-27",
+    "notes": "Married Esther in Barbados at St. Michaels. Died ~1725. From the Isaac Rodriguez Marques family of New York/Denmark. His father Isaac Rodriguez Marques (1695–1706) was a ship owner (the Dolphin) who sailed between NY and England. Father's will (1706) mentions son Jacob and daughter Esther (a different Esther). Referenced in Friedman's 'Wills of Early Jewish Settlers in New York' and Baruch's autobiography 'The Adventures of a Wall Street Legend' p.22.",
+    "sources": ["https://archive.org/stream/willsofearlyjewi00frie/willsofearlyjewi00frie_djvu.txt"]
+  },
+  {
+    "name": "Ribi Hazzan Salomon de Mosseh Levy Maduro y Dias Sardo",
+    "birthplace": "Amsterdam, Netherlands",
+    "relation": "Esther's father / Sephardic rabbi",
+    "notes": "Rabbi (Hazzan). Born in Amsterdam.",
+    "parents": ["Hazzan & Ribi Mosseh de Salomon Levy Maduro"]
+  },
+  {
+    "name": "Hazzan & Ribi Mosseh de Salomon Levy Maduro",
+    "birthplace": "Amsterdam, Netherlands",
+    "relation": "Sephardic rabbi ancestor",
+    "notes": "Rabbi. Born in Amsterdam.",
+    "parents": ["Salomon (Salomão) de Moshe Levy Maduro"]
+  },
+  {
+    "name": "Salomon (Salomão) de Moshe Levy Maduro",
+    "birthplace": "Amsterdam, Netherlands",
+    "relation": "Sephardic ancestor",
+    "parents": ["Mosseh Levy o Maduro"]
+  },
+  {
+    "name": "Mosseh Levy o Maduro",
+    "birthplace": "Portugal",
+    "relation": "Sephardic ancestor from Portugal",
+    "parents": ["Solomon Levy"]
+  },
+  {
+    "name": "Solomon Levy",
+    "relation": "Sephardic ancestor (1500s)",
+    "parents": ["Salomon (Samuel) Levy"]
+  },
+  {
+    "name": "Salomon (Samuel) Levy",
+    "relation": "Sephardic ancestor (1500s)",
+    "parents": ["Antonio Ha Levy, Abulafia"]
+  },
+  {
+    "name": "Antonio Ha Levy, Abulafia",
+    "relation": "Sephardic ancestor",
+    "parents": ["Diogo Rodrigues", "Clara Roiz"]
+  },
+  {
+    "name": "Diogo Rodrigues",
+    "relation": "Earliest known ancestor (1400s, Portugal)"
+  },
+  {
+    "name": "Clara Roiz",
+    "relation": "Earliest known ancestor (1400s, Portugal)",
+    "spouse": "Diogo Rodrigues"
+  },
+  {
+    "name": "Joseph H. Sampson",
+    "born": "1823-06-10",
+    "died": "1883-07-14",
+    "birthplace": "Georgetown, SC",
+    "relation": "Grandpa John's paternal grandfather",
+    "spouse": "Esther 'Hetty' Sampson (née Cohen)",
+    "notes": "Prominent Jewish merchant and shipping operator in Georgetown, SC, with brother Samuel. After the Civil War, revived their mercantile business and expanded into shipping. Family originally from Bury St. Edmunds, England. Sampson family names appear in Kahal Kadosh Beth Elohim records in Charleston. Georgetown had ~80 Jews by 1800 (~10% of white population), second largest Jewish community in SC. Buried in Jewish Cemetery, Georgetown (est. 1772).",
+    "sources": ["https://billiongraves.com/grave/Joseph-Sampson/3278781", "https://www.isjl.org/south-carolina-georgetown-encyclopedia.html", "https://jhssc.org/synagogue/beth-elohim/"]
+  },
+  {
+    "name": "Esther 'Hetty' Sampson (née Cohen)",
+    "born": "1832-06-30",
+    "died": "1897-09-22",
+    "birthplace": "Charleston, SC",
+    "deathplace": "Georgetown, SC",
+    "relation": "Grandpa John's paternal grandmother",
+    "spouse": "Joseph H. Sampson",
+    "notes": "Siblings: Sarah (Cohen) Wolfe (Bernard Baruch's grandmother) and Frances A. Cohen. Mother of Cornelia C. (Sampson) Ehrich and Dr. Arthur Fischel Sampson.",
+    "parents": ["Hartwig Cohen", "Deborah Marques Cohen"],
+    "sources": ["https://www.wikitree.com/wiki/Cohen-2905", "https://www.geni.com/people/Esther-Sampson/325137901420005493"]
+  },
+  {
+    "name": "Abraham Levy",
+    "born": "1827",
+    "died": "1879",
+    "relation": "Grandpa John's maternal grandfather",
+    "spouse": "Esther Levy (née Haff)"
+  },
+  {
+    "name": "Esther Levy (née Haff)",
+    "born": "1833",
+    "died": "1908",
+    "relation": "Grandpa John's maternal grandmother",
+    "spouse": "Abraham Levy"
+  },
+  {
+    "name": "Dr. Arthur Fischel Sampson",
+    "nicknames": ["AF"],
+    "born": "1855-07-01",
+    "died": "1934-11-26",
+    "birthplace": "Georgetown, SC",
+    "deathplace": "San Francisco, CA",
+    "relation": "Grandpa John's father / RoRo's father-in-law",
+    "spouse": "Babette 'Bettie' Sampson (née Levy)",
+    "married": "1887-04-04",
+    "notes": "Physician. Medical school in SC, practiced in Galveston TX. Married Bettie in Galveston. After 1900 Galveston flood, moved to SF 1902. Franklin Street home (between Bush and Sutter) dynamited by US Army as firebreak during 1906 earthquake. Rebuilt on Washington Street near Laurel. Five children: Joseph Abraham (1888), Arthur Jr. (1891), Cornelia 'Nellie' (1893), Esther, John Jacob (1898).",
+    "parents": ["Joseph H. Sampson", "Esther 'Hetty' Sampson (née Cohen)"]
+  },
+  {
+    "name": "Babette 'Bettie' Sampson (née Levy)",
+    "born": "1868-03-24",
+    "died": "1949-03-21",
+    "birthplace": "San Antonio, TX",
+    "deathplace": "Santa Clara, CA",
+    "relation": "Grandpa John's mother / RoRo's mother-in-law",
+    "spouse": "Dr. Arthur Fischel Sampson",
+    "married": "1887-04-04",
+    "parents": ["Abraham Levy", "Esther Levy (née Haff)"]
+  },
+  {
+    "name": "Joseph Abraham Sampson",
+    "born": "1888-12-04",
+    "birthplace": "Galveston, TX",
+    "relation": "Grandpa John's brother",
+    "parents": ["Dr. Arthur Fischel Sampson", "Babette 'Bettie' Sampson (née Levy)"]
+  },
+  {
+    "name": "Arthur Fischel Sampson Jr.",
+    "born": "1891-06-02",
+    "birthplace": "Galveston, TX",
+    "relation": "Grandpa John's brother",
+    "parents": ["Dr. Arthur Fischel Sampson", "Babette 'Bettie' Sampson (née Levy)"]
+  },
+  {
+    "name": "Cornelia 'Nellie' Sampson",
+    "born": "1893-08-08",
+    "died": "1989",
+    "birthplace": "Galveston, TX",
+    "deathplace": "San Francisco, CA",
+    "relation": "Grandpa John's sister",
+    "notes": "Married first Sidney Bibbero (son Richard Bibbero b. 1915), then Herbert Salinger.",
+    "parents": ["Dr. Arthur Fischel Sampson", "Babette 'Bettie' Sampson (née Levy)"]
+  },
+  {
+    "name": "Esther Sampson Langfeld",
+    "relation": "Grandpa John's sister",
+    "parents": ["Dr. Arthur Fischel Sampson", "Babette 'Bettie' Sampson (née Levy)"]
+  },
+  {
+    "name": "Dr. John Jacob Sampson",
+    "nicknames": ["Grandpa John", "Poppy John", "Johnny"],
+    "born": "1898-04-28",
+    "died": "1987-12-24",
+    "birthplace": "Galveston, TX",
+    "deathplace": "San Francisco, CA",
+    "relation": "RoRo's husband",
+    "spouse": "Rose Etta Kahn Sampson",
+    "married": "1931-05-17",
+    "notes": "MD before age 21. 3 years at UC then medical degree. Medical officer on freighter to Far East and India. Practiced with his father, then UCSF research and clinical staff until retirement at 85. Chief of Staff at Mount Zion Hospital. Cardiologist — 49 publications (1926–1980) on cardiac pain, pulmonary lymph flow, angina, shock. Collaborated with Meyer Friedman (Type A behavior), Herman Uhley, Sanford Leeds at Harold Brunn Institute for Cardiovascular Research. The John J. Sampson–Lucie Stern Endowed Chair in Cardiology established at UCSF in his honor.",
+    "parents": ["Dr. Arthur Fischel Sampson", "Babette 'Bettie' Sampson (née Levy)"]
+  },
+  {
+    "name": "Deborah Sampson Green",
+    "born": "1934-01-11",
+    "birthplace": "San Francisco, CA",
+    "relation": "RoRo's eldest child",
+    "spouse": "John R. Green",
+    "notes": "Educator, editor, college instructor of English Lit. Lives in Seattle. Schools: Lowell, Alamo, Presidio Jr. High, Wellesley (1978).",
+    "parents": ["Dr. John Jacob Sampson", "Rose Etta Kahn Sampson"]
+  },
+  {
+    "name": "John R. Green",
+    "born": "~1921",
+    "died": "~1996",
+    "relation": "Deborah's husband",
+    "spouse": "Deborah Sampson Green"
+  },
+  {
+    "name": "Caleb Green",
+    "relation": "RoRo's grandchild (Deborah's son)",
+    "spouse": "Kate Banta-Green",
+    "parents": ["Deborah Sampson Green", "John R. Green"]
+  },
+  {
+    "name": "Robert Bruce Banta-Green",
+    "relation": "RoRo's great-grandchild (Caleb's son)",
+    "parents": ["Caleb Green", "Kate Banta-Green"]
+  },
+  {
+    "name": "Peter Caleb Banta-Green",
+    "relation": "RoRo's great-grandchild (Caleb's son)",
+    "parents": ["Caleb Green", "Kate Banta-Green"]
+  },
+  {
+    "name": "John Frederick Sampson",
+    "nicknames": ["Johnny"],
+    "born": "1935-03-18",
+    "birthplace": "San Francisco, CA",
+    "relation": "RoRo's son",
+    "spouse": "Sharon L. Litsky (second wife)",
+    "notes": "Appraiser and real estate broker in SF. Lowell HS (1953), Reed College (3 yrs), AB Univ of SF (1957), Wharton (1960). First wife Louise Adler (1962, div. 1991). Second wife Sharon L. Litsky (1999).",
+    "parents": ["Dr. John Jacob Sampson", "Rose Etta Kahn Sampson"]
+  },
+  {
+    "name": "Jennifer Ruth Sampson",
+    "relation": "RoRo's grandchild (John's daughter)",
+    "parents": ["John Frederick Sampson", "Louise Adler"]
+  },
+  {
+    "name": "John Frederick Sampson Jr.",
+    "relation": "RoRo's grandchild (John's son)",
+    "parents": ["John Frederick Sampson", "Louise Adler"]
+  },
+  {
+    "name": "Juliet Margaret Sampson",
+    "relation": "RoRo's grandchild (John's daughter)",
+    "parents": ["John Frederick Sampson", "Louise Adler"]
+  },
+  {
+    "name": "Janet Sampson Reider",
+    "born": "1937-03-01",
+    "birthplace": "San Francisco, CA",
+    "relation": "RoRo's youngest child",
+    "spouse": "Arthur Elliott 'Pete' Reider",
+    "married": "1958",
+    "notes": "Photographer (janetreider.com). Met Pete at Lowell High School at age 13.",
+    "parents": ["Dr. John Jacob Sampson", "Rose Etta Kahn Sampson"]
+  },
+  {
+    "name": "Arthur Elliott 'Pete' Reider",
+    "nicknames": ["Pete", "Peter Reider"],
+    "born": "1936-11-01",
+    "died": "2015-08-13",
+    "birthplace": "Topeka, KS",
+    "deathplace": "San Francisco, CA",
+    "relation": "RoRo's son-in-law (Janet's husband)",
+    "spouse": "Janet Sampson Reider",
+    "married": "1958",
+    "notes": "Psychiatrist. Presidio Hill School, Grant School, Lowell HS, Harvard (Class of 1958), Harvard Medical. Captain of Harvard Track — ran 4:11 mile (1957 Harvard record). Harvard Athletic Hall of Fame (1982). All-Ivy League Cross Country Team. Coach McCurdy: 'one of the toughest little men I have ever known.' Private practice in Cambridge, Hyannis, Newton MA. Retired in SF. Published Stepping Stones (2014), poetry and fiction. Fromm Institute at USF, Osher Foundation at Brandeis. Died of lymphoma at home. Memorial at Congregation Emanu-El, August 17, 2015.",
+    "parents": ["Dr. Norman Reider", "Louise J. Reider (née Cohen)"]
+  },
+  {
+    "name": "Jonathan Reider",
+    "relation": "Pete's brother",
+    "notes": "Stanford admissions officer for 15 years, then Director of College Counseling at SF University High School.",
+    "parents": ["Dr. Norman Reider", "Louise J. Reider (née Cohen)"]
+  },
+  {
+    "name": "Dr. Norman Reider",
+    "born": "1907-07-03",
+    "died": "1989-03-23",
+    "birthplace": "Alliance, Stark County, OH",
+    "deathplace": "San Francisco, CA",
+    "relation": "Pete's father",
+    "spouse": "Louise J. Reider (née Cohen)",
+    "married": "1927",
+    "notes": "BA and MD from Western Reserve University (now Case Western Reserve). Trained at Menninger Clinic, Topeka (1934–1939). Headed Dept of Psychiatry at Mt. Zion Hospital, SF. Among founding members of California Psychoanalytic Society. Featured in TIME magazine (1947) for 'The Unmarried Father.' Wrote 'Chess, Oedipus, and the Mater Dolorosa' (1959). Papers archived at SF Center for Psychoanalysis (4.6 linear feet, 1822–1980s).",
+    "parents": ["Maurice Jacob Reider (née Rudner)", "Lillian Reider (née Cohen)"]
+  },
+  {
+    "name": "Louise J. Reider (née Cohen)",
+    "born": "1907-11-29",
+    "died": "1985-02-22",
+    "birthplace": "Cleveland, OH",
+    "deathplace": "San Francisco, CA",
+    "relation": "Pete's mother",
+    "spouse": "Dr. Norman Reider",
+    "married": "1927",
+    "notes": "Psychiatric social worker, stopped practicing around 1946.",
+    "parents": ["Abe (Abba Elyia) Pasek Cohen", "Rena Posak Cohen (née Shepsenwol)"]
+  },
+  {
+    "name": "Maurice Jacob Reider (née Rudner)",
+    "nicknames": ["Morris Jacob Rudner", "Morris Rudman"],
+    "born": "~1882",
+    "died": "~1960",
+    "birthplace": "Horoduk/Orduk Village, Vilna Gubernia, Lithuania",
+    "deathplace": "Canton, OH",
+    "relation": "Pete's paternal grandfather",
+    "spouse": "Lillian Reider (née Cohen)",
+    "notes": "Originally named Rudner, changed to Reider. Foreman at steel foundry. Married Jun 7, 1906, Canton OH.",
+    "parents": ["Uriah 'Uri' Rudner", "Clara Rudner (née Scope)"]
+  },
+  {
+    "name": "Uriah 'Uri' Rudner",
+    "born": "1855-02",
+    "died": "1916-04-23",
+    "birthplace": "Orduk Village, Vilna Gubernia, Lithuania (Russian Empire)",
+    "deathplace": "Canton, OH",
+    "relation": "Pete's paternal great-grandfather",
+    "spouse": "Clara Rudner (née Scope)",
+    "notes": "First wife Clara Scope (d. 1909). Children: Anna, Morris (Reider), Isaac, Bennie (1884–1901), Len, Sam, Rhea. Second wife Hattie Altman."
+  },
+  {
+    "name": "Clara Rudner (née Scope)",
+    "born": "1862-06",
+    "died": "1909-09-15",
+    "birthplace": "Russia",
+    "deathplace": "Canton, OH",
+    "relation": "Pete's paternal great-grandmother",
+    "spouse": "Uriah 'Uri' Rudner"
+  },
+  {
+    "name": "Lillian Reider (née Cohen)",
+    "born": "1887",
+    "died": "1981",
+    "relation": "Norman's mother / Pete's paternal grandmother",
+    "spouse": "Maurice Jacob Reider (née Rudner)",
+    "parents": ["Hyman Cohen", "Jennie Sugarman"]
+  },
+  {
+    "name": "Hyman Cohen",
+    "born": "1850",
+    "relation": "Lillian's father",
+    "spouse": "Jennie Sugarman"
+  },
+  {
+    "name": "Jennie Sugarman",
+    "born": "1865",
+    "died": "1928",
+    "relation": "Lillian's mother",
+    "spouse": "Hyman Cohen"
+  },
+  {
+    "name": "Abe (Abba Elyia) Pasek Cohen",
+    "born": "1886",
+    "died": "~1915",
+    "relation": "Louise J. Cohen's father",
+    "parents": ["Aaron Cohen Pasek"]
+  },
+  {
+    "name": "Rena Posak Cohen (née Shepsenwol)",
+    "born": "1886",
+    "relation": "Louise J. Cohen's mother",
+    "parents": ["Max Cohen", "? Levine Shepsenwol"]
+  },
+  {
+    "name": "Jacob M. Reider",
+    "born": "1963-06-25",
+    "birthplace": "Boston, MA",
+    "relation": "RoRo's grandchild (Janet's eldest)",
+    "spouse": "Alicia Ouellette",
+    "notes": "Family physician (FAAFP). Hampshire College '83, Albany Medical College '94. Deputy National Coordinator for Health IT at HHS (2011–2014), also Acting National Coordinator. CMIO at Allscripts (2006–2010). CEO of Alliance for Better Health (2016–2021). Co-founded five health IT startups including Twistle (acquired by Health Catalyst) and Physera (acquired by Omada). Maintains docnotes.net blog since 1999. Married Alicia Ouellette (former Dean of Albany Law School, now Dean at Lewis & Clark Law School). Children: Molly, Sampson. Lives in Slingerlands, NY.",
+    "parents": ["Arthur Elliott 'Pete' Reider", "Janet Sampson Reider"]
+  },
+  {
+    "name": "Alicia Ouellette",
+    "relation": "Jacob's wife",
+    "spouse": "Jacob M. Reider",
+    "notes": "18th President and Dean of Albany Law School (2015–2023), now Dean at Lewis & Clark Law School."
+  },
+  {
+    "name": "Molly Reider",
+    "relation": "RoRo's great-grandchild (Jacob's daughter)",
+    "parents": ["Jacob M. Reider", "Alicia Ouellette"]
+  },
+  {
+    "name": "Sampson Reider",
+    "relation": "RoRo's great-grandchild (Jacob's child)",
+    "parents": ["Jacob M. Reider", "Alicia Ouellette"]
+  },
+  {
+    "name": "Suzie Reider",
+    "born": "1965-03-29",
+    "birthplace": "Boston, MA",
+    "relation": "RoRo's grandchild (Janet's daughter)",
+    "spouse": "Brian Smith",
+    "notes": "EVP of Lyft Media & Business at Lyft. Previously Global CRO at Waze.",
+    "parents": ["Arthur Elliott 'Pete' Reider", "Janet Sampson Reider"]
+  },
+  {
+    "name": "Rose Reider Smith",
+    "relation": "RoRo's great-grandchild (Suzie's daughter)",
+    "parents": ["Suzie Reider", "Brian Smith"]
+  },
+  {
+    "name": "Charlotte Reider Smith",
+    "relation": "RoRo's great-grandchild (Suzie's daughter)",
+    "parents": ["Suzie Reider", "Brian Smith"]
+  },
+  {
+    "name": "Matt Reider",
+    "born": "1969-12-22",
+    "birthplace": "Boston, MA",
+    "relation": "RoRo's grandchild (Janet's youngest)",
+    "spouse": "Alison Cohen",
+    "married": "2003-06-19",
+    "notes": "Software. Lives in Oakland, CA. He's the one who brought RoRo into the chat.",
+    "parents": ["Arthur Elliott 'Pete' Reider", "Janet Sampson Reider"]
+  },
+  {
+    "name": "Alison Cohen",
+    "born": "1972-08-07",
+    "relation": "Matt's wife",
+    "spouse": "Matt Reider",
+    "married": "2003-06-19"
+  },
+  {
+    "name": "Max Nathan Reider",
+    "born": "2007-03-03",
+    "birthplace": "Oakland, CA",
+    "relation": "RoRo's great-grandchild (Matt's son)",
+    "parents": ["Matt Reider", "Alison Cohen"]
+  },
+  {
+    "name": "Zoe Ella Reider",
+    "born": "2008-07-29",
+    "birthplace": "Oakland, CA",
+    "relation": "RoRo's great-grandchild (Matt's daughter)",
+    "parents": ["Matt Reider", "Alison Cohen"]
+  }
+]
