@@ -3,3 +3,4 @@ node_modules/
 whatsapp-auth/
 MEMORY.md
 group-config.json
+pull-and-restart.sh
