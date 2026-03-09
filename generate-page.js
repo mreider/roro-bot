@@ -180,7 +180,7 @@ header p { font-size: 0.95rem; opacity: 0.8; font-weight: 300; }
 .family-diagram { text-align: center; margin-bottom: 1.5rem; }
 .fd-row { display: flex; justify-content: center; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
 .fd-line { width: 1px; height: 1.2rem; background: var(--border); margin: 0 auto; }
-.fd-node { display: inline-flex; flex-direction: column; align-items: center; padding: 0.4rem 0.8rem; background: var(--white); border: 1px solid var(--border); border-radius: 6px; cursor: pointer; font-size: 0.8rem; line-height: 1.3; transition: all 0.15s; max-width: 140px; text-align: center; }
+.fd-node { display: inline-flex; flex-direction: column; align-items: center; justify-content: center; padding: 0.4rem 0.8rem; background: var(--white); border: 1px solid var(--border); border-radius: 6px; cursor: pointer; font-size: 0.8rem; line-height: 1.3; transition: all 0.15s; width: 140px; min-height: 52px; text-align: center; }
 .fd-node:hover { border-color: var(--primary); background: var(--bg); }
 .fd-node.active { border-color: var(--primary); background: var(--primary); color: var(--white); }
 .fd-node.active .fd-dates { color: rgba(255,255,255,0.8); }
@@ -226,7 +226,7 @@ footer a:hover { color: var(--primary); }
   .meta-row { flex-direction: column; gap: 0; }
   .meta-label { min-width: auto; }
   #narrative-view { padding: 1.5rem 1rem; }
-  .fd-node { max-width: 110px; padding: 0.3rem 0.5rem; }
+  .fd-node { width: 110px; min-height: 46px; padding: 0.3rem 0.5rem; }
   .fd-name { font-size: 0.72rem; }
 }
 </style>
