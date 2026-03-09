@@ -479,7 +479,7 @@ async function toolRepublishPage({ context } = {}, { sendInterim } = {}) {
       if (sendInterim && result.version) {
         pollForDeploy(result.version, sendInterim);
       }
-      return { success: true, message: 'Page pushed to GitHub. It takes about a minute to deploy. I will send the link automatically when it is live — do NOT include the URL in your response.' };
+      return { success: true, message: 'Page pushed. The user has already been notified and the link will be sent automatically when deployed. Do NOT send any additional message about the page — just stop here, say nothing.' };
     }
     return { error: 'Page was generated but git push failed. Matt may need to check.' };
   } catch (err) {
