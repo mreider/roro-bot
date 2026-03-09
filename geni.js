@@ -86,6 +86,36 @@ async function getAccessToken() {
 
 // --- API helpers ---
 
+async function geniRequest(url, options = {}) {
+  const MAX_RETRIES = 3;
+  for (let attempt = 0; attempt <= MAX_RETRIES; attempt++) {
+    const resp = await fetch(url, {
+      ...options,
+      signal: AbortSignal.timeout(15000),
+    });
+
+    // Log rate limit headers when present
+    const remaining = resp.headers.get('X-API-Rate-Remaining');
+    const window = resp.headers.get('X-API-Rate-Window');
+    if (remaining !== null) {
+      console.log(`[geni] Rate limit: ${remaining} remaining in ${window}s window`);
+    }
+
+    if (resp.status === 429 && attempt < MAX_RETRIES) {
+      const waitSec = window ? Math.ceil(parseInt(window) / 2) : 30;
+      console.log(`[geni] Rate limited (429), waiting ${waitSec}s before retry ${attempt + 1}/${MAX_RETRIES}`);
+      await new Promise(r => setTimeout(r, waitSec * 1000));
+      continue;
+    }
+
+    if (!resp.ok) {
+      const text = await resp.text();
+      throw new Error(`Geni API ${resp.status}: ${text}`);
+    }
+    return resp.json();
+  }
+}
+
 async function geniGet(path, params = {}) {
   const token = await getAccessToken();
   const url = new URL(`${API_BASE}/${path}`);
@@ -94,37 +124,23 @@ async function geniGet(path, params = {}) {
     url.searchParams.set(k, v);
   }
 
-  const resp = await fetch(url.toString(), {
+  return geniRequest(url.toString(), {
     headers: { 'User-Agent': 'RoRo-FamilyTreeBot/1.0' },
-    signal: AbortSignal.timeout(15000),
   });
-
-  if (!resp.ok) {
-    const text = await resp.text();
-    throw new Error(`Geni API ${resp.status}: ${text}`);
-  }
-  return resp.json();
 }
 
 async function geniPost(path, data = {}) {
   const token = await getAccessToken();
   const url = `${API_BASE}/${path}?access_token=${token}`;
 
-  const resp = await fetch(url, {
+  return geniRequest(url, {
     method: 'POST',
     headers: {
       'User-Agent': 'RoRo-FamilyTreeBot/1.0',
       'Content-Type': 'application/x-www-form-urlencoded',
     },
     body: new URLSearchParams(flattenParams(data)).toString(),
-    signal: AbortSignal.timeout(15000),
   });
-
-  if (!resp.ok) {
-    const text = await resp.text();
-    throw new Error(`Geni API ${resp.status}: ${text}`);
-  }
-  return resp.json();
 }
 
 // Flatten nested objects for form encoding (e.g., birth.date.year → birth[date][year])

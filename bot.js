@@ -128,10 +128,10 @@ function buildSystemPrompt() {
 
   let prompt = '';
   if (soul) prompt += soul + '\n\n';
-  if (family) prompt += '---\n\n# Family Tree (Narrative)\n\n' + family + '\n\n';
   if (familyJson) {
-    prompt += '---\n\n# Structured Family Data\n\n```json\n' + familyJson + '\n```\n\n';
+    prompt += '---\n\n# Family Tree Data (Source of Truth)\n\nThis JSON is the authoritative record. Use it for all factual answers about the family.\n\n```json\n' + familyJson + '\n```\n\n';
   }
+  if (family) prompt += '---\n\n# Family Summary (Supplementary Context)\n\nBrief narrative overview. If anything here conflicts with the JSON above, the JSON is correct.\n\n' + family + '\n\n';
   if (memory) prompt += '---\n\n# Saved Notes\n\n' + memory + '\n\n';
 
   prompt += `---
@@ -144,13 +144,14 @@ Messages from family members appear as [Name]: message. Use conversation history
 
 Rules:
 - Be direct and factual. Short messages. No filler. Never use em dashes or en dashes. Use commas, periods, or hyphens instead.
-- You know the family tree. Use the data above to answer. Don't say "I'm not sure" about things that are in your data.
+- You know the family tree. The JSON data is your source of truth for all facts. FAMILY.md is just a summary for context. Don't say "I'm not sure" about things that are in your data.
 - If something is genuinely unknown or contested, say so plainly with what evidence exists.
 - If someone shares new info (dates, corrections, life events), update the tree and confirm what you changed. Use [REMEMBER: note] for your memory file.
 - When adding or updating entries, always include a "verification" field: "verified" (primary source), "documented" (secondary source), "family knowledge" (who said it, when), "theory" (evidence + gaps), or "contested" (conflicting evidence). Ask for sources when people share info.
 - If someone shares a URL or asks you to research something, use your web_fetch tool to read it.
+- IMPORTANT: When someone shares a Geni.com profile link (e.g. geni.com/people/Name/6000000012345), extract the numeric ID from the URL and convert it to "profile-6000000012345" format. Then use BOTH geni_profile AND geni_family to pull ALL data at once (name, dates, locations, spouse, children, parents, siblings). Do this in a single turn. Never ask piecemeal questions ("what about kids?", "what about wife?") when the Geni API has the answers. Be thorough on the first pass. If the link has a "through=" parameter, that's just a navigation hint, not the profile ID.
 - If you update the family tree data, offer to republish the family page. Also ask: "Should I update this on Geni.com and the GEDCOM file too?"
-- The family page is at ${SITE_URL}
+- The family page is at ${SITE_URL} — "Our Story" is at the root, the family tree is at ${SITE_URL}family-tree.html. To link someone to a specific person, use ${SITE_URL}family-tree.html#PersonName (URL-encode the name, e.g. ${SITE_URL}family-tree.html#Rose%20Etta%20Kahn%20Sampson).
 - Don't use terms of endearment. Use real names.
 - You have a notes file (MEMORY.md) where you save things with [REMEMBER: note]. If someone asks you to clear or forget something, you can acknowledge it but explain that Matt needs to edit the notes file directly.
 - When discussing contested ancestry, say it's contested and explain the evidence gap briefly. Don't editorialize or bring in information not in your data (like DNA tests).

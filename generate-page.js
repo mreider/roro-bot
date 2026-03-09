@@ -7,16 +7,16 @@ import Anthropic from '@anthropic-ai/sdk';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const DOCS_DIR = join(__dirname, 'docs');
-const INDEX_PATH = join(DOCS_DIR, 'index.html');
 const NARRATIVE_CACHE_PATH = join(__dirname, '.narrative-cache.json');
 
 function loadFile(path) {
   try { return readFileSync(path, 'utf-8'); } catch { return ''; }
 }
 
-// Hash the narrative source files to detect changes
+// Hash the narrative source files (and this script) to detect changes
 function hashSources(familyMd, familyJson, soul) {
-  return createHash('sha256').update(familyMd + familyJson + soul).digest('hex');
+  const script = loadFile(join(__dirname, 'generate-page.js'));
+  return createHash('sha256').update(familyMd + familyJson + soul + script).digest('hex');
 }
 
 // Load cached narrative if sources haven't changed
@@ -75,6 +75,8 @@ Generate ONLY the narrative HTML content (no <!DOCTYPE>, no <html>, no <head>, n
 
 5. **IMPORTANT**: Never use em dashes. Use commas, periods, semicolons, or rewrite the sentence instead. Hyphens in hyphenated words are fine.
 
+6. **NEVER** mention Claude, Claude Code, AI, or any tools used to build this page. No changelogs, no "About" sections, no attribution to AI. This page is a family history, not a tech project.
+
 Output ONLY the HTML content. No markdown fences, no explanation.`;
 
     const response = await anthropic.messages.create({
@@ -98,37 +100,86 @@ Output ONLY the HTML content. No markdown fences, no explanation.`;
   // Version tag so the bot can detect when GitHub Pages has deployed
   const version = new Date().toISOString();
 
-  // Assemble the full page
-  const html = buildFullPage(narrativeHtml, treeData, changelogMd, version);
-
   mkdirSync(DOCS_DIR, { recursive: true });
-  writeFileSync(INDEX_PATH, html, 'utf-8');
+
+  // Write shared assets
+  writeFileSync(join(DOCS_DIR, 'style.css'), buildCSS(), 'utf-8');
+  writeFileSync(join(DOCS_DIR, 'family-data.js'), buildFamilyDataJS(treeData), 'utf-8');
+  writeFileSync(join(DOCS_DIR, 'tree.js'), buildTreeJS(), 'utf-8');
+
+  // Write pages
+  writeFileSync(join(DOCS_DIR, 'index.html'), buildOurStoryPage(narrativeHtml, version), 'utf-8');
+  writeFileSync(join(DOCS_DIR, 'family-tree.html'), buildFamilyTreePage(version), 'utf-8');
+  writeFileSync(join(DOCS_DIR, 'about.html'), buildAboutPage(version), 'utf-8');
+  writeFileSync(join(DOCS_DIR, 'changes.html'), buildChangesPage(changelogMd, version), 'utf-8');
+
   // Ensure CNAME stays for custom domain
   const cnamePath = join(DOCS_DIR, 'CNAME');
   if (!existsSync(cnamePath)) {
     writeFileSync(cnamePath, 'family.mreider.com\n', 'utf-8');
   }
-  console.log(`[page] Generated ${html.length} bytes → ${INDEX_PATH} (version: ${version})`);
+  console.log(`[page] Generated pages → ${DOCS_DIR} (version: ${version})`);
 
-  return { html, version };
+  return { version };
+}
+
+// --- Shared building blocks ---
+
+function buildHead(title, version) {
+  return `<meta charset="UTF-8">
+<meta name="page-version" content="${version || ''}">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>${title}</title>
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+<link rel="manifest" href="site.webmanifest">
+<link rel="shortcut icon" href="favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">`;
+}
+
+function buildNav(activePage) {
+  const pages = [
+    { id: 'our-story', label: 'Our Story', href: '/' },
+    { id: 'family-tree', label: 'Family Tree', href: '/family-tree.html' },
+    { id: 'about', label: 'About', href: '/about.html' },
+    { id: 'changes', label: 'Changes', href: '/changes.html' },
+  ];
+  const links = pages.map(p =>
+    `<a href="${p.href}" class="nav-link${p.id === activePage ? ' active' : ''}">${p.label}</a>`
+  ).join('\n  ');
+  return `<nav class="nav">
+  ${links}
+</nav>`;
+}
+
+function buildHeader() {
+  return `<header>
+  <h1>The Sampson-Kahn Family</h1>
+  <p>Kept by RoRo - Rose Etta Kahn Sampson, 1907-1997</p>
+</header>`;
+}
+
+function buildFooter() {
+  return `<footer>
+  Composed by RoRo &middot;
+  <a href="https://family.mreider.com">family.mreider.com</a>
+  &middot;
+  <a href="sampson-kahn.ged" download>Download GEDCOM</a>
+</footer>`;
 }
 
 function markdownToHtml(md) {
-  // Simple markdown-to-HTML for the changelog
   let html = md;
-  // Headers
   html = html.replace(/^### (.+)$/gm, '<h3>$1</h3>');
   html = html.replace(/^## (.+)$/gm, '<h2>$1</h2>');
   html = html.replace(/^# (.+)$/gm, '<h1>$1</h1>');
-  // Bold
   html = html.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
-  // Links [text](url)
   html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank">$1</a>');
-  // List items
   html = html.replace(/^- (.+)$/gm, '<li>$1</li>');
-  // Wrap consecutive <li> in <ul>
   html = html.replace(/((?:<li>.*<\/li>\n?)+)/g, '<ul>$1</ul>');
-  // Paragraphs for non-tag lines
   html = html.split('\n').map(line => {
     const trimmed = line.trim();
     if (!trimmed) return '';
@@ -139,23 +190,119 @@ function markdownToHtml(md) {
   return html;
 }
 
-function buildFullPage(narrativeHtml, treeDataJson, changelogMd, version) {
+// --- Page builders ---
+
+function buildOurStoryPage(narrativeHtml, version) {
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="page-version" content="${version || ''}">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Sampson-Kahn Family</title>
-<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-<link rel="manifest" href="site.webmanifest">
-<link rel="shortcut icon" href="favicon.ico">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
-<style>
-:root {
+${buildHead('Our Story - The Sampson-Kahn Family', version)}
+</head>
+<body>
+${buildHeader()}
+${buildNav('our-story')}
+
+<div id="narrative-view">
+  <img src="roro.png" alt="Rose Etta Kahn Sampson" class="roro-portrait">
+  ${narrativeHtml}
+</div>
+
+${buildFooter()}
+
+<script>
+// Redirect old person hash links to the family tree page
+if (location.hash) {
+  location.replace('/family-tree.html' + location.hash);
+}
+<\/script>
+</body>
+</html>`;
+}
+
+function buildFamilyTreePage(version) {
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+${buildHead('Family Tree - The Sampson-Kahn Family', version)}
+</head>
+<body>
+${buildHeader()}
+${buildNav('family-tree')}
+
+<div class="explorer">
+  <div class="search-wrap">
+    <input type="text" id="search-input" class="search-box" placeholder="Search for a family member...">
+    <div id="search-results" class="search-results"></div>
+  </div>
+  <div id="person-view"></div>
+</div>
+
+${buildFooter()}
+
+<script src="family-data.js"><\/script>
+<script src="tree.js"><\/script>
+</body>
+</html>`;
+}
+
+function buildAboutPage(version) {
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+${buildHead('About - The Sampson-Kahn Family', version)}
+</head>
+<body>
+${buildHeader()}
+${buildNav('about')}
+
+<div id="about-view">
+  <h2>How This Was Built</h2>
+
+  <p>This site is generated by a WhatsApp bot named RoRo, after my grandmother Rose Etta Kahn Sampson. The idea started after I read <a href="https://medium.com/@pbrudny/building-a-family-tree-ai-assistant-from-gedcom-to-whatsapp-bot-with-a-graph-database-b1fcf0b3cc9e" target="_blank">a blog post about building a family tree AI assistant</a> that connected a GEDCOM file to a WhatsApp bot using a graph database. I thought: I could do something like that for our family.</p>
+
+  <p>I already had a WhatsApp bot running on <a href="https://github.com/opensouls/openclaw" target="_blank">OpenClaw</a>, an open-source framework for building AI personas on messaging platforms. My brother and I had been using it to chat with "Pepper," a bot modeled after our childhood dog. Pepper was just there for fun, nothing serious. But after reading that blog post, I wanted to build something more useful, something the whole family could interact with around a topic that actually matters to us: our history.</p>
+
+  <p>The first version of RoRo had personality but not much substance. I had some family facts saved in a couple of markdown files, and she ran as an OpenClaw agent. I asked her a dozen times, "Who are your grandparents?" and she had no idea. The information was too loosely structured for her to work with.</p>
+
+  <p>So I rebuilt her from the ground up. Instead of OpenClaw's higher-level framework, I went directly to the libraries it wraps: <a href="https://github.com/WhiskeySockets/Baileys" target="_blank">Baileys</a> for WhatsApp connectivity and the <a href="https://docs.anthropic.com/en/docs/initial-setup" target="_blank">Anthropic SDK</a> for Claude as the language model. I moved the family data into a structured JSON file with proper fields for names, dates, places, relationships, and sources. That made a huge difference. RoRo could suddenly answer questions accurately and tell coherent stories about the family.</p>
+
+  <p>Next, I connected her to <a href="https://www.geni.com" target="_blank">Geni.com</a> through a small app I built for their API. This lets her look things up, validate what she knows, and push updates back when family members share new information. She can also export the tree as a <a href="sampson-kahn.ged" download>GEDCOM file</a> for use in other genealogy software.</p>
+
+  <p>Today, RoRo listens to our WhatsApp family group, answers questions about our history, and can update the family tree interactively. Changes get saved to the JSON, synced to Geni, exported to GEDCOM, and published to this site. She generates the narrative on the "Our Story" page using Claude, and the whole site is deployed automatically through GitHub Pages.</p>
+
+  <p>I am about to introduce her new self to the family, with all these improvements. Wish us luck.</p>
+
+  <p style="margin-top: 2rem; font-size: 0.85rem; color: var(--muted);">Built by <a href="https://mreider.com">Matt Reider</a>. Source on <a href="https://github.com/mreider/roro-bot" target="_blank">GitHub</a>.</p>
+</div>
+
+${buildFooter()}
+</body>
+</html>`;
+}
+
+function buildChangesPage(changelogMd, version) {
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+${buildHead('Changes - The Sampson-Kahn Family', version)}
+</head>
+<body>
+${buildHeader()}
+${buildNav('changes')}
+
+<div id="changelog-view">
+  ${markdownToHtml(changelogMd)}
+</div>
+
+${buildFooter()}
+</body>
+</html>`;
+}
+
+// --- Asset builders ---
+
+function buildCSS() {
+  return `:root {
   --primary: #5bc1ac;
   --secondary: #5a6f80;
   --bg: #f0f8ff;
@@ -177,13 +324,11 @@ header { background: var(--secondary); color: var(--white); padding: 3rem 1.5rem
 header h1 { font-family: var(--serif); font-size: 2rem; font-weight: 400; letter-spacing: 0.02em; margin-bottom: 0.3rem; }
 header p { font-size: 0.95rem; opacity: 0.8; font-weight: 300; }
 
-/* Tabs */
-.tabs { display: flex; justify-content: center; gap: 0; background: var(--white); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
-.tab { padding: 0.85rem 2rem; cursor: pointer; font-family: var(--sans); font-size: 0.9rem; font-weight: 400; color: var(--muted); border: none; background: none; border-bottom: 2px solid transparent; transition: all 0.2s; letter-spacing: 0.03em; }
-.tab:hover { color: var(--dark); }
-.tab.active { color: var(--dark); border-bottom-color: var(--primary); font-weight: 600; }
-.tab-content { display: none; }
-.tab-content.active { display: block; }
+/* Navigation */
+.nav { display: flex; justify-content: center; gap: 0; background: var(--white); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
+.nav-link { display: block; padding: 0.85rem 2rem; font-family: var(--sans); font-size: 0.9rem; font-weight: 400; color: var(--muted); border-bottom: 2px solid transparent; transition: all 0.2s; letter-spacing: 0.03em; text-decoration: none; }
+.nav-link:hover { color: var(--dark); }
+.nav-link.active { color: var(--dark); border-bottom-color: var(--primary); font-weight: 600; }
 
 /* Narrative */
 #narrative-view { max-width: 720px; margin: 0 auto; padding: 2.5rem 1.5rem; }
@@ -211,7 +356,7 @@ header p { font-size: 0.95rem; opacity: 0.8; font-weight: 300; }
 
 /* Mini family diagram */
 .family-diagram { text-align: center; margin-bottom: 1.5rem; }
-.fd-row { display: flex; justify-content: center; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
+.fd-row { display: flex; justify-content: center; align-items: stretch; gap: 0.5rem; flex-wrap: wrap; }
 .fd-line { width: 1px; height: 1.2rem; background: var(--border); margin: 0 auto; }
 .fd-node { display: inline-flex; flex-direction: column; align-items: center; justify-content: center; padding: 0.4rem 0.8rem; background: var(--white); border: 1px solid var(--border); border-radius: 6px; cursor: pointer; font-size: 0.8rem; line-height: 1.3; transition: all 0.15s; width: 140px; min-height: 52px; text-align: center; }
 .fd-node:hover { border-color: var(--primary); background: var(--bg); }
@@ -219,10 +364,10 @@ header p { font-size: 0.95rem; opacity: 0.8; font-weight: 300; }
 .fd-node.active .fd-dates { color: rgba(255,255,255,0.8); }
 .fd-name { font-weight: 600; font-size: 0.78rem; }
 .fd-dates { font-size: 0.7rem; color: var(--muted); }
-.fd-couple { display: inline-flex; align-items: center; gap: 0; }
+.fd-couple { display: inline-flex; align-items: stretch; gap: 0; }
 .fd-couple .fd-node { border-radius: 6px 0 0 6px; }
 .fd-couple .fd-node:last-child { border-radius: 0 6px 6px 0; border-left: none; }
-.fd-children-row { display: flex; justify-content: center; gap: 0.4rem; flex-wrap: wrap; }
+.fd-children-row { display: flex; justify-content: center; align-items: stretch; gap: 0.4rem; flex-wrap: wrap; }
 .fd-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin: 0.3rem 0; }
 
 /* Person card */
@@ -272,90 +417,30 @@ footer a:hover { color: var(--primary); }
 @media (max-width: 600px) {
   header h1 { font-size: 1.5rem; }
   header { padding: 2rem 1rem; }
-  .tab { padding: 0.7rem 1.2rem; font-size: 0.85rem; }
+  .nav-link { padding: 0.7rem 1.2rem; font-size: 0.85rem; }
   .explorer { padding: 1rem; }
   .person-card { padding: 1.2rem; }
   .person-card h2 { font-size: 1.3rem; }
   .meta-row { flex-direction: column; gap: 0; }
   .meta-label { min-width: auto; }
   #narrative-view { padding: 1.5rem 1rem; }
+  #about-view { padding: 1.5rem 1rem; }
+  #changelog-view { padding: 1.5rem 1rem; }
   .fd-node { width: 110px; min-height: 46px; padding: 0.3rem 0.5rem; }
   .fd-name { font-size: 0.72rem; }
 }
-</style>
-</head>
-<body>
+`;
+}
 
-<header>
-  <h1>The Sampson-Kahn Family</h1>
-  <p>Kept by RoRo - Rose Etta Kahn Sampson, 1907-1997</p>
-</header>
-
-<div class="tabs">
-  <button class="tab active" onclick="switchTab('narrative', this)">Our Story</button>
-  <button class="tab" onclick="switchTab('tree', this)">Family Tree</button>
-  <button class="tab" onclick="switchTab('about', this)">About</button>
-  <button class="tab" onclick="switchTab('changelog', this)">Changes</button>
-</div>
-
-<div id="narrative-tab" class="tab-content active">
-  <div id="narrative-view">
-    <img src="roro.png" alt="Rose Etta Kahn Sampson" class="roro-portrait">
-    ${narrativeHtml}
-  </div>
-</div>
-
-<div id="about-tab" class="tab-content">
-  <div id="about-view">
-    <h2>How This Was Built</h2>
-
-    <p>This site is generated by a WhatsApp bot named RoRo, after my grandmother Rose Etta Kahn Sampson. The idea started after I read <a href="https://medium.com/@pbrudny/building-a-family-tree-ai-assistant-from-gedcom-to-whatsapp-bot-with-a-graph-database-b1fcf0b3cc9e" target="_blank">a blog post about building a family tree AI assistant</a> that connected a GEDCOM file to a WhatsApp bot using a graph database. I thought: I could do something like that for our family.</p>
-
-    <p>I already had a WhatsApp bot running on <a href="https://github.com/opensouls/openclaw" target="_blank">OpenClaw</a>, an open-source framework for building AI personas on messaging platforms. My brother and I had been using it to chat with "Pepper," a bot modeled after our childhood dog. Pepper was just there for fun, nothing serious. But after reading that blog post, I wanted to build something more useful, something the whole family could interact with around a topic that actually matters to us: our history.</p>
-
-    <p>The first version of RoRo had personality but not much substance. I had some family facts saved in a couple of markdown files, and she ran as an OpenClaw agent. I asked her a dozen times, "Who are your grandparents?" and she had no idea. The information was too loosely structured for her to work with.</p>
-
-    <p>So I rebuilt her from the ground up. Instead of OpenClaw's higher-level framework, I went directly to the libraries it wraps: <a href="https://github.com/WhiskeySockets/Baileys" target="_blank">Baileys</a> for WhatsApp connectivity and the <a href="https://docs.anthropic.com/en/docs/initial-setup" target="_blank">Anthropic SDK</a> for Claude as the language model. I moved the family data into a structured JSON file with proper fields for names, dates, places, relationships, and sources. That made a huge difference. RoRo could suddenly answer questions accurately and tell coherent stories about the family.</p>
-
-    <p>Next, I connected her to <a href="https://www.geni.com" target="_blank">Geni.com</a> through a small app I built for their API. This lets her look things up, validate what she knows, and push updates back when family members share new information. She can also export the tree as a <a href="sampson-kahn.ged" download>GEDCOM file</a> for use in other genealogy software.</p>
-
-    <p>Today, RoRo listens to our WhatsApp family group, answers questions about our history, and can update the family tree interactively. Changes get saved to the JSON, synced to Geni, exported to GEDCOM, and published to this site. She generates the narrative on the "Our Story" tab using Claude, and the whole site is deployed automatically through GitHub Pages.</p>
-
-    <p>I am about to introduce her new self to the family, with all these improvements. Wish us luck.</p>
-
-    <p style="margin-top: 2rem; font-size: 0.85rem; color: var(--muted);">Built by <a href="https://mreider.com">Matt Reider</a>. Source on <a href="https://github.com/mreider/roro-bot" target="_blank">GitHub</a>.</p>
-  </div>
-</div>
-
-<div id="changelog-tab" class="tab-content">
-  <div id="changelog-view">
-    ${markdownToHtml(changelogMd)}
-  </div>
-</div>
-
-<div id="tree-tab" class="tab-content">
-  <div class="explorer">
-    <div class="search-wrap">
-      <input type="text" id="search-input" class="search-box" placeholder="Search for a family member...">
-      <div id="search-results" class="search-results"></div>
-    </div>
-    <div id="person-view"></div>
-  </div>
-</div>
-
-<footer>
-  Composed by RoRo &middot;
-  <a href="https://family.mreider.com">family.mreider.com</a>
-  &middot;
-  <a href="sampson-kahn.ged" download>Download GEDCOM</a>
-</footer>
-
-<script>
-var rawData = ${treeDataJson};
+function buildFamilyDataJS(treeDataJson) {
+  return `var rawData = ${treeDataJson};
 var byName = {};
 rawData.forEach(function(p) { byName[p.name] = p; });
+`;
+}
 
-function esc(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function buildTreeJS() {
+  return `function esc(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
 
 function getYears(p) {
   var parts = [];
@@ -398,12 +483,6 @@ function showPerson(name, skipHash) {
   if (!skipHash) {
     var newHash = '#' + encodeURIComponent(name);
     if (location.hash !== newHash) history.replaceState(null, '', newHash);
-  }
-
-  var treeTab = document.getElementById('tree-tab');
-  if (!treeTab.classList.contains('active')) {
-    var btns = document.querySelectorAll('.tab');
-    switchTab('tree', btns[1]);
   }
 
   var parents = (person.parents || []).map(function(n) { return byName[n]; }).filter(Boolean);
@@ -526,46 +605,27 @@ searchResults.addEventListener('click', function(e) {
 });
 searchInput.addEventListener('blur', function() { setTimeout(function() { searchResults.style.display = 'none'; }, 200); });
 
-// Tab switching
-var treeLoaded = false;
-function switchTab(tab, btn) {
-  document.querySelectorAll('.tab-content').forEach(function(el) { el.classList.remove('active'); });
-  document.querySelectorAll('.tab').forEach(function(el) { el.classList.remove('active'); });
-  document.getElementById(tab + '-tab').classList.add('active');
-  btn.classList.add('active');
-  // Clear hash when leaving tree tab
-  if (tab !== 'tree' && location.hash) {
-    history.replaceState(null, '', location.pathname);
-  }
-  // Lazy-load tree on first visit
-  if (tab === 'tree' && !treeLoaded) {
-    treeLoaded = true;
-    showPerson('Rose Etta Kahn Sampson', true);
-  }
-}
-
 // Hash navigation
 window.addEventListener('popstate', function() {
   var name = location.hash ? decodeURIComponent(location.hash.slice(1)) : null;
   if (name && byName[name] && name !== currentPerson) showPerson(name);
 });
 
-// On load: if hash links to a person, go to tree; otherwise stay on narrative
+// On load: show person from hash, or default to RoRo
 var initialHash = location.hash ? decodeURIComponent(location.hash.slice(1)) : null;
 if (initialHash && byName[initialHash]) {
-  treeLoaded = true;
   showPerson(initialHash);
+} else {
+  showPerson('Rose Etta Kahn Sampson');
 }
-<\/script>
-</body>
-</html>`;
+`;
 }
 
 export async function generateAndPublish(requestContext) {
   const { version } = await generatePage(requestContext);
 
   try {
-    execSync('git add docs/index.html', { cwd: __dirname, stdio: 'pipe' });
+    execSync('git add docs/', { cwd: __dirname, stdio: 'pipe' });
     const msg = `Update family page — ${new Date().toISOString().split('T')[0]}`;
     execSync(`git commit -m "${msg}"`, { cwd: __dirname, stdio: 'pipe' });
     execSync('git push', { cwd: __dirname, stdio: 'pipe' });
