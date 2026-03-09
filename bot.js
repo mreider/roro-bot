@@ -33,6 +33,7 @@ const FAMILY_PATH = join(__dirname, 'FAMILY.md');
 const FAMILY_JSON_PATH = join(__dirname, 'family-tree.json');
 const MEMORY_PATH = join(__dirname, 'MEMORY.md');
 const GROUP_CONFIG_PATH = join(__dirname, 'group-config.json');
+const SEEN_SENDERS_PATH = join(__dirname, 'seen-senders.json');
 const MODEL = 'claude-sonnet-4-5-20250929';
 const SITE_URL = 'https://family.mreider.com/';
 
@@ -528,6 +529,23 @@ async function toolExportGedcom() {
   }
 }
 
+// --- First-time sender tracking ---
+function loadSeenSenders() {
+  try { return JSON.parse(readFileSync(SEEN_SENDERS_PATH, 'utf-8')); } catch { return {}; }
+}
+
+function isFirstTimeSender(senderName) {
+  const seen = loadSeenSenders();
+  return !seen[senderName];
+}
+
+function markSenderSeen(senderName) {
+  const seen = loadSeenSenders();
+  seen[senderName] = new Date().toISOString();
+  writeFileSync(SEEN_SENDERS_PATH, JSON.stringify(seen, null, 2), 'utf-8');
+  console.log(`[seen] First interaction recorded: ${senderName}`);
+}
+
 // --- Memory persistence ---
 function appendMemory(text) {
   const timestamp = new Date().toISOString().split('T')[0];
@@ -577,7 +595,15 @@ Only output YES or NO.`,
 
 // --- Claude API with tool use ---
 async function askRoRo(message, senderName, { sendInterim } = {}) {
-  const systemPrompt = buildSystemPrompt();
+  let systemPrompt = buildSystemPrompt();
+
+  // First-time sender: inject context so RoRo introduces herself and reviews their info
+  const firstTime = senderName && isFirstTimeSender(senderName);
+  if (firstTime) {
+    systemPrompt += `\n\nIMPORTANT: This is ${senderName}'s FIRST TIME talking to you. Greet them by name. Look up what you know about them in the family data and summarize it briefly. If you have info about them, ask if anything needs updating. If you don't have info, ask how they're related to the family. Keep it warm but short.`;
+    markSenderSeen(senderName);
+  }
+
   const userContent = senderName ? `[${senderName}]: ${message}` : message;
   addToConversation('user', userContent);
 
