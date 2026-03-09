@@ -410,6 +410,7 @@
 2 PLAC San Francisco, CA
 1 NOTE Physician. Medical school in SC, practiced in Galveston TX. Married Bettie in Galveston. After 1900 Galveston flood, moved to SF 1902. Franklin Street home (between Bush and Sutter) dynamited by US Army as firebreak during 1906 earthquake. Rebuilt 
 2 CONC on Washington Street near Laurel. Five children: Joseph Abraham (1888), Arthur Jr. (1891), Cornelia 'Nellie' (1893), Esther, John Jacob (1898).
+1 SOUR https://www.geni.com/people/Dr.-Arthur-Fischel-Sampson/325131943140001618
 1 FAMC @F16@
 1 FAMS @F18@
 0 @I41@ INDI
@@ -517,12 +518,18 @@
 2 DATE 18 MAR 1935
 2 PLAC San Francisco, CA
 1 NOTE Appraiser and real estate broker in SF. Lowell HS (1953), Reed College (3 yrs), AB Univ of SF (1957), Wharton (1960). First wife Louise Adler (1962, div. 1991). Second wife Sharon L. Litsky (1999).
+1 SOUR https://www.geni.com/people/John-Frederick-Sampson/287594964040008991
 1 FAMC @F7@
 1 FAMS @F21@
 0 @I53@ INDI
 1 NAME Jennifer Ruth /Sampson/
 2 GIVN Jennifer Ruth
 2 SURN Sampson
+1 BIRT
+2 DATE 22 OCT 1969
+2 PLAC San Francisco, CA
+1 NOTE Lives in Berkeley, CA.
+1 SOUR https://www.geni.com/people/Jennifer-Ruth-Sampson/325120278230006393
 1 FAMC @F21@
 0 @I54@ INDI
 1 NAME John Frederick Sampson /Jr./
@@ -533,8 +540,36 @@
 1 NAME Juliet Margaret /Sampson/
 2 GIVN Juliet Margaret
 2 SURN Sampson
+1 BIRT
+2 DATE 19 MAY 1968
+2 PLAC San Francisco, CA
+1 NOTE Country Financial Analyst. Lives in London.
+1 SOUR https://www.geni.com/people/Juliet-Margaret-Sampson/325120088920006414
 1 FAMC @F21@
+1 FAMS @F22@
 0 @I56@ INDI
+1 NAME Simon /Mays-Smith/
+2 GIVN Simon
+2 SURN Mays-Smith
+1 FAMS @F22@
+0 @I57@ INDI
+1 NAME Isaac /Mays-Smith/
+2 GIVN Isaac
+2 SURN Mays-Smith
+1 SOUR https://www.geni.com/people/Isaac-Mays-Smith/325123506560001643
+1 FAMC @F22@
+0 @I58@ INDI
+1 NAME Noah /Mays-Smith/
+2 GIVN Noah
+2 SURN Mays-Smith
+1 FAMC @F22@
+0 @I59@ INDI
+1 NAME Rose Etta /Mays-Smith/
+2 GIVN Rose Etta
+2 SURN Mays-Smith
+1 NOTE Named after Rose Etta Kahn Sampson (RoRo).
+1 FAMC @F22@
+0 @I60@ INDI
 1 NAME Janet Sampson /Reider/
 2 GIVN Janet Sampson
 2 SURN Reider
@@ -543,8 +578,8 @@
 2 PLAC San Francisco, CA
 1 NOTE Photographer (janetreider.com). Met Pete at Lowell High School at age 13.
 1 FAMC @F7@
-1 FAMS @F22@
-0 @I57@ INDI
+1 FAMS @F23@
+0 @I61@ INDI
 1 NAME Arthur Elliott 'Pete' /Reider/
 2 GIVN Arthur Elliott 'Pete'
 2 SURN Reider
@@ -558,15 +593,15 @@
 1 NOTE Psychiatrist. Presidio Hill School, Grant School, Lowell HS, Harvard (Class of 1958), Harvard Medical. Captain of Harvard Track -ran 4:11 mile (1957 Harvard record). Harvard Athletic Hall of Fame (1982). All-Ivy League Cross Country Team. Coach McC
 2 CONC urdy: 'one of the toughest little men I have ever known.' Private practice in Cambridge, Hyannis, Newton MA. Retired in SF. Published Stepping Stones (2014), poetry and fiction. Fromm Institute at USF, Osher Foundation at Brandeis. Died of lymphoma
 2 CONC  at home. Memorial at Congregation Emanu-El, August 17, 2015.
-1 FAMC @F23@
-1 FAMS @F22@
-0 @I58@ INDI
+1 FAMC @F24@
+1 FAMS @F23@
+0 @I62@ INDI
 1 NAME Jonathan /Reider/
 2 GIVN Jonathan
 2 SURN Reider
 1 NOTE Stanford admissions officer for 15 years, then Director of College Counseling at SF University High School.
-1 FAMC @F23@
-0 @I59@ INDI
+1 FAMC @F24@
+0 @I63@ INDI
 1 NAME Norman /Reider/
 2 GIVN Norman
 2 SURN Reider
@@ -579,9 +614,9 @@
 1 NOTE BA and MD from Western Reserve University (now Case Western Reserve). Trained at Menninger Clinic, Topeka (1934-1939). Chief of Psychiatry at Mt. Zion Hospital, SF (succeeding Jascha Kasanin). Early member of the San Francisco Psychoanalytic Societ
 2 CONC y (founded 1942; Norman arrived SF 1946). Featured in TIME magazine (1947) for 'The Unmarried Father.' Wrote 'Chess, Oedipus, and the Mater Dolorosa' (1959). ACLU board member (Northern California). Papers archived at SF Center for Psychoanalysis (
 2 CONC 4.6 linear feet, 1822-1980s).
-1 FAMC @F24@
-1 FAMS @F23@
-0 @I60@ INDI
+1 FAMC @F25@
+1 FAMS @F24@
+0 @I64@ INDI
 1 NAME Louise J. /Cohen/
 2 GIVN Louise J.
 2 SURN Cohen
@@ -592,8 +627,8 @@
 2 DATE 22 FEB 1985
 2 PLAC San Francisco, CA
 1 NOTE Psychiatric social worker, stopped practicing around 1946.
-1 FAMS @F23@
-0 @I61@ INDI
+1 FAMS @F24@
+0 @I65@ INDI
 1 NAME Maurice Jacob /Rudner/
 2 GIVN Maurice Jacob
 2 SURN Rudner
@@ -605,9 +640,9 @@
 2 DATE ABT 1960
 2 PLAC Canton, OH
 1 NOTE Originally named Rudner, changed to Reider. Foreman at steel foundry. Married Jun 7, 1906, Canton OH.
-1 FAMC @F25@
-1 FAMS @F24@
-0 @I62@ INDI
+1 FAMC @F26@
+1 FAMS @F25@
+0 @I66@ INDI
 1 NAME Uriah 'Uri' /Rudner/
 2 GIVN Uriah 'Uri'
 2 SURN Rudner
@@ -618,8 +653,8 @@
 2 DATE 23 APR 1916
 2 PLAC Canton, OH
 1 NOTE First wife Clara Scope (d. 1909). Children: Anna, Morris (Reider), Isaac, Bennie (1884-1901), Len, Sam, Rhea. Second wife Hattie Altman.
-1 FAMS @F25@
-0 @I63@ INDI
+1 FAMS @F26@
+0 @I67@ INDI
 1 NAME Clara /Scope/
 2 GIVN Clara
 2 SURN Scope
@@ -629,8 +664,8 @@
 1 DEAT
 2 DATE 15 SEP 1909
 2 PLAC Canton, OH
-1 FAMS @F25@
-0 @I64@ INDI
+1 FAMS @F26@
+0 @I68@ INDI
 1 NAME Lillian /Cohen/
 2 GIVN Lillian
 2 SURN Cohen
@@ -638,16 +673,16 @@
 2 DATE 1887
 1 DEAT
 2 DATE 1981
-1 FAMC @F26@
-1 FAMS @F24@
-0 @I65@ INDI
+1 FAMC @F27@
+1 FAMS @F25@
+0 @I69@ INDI
 1 NAME Hyman /Cohen/
 2 GIVN Hyman
 2 SURN Cohen
 1 BIRT
 2 DATE 1850
-1 FAMS @F26@
-0 @I66@ INDI
+1 FAMS @F27@
+0 @I70@ INDI
 1 NAME Jennie /Sugarman/
 2 GIVN Jennie
 2 SURN Sugarman
@@ -655,8 +690,8 @@
 2 DATE 1865
 1 DEAT
 2 DATE 1928
-1 FAMS @F26@
-0 @I67@ INDI
+1 FAMS @F27@
+0 @I71@ INDI
 1 NAME Abe Pasek /Cohen/
 2 GIVN Abe Pasek
 2 SURN Cohen
@@ -664,13 +699,13 @@
 2 DATE 1886
 1 DEAT
 2 DATE ABT 1915
-0 @I68@ INDI
+0 @I72@ INDI
 1 NAME Rena Posak /Shepsenwol/
 2 GIVN Rena Posak
 2 SURN Shepsenwol
 1 BIRT
 2 DATE 1886
-0 @I69@ INDI
+0 @I73@ INDI
 1 NAME Jacob M. /Reider/
 2 GIVN Jacob M.
 2 SURN Reider
@@ -680,25 +715,25 @@
 1 NOTE Family physician (FAAFP). Hampshire College '83, Albany Medical College '94. Deputy National Coordinator for Health IT at HHS (2011-2014), also Acting National Coordinator. CMIO at Allscripts (2006-2010). CEO of Alliance for Better Health (2016-202
 2 CONC 1). Co-founded five health IT startups including Twistle (acquired by Health Catalyst) and Physera (acquired by Omada). Maintains docnotes.net blog since 1999. Married Alicia Ouellette (former Dean of Albany Law School, now Dean at Lewis & Clark La
 2 CONC w School). Children: Molly, Sampson. Lives in Slingerlands, NY.
-1 FAMC @F22@
-1 FAMS @F27@
-0 @I70@ INDI
+1 FAMC @F23@
+1 FAMS @F28@
+0 @I74@ INDI
 1 NAME Alicia /Ouellette/
 2 GIVN Alicia
 2 SURN Ouellette
 1 NOTE 18th President and Dean of Albany Law School (2015-2023), now Dean at Lewis & Clark Law School.
-1 FAMS @F27@
-0 @I71@ INDI
+1 FAMS @F28@
+0 @I75@ INDI
 1 NAME Molly /Reider/
 2 GIVN Molly
 2 SURN Reider
-1 FAMC @F27@
-0 @I72@ INDI
+1 FAMC @F28@
+0 @I76@ INDI
 1 NAME Sampson /Reider/
 2 GIVN Sampson
 2 SURN Reider
-1 FAMC @F27@
-0 @I73@ INDI
+1 FAMC @F28@
+0 @I77@ INDI
 1 NAME Suzie /Reider/
 2 GIVN Suzie
 2 SURN Reider
@@ -706,19 +741,19 @@
 2 DATE 29 MAR 1965
 2 PLAC Boston, MA
 1 NOTE EVP of Lyft Media & Business at Lyft. Previously Global CRO at Waze.
-1 FAMC @F22@
-1 FAMS @F28@
-0 @I74@ INDI
+1 FAMC @F23@
+1 FAMS @F29@
+0 @I78@ INDI
 1 NAME Rose Reider /Smith/
 2 GIVN Rose Reider
 2 SURN Smith
-1 FAMC @F28@
-0 @I75@ INDI
+1 FAMC @F29@
+0 @I79@ INDI
 1 NAME Charlotte Reider /Smith/
 2 GIVN Charlotte Reider
 2 SURN Smith
-1 FAMC @F28@
-0 @I76@ INDI
+1 FAMC @F29@
+0 @I80@ INDI
 1 NAME Matt /Reider/
 2 GIVN Matt
 2 SURN Reider
@@ -726,31 +761,31 @@
 2 DATE 22 DEC 1969
 2 PLAC Boston, MA
 1 NOTE Software. Lives in Oakland, CA. He's the one who brought RoRo into the chat.
-1 FAMC @F22@
-1 FAMS @F29@
-0 @I77@ INDI
+1 FAMC @F23@
+1 FAMS @F30@
+0 @I81@ INDI
 1 NAME Alison /Cohen/
 2 GIVN Alison
 2 SURN Cohen
 1 BIRT
 2 DATE 7 AUG 1972
-1 FAMS @F29@
-0 @I78@ INDI
+1 FAMS @F30@
+0 @I82@ INDI
 1 NAME Max Nathan /Reider/
 2 GIVN Max Nathan
 2 SURN Reider
 1 BIRT
 2 DATE 3 MAR 2007
 2 PLAC Oakland, CA
-1 FAMC @F29@
-0 @I79@ INDI
+1 FAMC @F30@
+0 @I83@ INDI
 1 NAME Zoe Ella /Reider/
 2 GIVN Zoe Ella
 2 SURN Reider
 1 BIRT
 2 DATE 29 JUL 2008
 2 PLAC Oakland, CA
-1 FAMC @F29@
+1 FAMC @F30@
 0 @F1@ FAM
 1 HUSB @I1@
 1 WIFE @I2@
@@ -787,7 +822,7 @@
 2 DATE 17 MAY 1931
 1 CHIL @I47@
 1 CHIL @I52@
-1 CHIL @I56@
+1 CHIL @I60@
 0 @F8@ FAM
 1 HUSB @I17@
 1 WIFE @I18@
@@ -859,46 +894,52 @@
 1 CHIL @I54@
 1 CHIL @I55@
 0 @F22@ FAM
-1 HUSB @I56@
-1 WIFE @I57@
-1 MARR
-2 DATE 1958
-1 CHIL @I69@
-1 CHIL @I73@
-1 CHIL @I76@
-0 @F23@ FAM
-1 HUSB @I59@
-1 WIFE @I60@
-1 MARR
-2 DATE 1927
+1 HUSB @I55@
+1 WIFE @I56@
 1 CHIL @I57@
 1 CHIL @I58@
-0 @F24@ FAM
-1 HUSB @I64@
-1 WIFE @I61@
 1 CHIL @I59@
-0 @F25@ FAM
-1 HUSB @I62@
-1 WIFE @I63@
+0 @F23@ FAM
+1 HUSB @I60@
+1 WIFE @I61@
+1 MARR
+2 DATE 1958
+1 CHIL @I73@
+1 CHIL @I77@
+1 CHIL @I80@
+0 @F24@ FAM
+1 HUSB @I63@
+1 WIFE @I64@
+1 MARR
+2 DATE 1927
 1 CHIL @I61@
+1 CHIL @I62@
+0 @F25@ FAM
+1 HUSB @I68@
+1 WIFE @I65@
+1 CHIL @I63@
 0 @F26@ FAM
-1 HUSB @I65@
-1 WIFE @I66@
-1 CHIL @I64@
+1 HUSB @I66@
+1 WIFE @I67@
+1 CHIL @I65@
 0 @F27@ FAM
 1 HUSB @I69@
 1 WIFE @I70@
-1 CHIL @I71@
-1 CHIL @I72@
+1 CHIL @I68@
 0 @F28@ FAM
 1 HUSB @I73@
-1 CHIL @I74@
+1 WIFE @I74@
 1 CHIL @I75@
+1 CHIL @I76@
 0 @F29@ FAM
-1 HUSB @I76@
-1 WIFE @I77@
-1 MARR
-2 DATE 19 JUN 2003
+1 HUSB @I77@
 1 CHIL @I78@
 1 CHIL @I79@
+0 @F30@ FAM
+1 HUSB @I80@
+1 WIFE @I81@
+1 MARR
+2 DATE 19 JUN 2003
+1 CHIL @I82@
+1 CHIL @I83@
 0 TRLR
