@@ -176,6 +176,22 @@ export function generateGedcom() {
       }
     }
 
+    if (p.verification === 'contested') {
+      const vNote = '[CONTESTED] ' + (p.verification_notes || 'This lineage connection is contested and lacks primary documentation.');
+      const vLines = [];
+      let vRem = vNote;
+      vLines.push(vRem.slice(0, 248));
+      vRem = vRem.slice(248);
+      while (vRem.length > 0) {
+        vLines.push(vRem.slice(0, 248));
+        vRem = vRem.slice(248);
+      }
+      ged += `1 NOTE ${vLines[0]}\n`;
+      for (let vi = 1; vi < vLines.length; vi++) {
+        ged += `2 CONC ${vLines[vi]}\n`;
+      }
+    }
+
     if (p.sources) {
       for (const src of p.sources) {
         ged += `1 SOUR ${src}\n`;

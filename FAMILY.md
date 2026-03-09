@@ -45,7 +45,6 @@ Isaac Marks's mother was reportedly **Esther de Salomon Mosseh Marques (Levy Mad
 - Back through several generations of Levy Maduros to **Mosseh Levy o Maduro** in Portugal
 - Ultimately to **Diogo Rodrigues** and **Clara Roiz** — **1400s, Portugal**
 
-**However:** Matt's DNA test (2010s) showed 99% Ashkenazi Jewish with no Sephardic markers, which casts doubt on the Portuguese connection — though DNA tests from that era had limitations, and the Sephardic line would be many generations back. The story is fascinating family lore and serious genealogical research, but should be presented as an open question, not established fact.
 
 ## Your Children
 1. **Deborah Sampson Green** (b. 1934) — educator, English Lit professor. Seattle. Married John R. Green (~1921–~1996).
