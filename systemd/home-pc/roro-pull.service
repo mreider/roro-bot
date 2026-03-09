@@ -1,0 +1,6 @@
+[Unit]
+Description=Auto-pull roro-bot from GitHub
+
+[Service]
+Type=oneshot
+ExecStart=/home/matt/.roro-bot/pull-and-restart.sh

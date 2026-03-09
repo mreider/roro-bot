@@ -1,0 +1,15 @@
+[Unit]
+Description=Grandma RoRo WhatsApp Bot
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/home/matt/.roro-bot
+EnvironmentFile=/home/matt/.roro-bot/.env
+ExecStart=/home/matt/.roro-bot/start-bot.sh
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=default.target

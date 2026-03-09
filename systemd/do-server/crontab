@@ -1,0 +1,3 @@
+# Digital Ocean server (roro.mreider.com / 144.126.210.189)
+# Runs as root — add with: crontab -e
+* * * * * /root/roro-bot/pull-and-restart.sh >> /var/log/geni-pull.log 2>&1
