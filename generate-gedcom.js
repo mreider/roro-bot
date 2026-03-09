@@ -236,6 +236,15 @@ export function publishGedcom() {
   generateGedcom();
   try {
     execSync('git add docs/sampson-kahn.ged', { cwd: __dirname, stdio: 'pipe' });
+    // Check if there are actually staged changes before committing
+    try {
+      execSync('git diff --cached --quiet docs/sampson-kahn.ged', { cwd: __dirname, stdio: 'pipe' });
+      // No changes — file was already committed (e.g. by republish_page)
+      console.log('[gedcom] GEDCOM already up to date in git.');
+      return true;
+    } catch {
+      // There are staged changes — commit them
+    }
     const msg = `Update GEDCOM export — ${new Date().toISOString().split('T')[0]}`;
     execSync(`git commit -m "${msg}"`, { cwd: __dirname, stdio: 'pipe' });
     execSync('git push', { cwd: __dirname, stdio: 'pipe' });

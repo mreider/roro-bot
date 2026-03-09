@@ -81,6 +81,24 @@ function isAuthorizedSender(senderJid) {
   });
 }
 
+// --- Budget mode ---
+// When enabled, RoRo uses cheaper model, no tools, shorter responses.
+// Only Matt can toggle this.
+let budgetMode = false;
+const MATT_NAMES = ['Matt', 'Matt Reider'];
+
+function isMatt(senderName) {
+  return MATT_NAMES.some(n => n.toLowerCase() === senderName?.toLowerCase());
+}
+
+function checkBudgetCommand(text, senderName) {
+  if (!isMatt(senderName)) return null;
+  const lower = text.toLowerCase().trim();
+  if (/\b(pause|budget mode|go cheap|save money)\b/i.test(lower)) return true;
+  if (/\b(unpause|full mode|go full|back to normal)\b/i.test(lower)) return false;
+  return null;
+}
+
 // --- Conversation management ---
 let conversation = { messages: [], lastActivity: Date.now() };
 const MAX_HISTORY = 30;
@@ -598,6 +616,11 @@ Only output YES or NO.`,
 
 // --- Claude API with tool use ---
 async function askRoRo(message, senderName, { sendInterim } = {}) {
+  // In budget mode, skip the API entirely — just return a canned response
+  if (budgetMode) {
+    return "I'm paused right now. Ask Matt to say \"unpause\" to get me back to normal.";
+  }
+
   let systemPrompt = buildSystemPrompt();
 
   // First-time sender: inject context so RoRo introduces herself and reviews their info
@@ -617,18 +640,20 @@ async function askRoRo(message, senderName, { sendInterim } = {}) {
     let messages = [...conv.messages];
     let finalText = '';
     let iterations = 0;
-    const MAX_ITERATIONS = 8; // safety limit
+    const MAX_ITERATIONS = 8;
 
     while (iterations < MAX_ITERATIONS) {
       iterations++;
 
-      const response = await anthropic.messages.create({
+      const apiParams = {
         model: MODEL,
         max_tokens: 1500,
         system: systemPrompt,
         messages,
         tools: TOOLS,
-      });
+      };
+
+      const response = await anthropic.messages.create(apiParams);
 
       // Collect text blocks and tool_use blocks
       const textBlocks = response.content.filter(b => b.type === 'text');
@@ -792,11 +817,28 @@ async function startBot() {
       let shouldRespond = !isGroup || isMentioned(text) || wasAtMentioned;
 
       // If not explicitly mentioned in a group, ask the classifier
+      // In budget mode, skip the classifier (saves API calls) — only respond to explicit mentions
       if (isGroup && !shouldRespond) {
+        if (budgetMode) {
+          addGroupContext(senderName, text);
+          continue;
+        }
         addGroupContext(senderName, text);
         const conv = getConversation();
         shouldRespond = await shouldRoRoRespond(text, senderName, conv.messages);
         if (!shouldRespond) continue;
+      }
+
+      // --- Budget mode toggle (Matt only) ---
+      const budgetToggle = checkBudgetCommand(text, senderName);
+      if (budgetToggle !== null) {
+        budgetMode = budgetToggle;
+        const status = budgetMode
+          ? 'Paused. Ask Matt to say "unpause" to get me back.'
+          : 'Unpaused. Back to normal.';
+        console.log(`[budget] ${budgetMode ? 'ON' : 'OFF'} (toggled by ${senderName})`);
+        await sock.sendMessage(chatJid, { text: status }, { quoted: msg });
+        continue;
       }
 
       console.log(`[msg] ${senderName}: ${text}`);

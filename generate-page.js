@@ -46,9 +46,9 @@ export async function generatePage(requestContext) {
   if (!narrativeHtml) {
     const anthropic = new Anthropic();
 
-    const prompt = `You are generating the NARRATIVE section of a family history page for the Sampson-Kahn family, in the voice of Grandma RoRo (Rose Etta Kahn Sampson, 1907-1997).
+    const prompt = `You are generating the NARRATIVE section of a family history page for the Sampson-Kahn family.
 
-Here is RoRo's personality and voice:
+Here is some background on the family:
 ${soul}
 
 Here is the family tree in narrative form:
@@ -61,21 +61,31 @@ ${requestContext ? `The family member who requested this page said: "${requestCo
 
 Generate ONLY the narrative HTML content (no <!DOCTYPE>, no <html>, no <head>, no <body> - just the inner content divs). Requirements:
 
-1. **Voice**: Written as if RoRo is telling you about her family. First person where natural. Warm, composed, proud but not boastful. Short, graceful sentences.
+1. **Voice**: Third person, objective, factual. Short clear sentences. No flowery prose, no speculation about people's feelings or inner lives, no romanticized descriptions. State what is documented: names, dates, places, occupations, relationships.
 
 2. **Structure**: Use <div class="section"> wrappers with <h2> headings:
-   - A brief introduction from RoRo
-   - Sections by family branch (Kahn origins, the Lavensons, the Sampsons, RoRo & Grandpa John, their children, grandchildren, great-grandchildren)
-   - The Sephardic ancestry as a fascinating open question
-   - Key places (Oakland, Georgetown SC, Galveston, San Francisco, Curaçao)
+   - A brief introduction to the Sampson-Kahn family
+   - Kahn origins (Henry/Hertz Kahn, Bela Goldstein, their children)
+   - The Lavenson connection (Helen Kahn's marriage to Theodore Lavenson)
+   - The Sampson line (Georgetown SC origins, key figures)
+   - RoRo and Grandpa John (Rose Etta Kahn and John Jacob Sampson)
+   - Their children (brief: just names, birth dates/places, spouses, current locations. No more than a short paragraph.)
+   - Grandchildren and great-grandchildren (names, dates, places)
+   - The Sephardic ancestry question (present as open/contested, note DNA evidence)
 
-3. **Content**: Use real dates, places, and stories. Don't invent facts. Include the rich details.
+3. **Content rules**:
+   - Only include documented facts: names, dates, places, occupations, verified relationships.
+   - Do NOT include the Reider family ancestry or history. Reiders may appear as spouses but do not trace the Reider line.
+   - Do NOT speculate about what people "must have felt" or what life "must have been like."
+   - Do NOT embellish with literary descriptions of places, eras, or journeys.
+   - Do NOT write about Jean Wildberg's research process or emotional qualities. If mentioning her, state only that she co-researched the family tree.
+   - Keep the "children" section short: one sentence per child (name, birth, spouse if any, where they live). No elaboration.
 
 4. **Technical**: Just HTML content divs. No page structure, no CSS, no JavaScript. Use <p>, <h2>, <h3>, <ul>, <li> etc.
 
 5. **IMPORTANT**: Never use em dashes. Use commas, periods, semicolons, or rewrite the sentence instead. Hyphens in hyphenated words are fine.
 
-6. **NEVER** mention Claude, Claude Code, AI, or any tools used to build this page. No changelogs, no "About" sections, no attribution to AI. This page is a family history, not a tech project.
+6. **NEVER** mention Claude, Claude Code, AI, bots, or any tools used to build this page. No changelogs, no "About" sections, no attribution to AI. This page is a family history, not a tech project.
 
 Output ONLY the HTML content. No markdown fences, no explanation.`;
 
