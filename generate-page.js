@@ -317,7 +317,7 @@ function showPerson(name) {
   currentPerson = name;
 
   var newHash = '#' + encodeURIComponent(name);
-  if (location.hash !== newHash) history.pushState(null, '', newHash);
+  if (!_skipHash && location.hash !== newHash) history.pushState(null, '', newHash);
 
   var treeTab = document.getElementById('tree-tab');
   if (!treeTab.classList.contains('active')) {
@@ -459,17 +459,17 @@ window.addEventListener('popstate', function() {
   if (name && byName[name] && name !== currentPerson) showPerson(name);
 });
 
+var _skipHash = true;
 var initialHash = location.hash ? decodeURIComponent(location.hash.slice(1)) : null;
-if (initialHash && byName[initialHash]) { showPerson(initialHash); }
+if (initialHash && byName[initialHash]) { _skipHash = false; showPerson(initialHash); }
 else {
-  // Pre-load RoRo's profile in the tree tab without switching to it
-  var preloadView = document.getElementById('person-view');
-  currentPerson = 'Rose Etta Kahn Sampson';
   showPerson('Rose Etta Kahn Sampson');
   // Switch back to narrative as the default landing tab
   var btns = document.querySelectorAll('.tab');
   switchTab('narrative', btns[0]);
+  history.replaceState(null, '', location.pathname);
 }
+_skipHash = false;
 <\/script>
 </body>
 </html>`;
