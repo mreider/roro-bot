@@ -169,7 +169,7 @@ window.addEventListener('popstate', function() {
   if (name && byName[name] && name !== currentPerson) showPerson(name);
 });
 
-// On load: show person from hash, or default to RoRo
+// On load: show person from hash, or default to Rose
 var initialHash = location.hash ? decodeURIComponent(location.hash.slice(1)) : null;
 if (initialHash && byName[initialHash]) {
   showPerson(initialHash);

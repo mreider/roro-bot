@@ -1,12 +1,12 @@
 var rawData = [
   {
     "name": "Henry (Hertz) Kahn",
-    "relation": "RoRo's paternal great-grandfather",
+    "relation": "Rose's paternal great-grandfather",
     "spouse": "Bela Kahn (née Goldstein)"
   },
   {
     "name": "Bela Kahn (née Goldstein)",
-    "relation": "RoRo's paternal great-grandmother",
+    "relation": "Rose's paternal great-grandmother",
     "spouse": "Henry (Hertz) Kahn"
   },
   {
@@ -14,7 +14,7 @@ var rawData = [
     "born": "1822",
     "died": "1883",
     "birthplace": "Darmstadt, Hesse, Germany",
-    "relation": "RoRo's paternal grandfather",
+    "relation": "Rose's paternal grandfather",
     "spouse": "Sarah Kahn (née Bauer)",
     "notes": "Emigrated from Germany 1848, arrived Baltimore on the Henry Shelton from Rotterdam. Founded dry goods business in Oakland 1879 at 10th & Broadway. Sons: Henry, Samuel, Solomon, Frederick, John.",
     "parents": ["Henry (Hertz) Kahn", "Bela Kahn (née Goldstein)"]
@@ -23,14 +23,14 @@ var rawData = [
     "name": "Sarah Kahn (née Bauer)",
     "born": "1828",
     "died": "1888",
-    "relation": "RoRo's paternal grandmother",
+    "relation": "Rose's paternal grandmother",
     "spouse": "Israel Kahn"
   },
   {
     "name": "Samuel Lavenson",
     "born": "1829",
     "died": "1900",
-    "relation": "RoRo's maternal grandfather",
+    "relation": "Rose's maternal grandfather",
     "spouse": "Caroline Lavenson (née Heiman)"
   },
   {
@@ -38,7 +38,7 @@ var rawData = [
     "born": "1842",
     "died": "1872-06-24",
     "deathplace": "Sacramento, CA",
-    "relation": "RoRo's maternal grandmother",
+    "relation": "Rose's maternal grandmother",
     "spouse": "Samuel Lavenson",
     "notes": "Died at age 29-30, the same year her daughter Helen was born. Buried at Home of Peace Cemetery, Sacramento. Three children: Clara (1870), Sara (1871), Helen (1872)."
   },
@@ -47,7 +47,7 @@ var rawData = [
     "born": "1865",
     "birthplace": "Sacramento, CA",
     "died": "1930",
-    "relation": "RoRo's maternal uncle",
+    "relation": "Rose's maternal uncle",
     "spouse": "Amy Lavenson (née Furth)",
     "married": "1894",
     "notes": "Partner and vice-president of Capwell's Department Store (30 years, from 1890). President of Temple Sinai. Organizer of the Commercial Club (later Oakland Chamber of Commerce). Music patron at Mills College, responsible for construction of Music Building. Chaired Jewish Welfare Campaign of the East Bay (1927). Died at 65 of heart disease. Left estate to charitable/educational foundation.",
@@ -66,7 +66,7 @@ var rawData = [
     "born": "1897",
     "died": "1989",
     "birthplace": "Oakland, CA",
-    "relation": "RoRo's cousin (Albert's daughter)",
+    "relation": "Rose's cousin (Albert's daughter)",
     "notes": "Noted photographer. Studied under Edward Weston and Imogen Cunningham.",
     "parents": ["Albert S. Lavenson", "Amy Lavenson (née Furth)"],
     "sources": ["https://www.jmaw.org/lavenson-capwells-jewish/"]
@@ -75,14 +75,14 @@ var rawData = [
     "name": "Clara Lavenson Furth",
     "born": "1870",
     "died": "1945",
-    "relation": "RoRo's maternal aunt (Helen's sister)",
+    "relation": "Rose's maternal aunt (Helen's sister)",
     "parents": ["Samuel Lavenson", "Caroline Lavenson (née Heiman)"]
   },
   {
     "name": "Sara Lavenson",
     "born": "1871",
     "died": "1946",
-    "relation": "RoRo's maternal aunt (Helen's sister)",
+    "relation": "Rose's maternal aunt (Helen's sister)",
     "parents": ["Samuel Lavenson", "Caroline Lavenson (née Heiman)"]
   },
   {
@@ -91,7 +91,7 @@ var rawData = [
     "died": "1925-08-19",
     "birthplace": "New York, NY",
     "deathplace": "Oakland, CA (3933 Harrison Street)",
-    "relation": "RoRo's father",
+    "relation": "Rose's father",
     "spouse": "Helen Kahn (née Lavenson)",
     "notes": "First worked at Bauer Brothers Company (wholesalers of laces and fancy goods, 83 First Street, SF), then joined the family store after it was founded in 1879. Kahn Brothers Dept Store moved 1912 to Beaux-Arts building at 16th & Broadway (architect Charles W. Dickey, 120-ft elliptical dome - now Rotunda Building, Oakland Landmark #132, National Register). First president of Jewish Welfare Federation of the East Bay (founded 1918). Founding member & president of Temple Sinai. Chairman of Advisory Committee of Board of Education ($5M school building program). VP of Alameda County Anti-Tuberculosis Society. Concordia Club, B'nai B'rith. Buried at Home of Eternity Cemetery, Mountain View Cemetery, Oakland.",
     "parents": ["Israel Kahn", "Sarah Kahn (née Bauer)"]
@@ -102,7 +102,7 @@ var rawData = [
     "died": "1935-03-04",
     "birthplace": "California",
     "deathplace": "Oakland, CA",
-    "relation": "RoRo's mother",
+    "relation": "Rose's mother",
     "spouse": "Frederick Kahn",
     "notes": "Established the Kahn Foundation in 1928 after Frederick's death. In 1965, foundation donated $125,000 for 71 paintings -the Kahn Collection of 19th-century California art at the Oakland Museum, catalogued by Marjorie Arkelian.",
     "parents": ["Samuel Lavenson", "Caroline Lavenson (née Heiman)"]
@@ -111,13 +111,13 @@ var rawData = [
     "name": "Helen Sarah Eppinger (née Kahn)",
     "born": "1913",
     "died": "1956",
-    "relation": "RoRo's sister",
+    "relation": "Rose's sister",
     "spouse": "Josua Eppinger",
     "parents": ["Frederick Kahn", "Helen Kahn (née Lavenson)"]
   },
   {
     "name": "Frederick Kahn Jr.",
-    "relation": "RoRo's brother",
+    "relation": "Rose's brother",
     "parents": ["Frederick Kahn", "Helen Kahn (née Lavenson)"]
   },
   {
@@ -340,7 +340,7 @@ var rawData = [
     "died": "1934-11-26",
     "birthplace": "Georgetown, SC",
     "deathplace": "San Francisco, CA",
-    "relation": "Grandpa John's father / RoRo's father-in-law",
+    "relation": "Grandpa John's father / Rose's father-in-law",
     "spouse": "Babette 'Bettie' Sampson (née Levy)",
     "married": "1887-04-04",
     "notes": "Physician. Medical school in SC, practiced in Galveston TX. Married Bettie in Galveston. After 1900 Galveston flood, moved to SF 1902. Franklin Street home (between Bush and Sutter) dynamited by US Army as firebreak during 1906 earthquake. Rebuilt on Washington Street near Laurel. Five children: Joseph Abraham (1888), Arthur Jr. (1891), Cornelia 'Nellie' (1893), Esther, John Jacob (1898).",
@@ -353,7 +353,7 @@ var rawData = [
     "died": "1949-03-21",
     "birthplace": "San Antonio, TX",
     "deathplace": "Santa Clara, CA",
-    "relation": "Grandpa John's mother / RoRo's mother-in-law",
+    "relation": "Grandpa John's mother / Rose's mother-in-law",
     "spouse": "Dr. Arthur Fischel Sampson",
     "married": "1887-04-04",
     "parents": ["Abraham Levy", "Esther Levy (née Halff)"]
@@ -394,7 +394,7 @@ var rawData = [
     "died": "1987-12-24",
     "birthplace": "Galveston, TX",
     "deathplace": "San Francisco, CA",
-    "relation": "RoRo's husband",
+    "relation": "Rose's husband",
     "spouse": "Rose Etta Kahn Sampson",
     "married": "1931-05-17",
     "notes": "MD before age 21. 3 years at UC then medical degree. Medical officer on freighter to Far East and India. Practiced with his father, then UCSF research and clinical staff until retirement at 85. Chief of Staff at Mount Zion Hospital. Cardiologist -49 publications (1926-1980) on cardiac pain, pulmonary lymph flow, angina, shock. Collaborated with Meyer Friedman (Type A behavior), Herman Uhley, Sanford Leeds at Harold Brunn Institute for Cardiovascular Research. The John J. Sampson-Lucie Stern Endowed Chair in Cardiology established at UCSF in his honor.",
@@ -404,7 +404,7 @@ var rawData = [
     "name": "Deborah Sampson Green",
     "born": "1934-01-11",
     "birthplace": "San Francisco, CA",
-    "relation": "RoRo's eldest child",
+    "relation": "Rose's eldest child",
     "spouse": "John R. Green",
     "notes": "Educator, editor, college instructor of English Lit. Lives in Seattle. Schools: Lowell, Alamo, Presidio Jr. High, Wellesley (1978).",
     "parents": ["Dr. John Jacob Sampson", "Rose Etta Kahn Sampson"]
@@ -418,18 +418,18 @@ var rawData = [
   },
   {
     "name": "Caleb Green",
-    "relation": "RoRo's grandchild (Deborah's son)",
+    "relation": "Rose's grandchild (Deborah's son)",
     "spouse": "Kate Banta-Green",
     "parents": ["Deborah Sampson Green", "John R. Green"]
   },
   {
     "name": "Robert Bruce Banta-Green",
-    "relation": "RoRo's great-grandchild (Caleb's son)",
+    "relation": "Rose's great-grandchild (Caleb's son)",
     "parents": ["Caleb Green", "Kate Banta-Green"]
   },
   {
     "name": "Peter Caleb Banta-Green",
-    "relation": "RoRo's great-grandchild (Caleb's son)",
+    "relation": "Rose's great-grandchild (Caleb's son)",
     "parents": ["Caleb Green", "Kate Banta-Green"],
     "sources": ["https://www.geni.com/people/Peter-Caleb-Banta-Green/325171412150004588"]
   },
@@ -438,7 +438,7 @@ var rawData = [
     "nicknames": ["Johnny"],
     "born": "1935-03-18",
     "birthplace": "San Francisco, CA",
-    "relation": "RoRo's son",
+    "relation": "Rose's son",
     "spouse": "Sharon L. Litsky (second wife)",
     "notes": "Appraiser and real estate broker in SF. Lowell HS (1953), Reed College (3 yrs), AB Univ of SF (1957), Wharton (1960). First wife Louise Adler (1962, div. 1991). Second wife Sharon L. Litsky (1999).",
     "parents": ["Dr. John Jacob Sampson", "Rose Etta Kahn Sampson"],
@@ -448,21 +448,21 @@ var rawData = [
     "name": "Jennifer Ruth Sampson",
     "born": "1969-10-22",
     "birthplace": "San Francisco, CA",
-    "relation": "RoRo's grandchild (John's daughter)",
+    "relation": "Rose's grandchild (John's daughter)",
     "notes": "Lives in Berkeley, CA.",
     "parents": ["John Frederick Sampson", "Louise Adler"],
     "sources": ["https://www.geni.com/people/Jennifer-Ruth-Sampson/325120278230006393"]
   },
   {
     "name": "John Frederick Sampson Jr.",
-    "relation": "RoRo's grandchild (John's son)",
+    "relation": "Rose's grandchild (John's son)",
     "parents": ["John Frederick Sampson", "Louise Adler"]
   },
   {
     "name": "Juliet Margaret Sampson",
     "born": "1968-05-19",
     "birthplace": "San Francisco, CA",
-    "relation": "RoRo's grandchild (John's daughter)",
+    "relation": "Rose's grandchild (John's daughter)",
     "spouse": "Simon Mays-Smith",
     "notes": "Country Financial Analyst. Lives in London.",
     "parents": ["John Frederick Sampson", "Louise Adler"],
@@ -475,19 +475,19 @@ var rawData = [
   },
   {
     "name": "Isaac Mays-Smith",
-    "relation": "RoRo's great-grandchild (Juliet's son)",
+    "relation": "Rose's great-grandchild (Juliet's son)",
     "parents": ["Juliet Margaret Sampson", "Simon Mays-Smith"],
     "sources": ["https://www.geni.com/people/Isaac-Mays-Smith/325123506560001643"]
   },
   {
     "name": "Noah Mays-Smith",
-    "relation": "RoRo's great-grandchild (Juliet's son)",
+    "relation": "Rose's great-grandchild (Juliet's son)",
     "parents": ["Juliet Margaret Sampson", "Simon Mays-Smith"]
   },
   {
     "name": "Rose Etta Mays-Smith",
     "born": "2007-11",
-    "relation": "RoRo's great-grandchild (Juliet's daughter)",
+    "relation": "Rose's great-grandchild (Juliet's daughter)",
     "notes": "Named after Rose Etta Kahn Sampson (RoRo).",
     "parents": ["Juliet Margaret Sampson", "Simon Mays-Smith"],
     "sources": ["https://www.geni.com/people/Rose-Etta-Mays-Smith/5718790939480037956"]
@@ -496,7 +496,7 @@ var rawData = [
     "name": "Janet Sampson Reider",
     "born": "1937-03-01",
     "birthplace": "San Francisco, CA",
-    "relation": "RoRo's youngest child",
+    "relation": "Rose's youngest child",
     "spouse": "Arthur Elliott 'Pete' Reider",
     "married": "1958",
     "notes": "Photographer (janetreider.com). Met Pete at Lowell High School at age 13.",
@@ -509,7 +509,7 @@ var rawData = [
     "died": "2015-08-13",
     "birthplace": "Topeka, KS",
     "deathplace": "San Francisco, CA",
-    "relation": "RoRo's son-in-law (Janet's husband)",
+    "relation": "Rose's son-in-law (Janet's husband)",
     "spouse": "Janet Sampson Reider",
     "married": "1958",
     "notes": "Psychiatrist. Presidio Hill School, Grant School, Lowell HS, Harvard (Class of 1958), Harvard Medical. Captain of Harvard Track -ran 4:11 mile (1957 Harvard record). Harvard Athletic Hall of Fame (1982). All-Ivy League Cross Country Team. Coach McCurdy: 'one of the toughest little men I have ever known.' Private practice in Cambridge, Hyannis, Newton MA. Retired in SF. Published Stepping Stones (2014), poetry and fiction. Fromm Institute at USF, Osher Foundation at Brandeis. Died of lymphoma at home. Memorial at Congregation Emanu-El, August 17, 2015.",
@@ -618,7 +618,7 @@ var rawData = [
     "name": "Jacob M. Reider",
     "born": "1963-06-25",
     "birthplace": "Boston, MA",
-    "relation": "RoRo's grandchild (Janet's eldest)",
+    "relation": "Rose's grandchild (Janet's eldest)",
     "spouse": "Alicia Ouellette",
     "notes": "Family physician (FAAFP). Hampshire College '83, Albany Medical College '94. Deputy National Coordinator for Health IT at HHS (2011-2014), also Acting National Coordinator. CMIO at Allscripts (2006-2010). CEO of Alliance for Better Health (2016-2021). Co-founded five health IT startups including Twistle (acquired by Health Catalyst) and Physera (acquired by Omada). Maintains docnotes.net blog since 1999. Married Alicia Ouellette (former Dean of Albany Law School, now Dean at Lewis & Clark Law School). Children: Molly, Sampson. Lives in Slingerlands, NY.",
     "parents": ["Arthur Elliott 'Pete' Reider", "Janet Sampson Reider"]
@@ -631,41 +631,41 @@ var rawData = [
   },
   {
     "name": "Molly Reider",
-    "relation": "RoRo's great-grandchild (Jacob's daughter)",
+    "relation": "Rose's great-grandchild (Jacob's daughter)",
     "parents": ["Jacob M. Reider", "Alicia Ouellette"]
   },
   {
     "name": "Sampson Reider",
-    "relation": "RoRo's great-grandchild (Jacob's child)",
+    "relation": "Rose's great-grandchild (Jacob's child)",
     "parents": ["Jacob M. Reider", "Alicia Ouellette"]
   },
   {
     "name": "Suzie Reider",
     "born": "1965-03-29",
     "birthplace": "Boston, MA",
-    "relation": "RoRo's grandchild (Janet's daughter)",
+    "relation": "Rose's grandchild (Janet's daughter)",
     "spouse": "Brian Smith",
     "notes": "EVP of Lyft Media & Business at Lyft. Previously Global CRO at Waze.",
     "parents": ["Arthur Elliott 'Pete' Reider", "Janet Sampson Reider"]
   },
   {
     "name": "Rose Reider Smith",
-    "relation": "RoRo's great-grandchild (Suzie's daughter)",
+    "relation": "Rose's great-grandchild (Suzie's daughter)",
     "parents": ["Suzie Reider", "Brian Smith"]
   },
   {
     "name": "Charlotte Reider Smith",
-    "relation": "RoRo's great-grandchild (Suzie's daughter)",
+    "relation": "Rose's great-grandchild (Suzie's daughter)",
     "parents": ["Suzie Reider", "Brian Smith"]
   },
   {
     "name": "Matt Reider",
     "born": "1969-12-22",
     "birthplace": "Boston, MA",
-    "relation": "RoRo's grandchild (Janet's youngest)",
+    "relation": "Rose's grandchild (Janet's youngest)",
     "spouse": "Alison Cohen",
     "married": "2003-06-19",
-    "notes": "Software. Lives in Oakland, CA. He's the one who brought RoRo into the chat.",
+    "notes": "Software. Lives in Oakland, CA. Built and maintains this family tree bot.",
     "parents": ["Arthur Elliott 'Pete' Reider", "Janet Sampson Reider"]
   },
   {
@@ -679,57 +679,57 @@ var rawData = [
     "name": "Max Nathan Reider",
     "born": "2007-03-03",
     "birthplace": "Oakland, CA",
-    "relation": "RoRo's great-grandchild (Matt's son)",
+    "relation": "Rose's great-grandchild (Matt's son)",
     "parents": ["Matt Reider", "Alison Cohen"]
   },
   {
     "name": "Zoe Ella Reider",
     "born": "2008-07-29",
     "birthplace": "Oakland, CA",
-    "relation": "RoRo's great-grandchild (Matt's daughter)",
+    "relation": "Rose's great-grandchild (Matt's daughter)",
     "parents": ["Matt Reider", "Alison Cohen"],
     "sources": ["https://www.geni.com/people/Zoe-Ella-Reider/6000000006944795205"]
   },
   {
     "name": "Josua Eppinger",
-    "relation": "Helen Sarah Eppinger's husband / RoRo's brother-in-law",
+    "relation": "Helen Sarah Eppinger's husband / Rose's brother-in-law",
     "spouse": "Helen Sarah Eppinger (née Kahn)"
   },
   {
     "name": "Joan Eppinger",
-    "relation": "RoRo's niece (Helen's daughter)",
+    "relation": "Rose's niece (Helen's daughter)",
     "parents": ["Helen Sarah Eppinger (née Kahn)", "Josua Eppinger"]
   },
   {
     "name": "Josua Eppinger Jr.",
-    "relation": "RoRo's nephew (Helen's son)",
+    "relation": "Rose's nephew (Helen's son)",
     "parents": ["Helen Sarah Eppinger (née Kahn)", "Josua Eppinger"]
   },
   {
     "name": "Wendy Eppinger Shulman",
-    "relation": "RoRo's niece (Helen's daughter)",
+    "relation": "Rose's niece (Helen's daughter)",
     "spouse": "Jonas Shulman",
     "parents": ["Helen Sarah Eppinger (née Kahn)", "Josua Eppinger"]
   },
   {
     "name": "Dwight Frederick Eppinger",
-    "relation": "RoRo's nephew (Helen's son)",
+    "relation": "Rose's nephew (Helen's son)",
     "parents": ["Helen Sarah Eppinger (née Kahn)", "Josua Eppinger"]
   },
   {
     "name": "Carolyn Kahn",
-    "relation": "Frederick Jr.'s wife / RoRo's sister-in-law",
+    "relation": "Frederick Jr.'s wife / Rose's sister-in-law",
     "spouse": "Frederick Kahn Jr."
   },
   {
     "name": "Susan Kahn Levy",
-    "relation": "RoRo's niece (Frederick Jr.'s daughter)",
+    "relation": "Rose's niece (Frederick Jr.'s daughter)",
     "spouse": "Louis Levy",
     "parents": ["Frederick Kahn Jr.", "Carolyn Kahn"]
   },
   {
     "name": "Margery Kahn Zelles",
-    "relation": "RoRo's niece (Frederick Jr.'s daughter)",
+    "relation": "Rose's niece (Frederick Jr.'s daughter)",
     "spouse": "Herman Zelles",
     "parents": ["Frederick Kahn Jr.", "Carolyn Kahn"]
   },
@@ -801,60 +801,60 @@ var rawData = [
   },
   {
     "name": "Samuel Kahn",
-    "relation": "RoRo's uncle (Israel's son)",
+    "relation": "Rose's uncle (Israel's son)",
     "spouse": "Ida Kahn",
     "parents": ["Israel Kahn", "Sarah Kahn (née Bauer)"]
   },
   {
     "name": "Hannah Kahn Zeimer",
-    "relation": "RoRo's aunt (Israel's daughter)",
+    "relation": "Rose's aunt (Israel's daughter)",
     "spouse": "Leo Zeimer",
     "parents": ["Israel Kahn", "Sarah Kahn (née Bauer)"]
   },
   {
     "name": "Solomon Kahn",
-    "relation": "RoRo's uncle (Israel's son)",
+    "relation": "Rose's uncle (Israel's son)",
     "parents": ["Israel Kahn", "Sarah Kahn (née Bauer)"]
   },
   {
     "name": "John Kahn",
-    "relation": "RoRo's uncle (Israel's son)",
+    "relation": "Rose's uncle (Israel's son)",
     "spouse": "Gertrude Kahn",
     "parents": ["Israel Kahn", "Sarah Kahn (née Bauer)"]
   },
   {
     "name": "Bertha Kahn Elkus",
-    "relation": "RoRo's aunt (Israel's daughter)",
+    "relation": "Rose's aunt (Israel's daughter)",
     "spouse": "Albert Elkus",
     "parents": ["Israel Kahn", "Sarah Kahn (née Bauer)"]
   },
   {
     "name": "Rosetta Kahn Katten",
-    "relation": "RoRo's aunt (Israel's daughter)",
+    "relation": "Rose's aunt (Israel's daughter)",
     "spouse": "Simon Katten",
     "parents": ["Israel Kahn", "Sarah Kahn (née Bauer)"]
   },
   {
     "name": "Henrietta Kahn Manheim",
-    "relation": "RoRo's aunt (Israel's daughter)",
+    "relation": "Rose's aunt (Israel's daughter)",
     "spouse": "Henry Manheim",
     "parents": ["Israel Kahn", "Sarah Kahn (née Bauer)"]
   },
   {
     "name": "Moses Lavenson",
-    "relation": "RoRo's maternal uncle (Samuel's son)",
+    "relation": "Rose's maternal uncle (Samuel's son)",
     "spouse": "Lotta Lavenson",
     "parents": ["Samuel Lavenson", "Caroline Lavenson (née Heiman)"]
   },
   {
     "name": "Etta Lavenson Brandt",
-    "relation": "RoRo's maternal aunt (Samuel's daughter)",
+    "relation": "Rose's maternal aunt (Samuel's daughter)",
     "spouse": "Maurice Brandt",
     "parents": ["Samuel Lavenson", "Caroline Lavenson (née Heiman)"]
   },
   {
     "name": "George Lavenson",
-    "relation": "RoRo's maternal uncle (Samuel's son)",
+    "relation": "Rose's maternal uncle (Samuel's son)",
     "spouse": "Edith Lavenson",
     "parents": ["Samuel Lavenson", "Caroline Lavenson (née Heiman)"]
   },
