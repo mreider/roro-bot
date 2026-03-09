@@ -106,6 +106,43 @@ async function geniGet(path, params = {}) {
   return resp.json();
 }
 
+async function geniPost(path, data = {}) {
+  const token = await getAccessToken();
+  const url = `${API_BASE}/${path}?access_token=${token}`;
+
+  const resp = await fetch(url, {
+    method: 'POST',
+    headers: {
+      'User-Agent': 'RoRo-FamilyTreeBot/1.0',
+      'Content-Type': 'application/x-www-form-urlencoded',
+    },
+    body: new URLSearchParams(flattenParams(data)).toString(),
+    signal: AbortSignal.timeout(15000),
+  });
+
+  if (!resp.ok) {
+    const text = await resp.text();
+    throw new Error(`Geni API ${resp.status}: ${text}`);
+  }
+  return resp.json();
+}
+
+// Flatten nested objects for form encoding (e.g., birth.date.year → birth[date][year])
+function flattenParams(obj, prefix = '') {
+  const params = {};
+  for (const [key, val] of Object.entries(obj)) {
+    const fullKey = prefix ? `${prefix}[${key}]` : key;
+    if (val && typeof val === 'object' && !Array.isArray(val)) {
+      Object.assign(params, flattenParams(val, fullKey));
+    } else if (Array.isArray(val)) {
+      params[fullKey] = val.join(',');
+    } else if (val !== undefined && val !== null) {
+      params[fullKey] = String(val);
+    }
+  }
+  return params;
+}
+
 // --- Profile helpers ---
 
 function formatProfile(p) {
@@ -250,6 +287,113 @@ export async function geniPathTo(fromId, toId) {
     return { success: true, path: steps.join(' → '), length: steps.length };
   } catch (err) {
     return { error: `Path lookup failed: ${err.message}` };
+  }
+}
+
+// --- Write operations ---
+
+function buildEventParam(dateStr, location) {
+  const event = {};
+  if (dateStr) {
+    const date = {};
+    const parts = dateStr.split('-');
+    if (parts[0]) date.year = parseInt(parts[0]);
+    if (parts[1]) date.month = parseInt(parts[1]);
+    if (parts[2]) date.day = parseInt(parts[2]);
+    event.date = date;
+  }
+  if (location) {
+    event.location = { city: location };
+  }
+  return event;
+}
+
+export async function geniUpdateProfile(profileId, updates) {
+  try {
+    const params = {};
+    if (updates.first_name) params.first_name = updates.first_name;
+    if (updates.last_name) params.last_name = updates.last_name;
+    if (updates.middle_name) params.middle_name = updates.middle_name;
+    if (updates.maiden_name) params.maiden_name = updates.maiden_name;
+    if (updates.suffix) params.suffix = updates.suffix;
+    if (updates.gender) params.gender = updates.gender;
+    if (updates.about_me) params.about_me = updates.about_me;
+    if (updates.occupation) params.occupation = updates.occupation;
+    if (updates.is_alive !== undefined) params.is_alive = updates.is_alive;
+    if (updates.nicknames) params.nicknames = updates.nicknames;
+    if (updates.birth_date || updates.birth_location) {
+      params.birth = buildEventParam(updates.birth_date, updates.birth_location);
+    }
+    if (updates.death_date || updates.death_location) {
+      params.death = buildEventParam(updates.death_date, updates.death_location);
+    }
+
+    const result = await geniPost(`${profileId}/update`, params);
+    const name = result.name || `${result.first_name || ''} ${result.last_name || ''}`.trim();
+    return { success: true, message: `Updated ${name} [${result.id}]`, updated: Object.keys(updates) };
+  } catch (err) {
+    return { error: `Failed to update profile: ${err.message}` };
+  }
+}
+
+export async function geniAddChild(parentProfileId, childData) {
+  try {
+    const params = {};
+    if (childData.first_name) params.first_name = childData.first_name;
+    if (childData.last_name) params.last_name = childData.last_name;
+    if (childData.gender) params.gender = childData.gender;
+    if (childData.birth_date || childData.birth_location) {
+      params.birth = buildEventParam(childData.birth_date, childData.birth_location);
+    }
+    if (childData.is_alive !== undefined) params.is_alive = childData.is_alive;
+
+    const result = await geniPost(`${parentProfileId}/add-child`, params);
+    const name = result.name || `${result.first_name || ''} ${result.last_name || ''}`.trim();
+    return { success: true, message: `Added child ${name} [${result.id}] to [${parentProfileId}]`, profile_id: result.id };
+  } catch (err) {
+    return { error: `Failed to add child: ${err.message}` };
+  }
+}
+
+export async function geniAddParent(childProfileId, parentData) {
+  try {
+    const params = {};
+    if (parentData.first_name) params.first_name = parentData.first_name;
+    if (parentData.last_name) params.last_name = parentData.last_name;
+    if (parentData.gender) params.gender = parentData.gender;
+    if (parentData.birth_date || parentData.birth_location) {
+      params.birth = buildEventParam(parentData.birth_date, parentData.birth_location);
+    }
+    if (parentData.death_date || parentData.death_location) {
+      params.death = buildEventParam(parentData.death_date, parentData.death_location);
+    }
+
+    const result = await geniPost(`${childProfileId}/add-parent`, params);
+    const name = result.name || `${result.first_name || ''} ${result.last_name || ''}`.trim();
+    return { success: true, message: `Added parent ${name} [${result.id}] to [${childProfileId}]`, profile_id: result.id };
+  } catch (err) {
+    return { error: `Failed to add parent: ${err.message}` };
+  }
+}
+
+export async function geniAddPartner(profileId, partnerData) {
+  try {
+    const params = {};
+    if (partnerData.first_name) params.first_name = partnerData.first_name;
+    if (partnerData.last_name) params.last_name = partnerData.last_name;
+    if (partnerData.gender) params.gender = partnerData.gender;
+    if (partnerData.birth_date || partnerData.birth_location) {
+      params.birth = buildEventParam(partnerData.birth_date, partnerData.birth_location);
+    }
+    if (partnerData.marriage_date || partnerData.marriage_location) {
+      params.marriage = buildEventParam(partnerData.marriage_date, partnerData.marriage_location);
+    }
+
+    const result = await geniPost(`${profileId}/add-partner`, params);
+    const name = result.name || `${result.first_name || ''} ${result.last_name || ''}`.trim();
+    return { success: true, message: `Added partner ${name} [${result.id}] to [${profileId}]`, profile_id: result.id };
+  } catch (err) {
+    return { error: `Failed to add partner: ${err.message}` };
   }
 }
 

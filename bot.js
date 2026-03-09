@@ -17,6 +17,10 @@ import {
   geniSearch,
   geniPathTo,
   geniGetMyProfile,
+  geniUpdateProfile,
+  geniAddChild,
+  geniAddParent,
+  geniAddPartner,
 } from './geni.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -147,7 +151,10 @@ Rules:
 - The family page is at ${SITE_URL}
 - Don't use terms of endearment. Use real names.
 - You have tools available: web_fetch (read URLs), update_family_tree (modify the JSON data), update_family_narrative (modify FAMILY.md), and republish_page (regenerate and push the website). Use them when appropriate.
-- You also have Geni.com tools for exploring the online family tree: geni_search (find people by name), geni_profile (get full profile details), geni_family (get someone's immediate family — parents, siblings, partners, children), geni_ancestors (get ancestor tree), and geni_path (find how two people are related). Use these when someone asks about connections, wants to explore branches, or when you need to cross-reference Geni data with your local tree.
+- You also have Geni.com tools for exploring AND editing the online family tree:
+  READ: geni_search (find people by name), geni_profile (get full details), geni_family (immediate family), geni_ancestors (ancestor tree), geni_path (relationship between two people).
+  WRITE: geni_update (edit a profile's name, dates, locations, etc.), geni_add_child, geni_add_parent, geni_add_partner (add new people linked to existing profiles).
+  Use these when someone asks about connections, wants to explore branches, cross-reference data, or add/correct information on Geni. When making changes on Geni, confirm with the family member first before writing.
 - Matt's Geni profile ID is profile-2160559. Use it as a starting point when exploring the tree.
 - When presenting Geni data, include the profile IDs in brackets like [profile-123456] so you can look up more details if asked.
 `;
@@ -266,6 +273,66 @@ if (isGeniConfigured()) {
         required: ['from_id', 'to_id'],
       },
     },
+    {
+      name: 'geni_update',
+      description: 'Update an existing profile on Geni.com. Can update names, dates, locations, occupation, about_me, and more. Use date format YYYY-MM-DD or just YYYY.',
+      input_schema: {
+        type: 'object',
+        properties: {
+          profile_id: { type: 'string', description: 'Geni profile ID to update (e.g., "profile-2160559")' },
+          updates: {
+            type: 'object',
+            description: 'Fields to update. Supported: first_name, last_name, middle_name, maiden_name, suffix, gender, about_me, occupation, is_alive, nicknames (array), birth_date (YYYY-MM-DD), birth_location, death_date, death_location',
+          },
+        },
+        required: ['profile_id', 'updates'],
+      },
+    },
+    {
+      name: 'geni_add_child',
+      description: 'Add a child to a person on Geni.com. Creates a new profile linked as their child.',
+      input_schema: {
+        type: 'object',
+        properties: {
+          parent_profile_id: { type: 'string', description: 'Geni profile ID of the parent' },
+          child: {
+            type: 'object',
+            description: 'Child data: first_name, last_name, gender, birth_date (YYYY-MM-DD), birth_location, is_alive',
+          },
+        },
+        required: ['parent_profile_id', 'child'],
+      },
+    },
+    {
+      name: 'geni_add_parent',
+      description: 'Add a parent to a person on Geni.com. Creates a new profile linked as their parent.',
+      input_schema: {
+        type: 'object',
+        properties: {
+          child_profile_id: { type: 'string', description: 'Geni profile ID of the child' },
+          parent: {
+            type: 'object',
+            description: 'Parent data: first_name, last_name, gender, birth_date, birth_location, death_date, death_location',
+          },
+        },
+        required: ['child_profile_id', 'parent'],
+      },
+    },
+    {
+      name: 'geni_add_partner',
+      description: 'Add a spouse/partner to a person on Geni.com. Creates a new profile linked as their partner.',
+      input_schema: {
+        type: 'object',
+        properties: {
+          profile_id: { type: 'string', description: 'Geni profile ID of the person' },
+          partner: {
+            type: 'object',
+            description: 'Partner data: first_name, last_name, gender, birth_date, birth_location, marriage_date, marriage_location',
+          },
+        },
+        required: ['profile_id', 'partner'],
+      },
+    },
   );
 } else {
   console.log('[geni] Geni.com not configured — run geni-auth.js to enable');
@@ -292,6 +359,14 @@ async function executeTool(toolName, input) {
       return await geniGetAncestors(input.profile_id);
     case 'geni_path':
       return await geniPathTo(input.from_id, input.to_id);
+    case 'geni_update':
+      return await geniUpdateProfile(input.profile_id, input.updates);
+    case 'geni_add_child':
+      return await geniAddChild(input.parent_profile_id, input.child);
+    case 'geni_add_parent':
+      return await geniAddParent(input.child_profile_id, input.parent);
+    case 'geni_add_partner':
+      return await geniAddPartner(input.profile_id, input.partner);
     default:
       return { error: `Unknown tool: ${toolName}` };
   }
